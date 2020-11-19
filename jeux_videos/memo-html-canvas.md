@@ -195,6 +195,84 @@ context.textBaseline = 'bottom';
 context.fillText('Texte à afficher.', position_x, position_y);
 ```
 
+## Dessiner une image
+
+```js
+let image = new Image();
+image.src = 'assets/image.png';
+context.drawImage(image, coin_supérieur_gauche_x, coin_supérieur_gauche_y);
+```
+
+**Attention !** Une image ne s'affichera pas si elle n'est pas entièrement chargée. Utilisez l'événement `onload` pour vérifier si l'image est chargée.
+
+```js
+image.onload = function() {
+   context.drawImage(image, coin_supérieur_gauche_x, coin_supérieur_gauche_y);
+};
+```
+
+## Modifier l'échelle d'une image
+
+```js
+context.drawImage(image, coin_supérieur_gauche_x, coin_supérieur_gauche_y, largeur, hauteur);
+```
+
+**Remarque :** Vous pouvez utiliser les propriétés `width` et `height` de l'image et les diviser par un facteur d'échelle.
+
+```js
+context.drawImage(image, coin_supérieur_gauche_x, coin_supérieur_gauche_y, image.width / ratio_horizontal, image.width / ratio_vertical);
+```
+
+## Dessiner une partie d'image
+
+```js
+context.drawImage(
+    image, 
+    position_x_sous_image, 
+    position_y_sous_image, 
+    largeur_sous_image, 
+    hauteur_sous_image, 
+    position_x, 
+    position_y, 
+    largeur, 
+    hauteur);
+```
+
+## Appliquer une rotation
+
+```js
+context.translate(position_x + decalage_origine_x, position_y + decalage_origine_y);
+context.rotate(angle);
+context.translate(-(position_x + decalage_origine_x), -(position_y + decalage_origine_y));
+
+context.drawImage(image, x, y);
+
+context.setTransform(1, 0, 0, 1, 0, 0); // réinitialise la matrice de transformation
+```
+
+**Remarque :** Vous pouvez également utiliser les méthodes `save` et `restore` pour sauvegarder l'état précédent de la matrice de transformation puis la rétablir une fois vos manipulations terminées mais réinitialiser la matrice est plus efficace car il n'y a pas de sauvegarde d'état.
+
+```js
+context.save();
+
+context.translate(position_x + decalage_origine_x, position_y + decalage_origine_y);
+context.rotate(angle);
+context.translate(-(position_x + decalage_origine_x), -(position_y + decalage_origine_y));
+
+context.drawImage(image, x, y);
+
+context.restore();
+```
+
+## Lisser les images
+
+```js
+context.imageSmoothingEnabled = true; // par défaut, déjà true
+context.imageSmoothingQuality = 'high';
+```
+
+Pour un jeu pixel art, désactivez le lissage en passant la propriété `imageSmoothingEnabled` à `false`.
+
 ## Répéter l'appel à une fonction selon un intervalle de temps
 
 ```js
@@ -286,7 +364,7 @@ function setup() {
 function gameLoop(timeStamp) {
     privateUpdate(timeStamp);
     update();
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    clearCanvas();
     draw();
     window.requestAnimationFrame(gameLoop);
 }
@@ -297,6 +375,11 @@ function privateUpdate(timeStamp) {
     deltaTime = Math.min(secondsPassed, 0.1); // limite le délai entre deux frames à 1/10e de secondes max
     fps = Math.round(1 / deltaTime);
     previousTimeStamp = timeStamp;
+}
+
+
+function clearCanvas() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 
