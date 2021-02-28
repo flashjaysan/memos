@@ -20,7 +20,6 @@ Téléchargez et installez [MinGW-W64 Online Installer](https://sourceforge.net/
 
 Notez l'emplacement du dossier d'installation.
 
-**Exemple :** `C:\mingw`
 
 #### Configurer le path
 
@@ -54,7 +53,7 @@ Rendez vous sur le site de la [SDL](https://www.libsdl.org/download-2.0.php).
 
 Téléchargez les Development Libraries pour MinGW ainsi que les Runtime Binaries en version 64 bits.
 
-![](images/sdl_binaries_et_libraries)
+![](images/sdl_binaries_et_libraries.png)
 
 Dézippez ces deux archives à l'emplacement de votre choix.
 
