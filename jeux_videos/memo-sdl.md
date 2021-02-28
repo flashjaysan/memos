@@ -46,7 +46,7 @@ Une fois terminé, cliquez sur `OK` pour fermer toutes les fenêtres.
 
 Le path est bien configuré si la commande `gcc` est reconnue quand vous la saisissez dans un terminal.
 
-![test de la commande gcc](images/sdl_commande_gcc_text.png)
+![test de la commande gcc](images/sdl_commande_gcc_test.png)
 
 ### SDL
 
