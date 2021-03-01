@@ -20,9 +20,9 @@ Notez l'emplacement du dossier d'installation.
 
 #### Configurer le path
 
- Vous devez ajouter le chemin vers le sous-dossier  `mingw64\bin` (il contient plein de fichiers `.exe`) au path Windows.
+Pour éviter de saisir le chemin complet vers les outils fournis par MinGW64 à chaque fois, vous devez ajouter le chemin vers le sous-dossier  `mingw64\bin` (il contient plein de fichiers `.exe`) au path de Windows.
 
- **Exemple :** `C:\mingw\mingw64\bin`
+**Exemple :** `C:\mingw\mingw64\bin`
 
 Dans la barre de recherche de Windows, saisissez `variables d'environnement` et choisissez l'option `Modifier les variables d'environnement système`.
 
