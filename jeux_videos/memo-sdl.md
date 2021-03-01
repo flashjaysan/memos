@@ -57,7 +57,7 @@ int main(int argv, char** args)
         printf("Probleme avec la SDL.");
     }
     SDL_Quit();
-	return 0;
+    return 0;
 }
 ```
 
@@ -71,8 +71,11 @@ gcc src/main.c -Iinclude -Llib -lmingw32 -lSDL2main -lSDL2 -o bin/main.exe
 
 **Remarques :**
 
+- Le premier paramètre passé au compilateur correspond au nom du fichier source à compiler. Notez que la compilation s'effectue à la racine du projet. Vous devez donc indiquer le chemin relatif du fichier source à compiler.
 - L'option `-I` du compilateur `gcc` sert à préciser l'emplacement des fichiers headers (les fichiers `.h`) d'une bibliothèque comme la SDL. Ces fichiers sont généralement situés dans un dossier nommé `include`.
 - L'option `-L` du compilateur `gcc` sert à préciser l'emplacement des fichiers objets précompilés (les fichiers `.a`) d'une bibliothèque comme la SDL. Ces fichiers sont généralement situés dans un dossier nommé `lib`.
+- L'option `-l` indique les fichiers objets à ajouter au programme par l'éditeur de liens. Les trois fichiers objets `mingw32`, `SDL2main` et `SDL2` doivent être listés dans cet ordre précis.
+- L'option `-o` permet de préciser le nom et l'emplacement où générer le fichier exécutable. Notez que la compilation s'effectue à la racine du projet. Vous devez donc indiquer le chemin relatif du fichier exécutable à générer.
 
 Si tout s'est bien passé, un fichier `main.exe` doit avoir été généré dans le dossier `bin`.
 
