@@ -120,10 +120,10 @@ ls
 
 ![commande `ls` dans le terminal de Visual Studio Code](images/c_commande_ls_vscode.png)
 
-Par défaut, le compilateur `gcc` génère un fichier exécutable appelé `a.exe` à partir de votre fichier source. Pour l'exécuter depuis le terminal, saisissez la commande suivante :
+Par défaut, le compilateur `gcc` génère un fichier exécutable appelé `a.exe` à partir de votre fichier source. Pour l'exécuter depuis le terminal de Visual Studio Code, saisissez la commande suivante :
 
 ```
-.\a.exe
+./a.exe
 ```
 
 ![exécution du programme test dans le terminal](images/c_premiere_execution_vscode.png)
