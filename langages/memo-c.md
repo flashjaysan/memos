@@ -44,6 +44,48 @@ Le path est bien configuré si la commande `gcc` est reconnue quand vous la sais
 
 ![test de la commande gcc](images/c_commande_gcc_test.png)
 
+## Compilation en ligne de commande
+
+Créez un fichier `main.c` et placez le code suivant dans ce fichier avec le bloc-note ou n'importe quel éditeur de code :
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    printf("Hello, World!");
+    return 0;
+}
+```
+
+Positionnez-vous avec l'explorateur de fichiers dans le dossier contenant le fichier précédent.
+
+Cliquez dans la barre d'adresse de l'explorateur de fichiers et saisissez `cmd` pour faire apparaître un terminal positionné à l'emplacement du fichier.
+
+Pour compiler le fichier source, saisissez la commande suivante :
+
+```
+gcc main.c
+```
+
+Aucun message n'apparait dans le terminal quand la compilation se passe bien. Cependant, un nouveau fichier exécutable a bien été généré. Dans le terminal, saisissez la commande `dir` pour afficher la liste des fichiers du dossier. Un fichier nommé `a.exe` doit être présent.
+
+```
+dir
+```
+
+Par défaut, le compilateur `gcc` génère un fichier exécutable nommé `a.exe` à partir de votre fichier source. Pour l'exécuter depuis le terminal, saisissez la commande suivante :
+
+```
+a.exe
+```
+
+Pour choisir le nom de l'exécutable, utilisez la commande `-o` suivie du nom du fichier (sans espace) à générer.
+
+```
+gcc main.c -o hello.exe
+```
+
 ## Compilation dans Visual Studio Code
 
 Si vous le souhaitez, installez l'extension `C/C++` de Microsoft.
@@ -62,7 +104,7 @@ int main(void)
 }
 ```
 
-Cliquez sur le menu `Terminal -> New Terminal`. Un terminal s'affiche en bas de la fenêtre.
+Pour ouvrir le terminal de Visual Studio Code, cliquez sur le menu `View -> Terminal`. Le terminal s'affiche en bas de la fenêtre.
 
 Pour compiler le fichier source, saisissez la commande suivante :
 
