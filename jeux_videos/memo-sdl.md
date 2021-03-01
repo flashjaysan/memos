@@ -99,10 +99,10 @@ int main(int argv, char** args)
 {
     SDL_Init(SDL_INIT_EVERYTHING);
 
-    SDL_Window *window = SDL_CreateWindow("Hello SDL", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, 0);
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
+    SDL_Window* window = SDL_CreateWindow("Hello SDL", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, 0);
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
 
-    int isRunning = 1;
+    _Bool isRunning = 1;
     SDL_Event event;
 
     while (isRunning)
@@ -142,6 +142,10 @@ Compilez à nouveau et exécutez le programme. Si une fenêtre rouge s'affiche, 
 ![première fenêtre avec SDL](images/sdl_premiere_fenetre.png)
 
 Appuyez sur `ECHAP` pour fermer le programme.
+
+## Coloration syntaxique dans Visual Studio Code
+
+Si ce n'est pas déjà fait, installez l'extension `C/C++` de Microsoft dans Visual Studio Code.
 
 ## Utilisation de la SDL
 
@@ -210,12 +214,51 @@ La fonction [`SDL_Quit`](https://wiki.libsdl.org/SDL_Quit) vous permet de clotur
 SDL_Quit();
 ```
 
+## Création de la fenêtre
 
+Après avoir initialisé les sous-systèmes nécessaires, vous devez créer une fenêtre où afficher vos graphismes.
 
+La fonction [`SDL_CreateWindow`](https://wiki.libsdl.org/SDL_CreateWindow) vous permet de créer une fenêtre d'affichage. Cette fonction renvoie un pointeur de type [`SDL_Window`](https://github.com/libsdl-org/SDL/blob/main/src/video/SDL_sysvideo.h#L74) correspondant à la fenêtre créée.
 
+La fonction prend les paramètres suivants :
 
+- Un `char*` correspondant au titre de la fenêtre au format UTF-8.
+- Un `int` correspondant à la position (en pixels) horizontale de la fenêtre par rapport au bord gauche de l'écran d'affichage. Utilisez la constante `SDL_WINDOWPOS_CENTERED` pour centrer horizontalement la fenêtre ou la constante `SDL_WINDOWPOS_UNDEFINED` pour laisser le système décider de la position.
+- Un `int` correspondant à la position (en pixels) verticale de la fenêtre par rapport au bord supérieur de l'écran d'affichage. Utilisez la constante `SDL_WINDOWPOS_CENTERED` pour centrer verticalement la fenêtre ou la constante `SDL_WINDOWPOS_UNDEFINED` pour laisser le système décider de la position.
+- Un `int` correspondant à la largeur (en pixels) de la fenêtre.
+- Un `int` correspondant à la hauteur (en pixels) de la fenêtre.
+- Un `Uint32` correspondant à un des motifs binaires suivants (ou une combinaison de ceux ci avec l'opérateur `|` binaire) :
+  - `0` pour les réglages par défaut.
+  - `SDL_WINDOW_FULLSCREEN` pour une fenêtre en plein écran.
+  - `SDL_WINDOW_FULLSCREEN_DESKTOP` pour une fenêtre en plein écran à la résolution actuelle de l'écran.
+  - `SDL_WINDOW_OPENGL` pour une fenêtre utilisable avec un contexte OpenGL.
+  - `SDL_WINDOW_VULKAN` pour une fenêtre utilisable avec un contexte Vulkan.
+  - `SDL_WINDOW_HIDDEN` pour une fenêtre masquée.
+  - `SDL_WINDOW_BORDERLESS` pour une fenêtre sans bordure.
+  - `SDL_WINDOW_RESIZABLE` pour une fenêtre redimensionnable.
+  - `SDL_WINDOW_MINIMIZED` pour une fenêtre minimisée.
+  - `SDL_WINDOW_MAXIMIZED` pour une fenêtre maximisée.
+  - `SDL_WINDOW_INPUT_GRABBED` pour une fenêtre ayant le focus.
+  - `SDL_WINDOW_ALLOW_HIGHDPI` pour une fenêtre en mode high-DPI si possible.
 
+```c
+SDL_Window* window = SDL_CreateWindow(
+    "Mon jeu",
+    SDL_WINDOWPOS_CENTERED,
+    SDL_WINDOWPOS_CENTERED,
+    640,
+    360,
+    0
+);
+```
 
+### Destruction de la fenêtre
+
+La fonction [`SDL_DestroyWindow`](https://wiki.libsdl.org/SDL_DestroyWindow) vous permet de détruire une fenêtre de type pointeur sur un `SDL_Window`. A partir du moment où vous créez une fenêtre, vous devez la détruire avant de quitter le programme.
+
+```c
+SDL_DestroyWindow(window);
+```
 
 
 
