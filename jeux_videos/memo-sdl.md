@@ -37,7 +37,7 @@ Dans la section `Variables système`, faites un double clic sur la ligne `Path`.
 
 ![ligne Path dans la boite de dialogue](images/sdl_ligne_path.png)
 
-Cliquez sur le bouton `Nouveau` et ajoutez le chemin vers le sous dossier `mingw64\bin`.
+Cliquez sur le bouton `Nouveau` et ajoutez le chemin vers le sous dossier `mingw32\bin`.
 
 ![ajout de MinGW au Path](images/sdl_ajouter_path.png)
 
