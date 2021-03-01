@@ -2,11 +2,13 @@
 
 *par flashjaysan*
 
+## Documentation
+
+La source d'information la plus importante dans une bibliothèque est sa documentation. Elle se trouve à cette adresse : [https://wiki.libsdl.org/APIByCategory](https://wiki.libsdl.org/APIByCategory). En cas de doute, référez-vous toujours à cette source.
+
 ## Installation
 
 Pour utiliser la SDL, vous aurez besoin d'un compilateur C ou C++. La procédure est détaillée dans mon autre [mémo consacré au langage C](../langages/memo-c.md).
-
-### SDL
 
 Rendez-vous sur le site de la [SDL](https://www.libsdl.org/download-2.0.php).
 
@@ -140,3 +142,82 @@ Compilez à nouveau et exécutez le programme. Si une fenêtre rouge s'affiche, 
 ![première fenêtre avec SDL](images/sdl_premiere_fenetre.png)
 
 Appuyez sur `ECHAP` pour fermer le programme.
+
+## Utilisation de la SDL
+
+### Afficher des messages
+
+Utilisez la fonction [`SDL_Log`](https://wiki.libsdl.org/SDL_Log) pour afficher des messages. Cette fonction ne nécessite pas l'initialisation de sous-systèmes. Elle fonctionne comme la fonction standard `printf`.
+
+```c
+SDL_Log("Hello, World!");
+```
+
+### Initialisation générale
+
+Les différents sous-systèmes fournis par la SDL doivent être initialisés.
+
+La fonction [`SDL_Init`](https://wiki.libsdl.org/SDL_Init) initialise certains ou tous les sous-systèmes de la SDL et renvoie la valeur `0` si tout s'est bien passé ou un nombre négatif en cas d'échec.
+
+Cette fonction prend en paramètre un motif binaire correspondant aux sous-systèmes à initialiser ou la valeur `0` si vous ne voulez initialiser aucun sous-système. Généralement, on utilise la constante `SDL_INIT_EVERYTHING` pour initialiser tous les systèmes.
+
+```c
+if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
+{
+	printf("Erreur lord de l'initialisation de la SDL.");
+	return EXIT_FAILURE;
+}
+```
+
+Si vous ne voulez initialiser que certains sous-systèmes, utilisez les constantes suivantes en les combinant si besoin avec l'opérateur `|` binaire.
+
+- `SDL_INIT_TIMER` : sous-système gestionnaire du temps.
+- `SDL_INIT_AUDIO` : sous-système gestionnaire de l'audio.
+- `SDL_INIT_VIDEO` : sous-système gestionnaire de la vidéo. Initialise automatiquement le sous-système gestionnaire d'évènements.
+- `SDL_INIT_JOYSTICK` : sous-système gestionnaire de joysticks. Initialise automatiquement le sous-système gestionnaire d'évènements.
+- `SDL_INIT_HAPTIC` : sous-système gestionnaire haptique (vibrations).
+- `SDL_INIT_GAMECONTROLLER` : sous-système gestionnaire de manettes. Initialise automatiquement le sous-système gestionnaire de joysticks.
+- `SDL_INIT_EVENTS` : sous-système gestionnaire d'évènements.
+
+```c
+// initialise les sous-systèmes gestionnaire de l'audio et de la vidéo
+SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO);
+```
+
+### Initialisation différée
+
+Vous pouvez passer la valeur `0` à la fonction `SDL_Init` et initialiser les sous-systèmes plus tard en appelant la fonction [`SDL_InitSubSystem`](https://wiki.libsdl.org/SDL_InitSubSystem). Cette dernière fonctionne exactement comme la fonction `SDL_Init` mais vous pouvez l'appeler après l'initialisation générale selon vos besoins.
+
+```c
+SDL_Init(0);
+...
+SDL_InitSubSystem(SDL_INIT_AUDIO | SDL_INIT_VIDEO);
+```
+
+### Désactivation de sous-systèmes
+
+La fonction [`SDL_QuitSubSystem`](https://wiki.libsdl.org/SDL_QuitSubSystem) vous permet de désactiver manuellement un ou plusieurs sous-système. Elle fonctionne à l'inverse de la fonction `SDL_InitSubSystem`. Si vous souhaitez désactiver tous les sous-systèmes, utilisez plutôt la fonction `SDL_Quit`.
+
+```c
+SDL_QuitSubSystem(SDL_INIT_AUDIO | SDL_INIT_VIDEO);
+```
+
+### Cloture finale
+
+La fonction [`SDL_Quit`](https://wiki.libsdl.org/SDL_Quit) vous permet de cloturer définitivement l'utilisation de la SDL. Vous pouvez l'appeler sans risque, même quand l'initialisation a échoué. Notez que vous devez appeler cette fonction dès lors que vous avez initialisé la SDL, et ce même si vous avez désactivé les sous-systèmes manuellement avec la fonction `SDL_QuitSubSystem`. Elle ne prend pas de paramètre et ne renvoie aucune valeur.
+
+```c
+SDL_Quit();
+```
+
+
+
+
+
+
+
+
+
+
+
+
