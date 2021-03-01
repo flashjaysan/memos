@@ -10,11 +10,11 @@ Pour utiliser la SDL, vous aurez besoin d'un compilateur C ou C++. La procédure
 
 Rendez-vous sur le site de la [SDL](https://www.libsdl.org/download-2.0.php).
 
-Téléchargez les Development Libraries pour MinGW ainsi que les Runtime Binaries en version 64 bits.
+Téléchargez les Development Libraries pour MinGW.
 
-![fichiers de la SDL à télécharger](images/sdl_binaries_et_libraries.png)
+![fichier de la SDL à télécharger](images/sdl_development_libraries.png)
 
-Dézippez ces deux archives à l'emplacement de votre choix.
+Dézippez cette archive à l'emplacement de votre choix.
 
 **Remarque :** Pour faciliter la configuration, choisissez un emplacement simple (par exemple `C:\SDL`).
 
