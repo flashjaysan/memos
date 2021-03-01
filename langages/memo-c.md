@@ -46,6 +46,8 @@ Créez un dossier et ouvrez-le avec Visual Studio Code.
 Créez un fichier `main.c` et saisissez le code suivant :
 
 ```c
+#include <std.io>
+
 int main(void)
 {
     printf("Hello, World!");
@@ -79,7 +81,9 @@ Par défaut, le compilateur `gcc` génère un fichier exécutable appelé `a.exe
 
 ## Point d'entrée d'un programme
 
-La fonction `main` est généralement le point d'entrée d'un programme C. Elle renvoie un entier à l'environnement d'exécution. Elle peut s'écrire sous deux formes. La première ne prend pas de paramètre.
+La fonction `main` est généralement le point d'entrée d'un programme C. Elle renvoie un entier à l'environnement d'exécution. Elle peut s'écrire sous deux formes.
+
+La première forme ne prend pas de paramètre (en C, on le précise avec le mot clé `void`).
 
 ```c
 int main(void) {}
@@ -94,9 +98,9 @@ La seconde forme prend deux paramètres.
 int main(int argc, char* argv[]) {}
 ```
 
-Cette seconde forme est utilisée lorsque le programme doit recevoir des paramètres lors de son exécution.
+Cette seconde forme est utilisée lorsque le programme doit recevoir des paramètres de l'environnement d'exécution.
 
-Par convention, un programme s'exécutant correctement se termine en renvoyant la valeur `0` à l'environnement d'exécution.
+Par convention, un programme s'exécutant correctement se termine en renvoyant la valeur `0` à l'environnement d'exécution. Vous pouvez le préciser explicitement à la fin de la fonction `main` en utilisant l'instruction `return 0;`.
 
 ```c
 int main(void)
@@ -104,6 +108,8 @@ int main(void)
     return 0;
 }
 ```
+
+Cette instruction n'est pas obligatoire. Si vous ne la placez pas dans votre programme, le compilateur considère par défaut que le programme renvoie la valeur `0`.
 
 Il vous est également possible de renvoyer explicitement la constante `EXIT_SUCCESS` définie dans le fichier en-tête `stdlib.h`.
 
@@ -115,6 +121,8 @@ int main(void)
     return EXIT_SUCCESS;
 }
 ```
+
+**Remarque :** En cas de besoin, vous pouvez également utiliser la constante `EXIT_FAILURE` définie dans le fichier en-tête `stdlib.h` pour indiquer que le programme ne s'est pas terminé correctement.
 
 ## Compiler un fichier source et exécuter le programme
 
