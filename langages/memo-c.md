@@ -2,7 +2,101 @@
 
 *par flashjaysan*
 
+## Installation de MinGW
+
+Téléchargez et installez [MinGW-W64 Online Installer](https://sourceforge.net/projects/mingw-w64/files/).
+
+**Remarque :** Pour faciliter la configuration, définissez un emplacement simple comme ci-dessous :
+
+![dossier d'installation de MinGW](images/c_dossier_installation_mingw.png)
+
+Notez l'emplacement du dossier d'installation.
+
+
+#### Configurer le path
+
+ Vous devez ajouter le chemin vers le sous-dossier  `mingw32\bin` (il contient plein de fichiers `.exe`) au path Windows.
+
+ **Exemple :** `C:\mingw\mingw32\bin`
+
+Dans la barre de recherche de Windows, saisissez `variables d'environnement` et choisissez l'option `Modifier les variables d'environnement système`.
+
+Cliquez sur le bouton `Variables d'environnement...`.
+
+![bouton Variables d'environnement...](images/c_bouton_variables_environnement.png)
+
+Dans la section `Variables système`, faites un double clic sur la ligne `Path`.
+
+![ligne Path dans la boite de dialogue](images/c_ligne_path.png)
+
+Cliquez sur le bouton `Nouveau` et ajoutez le chemin vers le sous dossier `mingw32\bin`.
+
+![ajout de MinGW au Path](images/c_ajouter_path.png)
+
+Une fois terminé, cliquez sur `OK` pour fermer toutes les fenêtres.
+
+Le path est bien configuré si la commande `gcc` est reconnue quand vous la saisissez dans un terminal.
+
+![test de la commande gcc](images/c_commande_gcc_test.png)
+
+## Compiler avec Visual Studio Code
+
+Créez un dossier et ouvrez-le avec Visual Studio Code.
+
+Créez un fichier `main.c` et saisissez le code suivant :
+
+```c
+int main(void)
+{
+    printf("Hello, World!");
+    return 0;
+}
+```
+
+Cliquez sur le menu `Terminal -> New Terminal`. Un terminal s'affiche en bas de la fenêtre.
+
+Saisissez la commande suivante :
+
+```
+gcc main.c
+```
+
+Aucun message n'apparait dans le terminal quand la compilation se passe bien. En revanche, un nouveau fichier exécutable doit avoir été généré. Dans le terminal, saisissez la commande `ls` pour afficher la liste des fichiers du dossier.
+
+```
+ls
+```
+
+![commande `ls` dans le terminal de Visual Studio Code](images/c_commande_ls_vscode.png)
+
+Par défaut, le compilateur `gcc` génère un fichier exécutable appelé `a.exe`. Pour l'exécuter depuis le terminal, saisissez la commande suivante :
+
+```
+.\a.exe
+```
+
+![exécution du programme test dans le terminal](images/c_premiere_execution_vscode.png)
+
 ## Point d'entrée d'un programme
+
+La fonction `main` est généralement le point d'entrée d'un programme C. Elle renvoie un entier à l'environnement d'exécution. Elle peut s'écrire sous deux formes. La première ne prend pas de paramètre.
+
+```c
+int main(void) {}
+```
+
+La seconde forme prend deux paramètres.
+
+- Un entier (généralement nommé `argc`) qui contient le nombre d'éléments contenus dans le second paramètre.
+- Un tableau de pointeurs de caractères (généralement nommé `argv`) qui contient des chaînes de caractères passées au programme lors de son lancement par l'environnement d'exécution.
+
+```c
+int main(int argc, char* argv[]) {}
+```
+
+Cette seconde forme est utilisée lorsque le programme doit recevoir des paramètres lors de son exécution.
+
+Par convention, un programme s'exécutant correctement se termine en renvoyant la valeur `0` à l'environnement d'exécution.
 
 ```c
 int main(void)
@@ -11,20 +105,12 @@ int main(void)
 }
 ```
 
+Il vous est également possible de renvoyer explicitement la constante `EXIT_SUCCESS` définie dans le fichier en-tête `stdlib.h`.
 
 ```c
 #include <stdlib.h>
 
 int main(void)
-{
-    return EXIT_SUCCESS;
-}
-```
-
-```c
-#include <stdlib.h>
-
-int main(int argc, char* argv[])
 {
     return EXIT_SUCCESS;
 }
