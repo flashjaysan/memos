@@ -23,7 +23,7 @@ Notez l'emplacement du dossier d'installation.
 
 #### Configurer le path
 
- Vous devez ajouter le chemin vers le sous-dossier  `mingw64\bin` (il contient plein de fichiers `.exe`) au path Windows.
+ Vous devez ajouter le chemin vers le sous-dossier  `mingw32\bin` (il contient plein de fichiers `.exe`) au path Windows.
 
  **Exemple :** `C:\mingw\mingw32\bin`
 
