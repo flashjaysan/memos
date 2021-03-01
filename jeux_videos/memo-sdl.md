@@ -35,7 +35,7 @@ Vous devriez avoir l'arborescence de projet suivante :
 - racine du projet
   - dossier `include`
     - dossier `SDL2`
-	  - fichiers en-tête (`.h`) de la SDL
+      - fichiers en-tête (`.h`) de la SDL
   - dossier `lib`
     - fichiers objets (`.a`) de la SDL
   - dossier `src`
@@ -52,11 +52,11 @@ int main(int argv, char** args)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
     {
-        printf("SDL initialisee.");
+        SDL_Log("SDL initialisee.");
     }
     else
     {
-        printf("Probleme avec la SDL.");
+        SDL_Log("Probleme avec la SDL.");
     }
     SDL_Quit();
     return 0;
@@ -97,43 +97,43 @@ modifier le fichier `main.c` avec le code suivant :
 
 int main(int argv, char** args)
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
+    SDL_Init(SDL_INIT_EVERYTHING);
 
-	SDL_Window *window = SDL_CreateWindow("Hello SDL", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, 0);
-	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
+    SDL_Window *window = SDL_CreateWindow("Hello SDL", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, 0);
+    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
 
-	int isRunning = 1;
-	SDL_Event event;
+    int isRunning = 1;
+    SDL_Event event;
 
-	while (isRunning)
-	{
-		while (SDL_PollEvent(&event))
-		{
-			switch (event.type)
-			{
-			case SDL_QUIT:
-				isRunning = 0;
-				break;
+    while (isRunning)
+    {
+        while (SDL_PollEvent(&event))
+        {
+            switch (event.type)
+            {
+                case SDL_QUIT:
+                    isRunning = 0;
+                    break;
 
-			case SDL_KEYDOWN:
-				if (event.key.keysym.sym == SDLK_ESCAPE)
-				{
-					isRunning = 0;
-				}
-			}
-		}
+                case SDL_KEYDOWN:
+                    if (event.key.keysym.sym == SDLK_ESCAPE)
+                    {
+                        isRunning = 0;
+                    }
+            }
+        }
 
-		SDL_RenderClear(renderer);
-		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        SDL_RenderClear(renderer);
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 
-		SDL_RenderPresent(renderer);
-	}
+        SDL_RenderPresent(renderer);
+    }
 
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
-	SDL_Quit();
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
 
-	return 0;
+    return 0;
 }
 ```
 
@@ -147,7 +147,7 @@ Appuyez sur `ECHAP` pour fermer le programme.
 
 ### Afficher des messages
 
-Utilisez la fonction [`SDL_Log`](https://wiki.libsdl.org/SDL_Log) pour afficher des messages. Cette fonction ne nécessite pas l'initialisation de sous-systèmes. Elle fonctionne comme la fonction standard `printf`.
+Utilisez la fonction [`SDL_Log`](https://wiki.libsdl.org/SDL_Log) pour afficher des messages. Cette fonction ne nécessite pas l'initialisation de sous-système. Elle fonctionne comme la fonction standard `printf`.
 
 ```c
 SDL_Log("Hello, World!");
@@ -164,8 +164,8 @@ Cette fonction prend en paramètre un motif binaire correspondant aux sous-syst�
 ```c
 if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 {
-	printf("Erreur lord de l'initialisation de la SDL.");
-	return EXIT_FAILURE;
+    printf("Erreur lord de l'initialisation de la SDL.");
+    return EXIT_FAILURE;
 }
 ```
 
