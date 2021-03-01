@@ -12,40 +12,7 @@ Téléchargez et installez [Visual Studio Code](https://code.visualstudio.com/do
 
 #### Installer MinGW
 
-Téléchargez et installez [MinGW-W64 Online Installer](https://sourceforge.net/projects/mingw-w64/files/).
-
-**Remarque :** Pour faciliter la configuration, définissez un emplacement simple comme ci-dessous :
-
-![dossier d'installation de MinGW](images/sdl_dossier_installation_mingw.png)
-
-Notez l'emplacement du dossier d'installation.
-
-
-#### Configurer le path
-
- Vous devez ajouter le chemin vers le sous-dossier  `mingw32\bin` (il contient plein de fichiers `.exe`) au path Windows.
-
- **Exemple :** `C:\mingw\mingw32\bin`
-
-Dans la barre de recherche de Windows, saisissez `variables d'environnement` et choisissez l'option `Modifier les variables d'environnement système`.
-
-Cliquez sur le bouton `Variables d'environnement...`.
-
-![bouton Variables d'environnement...](images/sdl_bouton_variables_environnement.png)
-
-Dans la section `Variables système`, faites un double clic sur la ligne `Path`.
-
-![ligne Path dans la boite de dialogue](images/sdl_ligne_path.png)
-
-Cliquez sur le bouton `Nouveau` et ajoutez le chemin vers le sous dossier `mingw32\bin`.
-
-![ajout de MinGW au Path](images/sdl_ajouter_path.png)
-
-Une fois terminé, cliquez sur `OK` pour fermer toutes les fenêtres.
-
-Le path est bien configuré si la commande `gcc` est reconnue quand vous la saisissez dans un terminal.
-
-![test de la commande gcc](images/sdl_commande_gcc_test.png)
+La procédure est détaillée dans mon autre [mémo consacré au langage C](../langages/memo-c.md).
 
 ### SDL
 
@@ -53,7 +20,7 @@ Rendez vous sur le site de la [SDL](https://www.libsdl.org/download-2.0.php).
 
 Téléchargez les Development Libraries pour MinGW ainsi que les Runtime Binaries en version 64 bits.
 
-![](images/sdl_binaries_et_libraries.png)
+![fichiers de la SDL à télécharger](images/c_binaries_et_libraries.png)
 
 Dézippez ces deux archives à l'emplacement de votre choix.
 
@@ -82,8 +49,8 @@ Dans le sous-dossier `.vscode`, créez un fichier `tasks.json`. Saisissez le cod
 				"src\\*.cpp",
 				"-o",
 				"build\\game.exe",
-				"-IC:\\SDL\\x86_64-w64-mingw32\\include",
-				"-LC:\\SDL\\x86_64-w64-mingw32\\lib",
+				"-IC:/SDL/x86_64-w64-mingw32/include",
+				"-LC:/SDL/x86_64-w64-mingw32/lib",
 				"-lmingw32",
 				"-lSDL2main",
 				"-lSDL2",
