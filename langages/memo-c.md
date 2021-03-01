@@ -91,8 +91,8 @@ int main(void) {}
 
 La seconde forme prend deux paramètres.
 
-- Un entier (généralement nommé `argc`) qui contient le nombre d'éléments contenus dans le second paramètre.
-- Un tableau de pointeurs de caractères (généralement nommé `argv`) qui contient des chaînes de caractères passées au programme lors de son lancement par l'environnement d'exécution.
+- Un entier (généralement nommé `argc`) qui contient soit `0` soit le nombre de chaînes contenues dans le second paramètre.
+- Un tableau de pointeurs de caractères (généralement nommé `argv`) qui contient des chaînes de caractères passées au programme lors de son lancement par l'environnement d'exécution. Le premier élément correspond au nom du programme.
 
 ```c
 int main(int argc, char* argv[]) {}
@@ -109,9 +109,9 @@ int main(void)
 }
 ```
 
-Cette instruction n'est pas obligatoire. Si vous ne la placez pas dans votre programme, le compilateur considère par défaut que le programme renvoie la valeur `0`.
+Depuis la norme C99, cette instruction n'est pas obligatoire. Si vous ne la placez pas dans votre programme, le compilateur considère par défaut que le programme renvoie la valeur `0`.
 
-Il vous est également possible de renvoyer explicitement la constante `EXIT_SUCCESS` définie dans le fichier en-tête `stdlib.h`.
+Pour plus de clarté, vous pouvez également renvoyer la constante `EXIT_SUCCESS` définie dans le fichier en-tête `stdlib.h`.
 
 ```c
 #include <stdlib.h>
