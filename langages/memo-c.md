@@ -80,6 +80,12 @@ Par défaut, le compilateur `gcc` génère un fichier exécutable nommé `a.exe`
 a.exe
 ```
 
+Vous pouvez combiner la compilation et l'exécution en enchainant les deux commandes :
+
+```
+gcc main.c && a.exe
+```
+
 Pour choisir le nom de l'exécutable, utilisez la commande `-o` suivie du nom du fichier (sans espace) à générer.
 
 ```
@@ -173,25 +179,7 @@ int main(void)
 
 **Remarque :** En cas de besoin, vous pouvez également utiliser la constante `EXIT_FAILURE` définie dans le fichier en-tête `stdlib.h` pour indiquer que le programme ne s'est pas terminé correctement.
 
-## Compiler un fichier source et exécuter le programme
-
-Compiler avec `gcc` :
-
-```
-gcc nom_du_fichier.c
-```
-
-Exécuter le programme :
-
-```
-./a.exe
-```
-
-Combiner les deux :
-
-```
-gcc nom_du_fichier.c && ./a.exe
-```
+# SECTION INCOMPLETE
 
 ## Littéraux
 
