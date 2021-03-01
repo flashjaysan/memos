@@ -278,7 +278,7 @@ La fonction prend les paramètres suivants :
   - `SDL_RENDERER_TARGETTEXTURE` pour un renderer prenant en charge le rendu vers une texture.
 
 ```c
-SDL_Renderer* renderer = SDL_CreateRenderer(window, );
+SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
 ```
 
 ### Destruction du renderer
