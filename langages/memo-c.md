@@ -2,22 +2,27 @@
 
 *par flashjaysan*
 
-## Installation de MinGW
+## Installation de MinGW64
 
-Téléchargez et installez [MinGW-W64 Online Installer](https://sourceforge.net/projects/mingw-w64/files/).
+Téléchargez et installez [MinGW64](https://sourceforge.net/projects/mingw-w64/files/).
 
-**Remarque :** Pour faciliter la configuration, définissez un emplacement simple comme ci-dessous :
+**Remarque :** MinGW64 est fourni en version 32 et 64 bits. Les bibliothèques supplémentaires (telles que la SDL) que vous utiliserez avec MinGW doivent correspondre à la version installée. Les machines modernes utilisant presque toutes une base 64 bits, je vous conseille donc d'utiliser la version 64 bits de MinGW64 (la version 32 bits de MinGW64 est située dans un sous-dossier commençant par `i686`).
+
+Sélectionnez l'architecture `x86_64` pour installer la version 64 bits de MinGW64 (l'architecture `i686` correspond à la version 32 bits).
+
+![architecture d'installation de MinGW](images/c_achitecture_mingw.png)
+
+Pour faciliter la configuration, choisissez un emplacement simple comme ci-dessous :
 
 ![dossier d'installation de MinGW](images/c_dossier_installation_mingw.png)
 
 Notez l'emplacement du dossier d'installation.
 
-
 #### Configurer le path
 
- Vous devez ajouter le chemin vers le sous-dossier  `mingw32\bin` (il contient plein de fichiers `.exe`) au path Windows.
+ Vous devez ajouter le chemin vers le sous-dossier  `mingw64\bin` (il contient plein de fichiers `.exe`) au path Windows.
 
- **Exemple :** `C:\mingw\mingw32\bin`
+ **Exemple :** `C:\mingw\mingw64\bin`
 
 Dans la barre de recherche de Windows, saisissez `variables d'environnement` et choisissez l'option `Modifier les variables d'environnement système`.
 
@@ -29,7 +34,7 @@ Dans la section `Variables système`, faites un double clic sur la ligne `Path`.
 
 ![ligne Path dans la boite de dialogue](images/c_ligne_path.png)
 
-Cliquez sur le bouton `Nouveau` et ajoutez le chemin vers le sous dossier `mingw32\bin`.
+Cliquez sur le bouton `Nouveau` et ajoutez le chemin vers le sous dossier `mingw64\bin`.
 
 ![ajout de MinGW au Path](images/c_ajouter_path.png)
 
@@ -39,7 +44,9 @@ Le path est bien configuré si la commande `gcc` est reconnue quand vous la sais
 
 ![test de la commande gcc](images/c_commande_gcc_test.png)
 
-## Compiler avec Visual Studio Code
+## Compilation dans Visual Studio Code
+
+Si vous le souhaitez, installez l'extension `C/C++` de Microsoft.
 
 Créez un dossier et ouvrez-le avec Visual Studio Code.
 
@@ -83,7 +90,7 @@ Par défaut, le compilateur `gcc` génère un fichier exécutable appelé `a.exe
 
 La fonction `main` est généralement le point d'entrée d'un programme C. Elle renvoie un entier à l'environnement d'exécution. Elle peut s'écrire sous deux formes.
 
-La première forme ne prend pas de paramètre (en C, on le précise avec le mot clé `void`).
+La première forme ne prend pas de paramètre (contrairement au C++, en C, il est impératif de le préciser avec le mot clé `void`).
 
 ```c
 int main(void) {}
@@ -172,15 +179,13 @@ Un littéral chaîne de caractères vide s'écrit avec deux guillemets :
 char* chaine_vide = "";
 ```
 
-
-
 ## Afficher une chaine de caractères
 
 ```c
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char* argv[])
+int main(void)
 {
     printf("Bonjour.");
     return EXIT_SUCCESS;
@@ -191,7 +196,7 @@ int main(int argc, char* argv[])
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char* argv[])
+int main(void)
 {
     char* chaine = "Bonjour.";
     printf(chaine);
@@ -203,7 +208,7 @@ int main(int argc, char* argv[])
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char* argv[])
+int main(void)
 {
     char* chaine = "Bonjour.";
     printf("%s", chaine);
@@ -217,7 +222,7 @@ int main(int argc, char* argv[])
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char* argv[])
+int main(void)
 {
     printf("%d", 1234);
     return EXIT_SUCCESS;
@@ -228,7 +233,7 @@ int main(int argc, char* argv[])
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char* argv[])
+int main(void)
 {
     int entier = 1234;
     printf("%d", entier);
