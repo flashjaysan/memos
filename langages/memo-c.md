@@ -101,7 +101,7 @@ Créez un dossier et ouvrez-le avec Visual Studio Code.
 Créez un fichier `main.c` et saisissez le code suivant :
 
 ```c
-#include <std.io>
+#include <stdio.h>
 
 int main(void)
 {
