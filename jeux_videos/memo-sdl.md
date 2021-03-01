@@ -137,6 +137,6 @@ int main(int argv, char** args)
 
 Compilez à nouveau et exécutez le programme. Si une fenêtre rouge s'affiche, vous êtes prêt à utiliser la SDL.
 
-![première fenêtre avec SDL](sdl_premiere_fenetre.png)
+![première fenêtre avec SDL](images/sdl_premiere_fenetre.png)
 
 Appuyez sur `ECHAP` pour fermer le programme.
