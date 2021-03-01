@@ -227,7 +227,7 @@ La fonction prend les paramètres suivants :
 - Un `int` correspondant à la position (en pixels) verticale de la fenêtre par rapport au bord supérieur de l'écran d'affichage. Utilisez la constante `SDL_WINDOWPOS_CENTERED` pour centrer verticalement la fenêtre ou la constante `SDL_WINDOWPOS_UNDEFINED` pour laisser le système décider de la position.
 - Un `int` correspondant à la largeur (en pixels) de la fenêtre.
 - Un `int` correspondant à la hauteur (en pixels) de la fenêtre.
-- Un `Uint32` correspondant à un des motifs binaires suivants (ou une combinaison de ceux ci avec l'opérateur `|` binaire) :
+- Un `Uint32` correspondant à un des motifs binaires suivants (ou une combinaison de ceux-ci avec l'opérateur `|` binaire) :
   - `0` pour les réglages par défaut.
   - `SDL_WINDOW_FULLSCREEN` pour une fenêtre en plein écran.
   - `SDL_WINDOW_FULLSCREEN_DESKTOP` pour une fenêtre en plein écran à la résolution actuelle de l'écran.
@@ -260,7 +260,31 @@ La fonction [`SDL_DestroyWindow`](https://wiki.libsdl.org/SDL_DestroyWindow) vou
 SDL_DestroyWindow(window);
 ```
 
+## Création du renderer
 
+Après avoir créé la fenêtre d'affichage, vous devez créer un renderer.
 
+La fonction [`SDL_CreateRenderer`](https://wiki.libsdl.org/SDL_CreateRenderer) vous permet de créer unrenderer. Cette fonction renvoie un pointeur de type [`SDL_Renderer`](https://github.com/libsdl-org/SDL/blob/main/src/video/SDL_sysvideo.h#L74) correspondant au renderer créé.
 
+La fonction prend les paramètres suivants :
 
+- Un `SDL_Window*` correspondant à la fenêtre ou le renderer doit s'afficher.
+- Un `int` correspondant à l'index du pilote de rendu à initialiser. Utilisez la valeur `-1` pour initialiser le premier pilote prenant en charge le type de rendu.
+- Un `Uint32` correspondant à un des motifs binaires suivants (ou une combinaison de ceux-ci avec l'opérateur `|` binaire) :
+  - `0` pour les réglages par défaut (privilégie l'accélération matérielle).
+  - `SDL_RENDERER_SOFTWARE` pour un renderer entièrement logiciel.
+  - `SDL_RENDERER_ACCELERATED` pour un renderer utilisant l'accélération matérielle (la carte graphique).
+  - `SDL_RENDERER_PRESENTVSYNC` pour un renderer synchronisé sur la synchro verticale.
+  - `SDL_RENDERER_TARGETTEXTURE` pour un renderer prenant en charge le rendu vers une texture.
+
+```c
+SDL_Renderer* renderer = SDL_CreateRenderer(window, );
+```
+
+### Destruction du renderer
+
+La fonction [`SDL_DestroyRenderer`](https://wiki.libsdl.org/SDL_DestroyRenderer) vous permet de détruire un renderer de type pointeur sur un `SDL_Renderer`. A partir du moment où vous créez un renderer, vous devez le détruire avant de quitter le programme.
+
+```c
+SDL_DestroyRenderer(renderer);
+```
