@@ -12,7 +12,7 @@ Rendez vous sur le site de la [SDL](https://www.libsdl.org/download-2.0.php).
 
 Téléchargez les Development Libraries pour MinGW ainsi que les Runtime Binaries en version 64 bits.
 
-![fichiers de la SDL à télécharger](images/c_binaries_et_libraries.png)
+![fichiers de la SDL à télécharger](images/sdl_binaries_et_libraries.png)
 
 Dézippez ces deux archives à l'emplacement de votre choix.
 
