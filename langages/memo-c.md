@@ -55,13 +55,13 @@ int main(void)
 
 Cliquez sur le menu `Terminal -> New Terminal`. Un terminal s'affiche en bas de la fenêtre.
 
-Saisissez la commande suivante :
+Pour compiler le fichier source, saisissez la commande suivante :
 
 ```
 gcc main.c
 ```
 
-Aucun message n'apparait dans le terminal quand la compilation se passe bien. En revanche, un nouveau fichier exécutable doit avoir été généré. Dans le terminal, saisissez la commande `ls` pour afficher la liste des fichiers du dossier.
+Aucun message n'apparait dans le terminal quand la compilation se passe bien. Cependant, un nouveau fichier exécutable a bien été généré. Dans le terminal, saisissez la commande `ls` pour afficher la liste des fichiers du dossier. Un fichier nommé `a.exe` doit être présent.
 
 ```
 ls
@@ -69,7 +69,7 @@ ls
 
 ![commande `ls` dans le terminal de Visual Studio Code](images/c_commande_ls_vscode.png)
 
-Par défaut, le compilateur `gcc` génère un fichier exécutable appelé `a.exe`. Pour l'exécuter depuis le terminal, saisissez la commande suivante :
+Par défaut, le compilateur `gcc` génère un fichier exécutable appelé `a.exe` à partir de votre fichier source. Pour l'exécuter depuis le terminal, saisissez la commande suivante :
 
 ```
 .\a.exe
