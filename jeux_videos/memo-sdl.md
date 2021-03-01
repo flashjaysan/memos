@@ -2,17 +2,9 @@
 
 *par flashjaysan*
 
-## Installation Windows
+## Installation
 
-### Visual Studio Code
-
-Téléchargez et installez [Visual Studio Code](https://code.visualstudio.com/download) puis installez l'extension `C/C++` de Microsoft.
-
-### MinGW
-
-#### Installer MinGW
-
-La procédure est détaillée dans mon autre [mémo consacré au langage C](../langages/memo-c.md).
+Pour utiliser la SDL, vous aurez besoin d'un compilateur C ou C++. La procédure est détaillée dans mon autre [mémo consacré au langage C](../langages/memo-c.md).
 
 ### SDL
 
