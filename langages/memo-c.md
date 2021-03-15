@@ -4,7 +4,7 @@
 
 ## Installation de MinGW64
 
-Téléchargez et installez [MinGW64](https://sourceforge.net/projects/mingw-w64/files/).
+Téléchargez et installez [MinGW64](https://sourceforge.net/projects/mingw-w64/files/). Prenez simplement le fichier `MinGW-W64-install.exe`.
 
 **Remarque :** MinGW64 est fourni en version 32 et 64 bits. Les bibliothèques supplémentaires (telles que la SDL) que vous utiliserez avec MinGW64 doivent correspondre à la version installée. Les machines modernes utilisant presque toutes une base 64 bits, je vous conseille donc d'utiliser la version 64 bits de MinGW64.
 
