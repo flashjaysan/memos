@@ -2,19 +2,61 @@
 
 *par flashjaysan*
 
-## Installer Git
+## Introduction
 
+Git est un système de contrôle de versions. Autrement dit, c'est un logiciel qui vous permet de gérer différentes versions d'un projet.
+
+Avec Git vous pouvez par exemple :
+
+- Sauvegarder facilement l'état actuel d'un projet.
+- Créer différentes versions (branches) d'un projet.
+- Restaurer un état antérieur d'un projet si besoin.
+- Travailler à plusieurs sur un projet commun.
+
+## Fonctionnement
+
+Le tout premier commit définit l'état initial du projet. Tout nouveau commit enregistrera uniquement les différences entre ce commit initial et le commit actuel.
+
+## Différence entre Git et Github
+
+Il arrive souvent de confondre Git et Github mais ce sont deux choses bien différentes.
+
+- Git est un logiciel qui s'installe sur votre ordinateur. Une fois installé, vous pouvez vous en servir sans connexion à internet pour gérer les version d'un projet local à votre machine.
+- Github est un service en ligne d'hébergement de dépots. Il est principalement utilisé conjointement avec Git mais vous pouvez également vous en servir pour stocker un projet sans utiliser Git. Il existe d'autres services similaires tels que Gitlab et Bitbucket.
+
+L'intérêt principal de ces services d'hébergement de dépots est de permettre le stockage en ligne des différentes versions d'un projet. Cela vous permet de sauvegarder votre projet en ligne et ainsi de le préserver d'éventuelles pannes sur votre machine. Cela permet également l'accès à votre projet par plusieurs personnes. Chaque personne ayant accès au projet peut créer une branche à partir d'une copie du projet maître et travailler librement sur cette branche sans risquer de provoquer de conflit avec les autres membres de l'équipe.
+
+## Télécharger et installer Git
+
+
+
+## Terminologie
+
+- Repository (dépot en français) : emplacement (sur votre ordinateur ou sur un serveur distant) où est stocké tout l'historique d'un projet avec les différentes modifications sauvegardées.
+- Commit : 
+- Stage :
+- Branch :
+- Master :
+- Merge :
+- Pull :
+- Push :
+- Pull Request /PR :
+- Clone :
+- Conflict :
+- Track :
 
 
 ## Utilisation
 
 Ouvrez une ligne de commande puis placez-vous dans le dossier cible.
 
-Pour créer un projet :
+Pour créer un repository :
 
 ```
 git init
 ```
+
+**Attention !** Le repository est créé à l'emplacement où se trouve la console au moment de la saisie de cette commande.
 
 Pour configurer votre adresse mail liée à votre projet :
 
@@ -46,6 +88,12 @@ Pour ajouter un fichier :
 
 ```
 git add nom_fichier
+```
+
+Vous pouvez également ajouter tout le contenu du dossier :
+
+```
+git add .
 ```
 
 Pour ajouter tous les fichiers :
@@ -107,6 +155,38 @@ git checkout cle_sha1_commit nom_de_fichier
 ```
 
 Pensez à commit le changement.
+
+Pour voir l'ensemble des branches :
+
+```
+git branch
+```
+
+Pour créer une branche :
+
+```
+git checkout -b
+```
+
+Ou :
+
+```
+git checkout -b nom_de_branche
+```
+
+Pour fusionner des branches, positionnez vous sur la branche à remplacer puis :
+
+```
+git merge nom_de_branche
+```
+
+Pour supprimer une banche :
+
+```
+git branch -D nom_de_branche
+```
+
+
 
 
 

@@ -48,6 +48,15 @@ public class Program
 
 **Remarque :** Le point d'entrée en Java ne renvoie aucune valeur de retour. Par défaut, lorsque l'application se termine, elle renvoie la valeur `0` à l'environnement d'exécution. Utilisez la méthode `System.exit` pour renvoyer une valeur entière spécifique.
 
+## Constantes
+
+Une variable déclarée avec le mot clé `final` ne peut plus être modifiée par la suite.
+
+```java
+final int PI = 3.14;
+PI = 3.1415; // erreur
+```
+
 ## Commentaires
 
 ```java

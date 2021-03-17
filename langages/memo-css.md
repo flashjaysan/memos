@@ -4,13 +4,13 @@
 
 ## Intégration à un document HTML
 
-- Directement dans un élément :
+Directement dans un élément en utilisant l'attribut `style` :
 
 ```html
-<element style="propriete=valeur">
+<element style="propriete: valeur">
 ```
 
-- Directement dans le document :
+Directement dans le document dans une balise `<style>` :
 
 ```html
 <style>
@@ -18,7 +18,7 @@ selecteur {propriete: valeur;}
 </style>
 ```
 
-- Depuis un fichier externe :
+Depuis un fichier externe :
 
 ```html
 <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -27,19 +27,25 @@ selecteur {propriete: valeur;}
 ## Syntaxe de base
 
 ```css
-selecteur {propriete: valeur;}
+selecteur {
+    propriete: valeur;
+}
 ```
 
 ou
 
 ```css
-selecteur:pseudoclasse {propriete: valeur;}
+selecteur:pseudoclasse {
+    propriete: valeur;
+}
 ```
 
 - Le sélecteur correspond à l'élément à modifier dans le document HTML.
 - La pseudoclasse d'un élément correspond à son état. (par exemple, si la souris survol ou clic sur l'élément)
 - La propriété correspond à la propriété à modifier.
 - La valeur correspond à la nouvelle valeur à attribuer à la propriété.
+
+Placez vos commentaires entre `/*` et `*/`.
 
 ```css
 /* ceci est un commentaire */
@@ -63,13 +69,64 @@ Pour cibler plusieurs éléments, séparez-les par une virgule.
 h1, h2 {}
 ```
 
-**Remarque :** Pour définir des propriétés générales à tout le document, ciblez l'élément `body`.
+Pour définir des propriétés générales à tout le document, ciblez l'élément `body`.
 
 ```css
 body {
     font-family: "Helvetica Neue", Arial;
     font-size: 18px;
 }
+```
+
+Pour cibler tous les éléments, utilisez le sélecteur étoile `*`.
+
+```css
+* {}
+```
+
+**Attention !** Utiliser le sélecteur étoile affecte tous les éléments du document alors que cibler l'élément `body` transmet par héritage les propriétés qui sont héritées. Autrement dit, le sélecteur étoile attribue une propriété à tous les éléments même si ils ne la possèdent pas au départ. En général, on se sert du sélecteur étoile pour modifier le modèle en boite et on utilise l'élément `body` pour les propriétés générales telles que la couleur ou la police.
+
+```css
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+```
+
+### Combinaisons de sélecteurs
+
+Vous pouvez combiner un id, une classe et des éléments pour sélectionner des éléments particuliers.
+
+```css
+/* cible les éléments h1 contenus dans l'id nom_d_id */
+#nom_d_id h1 {}
+```
+
+Le combinateur de frère adjacent attribue le style à l'élément définit par `selecteur2` quand ce dernier suit immdiatement un élément définit par `selecteur1`. Les éléments doivent avoir le même parent.
+
+```css
+selecteur1 + selecteur2 {}
+```
+
+Le combinateur de frère général attribue le style à l'élément définit par `selecteur2` quand ce dernier suit un élément définit par `selecteur1`. Les éléments doivent avoir le même parent mais peuvent avoir d'autre éléments situés entre eux.
+
+```css
+selecteur1 ~ selecteur2 {}
+```
+
+Le combinateur d'enfant attribue le style à l'élément définit par `selecteur2` quand ce dernier est un enfant direct de l'élément définit par `selecteur1`.
+
+```css
+selecteur1 > selecteur2 {}
+```
+
+Le combinateur de descendant attribue le style à l'élément définit par `selecteur2` quand ce dernier est un descendant (direct ou indirect) de l'élément définit par `selecteur1`.
+
+```css
+selecteur1 selecteur2 {}
 ```
 
 ### Définir la couleur d'un élément
@@ -232,16 +289,59 @@ Utilisez le sélecteur étoile `*` pour cibler tous les éléments.
 }
 ```
 
-```css
+## Image de fond
 
+### Définir une image de fond
+
+```css
+selecteur {
+    background-image: url(chemin);
+}
 ```
 
-```css
+### Assombrir une image de fond
 
+```css
+selecteur {
+    background-image: 
+        rgba(0, 0, 0, 0.7),
+        url(chemin);
+}
 ```
 
-```css
+### Prendre l'intégralité de la fenêtre
 
+```css
+selecteur {
+    background-image: url(chemin);
+    background-size: cover; /* force l'image à se redimensionner pour prendre toute la place disponible */
+    background-position: center;
+    height: 100vh; /* force l'élément à prendre toute la haute de la fenêtre */
+}
+```
+
+### Définir des réglages globaux
+
+```css
+html {
+    font_size: 20px;
+}
+```
+
+### définir des réglages relatifs
+
+```css
+h1 {
+    font_size: 200%;
+}
+```
+
+## modifier un texte en majuscules
+
+```css
+selecteur {
+    text-transform: uppercase;
+}
 ```
 
 ```css
