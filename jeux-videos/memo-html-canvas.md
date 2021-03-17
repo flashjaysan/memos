@@ -4,7 +4,7 @@
 
 ## Etapes de base
 
-- Créez un fichier texte HTML.
+- Créez un fichier HTML.
 - Insérer le squelette suivant :
 
 ```html
@@ -18,16 +18,38 @@
     </head>
     <body>
         <canvas id="game" width="largeur" height="hauteur">Votre navigateur ne prend pas en charge la balise canvas.</canvas>
-        <script>main.js</script>
+        <script src="main.js"></script>
     </body>
 </html>
 ```
+
+**Remarque :** Si vous ne spécifiez pas les dimensions du canvas, elles sont par défaut de 300x150.
 
 - Créez un fichier JavaScript (ici `main.js`).
 - Insérer le squelette suivant :
 
 ```js
 'use strict';
+```
+
+## L'élément canvas
+
+### Propriétés
+
+- `width` : définit la largeur en pixels du canvas. La valeur doit être un entier positif.
+- `height` : définit la hauteur en pixels du canvas. La valeur doit être un entier positif.
+
+Par défaut, le navigateur définit les dimensions de la surface de dessin du canevas sur les dimensions du canevas. Si un CSS modifie les dimensions du canevas, la surface de dessin n'est pas modifiée et est étirée sur les nouvelles dimensions du canevas.
+
+### Méthodes
+
+- `getContext` : Appelée avec l'argument `'2d'`, renvoie l'objet `CanvasRenderingContext2D` associé au canevas. Dans un environnement prenant en charge WebGL, appelée avec l'argument `'webgl'`, renvoie l'objet `WebGLRenderingContext` associé au canevas.
+  -`'webgl'` ou `'experimental-webgl'` : `WebGLRenderingContext`.
+  - `'webgl2'` : `WebGL2RenderingContext`.
+  -`'bitmaprenderer'` : `ImageBitmapRenderingContext`.
+
+```js
+let context = canvas.getContext('2d');
 ```
 
 ## Exécuter un script lorsque la page est entièrement chargée
@@ -55,6 +77,39 @@ function init() {
 let canvas = document.getElementById('game');
 ```
 
+## Modifier la taille du canevas
+
+```js
+canvas.width = largeur;
+canvas.height = hauteur;
+```
+
+## Donner au canevas la taille de la fenêtre
+
+```js
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+```
+
+## Supprimer la marge automatique de la fenêtre
+
+- Ajoutez le code suivant au fichier HTML dans la balise `head` :
+
+```html
+<link rel="stylesheet" href="styles.css">
+```
+
+- Créez un fichier CSS (ici, `styles.css`).
+- Ajoutez la règle suivante :
+
+```css
+body {
+    margin: 0;
+}
+```
+
+**Attention !** Bien que vous puissiez modifier la taille du canevas dans un CSS, cela modifie la taille du canevas mais pas celui de la surface de dessin associée. Cette dernière est étirée automatiquement sur la taille du canevas lorsque les dimensions ne sont pas identiques. Il est donc préférable d'utiliser les propriétés `width` et `height` du canevas directement dans le document HTML plutôt que dans un CSS.
+
 ## Récupérer le contexte du canevas dans le script
 
 A partir de l'élément `canvas`, vous devez obtenir un objet particulier appelé `context` (de type [`CanvasRenderingContext2D`](https://developer.mozilla.org/fr/docs/Web/API/CanvasRenderingContext2D)) qui vous permettra de dessiner dans le canevas.
@@ -78,6 +133,16 @@ function init(){
     context = canvas.getContext('2d');
 }
 ```
+
+## Sauvegarder l'état du contexte et le restaurer
+
+```js
+context.save();
+// modifications et utilisation du contexte
+context.restore();
+```
+
+**Remarque :** La sauvegarde s'effectue sur une pile. Vous pouvez donc sauvegarder ou restaurer plusieurs états successivement.
 
 ## Définir la couleur de contour
 
@@ -211,6 +276,40 @@ image.onload = function() {
 };
 ```
 
+Si vous n'utilisez qu'un seul atlas contenant toutes les images, vous pouvez utiliser `onload` pour lancer l'exécution de la boucle de jeu.
+
+```js
+atlas.onload = gameLoop;
+```
+
+## Dessiner une image qui se répète
+
+La technique est un peu particulière car vous devez créer un motif avec la méthode `createPattern` à partir d'une image.
+
+```js
+const type = 'repeat';
+const motif = context.createPattern(image, type);
+```
+
+Vous pouvez utiliser les options suivantes pour le type :
+
+- `'repeat'` répète l'image horizontalement et verticalement.
+- `'repeat-x'` répète l'image uniquement horizontalement.
+- `'repeat-y'` répète l'image uniquement verticalement.
+- `'no-repeat'` ne répète pas l'image.
+
+Affectez ensuite ce motif au style de remplissage.
+
+```js
+context.fillStyle = motif;
+```
+
+Il ne vous reste plus qu'à dessiner des formes.
+
+```js
+context.fillRect(x, y, largeur, hauteur);
+```
+
 ## Modifier l'échelle d'une image
 
 ```js
@@ -289,7 +388,7 @@ clearInterval(timer);
 ## Répéter l'appel à une fonction selon la vitesse de rafraichissement du navigateur
 
 ```js
-window.requestAnimationFrame(gameLoop);
+window.requestAnimationFrame(gameLoop); // ou plus simplement gameLoop()
 
 function gameLoop() {
     update();
@@ -372,7 +471,7 @@ function gameLoop(timeStamp) {
 
 function privateUpdate(timeStamp) {
     deltaTime = (timeStamp - previousTimeStamp) / 1000;
-    deltaTime = Math.min(secondsPassed, 0.1); // limite le délai entre deux frames à 1/10e de secondes max
+    deltaTime = Math.min(deltaTime, 0.1); // limite le délai entre deux frames à 1/10e de secondes max
     fps = Math.round(1 / deltaTime);
     previousTimeStamp = timeStamp;
 }
