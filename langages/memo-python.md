@@ -134,6 +134,12 @@ Vous n’avez que l’embarras du choix. Voici quelques éditeurs :
 
 [https://code.visualstudio.com/](https://code.visualstudio.com/)
 
+#### Thonny
+
+*Thonny* est un éditeur de code Python très simple mais proposant des outils pédagogiques très utiles aux débutants.
+
+[https://thonny.org/](https://thonny.org/)
+
 ### Vérifier la version de Python installée
 
 Pour voir quelle version de Python est installée sur votre machine, saisissez la commande suivante dans un terminal :
@@ -445,6 +451,13 @@ La fonction `input` affiche un texte à l'écran et renvoie la chaîne de caract
 
 `user_answer = input('Texte à afficher :')`
 
+**Attention !** La fonction renvoie une chaine de caractères. Si vous souhaitez récupérer un nombre qu'a saisi l'utilisateur, pensez à convertir le résultat avec les fonctions `int` ou `float`.
+
+```python
+user_int = int(input('Saisissez un nombre entier :'))
+user_float = float(input('Saisissez un nombre à virgule :'))
+```
+
 ### Nombres
 
 Il existe deux types de base pour représenter des nombres en Python. Les *entiers relatifs* appelés `int` et les *nombres à virgule flottante* appelés `float`.
@@ -529,6 +542,12 @@ Si deux objets ont la même identité, l'opérateur `is` renvoie `True`. C'est �
 ```python
 int(chaîne)
 float(chaîne)
+```
+
+**Remarque :** Dans une fstring, vous pouvez demander à afficher un certain nombre de chiffres après la virgule en faisant suivre l'expression des caractères `:.2f` (pour deux chiffres après la virgule).
+
+```python
+print(f"Affiche deux chiffres après la virgule : {1234.56789:.2f}")
 ```
 
 ## Instructions if

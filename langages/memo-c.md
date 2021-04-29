@@ -94,8 +94,6 @@ gcc main.c -o hello.exe
 
 ## Compilation dans Visual Studio Code
 
-Si vous le souhaitez, installez l'extension `C/C++` de Microsoft.
-
 Créez un dossier et ouvrez-le avec Visual Studio Code.
 
 Créez un fichier `main.c` et saisissez le code suivant :
@@ -133,6 +131,20 @@ Par défaut, le compilateur `gcc` génère un fichier exécutable appelé `a.exe
 ```
 
 ![exécution du programme test dans le terminal](images/c_premiere_execution_vscode.png)
+
+### Extension C/C++ de Microsoft
+
+Si vous le souhaitez, installez l'extension `C/C++` de Microsoft pour bénéficier d'outils supplémentaires. Cliquez ensuite sur le menu `View -> Command Palette...` et saisissez `C/C++`. Choisissez dans la liste l'option `C/C++: Edit Configurations (UI)`.
+
+Dans la section `Nom de la configuration`, cliquez sur le bouton `Ajouter une configuration`. Dans le nouveau champ `Nom de la configuration...`, saisissez le nom de la nouvelle configuration (par exemple `gcc`) puis cliquez sur le bouton `OK`.
+
+Dans la section `Chemin du compilateur`, saisissez le chemin vers le compilateur gcc (par exemple `C:/mingw/mingw64/bin/gcc.exe`).
+
+Dans la section `Mode Intellisense`, sélectionnez l'option `windows-gcc-x64`.
+
+Fermez l'éditeur de configuration. Un fichier `c_cpp_properties.json` est créé dans un dossier `.vscode` à la racine du dossier ouvert.
+
+Vous pouvez trouver [plus d'information ici](https://code.visualstudio.com/docs/cpp/config-mingw).
 
 ## Point d'entrée d'un programme
 
@@ -183,10 +195,23 @@ int main(void)
 
 ## Littéraux
 
+Un littéral booléen est simplement la valeur `0` ou `1`. Si vous utilisez le fichier en-tête `stdbool.h`, vous pouvez également utiliser les constantes `true` et `false`.
+
+```c
+_Bool faux = 0;
+_Bool vrai = 1;
+```
+
 Un littéral entier peut être écrit sous forme décimale :
 
 ```c
 int nombre = 12345;
+```
+
+ou sous forme hexadécimale s'il est précédé des caractères `Ox` ou `0X` :
+
+```c
+int seize = 0x10;
 ```
 
 Un littéral caractère s'écrit entre apostrophes :
@@ -207,6 +232,18 @@ Un littéral chaîne de caractères vide s'écrit avec deux guillemets :
 
 ```c
 char* chaine_vide = "";
+```
+
+un littéral nombre à virgule est de type `double` :
+
+```c
+double nombre_a_virgule = 3.5;
+```
+
+Un littéral nombre à virgule est de type `float` s'il est suivi de la lettre `f` ou `F` :
+
+```c
+float nombre_a_virgule = 3.5f;
 ```
 
 ## Afficher une chaine de caractères
@@ -281,9 +318,40 @@ sur plusieurs
 lignes */
 ```
 
+## Types primitifs
+
+```c
+int
+float
+double
+char
+_Bool
+```
+
+## Enumérations
+
+```c
+enum nom_enum {
+    CONSTANTE1, // 0
+    CONSTANTE2, // 1
+    CONSTANTE3 = 100, // 100
+    CONSTANTE4 // 101
+};
+
+enum nom_enum enumeration = CONSTANTE3;
+```
+
 ## La fonction printf
 
 Le premier paramètre de la fonction `printf` est **toujours** de type chaine de caractères.
 
 - `%d` affiche le paramètre suivant de type entier sous forme décimale.
 - 
+
+## La fonction scanf
+
+Renvoie le nombre de valeurs lues.
+
+Si le type de donnée à lire n'est pas une chaine de caractères, faites précéder le nom de la variable qui va stocker la valeur du sign `&`.
+
+

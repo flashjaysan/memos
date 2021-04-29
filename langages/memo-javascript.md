@@ -2,7 +2,7 @@
 
 *par flashjaysan*
 
-## Conseils de pro
+## Conseils
 
 ### Toujours utiliser le mode strict
 
@@ -40,6 +40,8 @@ Le site suivant fournit un rapide résumé de la syntaxe JavaScript :
 Pour une description détaillée du langage, consultez le site suivant :
 
 [https://developer.mozilla.org/fr/docs/Web/JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+
+
 
 ## Types de base
 
@@ -154,8 +156,6 @@ var obj = {};
 
 Ces deux lignes sont sémantiquement équivalentes ; la seconde est appelée la syntaxe littérale d'objet, et est beaucoup plus pratique. Cette syntaxe n'existait pas dans les toutes premières versions du langage, c'est pourquoi on voit parfois du code utilisant l'ancienne méthode. Cette seconde syntaxe se rapproche également du format JSON.
 
-## objets
-
 On peut se servir du mot clé `this` pour améliorer un constructeur :
 
 ```js
@@ -177,9 +177,6 @@ var s = new Personne("Simon", "Willison");
 
 `new` est très lié à `this`. Il crée un nouvel objet vide et appelle ensuite la fonction spécifiée, avec `this` pointant vers ce nouvel objet. Les fonctions prévues pour être appelées par `new` sont appelées des constructeurs. L'usage courant est de mettre la première lettre de ces fonctions en majuscule pour se souvenir de les appeler avec `new`.
 
-
-
-
 ## JavaScript pour HTML
 
 ### Insérer du code JavaScript dans un document HTML
@@ -200,7 +197,7 @@ La balise `script` vous permet de placer du code JavaScript directement dans le 
 </html>
 ```
 
-Vous pouvez également faire référence à un fichier externe en utilisant l'attribut `src`.
+Il est généralement préférable de faire référence à un fichier externe en utilisant l'attribut `src`.
 
 ```html
 <!doctype html>
@@ -215,6 +212,24 @@ Vous pouvez également faire référence à un fichier externe en utilisant l'at
 ```
 
 **Remarque :** Utilisez l'attribut `defer` pour indiquer que le script doit s'exécuter uniquement lorsqu'il est totalement chargé.
+
+### Placement du script dans le document
+
+Certains développeurs conseillent de placer la balise script à la fin du document dans la balise `body`. en effet, par défaut, le chargement du document est stoppé lorsque l'interpréteur rencontre une balise `script`. Le chargement reprend lorsque le script est chargé.
+
+```html
+<!doctype html>
+<html>
+  <head>
+    <title>Titre de la page</title>
+  </head>
+  <body>
+    <!-- contenu du document -->
+    <script src="emplacement_fichier_javascript"></script>
+  </body>
+</html>
+```
+
 
 Un évènement peut être :
 
