@@ -16,7 +16,7 @@ Pour tester vos jeux localement, vous aurez besoin d'un serveur web.
 
 #### Mongoose web server
 
-Sur Windows, je vous recommande le serveur web [Mongoose](http://cesanta.com/downloads.html) qui est très léger et qui ne nécessite aucune installation. Placez simplement le fichier `Mongoose-free-X.X.exe` dans un dossier contenant vos projets *PixiJS* et exécutez-le. Une fenêtre de navigateur s'ouvre et affiche les fichiers contenus dans ce dossier.
+Sur Windows, je vous recommande le serveur web [Mongoose](http://cesanta.com) qui est très léger et qui ne nécessite aucune installation. Placez simplement le fichier `Mongoose-free-X.X.exe` dans un dossier contenant vos projets *PixiJS* et exécutez-le. Une fenêtre de navigateur s'ouvre et affiche les fichiers contenus dans ce dossier.
 
 **Remarque :** Si vous fermez le navigateur, cliquez sur l'icône de *Mongoose* dans la zone de notification en bas à droite et choisissez l'option `Go to my address:...` pour ouvrir à nouveau le navigateur sur le serveur web.
 
