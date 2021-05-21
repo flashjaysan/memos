@@ -56,7 +56,7 @@ Ce document est un aide mémoire personnel que je mets à disposition de tous so
 - [Boucles](#boucles)
 - [Instruction for](#instruction-for)
 - [Définir un constructeur](#dfinir-un-constructeur)
-- [Héritage](#hritage)
+- [Héritage](#héritage)
 - [Module pickle](#module-pickle)
 - [Module random](#module-random)
 - [Fichiers](#fichiers)
@@ -106,7 +106,9 @@ Et cliquez sur la section `Downloads` pour télécharger la version correspondan
 
 **Remarque :** Sur Windows, pensez à cocher la case `Add Python 3.x to PATH` pour ajouter Python au chemin lors de l'installation. Sur *Mac OS X*, Python est déjà installé mais c'est la version 2. Vous pouvez installer la version 3 sans risque en utilisant la commande suivante :
 
-`sudo apt-get install python3`
+```python
+sudo apt-get install python3
+```
 
 Pour les autres implémentations, consultez leurs sites respectifs mais sachez que certaines bibliothèques pourront ne pas fonctionner. Vous devrez donc expérimenter par vous-même.
 
@@ -144,27 +146,37 @@ Vous n’avez que l’embarras du choix. Voici quelques éditeurs :
 
 Pour voir quelle version de Python est installée sur votre machine, saisissez la commande suivante dans un terminal :
 
-`python --version`
+```
+python --version
+```
 
 Sur Mac OS X, utilisez la commande `python3` :
 
-`python3 --version`
+```
+python3 --version
+```
 
 ### Lancer le mode interactif
 
 Pour débuter le mode interactif, où vous pouvez saisir des instructions Python ligne par ligne, utilisez la commande `python` :
 
-`python`
+```
+python
+```
 
 Les signes suivants vont alors apparaître pour vous indiquer que vous êtes passé en mode interactif :
 
-`>>>`
+```
+>>>
+```
 
 ### Quitter le mode interactif
 
 Saisissez simplement la commande `exit()` (n'oubliez pas les parenthèses) :
 
-`exit()`
+```
+exit()
+```
 
 ### Utiliser pip
 
@@ -184,21 +196,28 @@ Saisissez simplement la commande `exit()` (n'oubliez pas les parenthèses) :
 
 Les *environnements virtuels* vous permettent d'avoir plusieurs configurations de Python séparées pour différents projets. Vous pouvez par exemple utiliser différentes versions d'un package pour deux projets différents. Commencez par installer le package des environnements virtuels :
 
-`pip install virtualenv`
+```python
+pip install virtualenv`
 
 Placez-vous dans un dossier où vous allez créer vos environnements virtuels. Saisissez la commande suivante pour créer un environnement virtuel :
 
-`virtualenv nom_de_l'environnement_virtuel`
+```
+virtualenv nom_de_l'environnement_virtuel
+```
 
 Pour utiliser ce nouvel environnement virtuel, saisissez la commande suivante :
 
-`source nom_de_l'environnement_virtuel/bin/activate`
+```
+source nom_de_l'environnement_virtuel/bin/activate
+```
 
 La commande `which python` affiche le chemin du projet courant et l'environnement virtuel en cours d'utilisation.
 Par défaut, les packages installés globalement ne sont pas accessibles depuis l'environnement virtuel mais vous pouvez utiliser `pip` pour installer les packages de votre choix.
 Pour quitter l'environnement virtuel en cours d'utilisation, utilisez la commande `deactivate` :
 
-`deactivate`
+```
+deactivate
+```
 
 ### Afficher une donnée
 
@@ -217,7 +236,9 @@ Créez un simple fichier texte sans mise en forme. Par convention, sauvegardez v
 
 Pour exécuter un fichier source Python (par défaut, l'extension est `.py`), double cliquez sur le fichier ou dans un terminal appelez `python` (ou `python3` si vous avez plusieurs versions de Python installées sur votre machine) suivi du nom du fichier à exécuter :
 
-`python nom_du_fichier`
+```python
+python nom_du_fichier
+```
 
 Pour exécuter une partie d'un fichier pouvant également servir de *module*, utilisez la syntaxe suivante :
 
@@ -230,7 +251,8 @@ if __name__ == "__main__":
 
 Un commentaire commence par le signe dièse `#` et se termine à la fin de la ligne :
 
-`# Un commentaire sur une seule ligne`
+```python
+# Un commentaire sur une seule ligne`
 
 Vous pouvez également utiliser une chaîne de caractères encadrée par trois guillemets simples pour rédiger un commentaire sur plusieurs lignes :
 
@@ -246,19 +268,24 @@ lignes.
 
 En Python, on ne déclare pas une variable en lui associant un type de donnée. On lie un identificateur à une donnée lorsque celle-ci est créée.
 
-`nom_de_variable = valeur`
+```python
+nom_de_variable = valeur`
 
 ### Supprimer une variable
 
 La fonction `del` vous permet de supprimer une variable passée en argument.
 
-`del(nom_de_variable)`
+```python
+del(nom_de_variable)
+```
 
 ### Obtenir le type d'une donnée
 
 La fonction `type` permet de connaître le type d'une donnée passée en argument :
 
-`type(donnée)`
+```python
+type(donnée)
+```
 
 ### Booléens
 
@@ -272,7 +299,9 @@ Les valeurs `None`, `0`,  `''`, `[]`, `()`, `{}` sont évaluées à `False`.
 
 Si vous souhaitez créer un objet booléen sans vous soucier de sa valeur, créer un objet booléen faux, en appelant le constructeur `bool` sans arguments.
 
-`false_value = bool() # équivalent à false_value = False`
+```python
+false_value = bool() # équivalent à false_value = False
+```
 
 #### Opérateurs logiques
 
@@ -317,13 +346,16 @@ world"""
 
 Appelez le constructeur `str` sans arguments ou ne placez rien dans des guillemets.
 
-`empty_str= str() # équivalent à empty_str = ""`
+```python
+empty_str= str() # équivalent à empty_str = ""`
 
 #### Accéder à un caractère
 
 Utilisez les crochets avec l'index du caractère à accéder :
 
-`some_string[index]`
+```python
+some_string[index]
+```
 
 **Attention !** Le type `str` est *immutable*. Vous ne pouvez pas modifier un caractère individuellement. Vous devez affecter une nouvelle chaîne à la variable.
 
@@ -331,7 +363,9 @@ Utilisez les crochets avec l'index du caractère à accéder :
 
 Voir les méthodes disponibles pour un objet particulier :
 
-`print(dir(chaîne))`
+```python
+print(dir(chaîne))
+```
 
 Voir ce que font les méthodes :
 
@@ -344,47 +378,64 @@ print(help(str.lower))
 
 La méthode `lower` renvoie la chaîne en caractères minuscules :
 
-`chaine.lower()`
+```python
+chaine.lower()
+```
 
 La méthode `upper` renvoie la chaîne en caractères majuscules :
 
-`chaine.upper()`
+```python
+chaine.upper()
+```
 
 La méthode `count` compte le nombre d'occurrence d'une sous-chaîne :
 
-`chaine.count(sous_chaine)`
+```python
+chaine.count(sous_chaine)`
 
 La méthode `find` renvoie l'index d'une sous-chaîne :
 
-`chaine.find(sous_chaine)`
+```python
+chaine.find(sous_chaine)
+```
 
 **Remarque :** Renvoie `-1` si la sous-chaîne n'existe pas dans la chaîne.
 
 La méthode `replace` renvoie une chaîne avec une sous-chaîne remplacée par une autre :
 
-`chaine.replace(sous_chaine_à_remplacer, sous_chaine_de_remplacement)`
+```python
+chaine.replace(sous_chaine_à_remplacer, sous_chaine_de_remplacement)
+```
 
 La méthode `center` renvoie une copie de la chaîne avec des espaces supplémentaires si nécessaires pour centrer la chaîne d'origine sur un nombre de caractères spécifié en argument :
 
-`chaine.center(nombre)`
+```python
+chaine.center(nombre)
+```
 
 #### Concaténation
 
 L'opérateur `+` permet de concaténer deux chaînes.
 
-`chaine_1 + chaine_2`
+```python
+chaine_1 + chaine_2
+```
 
 #### Répétition d'une chaîne
 
 L'opérateur `*` duplique la chaîne un certain nombre (entier) de fois :
 
-`chaine * nombre_entier`
+```python
+chaine * nombre_entier
+```
 
 #### Longueur d'une chaîne
 
 Pour déterminer la longueur (le nombre de caractères) d'une chaîne, utilisez la fonction générale `len` :
 
-`len(chaine)`
+```python
+len(chaine)
+```
 
 **Remarque :** La fonction `len` prend une séquence en argument, c'est pourquoi ce n'est pas une méthode du type `str`.
 
@@ -392,17 +443,23 @@ Pour déterminer la longueur (le nombre de caractères) d'une chaîne, utilisez 
 
 Renvoie le caractère à la position `index` :
 
-`chaine[index]`
+```python
+chaine[index]
+```
 
 **Remarque :** Les index commence à partir de `0`. Le dernier caractère est donc situé à l'index `len(chaine) - 1`.
 
 Renvoie une sous-chaîne du caractère situé à l'index `départ` jusqu'au caractère situé à l'index `arrivée - 1` :
 
-`chaine[départ:arrivée]`
+```python
+chaine[départ:arrivée]
+```
 
 Renvoie une sous-chaîne depuis le premier caractère jusqu'au caractère situé à l'index `arrivée - 1` :
 
-`chaine[:arrivée]`
+```python
+chaine[:arrivée]
+```
 
 Renvoie une sous-chaîne depuis le caractère situé à l'index `départ` jusqu'au dernier caractère :
 
@@ -417,39 +474,53 @@ chaine[départ:arrivée:pas]
 
 La méthode `format` permet de construire une chaîne composée d'un *littéral* avec des accolades indiquant l'endroit où insérer des éléments passés en argument :
 
-`'{} littéral {}'.format(valeur_1, valeur_2)`
+```python
+'{} littéral {}'.format(valeur_1, valeur_2)
+```
 
 vous pouvez également insérer un index entre les accolades pour indiquer quel argument utiliser :
 
-`'{1} littéral {0}'.format(valeur_1, valeur_2)`
+```python
+'{1} littéral {0}'.format(valeur_1, valeur_2)
+```
 
 Enfin, vous pouvez passer aux arguments des couples de clés / valeurs. Vous pouvez placer les clés entre les accolades :
 
-`'{a} littéral {b}'.format(a=valeur_1, b=valeur_2)`
+```python
+'{a} littéral {b}'.format(a=valeur_1, b=valeur_2)
+```
 
 #### Chaînes formattées de type fstrings
 
-Depuis la version `3.6` de Python, vous pouvez placer directement des valeurs entre les accolades si vous faites précéder le littéral par un caractère `f`  :
+Depuis la version `3.6` de Python, vous pouvez placer directement des valeurs entre les accolades si vous faites précéder le littéral par un caractère `f` :
 
-`f'{variable_1} littéral {variable_2}'`
+```python
+f'{variable_1} littéral {variable_2}'
+```
 
 #### Assembler plusieurs chaînes
 
 La méthode `join` permet de rassembler une séquence contenant des chaînes de caractères en les séparant par une chaîne :
 
-`nouvelle_chaîne = 'séparateur'.join(séquence)`
+```python
+nouvelle_chaîne = 'séparateur'.join(séquence)
+```
 
 #### Convertir une chaîne en une liste
 
 La méthode `split` découpe une chaîne en utilisant un séparateur passé en argument et place le tout dans une *liste* :
 
-`liste = chaîne.split(séparateur)`
+```python
+liste = chaîne.split(séparateur)
+```
 
 #### Lire une chaîne saisie par l'utilisateur
 
 La fonction `input` affiche un texte à l'écran et renvoie la chaîne de caractères saisie par l'utilisateur :
 
-`user_answer = input('Texte à afficher :')`
+```python
+user_answer = input('Texte à afficher :')
+```
 
 **Attention !** La fonction renvoie une chaine de caractères. Si vous souhaitez récupérer un nombre qu'a saisi l'utilisateur, pensez à convertir le résultat avec les fonctions `int` ou `float`.
 
@@ -502,15 +573,21 @@ Pour effectuer une affectation en même temps qu'une opération, Python fournit 
 
 La fonction `abs` renvoie la *valeur absolue* d'un nombre :
 
-`abs(nombre)`
+```python
+abs(nombre)
+```
 
 La fonction `round` arrondit un nombre à l'entier le plus proche :
 
-`round(nombre)`
+```python
+round(nombre)
+```
 
 Avec un second argument, vous pouvez arrondir à un nombre à virgule :
 
-`round(nombre, précision)`
+```python
+round(nombre, précision)
+```
 
 ##### Opérateurs de comparaison
 
@@ -531,11 +608,15 @@ Ces opérateurs s'appliquent à tout type de données :
 
 La fonction `id` renvoie l'identité d'un objet :
 
-`id(objet)`
+```python
+id(objet)
+```
 
 Si deux objets ont la même identité, l'opérateur `is` renvoie `True`. C'est équivalent à l'expression suivante :
 
-`id(objet_1) == id(objet_2) # équivalent à objet_1 is objet_2`
+```python
+id(objet_1) == id(objet_2) # équivalent à objet_1 is objet_2
+```
 
 #### Convertir une chaîne en nombre
 
@@ -604,7 +685,9 @@ for i in range(arrivée):
 
 La fonction `range` est un *générateur*. Elle ne renvoie donc pas de donnée en elle-même. Pour obtenir une séquence de valeurs, convertissez-la en *liste* :
 
-```list(range(arrivée))```
+```python
+list(range(arrivée))
+```
 
 Vous pouvez *dépaqueter* un *tuple* dans une instruction `for` et ainsi accéder à chaque sous-élément du tuple indépendamment des autres :
 
@@ -638,7 +721,9 @@ Utilisez le mot clé `pass` à l'endroit où un bloc d'instructions est attendu 
 
 ## Assertions
 
-`assert conditions_à_évaluer`
+```python
+assert conditions_à_évaluer
+```
 
 Si la condition à évaluer est fausse, une *exception* de type `AssertionError` est levée.
 
@@ -646,7 +731,9 @@ Si la condition à évaluer est fausse, une *exception* de type `AssertionError`
 
 Pour déclencher (lever) une *exception* vous-même, utilisez le mot clé `raise` suivi d'un appel au *constructeur* du type de l'exception à lever. Les constructeurs des exceptions prennent souvent en argument une chaîne de caractères décrivant l'erreur.
 
-`raise type_de_l'exception("chaîne_de_caractères")`
+```python
+raise type_de_l'exception("chaîne_de_caractères")
+```
 
 ## Itérables
 
@@ -654,17 +741,23 @@ Pour déclencher (lever) une *exception* vous-même, utilisez le mot clé `raise
 
 Utilisez le mot clé `in` pour déterminer si un élément se trouve dans une séquence :
 
-`élément in séquence # vrai si élément se trouve dans séquence`
+```python
+élément in séquence # vrai si élément se trouve dans séquence
+```
 
 ### Listes
 
 Pour créer une liste, utilisez des crochets avec une liste d'éléments.
 
-`nom_de_liste = [élément_1, élément_2, ...]`
+```python
+nom_de_liste = [élément_1, élément_2, ...]
+```
 
 **Attention !** Une variable contenant une liste contient en réalité une *référence* à cette liste. Si vous souhaitez passer une *copie* de la liste à une fonction construisez une nouvelle liste avec la fonction `list` :
 
-`list(liste_d'origine)`
+```python
+list(liste_d_origine)
+```
 
 Utilisez les crochets vides ou la fonction `list` pour créer une liste vide :
 
@@ -675,19 +768,27 @@ liste_vide = list()
 
 Les listes sont *mutables*. Vous pouvez modifier chaque élément.
 
-`liste[index] = nouvelle_valeur`
+```python
+liste[index] = nouvelle_valeur
+```
 
 La fonction `len` renvoie le nombre d'éléments.
 
-`len(liste)`
+```python
+len(liste)
+```
 
 Concaténez deux listes en une nouvelle avec l'opérateur `+` :
 
-`nouvelle_liste = liste_1 + liste_2`
+```python
+nouvelle_liste = liste_1 + liste_2
+```
 
 Accédez aux éléments en utilisant les crochets et un index commençant à `0` :
 
-`liste[index]`
+```python
+liste[index]
+```
 
 Vous pouvez utiliser un index négatif pour partir de la fin.
 L'index `-1` est équivalent à l'index `len(liste) - 1`.
@@ -695,71 +796,101 @@ Le *slicing* s'applique également à ce type (voir les chaînes de caractères)
 
 La méthode `append` permet d'ajouter un élément à la fin de la liste.
 
-`liste.append(élément)`
+```python
+liste.append(élément)
+```
 
 La méthode `insert` permet d'ajouter un élément à une position particulière.
 
-`liste.insert(index, élément)`
+```python
+liste.insert(index, élément)
+```
 
 L'élément situé à l'index précisé et les suivants sont décalés d'une position vers la droite et leur index respectifs sont incrémentés d'un.
 
 La méthode `extend` permet d'ajouter à la fin d'une liste les éléments d'une autre liste :
 
-`liste_1.extend(liste_2) # similaire à liste_1 += liste_2`
+```python
+liste_1.extend(liste_2) # similaire à liste_1 += liste_2`
 
 La méthode `remove` retire un élément (le premier trouvé) d'une liste :
 
-`liste.remove(élément)`
+```python
+liste.remove(élément)
+```
 
 Même si ce n'est pas très élégant, vous pouvez également utiliser la fonction générale `del` pour supprimer un élément :
 
-`del(liste[index])`
+```python
+del(liste[index])
+```
 
 La méthode `pop` retire d'une liste son dernier élément et le renvoie :
 
-`liste.pop()`
+```python
+liste.pop()
+```
 
 Si vous passez un index, c'est l'élément situé à cette position qui sera supprimé de la liste et renvoyé et tous les éléments suivants seront décalés d'une position vers la gauche e leur index respectifs sont décrémentés d'un :
 
-`liste.pop(index)`
+```python
+liste.pop(index)
+```
 
 La méthode `reverse` inverse l'ordre des éléments de la liste :
 
-`liste.reverse()`
+```python
+liste.reverse()
+```
 
 La méthode `sort` trie les éléments de la liste :
 
-`liste.sort()`
+```python
+liste.sort()
+```
 
 Passez l'argument `reverse=True` si vous voulez triez la liste dans le sens inverse :
 
-`liste.sort(reverse=True)`
+```python
+liste.sort(reverse=True)
+```
 
 **Attention !** Cette méthode modifie la liste d'origine et ne renvoie pas de valeur.
 
 La fonction générale `sorted` prend une liste en argument et retourne une copie triée :
 
-`sorted(liste)`
+```python
+sorted(liste)
+```
 
 La fonction `min` renvoie l'élément le plus "petit" d'une liste :
 
-`min(liste)`
+```python
+min(liste)
+```
 
 La fonction `max` renvoie l'élément le plus "grand" d'une liste :
 
-`max(liste)`
+```python
+max(liste)`
 
 La fonction `sum` renvoie la somme de tous les éléments d'une liste :
 
-`sum(liste)`
+```python
+sum(liste)
+```
 
 La méthode `index` prend un élément en argument et retourne un index :
 
-`liste.index(élément)`
+```python
+liste.index(élément)
+```
 
 Le mot clé Python `in` renvoie un booléen pour indiquer si un élément est dans la liste :
 
-`élément in liste`
+```python
+élément in liste
+```
 
 La boucle `for` permet de parcourir les éléments d'une liste :
 
@@ -784,17 +915,25 @@ for index, élément in enumerate(liste, index_de_départ):
 
 Utilisez la fonction `zip` pour associer plusieurs objets *itérables* en une liste de tuples :
 
-`zip(iterable_1, iterable,2, ...)`
+```python
+zip(iterable_1, iterable,2, ...)
+```
 
 Cette fonction est un générateur. Elle ne renvoie pas de valeurs en elle-même.
 
 #### Lists comprehension
 
-`a_list = [expression for item in iterable]`
+```python
+a_list = [expression for item in iterable]
+```
 
-`a_list = [expression for item in iterable if condition]`
+```python
+a_list = [expression for item in iterable if condition]
+```
 
-`a_list = [expression_1 if condition else expression_2 for item in iterable]`
+```python
+a_list = [expression_1 if condition else expression_2 for item in iterable]
+```
 
 L'expression peut utiliser la variable `item`.
 
@@ -802,15 +941,21 @@ L'expression peut utiliser la variable `item`.
 
 Pour créer un *tuple*, utilisez les parenthèses.
 
-`nouveau_tuple = (élément_1, élément_2, ...)`
+```python
+nouveau_tuple = (élément_1, élément_2, ...)
+```
 
 **Attention !** Si vous créez un tuple contenant un seul élément, faites suivre ce dernier d'une virgule :
 
-`tuple_à_un_seul_élément = (élément, )`
+```python
+tuple_à_un_seul_élément = (élément, )
+```
 
 **Attention !** Une variable contenant un tuple contient en réalité une *référence* à ce tuple. Si vous souhaitez passer une *copie* du tuple à une fonction construisez un nouveau tuple avec la fonction tuple :
 
-`tuple(tuple_d'origine)`
+```python
+tuple(tuple_d'origine)
+```
 
 Utilisez les parenthèses vides ou la fonction tuple pour créer un tuple vide :
 
@@ -823,11 +968,15 @@ tuple_vide = tuple()
 
 La méthode `count` renvoie le nombre d'objets identiques présent dans le tuple :
 
-`nouveau_tuple.count(élément)`
+```python
+nouveau_tuple.count(élément)
+```
 
 La méthode `index` renvoie l'index de la première occurrence de l'élément passé en argument :
 
-`nouveau_tuple.index(élément)`
+```python
+nouveau_tuple.index(élément)
+```
 
 ### Sets
 
@@ -835,43 +984,61 @@ Les sets sont des *conteneurs* mais ne sont pas des *séquences*. Les éléments
 
 Pour créer un set, utilisez les accolades et insérez les éléments séparés par une virgule :
 
-`nouveau_set = {élément_1, élément_2, ...}`
+```python
+nouveau_set = {élément_1, élément_2, ...}
+```
 
 **Attention !** Une variable contenant un set contient en réalité une *référence* à ce set. Si vous souhaitez passer une *copie* du set à une fonction construisez un nouveau set avec la fonction set :
 
-`set(set_d'origine)`
+```python
+set(set_d'origine)
+```
 
 Utilisez la fonction `set` pour créer un set vide :
 
-`set_vide = set() # ne pas utiliser set_vide = ()`
+```python
+set_vide = set() # ne pas utiliser set_vide = ()
+```
 
 **Attention !** Les accolades vides créent un dictionnaire vide et non un set vide.
 
 Pour convertir une collection en set, utilisez la fonction `set` :
 
-`nouveau_set = set(collection)`
+```python
+nouveau_set = set(collection)
+```
 
 La méthode `intersection` renvoie la liste des éléments en commun dans deux sets :
 
-`set_1.intersection(set_2)`
+```python
+set_1.intersection(set_2)
+```
 
 La méthode `difference` renvoie la liste des éléments qui ne sont pas en commun dans deux sets :
 
-`set_1.difference(set_2)`
+```python
+set_1.difference(set_2)
+```
 
 La méthode `union` renvoie la liste des éléments dans deux sets :
 
-`set_1.union(set_2)`
+```python
+set_1.union(set_2)
+```
 
 Le mot clé Python `in` renvoie un booléen pour indiquer si un élément est dans un set :
 
-`élément in un_set`
+```python
+élément in un_set
+```
 
 Les sets sont plus efficaces que les listes ou les tuples pour cette opération.
 
 La méthode `add` ajoute un nouvel élément unique dans le set :
 
-`set.add(élément)`
+```python
+set.add(élément)
+```
 
 **Attention !** Si vous appelez cette méthode en passant en argument un élément déjà présent dans la liste, rien ne se passe.
 
@@ -879,61 +1046,87 @@ La méthode `add` ajoute un nouvel élément unique dans le set :
 
 Un dictionnaire associe une *valeur* à une *clé* :
 
-`dictionnaire = {clé_1: valeur_1, clé_2: valeur_2, ...}`
+```python
+dictionnaire = {clé_1: valeur_1, clé_2: valeur_2, ...}
+```
 
 Une clé peut être de n'importe quel type *immutable* (nombres, chaînes, etc...).**A_VERIFIER**
 
 **Attention !** Une variable contenant un dictionnaire contient en réalité une *référence* à ce dictionnaire. Si vous souhaitez passer une *copie* d'un dictionnaire à une fonction construisez un nouveau dictionnaire avec la fonction `dict` :
 
-`dict(dictionnaire_d'origine)`
+```python
+dict(dictionnaire_d'origine)
+```
 
 Pour accéder à un élément du dictionnaire, utilisez la clé entre crochets :
 
-`dictionnaire[clé]`
+```python
+dictionnaire[clé]
+```
 
 Utiliser une clé qui n'existe pas pour accéder à un élément entraîne une erreur. Pour éviter d'avoir une erreur, utilisez la méthode `get` qui retourne `None` si la clé n'existe pas :
 
-`dictionnaire.get(clé)`
+```python
+dictionnaire.get(clé)
+```
 
 Passez un second paramètre en argument à la méthode `get` pour qu'elle retourne ce paramètre plutôt que `None` :
 
-`dictionnaire.get(clé, "cette clé est invalide")`
+```python
+dictionnaire.get(clé, "cette clé est invalide")
+```
 
 Pour ajouter un couple *clé / valeur*, affectez une valeur à une nouvelle clé :
 
-`dictionnaire[nouvelle_clé] = nouvelle_valeur`
+```python
+dictionnaire[nouvelle_clé] = nouvelle_valeur
+```
 
 Si la clé existe déjà, l'ancienne valeur est remplacée par la nouvelle.
 
 Pour modifier plusieurs éléments en une seule fois, utilisez la méthode `update` :
 
-`dictionnaire.update({clé_a: valeur_a, clé_b: valeur_b, ...})`
+```python
+dictionnaire.update({clé_a: valeur_a, clé_b: valeur_b, ...})
+```
 
 Si une clé n'existe pas, le couple *clé / valeur* est ajouté au dictionnaire.
 
 Le mot clé Python `del` supprime un élément du dictionnaire :
 
-`del dictionnaire[clé]`
+```python
+del dictionnaire[clé]
+```
 
 La méthode `pop` supprime et renvoie un élément du dictionnaire :
 
-`dictionnaire.pop(clé)`
+```python
+dictionnaire.pop(clé)
+```
 
 La fonction générale `len` renvoie le nombre d'éléments du dictionnaire :
 
-`len(dictionnaire)`
+```python
+len(dictionnaire)
+```
 
 La méthode `keys` renvoie une liste de toutes les clés du dictionnaire :
 
-`dictionnaire.keys()`
+```python
+dictionnaire.keys()
+```
 
 La méthode `values` renvoie une liste de toutes les valeurs du dictionnaire :
 
-`dictionnaire.values()`
+```python
+dictionnaire.values()
+```
 
 La méthode `items` renvoie une liste de tuples contenant tous les couples *clé / valeur* du dictionnaire :
 
-`dictionnaire.items()`
+```python
+dictionnaire.items()
+```
 
 Cette méthode est également utile pour parcourir le dictionnaire en dépaquetant les tuples :
 
@@ -943,6 +1136,12 @@ for key, value in dictionnaire.items():
 ```
 
 Les variables `key` et `value` prennent respectivement la *clé* et la *valeur* de l'élément courant.
+
+Grâce à cette méthode, vous pouvez également créer des dictionnaires en compréhension.
+
+```python
+nouveau_dictionnaire = {nouvelle_cle: valeur for (cle, valeur) in dictionnaire.items() if condition}
+```
 
 ## Fonctions
 
@@ -965,7 +1164,9 @@ def fonction_vide():
 
 Utilisez le nom de la fonction suivie de parenthèses pour l'appeler :
 
-`nom_de_fonction()`
+```python
+nom_de_fonction()
+```
 
 Pour renvoyer une valeur, utilisez le mot clé Python `return` :
 
@@ -986,7 +1187,9 @@ def nom_de_fonction(paramètre_1, paramètre_2, ..., paramètre_n):
 
 Appelez la fonction avec le nombre de paramètres prévus :
 
-`nom_de_fonction(valeur_1, valeur_2, ..., valeur_n)`
+```python
+nom_de_fonction(valeur_1, valeur_2, ..., valeur_n)
+```
 
 Affectez des valeurs aux paramètres pour leur donner une valeur par défaut. Dans ce cas, vous pouvez appeler la fonctions avec moins d'arguments :
 
@@ -995,11 +1198,15 @@ def nom_de_fonction(paramètre_1, paramètre_2=valeur):
     instructions
 ```
 
-`nom_de_fonction(valeur_1)`
+```python
+nom_de_fonction(valeur_1)
+```
 
 Précisez quel paramètre doit prendre quelle valeur comme ceci :
 
-`nom_de_fonction(valeur_1, valeur_2, paramètre_n=valeur_n)`
+```python
+nom_de_fonction(valeur_1, valeur_2, paramètre_n=valeur_n)
+```
 
 **Remarque :** Les *arguments nommés* doivent apparaître après les *arguments positionnels*.
 
@@ -1044,13 +1251,17 @@ def nom_de_fonction(paramètre_requis, *args, paramètre_nommé_1=valeur, **kwar
 
 Lors de l'appel à la fonction, si vous souhaitez utiliser une *liste* à la place d'une suite d'*arguments positionnels*, faites précéder le nom de la *liste* du caractère `*` pour la convertir en *arguments positionnels*. De même, pour utiliser un *dictionnaire*, faites précéder le nom du *dictionnaire* de deux caractères `**` pour le convertir en une suite d'arguments nommés :
 
-`nom_de_fonction(*nom_liste, **nom_dictionnaire)`
+```python
+nom_de_fonction(*nom_liste, **nom_dictionnaire)
+```
 
 ## Modules
 
 Pour importer le code d'un *module* dans un autre, utilisez le mot clé Python `import` :
 
-`import nom_de_module`
+```python
+import nom_de_module
+```
 
 **Remarque :** Vous n'avez pas besoin de préciser l'extension `.py` pour importer un fichier.
 
@@ -1065,31 +1276,43 @@ print(sys.path)
 Python cherche les fichiers à importer dans le dossier du fichier courant. Puis dans le chemin de *variable d'environnement* de Python. Ensuite, Python regarde dans le dossier de la *bibliothèque standard*.  Enfin, il regarde dans les packages de site pour les bibliothèques supplémentaires.
 Il est déconseillé d'ajouter à `sys.path` un chemin spécifique mais vous pouvez le faire avec la méthode `append` :
 
-`sys.path.append(nouveau_chemin)`
+```python
+sys.path.append(nouveau_chemin)
+```
 
 Il est possible de paramétrer votre variable d'environnement de Python sur votre système. Si vous le souhaitez, documentez-vous sur cette possibilité.
 Lorsque vous importez un fichier dans un autre, le code du fichier importé est exécuté.
 Pour utiliser des objets ou des fonctions provenant d'un fichier externe, faites précéder le nom de la fonction par le nom du fichier :
 
-`nom_de_fichier.nom_de_fonction()`
+```python
+nom_de_fichier.nom_de_fonction()
+```
 
 Pour importer directement le nom de l'objet ou de la fonction d'un module sans le faire précéder du nom du module, utilisez la forme `from import` :
 
-`from nom_de_fichier import nom_de_fonction`
+```python
+from nom_de_fichier import nom_de_fonction
+```
 
 **Remarque :** Pour importer plusieurs objets ou fonctions, séparez-les par des virgules.
 
 Pour attribuer un *alias* à un nom de module, utilisez le mot clé Python `as` :
 
-`import nom_de_fichier as alias`
+```python
+import nom_de_fichier as alias
+```
 
 Pour attribuer un alias à un nom d'objet ou de fonction d'un module, utilisez le mot clé Python `as` avec la syntaxe suivante :
 
-`from nom_de_fichier import nom_de_fonction as alias`
+```python
+from nom_de_fichier import nom_de_fonction as alias
+```
 
 Importer tous les objets et fonctions d'un fichier est une mauvaise pratique mais vous pouvez le faire avec le signe `*` :
 
-`from nom_de_fichier import *`
+```python
+from nom_de_fichier import *
+```
 
 ## Exceptions
 
@@ -1107,10 +1330,10 @@ Pour gérer différentes erreurs, utilisez la forme plus complète suivante :
 ```python
 try:
     instructions_pouvant_provoquer_une_erreur
-except nom_d'exception1:
-    instructions_à_exécuter_en_cas_d'exception1
-except nom_d'exception2:
-    instructions_à_exécuter_en_cas_d'exception2
+except nom_d_exception1:
+    instructions_à_exécuter_en_cas_d_exception1
+except nom_d_exception2:
+    instructions_à_exécuter_en_cas_d_exception2
 ...
 else:
     instructions_à_exécuter_si_aucune_exception
@@ -1123,10 +1346,9 @@ Pour utiliser l'erreur dans le bloc d'exception, utilisez la syntaxe suivante :
 ```python
 try:
     instructions_pouvant_provoquer_une_erreur
-except nom_d'erreur as alias:
+except nom_d_erreur as alias:
     instructions_à_exécuter_en_cas_d_erreur
 ```
-
 
 ## Programmation orientée objet
 
@@ -1153,7 +1375,9 @@ class NomDeClasse():
 
 Pour créer une instance de votre nouvelle classe, il vous suffit d'appeler une fonction portant le nom de la classe qu'on appelle un constructeur :
 
-`instance_de_classe = NomDeClasse()`
+```python
+instance_de_classe = NomDeClasse()
+```
 
 **Attention !** Si vous définissez une méthode `__init__` avec des paramètres, vous devez passer des arguments qui y correspondent lors de l'appel.
 
@@ -1161,22 +1385,63 @@ Pour que votre classe ait une quelconque utilité elle doit posséder des donné
 
 ### Attributs de classe
 
-Pour définir des attributs à votre classe, créez des variables à l'intérieur de celle-ci.
+Pour définir des attributs à votre classe, créez des variables à l'intérieur de celle-ci en dehors de toute méthode.
 
 ```python
 class NomDeClasse:
-    attribut_1 = valeur
+
+    attribut = valeur
 ```
 
-### Définir une méthode
+Vous pouvez également y accéder n'importe où (dans une méthode de la classe ou en dehors) en faisant précéder l'attribut du nom de la classe.
 
-Les méthodes de classes sont des fonctions placées à l'intérieur d'une classe. Leur premier paramètre doit être self qui correspond à l'instance de la classe.
+```python
+NomDeClasse.attribut
+```
+
+Si vous modifiez l'attribut en utilisant une instance, vous masquez l'attribut de classe et donnez à l'instance un nouvel attribut.
+
+```python
+instance = NomDeClasse()
+instance.attribut = valeur # masque l'attribut de classe
+```
+
+### Définir une méthode d'instance
+
+Les méthodes d'instances sont des fonctions placées à l'intérieur d'une classe. Leur premier paramètre doit être `self` qui correspond à l'instance de la classe.
 
 ```python
 classe NomDeClasse:
+
     def une_méthode(self, paramètres...):
         instructions
-    ```
+```
+
+Une fois votre classe instanciée, vous pouvez appeler les méthodes sur une instance spécifique en faisant suivre le nom de l'instance par un point `.` puis du nom de la méthode.
+
+```python
+instance = NomDeClasse()
+instance.une_méthode(paramètres)
+```
+
+Vous pouvez également utiliser ne nom de classe et passer l'instance en tant que premier argument.
+
+```python
+instance = NomDeClasse()
+NomDeClasse.une_méthode(instance, paramètres)
+```
+
+### Définir une méthode de classe
+
+Les méthodes de classes sont des fonctions placées à l'intérieur d'une classe et possédant le décorateur `@classmethod`. Leur premier paramètre doit être `cls` qui correspond à  la classe.
+
+```python
+classe NomDeClasse:
+
+    @classmethod
+    def une_méthode(cls, paramètres...):
+        instructions
+```
 
 ### Définir un constructeur
 
@@ -1184,6 +1449,7 @@ Un constructeur est une méthode spéciale qui crée une instance d'une classe. 
 
 ```python
 class NomDeClasse:
+
     def __init__(self, paramètres...):
         instructions
 ```
@@ -1198,6 +1464,15 @@ class SousClasse(SuperClasse1, SuperClasse2, ...):
 ```
 
 La sous-classe possède alors tous les attributs des super-classes.
+
+Vous pouvez également appeler le constructeur de la classe parent.
+
+```python
+classe SousClasse(SuperClasse):
+
+    def __init__(self):
+        super().__init__()
+```
 
 ## Module pickle
 
@@ -1224,23 +1499,33 @@ with open('chemin/nom_de_fichier', 'rb') as fichier:
 
 Importez le module random pour l'utiliser.
 
-`import random`
+```python
+import random
+```
 
 La fonction `randrange` renvoie un nombre entier compris entre une valeur minimale et une valeur maximale (non incluse) passées en argument :
 
-`number = random.randrange(minimum, maximum)`
+```python
+number = random.randrange(minimum, maximum)
+```
 
 La fonction `randint` renvoie un nombre entier compris entre une valeur minimale et une valeur maximale (inclus) passées en argument :
 
-`number = random.randint(minimum, maximum)`
+```python
+number = random.randint(minimum, maximum)
+```
 
 La fonction `choice` renvoie un élément d'un objet itérable :
 
-`element = random.choice(iterable)`
+```python
+element = random.choice(iterable)
+```
 
 La fonction `shuffle` mélange l'ordre des éléments d'une séquence :
 
-`random.shuffle(sequence)`
+```python
+random.shuffle(sequence)
+```
 
 **Attention !** Cette fonction ne retourne pas de valeur mais modifie la séquence d'origine.
 
@@ -1250,21 +1535,29 @@ La fonction `shuffle` mélange l'ordre des éléments d'une séquence :
 
 La fonction `open` ouvre un fichier texte et renvoie une référence à ce fichier :
 
-`fichier = open('chemin/nom_de_fichier.txt')`
+```python
+fichier = open('chemin/nom_de_fichier.txt')
+```
 
 **Attention !** Pensez bien à toujours fermer le fichier après utilisation.
 
 Par défaut, cela ouvre le fichier en lecture uniquement. Vous ne pouvez donc pas enregistrer de modifications. Passez en argument la valeur `'r'` à l'attribut `mode` pour demander explicitement l'ouverture en lecture du fichier.
 
-`fichier_en_lecture = open('chemin/nom_de_fichier.txt', mode='r')`
+```python
+fichier_en_lecture = open('chemin/nom_de_fichier.txt', mode='r')
+```
 
 Passez en argument la valeur `'w'` à l'attribut `mode` pour demander l'ouverture en écriture du fichier. Cela efface le contenu précédent du fichier ou crée un nouveau fichier s'il n'existe pas déjà.
 
-`fichier_en_écriture = open('chemin/nom_de_fichier.txt', mode='w')`
+```python
+fichier_en_écriture = open('chemin/nom_de_fichier.txt', mode='w')
+```
 
 Passez en argument la valeur `'a'` à l'attribut mode pour demander l'ouverture en écriture du fichier à la suite de son contenu.
 
-`fichier_en_écriture = open('chemin/nom_de_fichier.txt', mode='a')`
+```python
+fichier_en_écriture = open('chemin/nom_de_fichier.txt', mode='a')
+```
 
 **Attention !** Si le fichier n'existe pas, seul le paramètre `mode='w'` crée un un nouveau fichier. Les autres modes provoquent une erreur.
 
@@ -1272,11 +1565,15 @@ Passez en argument la valeur `'a'` à l'attribut mode pour demander l'ouverture 
 
 La méthode `close` ferme le fichier pour prévenir toute erreur :
 
-`fichier.close()`
+```python
+fichier.close()
+```
 
 La méthode `closed` renvoie si le fichier est bien fermé :
 
-`fichier.closed()`
+```python
+fichier.closed()
+```
 
 Pour éviter l'oubli de cette méthode, utilisez la syntaxe suivante qui refermera automatiquement le fichier à la fin du bloc :
 
@@ -1289,7 +1586,9 @@ with open('nom_de_fichier.txt') as fichier:
 
 La méthode `seek` permet de positionner le point de lecture à l'index passé en argument :
 
-`fichier.seek(index)`
+```python
+fichier.seek(index)
+```
 
 ### Lire dans un fichier
 
@@ -1297,11 +1596,15 @@ Un fichier ouvert avec les paramètres par défaut ou avec l'attribut `mode='r'`
 
 La méthode `read` renvoie une chaîne contenant le texte depuis le point de lecture courant (par défaut le premier caractère du fichier) jusqu'au dernier caractère du fichier et positionne le point de lecture à la fin :
 
-`texte = fichier.read()`
+```python
+texte = fichier.read()
+```
 
 La méthode `readlines` renvoie une liste contenant chaque ligne du texte :
 
-`fichier.readlines()`
+```python
+fichier.readlines()
+```
 
 **Attention !** Les retours à la ligne sont conservés dans la liste.
 
@@ -1311,7 +1614,9 @@ Un fichier ouvert avec l'attribut `mode='w'` permet d'accéder en écriture au f
 
 La méthode `write` insère le texte passé en argument :
 
-`fichier.write('texte')`
+```python
+fichier.write('texte')
+```
 
 **Attention !** Pensez bien à fermer le fichier après vos manipulations.
 
@@ -1325,65 +1630,184 @@ fichier_en_écriture = open('chemin/nom_de_fichier.txt', mode='wb')
 fichier_en_écriture = open('chemin/nom_de_fichier.txt', mode='ab')
 ```
 
-## Module tkinter
+## Module csv
 
-**Remarque :** Cette section est basée sur les sites suivants :
-[http://effbot.org/tkinterbook/tkinter-index.htm](tkinterbook)
-[https://fr.wikibooks.org/wiki/Programmation_Python/Tkinter](fr.wikibooks/tkinter)
+Par défaut, le package `csv` est inclut avec Python. Vous pouvez directement importer le module :
 
-Le module `tkinter` est fourni avec Python et vous permet de créer des interfaces graphiques facilement.
+```python
+import csv
+```
+
+### Ouvrir un fichier CSV
+
+Ouvrez un fichier CSV en lecture et créez un objet `reader`.
+
+```python
+with open('nom_fichier.csv') as fichier_csv:
+    csv_reader = csv.reader(fichier_csv)
+```
+
+**Attention !** Vous ne pouvez manipuler cet objet que tant que le fichier est ouvert. Pensez à garder votre codé indenté dans la clause `with`.
+
+Itérer sur l'objet reader vous permet d'obtenir une liste de chaque élément (de type string) pour chaque ligne du fichier CSV.
+
+```python
+csv_list = []
+for line in csv_reader:
+    csv_list.append(line)
+```
+
+Pour éviter de récupérer la première ligne contenant les noms de chaque colonne, utilisez la fonction `next` avant d'itérer sur l'objet.
+
+```python
+noms_colonne = next(csv_reader)
+for line in csv_reader:
+    print(line)
+```
+
+Si vous utiliser un objet `DictReader` au lieu d'un objet `reader`, les éléments générés sont de type `OrderedDict` avec les clés prises sur la première ligne du fichier CSV.
+
+```python
+with open('nom_fichier.csv') as fichier_csv:
+    csv_dict_reader = csv.DictReader(fichier_csv)
+    for line in csv_dict_reader:
+        print(line)
+```
+
+### Créer un fichier CSV
+
+Ouvrez un fichier en écriture et créez un objet `writer`.
+
+```python
+with open('nom_fichier.csv', r='w') as fichier_csv:
+    csv_writer = csv.writer(fichier_csv, delimiter=',')
+
+    for line in csv_list:
+        csv_writer.writerow(line)
+```
+
+Vous pouvez également utiliser un objet `DictWriter`. Dans ce cas, vous devez fournir les noms de colonnes dans une liste.
+
+```python
+nom_colonnes = ['nom_colonne1', 'nom_colonne2']
+with open('nom_fichier.csv', r='w') as fichier_csv:
+    csv_writer = csv.DictWriter(fichier_csv, fieldnames=nom_colonnes, delimiter=',')
+    csv.writer.writeheader()
+
+    for line in csv_list:
+        csv_writer.writerow(line)
+```
+
+## Module pandas
 
 ### Importer le module
 
-Commencez par importer le module :
+Commencez par installer le package.
 
-`import tkinter`
-
-**Attention !** Avec Python 2 le module tkinter s'importe différemment (avec une majuscule) :
-
-`import Tkinter`
-
-Vous pouvez également contourner le problème avec le code suivant :
+Ensuite, importez le module :
 
 ```python
-try:
-    from Tkinter import *
-except ImportError:
-    from tkinter import *
+import pandas
 ```
 
-### Structure de base
+Le module pandas utilise deux types de données :
 
-Voici une structure de base pour commencer à utiliser le module :
+- `DataFrame` est une structure représentant un tableau à deux dimensions.
+- `Series` est une structure représentant un tableau à une dimension. Par exemple, une colonne ou une ligne de DataFrame.
 
 ```python
-import tkinter
-
-root = tkinter.Tk()
-
-hello_label = Label(root, text="Hello, world!")
-hello_label.pack()
-
-root.mainloop()
+liste = [1, 2, 3, 4]
+data_frame = pandas.DataFrame(liste)
 ```
 
-La fonction `Tk` crée un *widget* (un élément d'une *interface graphique utilisateur* ou *GUI*) racine nécessaire à tout programme utilisant le module tkinter.
+```python
+liste = data_frame['nom_colonne'].to_list()
+```
 
-La fonction `Label` crée un widget label pouvant contenir un texte, une icône ou une image. Le premier paramètre doit être le widget qui va contenir le label. Ici, ce sera un widget contenant le texte `Hello, World!`.
+```python
+dictionnaire = {
+    'eleve': ['Patrick', 'Michael', 'David'],
+    'note': [15, 17, 18],
+}
+data_frame = pandas.DataDrame(dictionnaire)
+```
 
-La méthode `pack` du widget label le rend visible dans la fenêtre parent et lui permet de prendre la meilleure dimension pour contenir le texte.
+```python
+doctionnaire = data_frame.to_dict()
+```
 
-La méthode `mainloop` du widget racine lance l'exécution de l'affichage des widgets ainsi que la boucle de gestion des évènements.
+### pandas et fichiers CSV
 
-### Concepts généraux
+Convertir un fichier CSV en DataFrame.
 
-Lorsque vous faites appel aux constructeurs d'un widget, paramétrez chaque attribut en utilisant les paramètres nommés.
+```python
+data_frame = pandas.read_csv('nom_fichier.csv')
+```
 
-`un_widget = tkinter.NomDuWidget(widget_parent, nom_du_paramètre=valeur)`
+Créer un fichier CSV depuis un DataFrame.
 
-Par la suite, accédez à chaque atrribut en tant que clé d'un dictionnaire :
+```python
+data_frame.to_csv('nom_fichier.csv')
+```
 
-`un_widget["nom_du_paramètre"] = nouvelle_valeur`
+### Itération
+
+```python
+for (key, value) in data_frame.items():
+    print(key)
+    print(value)
+```
+
+```python
+for (index, row) in data_frame.iterrows():
+    print(index)
+    print(row)
+    print(row['eleve'])
+```
+
+## Tests unitaires
+
+Créez un fichier avec le préfixe `test_` puis importez le module préinstallé `unittest`.
+
+```python
+import unittest
+```
+
+Importez le module à tester.
+
+```python
+import calc
+```
+
+Créez une classe qui hérite de la classe `TestCase` du module `unittest`.
+
+```python
+class TestCalc(unittest.TestCase):
+    pass
+```
+
+Les méthodes de cette classe doivent avoir le préfixe `test_`.
+
+```python
+class TestCalc(unittest.TestCase):
+    def test_add(self):
+        self.assert_equal(calc.add(10, 5), 15)
+```
+
+Ces méthodes peuvent utiliser les [méthodes de la classe `TestCase`](https://docs.python.org/3/library/unittest.html#unittest.TestCase.debug).
+
+Pour tester les méthodes, passez le nom du ficher au module `unittest` dans la console.
+
+```
+python -m unittest test_calc.py
+```
+
+Vous pouvez également ajouter les lignes suivantes pour exécuter les tests directement avec le fichier source (par exemple depuis votre IDE).
+
+```python
+if __name__ == '__main__':
+    unittest.main()
+```
 
 ## Sites pour pratiquer Python
 
@@ -1393,4 +1817,3 @@ Par la suite, accédez à chaque atrribut en tant que clé d'un dictionnaire :
 - [https://www.reddit.com/r/dailyprogrammer](reddit.com/dailyprogrammer). Un subreddit dédié à des problèmes d'entrainement quotidien.
 - [http://www.pythonchallenge.com/](Python Challenge). Un site très difficile avec peu d'aide. Non recommandé aux débutants mais peut être intéressant.
 - Codewars: [https://www.codewars.com/](Codewars). Un site avec de nombreux exercices et la possibilité de regarder les propositions des autres membres.
-
