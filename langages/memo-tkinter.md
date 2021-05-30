@@ -999,6 +999,95 @@ Créez une jauge de défilement en appelant le constructeur de la classe `Scale`
 
 Créez une case à cocher en appelant le constructeur de la classe `Checkbutton`.
 
+```python
+case_a_cocher = Checkbutton(parent, option=valeur, ...)
+```
+
+Les cases à cocher (parfois appelé «checkbox») permettent à l’utilisateur d’effectuer des choix.
+
+L’indicateur est la partie de la case à cocher qui indique son état, et l’étiquette est le texte qui apparaît à côté.
+
+Vous aurez besoin de créer une variable de contrôle de classe `IntVar` afin que votre programme puisse interroger et/ou définir l’état de la case à cocher.
+
+Vous pouvez également utiliser des liaisons d’événements pour réagir aux actions de l’utilisateur sur la case à cocher.
+
+Vous pouvez désactiver une case à cocher. Cela modifie son apparence (qui est alors grisée) et la rend insensible à la souris.
+
+Vous pouvez supprimer l’indicateur de case à cocher en utilisant l’option `indicatoron`. Le widget ressemble alors à un bouton «poussoir» qui paraît enfoncé quand il est activé, et soulevé quand il est désactivé.
+
+Le constructeur renvoie un nouveau widget `Checkbutton`.
+
+Options disponibles :
+
+- `activebackground` : La couleur de fond lorsque la case à cocher est sous le curseur.
+- `activeforeground` : La couleur du premier plan lorsque la case à cocher est sous le curseur.
+- `anchor` : Si le widget se situe dans un espace plus grand que nécessaire, cette option spécifie où la case à cocher va se placer dans cet espace. La valeur par défaut est `anchor=tkinter.CENTER`.
+- `bg` ou `background` : La couleur de fond normale s’affiche derrière l’étiquette et l'indicateur. Pour l’option `bitmap`, ceci spécifie la couleur affichée pour le bit 0 dans le bitmap.
+- `bitmap` : Pour afficher une image monochrome sur un bouton, affectez un bitmap à cette option.
+- `bd` ou `borderwidth` : La taille de la bordure autour de l’indicateur. Elle est par défaut de deux pixels.
+- `command` : Pour appeler une fonction ou une méthode à chaque fois que l’utilisateur change l’état de cette case à cocher.
+- `compound` : Utilisez cette option pour afficher le texte et un graphique, qui peut être un bitmap ou une image, sur le bouton. Les valeurs autorisées décrivent la position du graphique par rapport au texte, et peuvent être l’une des suivantes : `tkinter.BOTTOM`, `tkinter.TOP`, `tkinter.LEFT`, `tkinter.RIGHT` ou `tkinter.CENTER`. Par exemple, `compound=tkinter.LEFT` positionnerait le graphique à gauche du texte.
+- `cursor` : Si vous définissez cette option par un nom de curseur, le curseur de la souris se transforme en ce modèle quand il est sur la case à cocher.
+- `disabledforeground` : La couleur de premier plan utilisée pour afficher le texte d’une case à cocher désactivée. La valeur par défaut est une version pointillée de la couleur de premier plan par défaut.
+- `font` : La police utilisée pour le texte.
+- `fg` ou `foreground` : La couleur utilisée pour afficher le texte. Pour l’option bitmap, ceci spécifie la couleur affichée pour le bit 1 dans le bitmap.
+- `height` : Le nombre de lignes de texte sur la case à cocher. La valeur par défaut est `1`.
+- `highlightbackground` : Couleur de la ligne de mise en valeur du focus quand le widget l’a perdu.
+- `highlightcolor` : Couleur de la ligne de mise en valeur du focus quand le widget l’a obtenu.
+- `highlightthickness` : Épaisseur de la ligne de mise en valeur du focus.
+- `image` : Pour afficher une image graphique sur le bouton, affectez une image à cette option.
+- `indicatoron` : Normalement, l’indicateur de la case à cocher indique si la case à cocher est activée ou pas. Vous pouvez obtenir ce comportement en définissant `indicatoron=1`. Toutefois, si vous définissez `indicatoron=0`, l’indicateur disparaît et le widget entier devient un bouton push-push qui paraît enfoncé quand il est activé, et soulevé quand il est désactivé. Vous pouvez augmenter la valeur `borderwidth` pour rendre plus facile la lecture de l’état d’un tel contrôle.
+- `justify` : Si le texte contient plusieurs lignes, cette option contrôle la manière dont le texte est justifié : `tkinter.CENTER`, `tkinter.LEFT` ou `tkinter.RIGHT`.
+- `offrelief` : Par défaut, les cases à cocher utilisent le style de relief `tkinter.RAISED` lorsque le bouton est désactivé (autorisé). Utilisez cette option pour spécifier un style différent de relief à afficher lorsque le bouton est éteint.
+- `offvalue` : Normalement, la variable de contrôle associée à une case à cocher sera mise à `0` quand cette case est désactivée (`OFF`). Vous pouvez fournir une autre valeur pour cet état `OFF` en affectant cette valeur à `offvalue`.
+- `onvalue` : Normalement, la variable de contrôle associée à une case à cocher sera mise à `1` quand cette case est activée (`ON`). Vous pouvez fournir une autre valeur pour cet état `ON` en affectant cette valeur à `onvalue`.
+- `overrelief` : Utilisez cette option pour spécifier un style de relief à afficher lorsque la souris est sur la case à cocher.
+- `padx` : Combien d’espace à laisser à gauche et à droite de la case à cocher et du texte. La valeur par défaut est de `1` pixel.
+- `pady` : Combien d’espace à laisser au-dessus et en dessous de la case à cocher et du texte. La valeur par défaut est de `1` pixel.
+- `relief` : Avec la valeur par défaut, `relief=tkinter.FLAT`, la case à cocher ne se distingue pas de son arrière-plan. Vous pouvez configurer cette option pour l’un des autres styles ou utiliser `relief=tkinter.SOLID`, ce qui vous donne un cadre noir fixe autour de lui.
+- `selectcolor` : La couleur utilisée pour indiquer que la case à cocher est activée. Sa valeur par défaut est `selectcolor='red'`.
+- `selectimage` : Si vous indiquez une image, elle apparaîtra lorsque la case est cochée.
+- `state` : La valeur par défaut est `state=tkinter.NORMAL`, mais vous pouvez utiliser `state=tkinter.DISABLED` pour griser le composant et le rendre inactif. Si la souris se trouve sur la case à cocher, son état est `tkinter.ACTIVE`.
+- `takefocus` : Par défaut, une case à cocher est visitée par le focus. Si vous mettez cette option à `0`, la case n’est plus visitée par le focus.
+- `text` : L’étiquette affichée après la case à cocher. Utiliser le caractère retour chariot `'\n'` pour afficher plusieurs lignes de texte.
+- `textvariable` : Si vous avez besoin de modifier l’étiquette de la case à cocher pendant l’exécution du programme, créez une variable de contrôle `StringVar` pour gérer sa valeur courante, et affectez cette variable de contrôle à l’option. À chaque fois que le texte de cette variable est modifié, l’étiquette du bouton est mise à jour.
+- `underline` : Aver la valeur par défaut `-1`, aucun caractère de l’étiquette n’est souligné. Indiquez la position d’un caractère de l’étiquette pour le souligner.
+- `variable` : La variable de contrôle qui suit l’état de la case à cocher. Normalement cette variable est un `IntVar`, et `0` indique que la case est désactivée, `1` qu’elle est activée. Consultez également les options `offvalue` et `onvalue` ci-dessus.
+- `width` : La largeur par défaut d’une case à cocher est déterminée par la taille du texte ou de l’image affichée. Vous pouvez régler cette option avec un nombre de caractères afin de réserver la place nécessaire à leur affichage.
+- `wraplength` : Normalement, les lignes ne sont pas coupées automatiquement. Configurez cette option avec un certain nombre de caractères afin que les lignes soient ajustées conformément.
+
+Méthodes disponibles:
+
+```python
+case_a_cocher.deselect()
+```
+
+ Décoche la case à cocher (off).
+
+```python
+case_a_cocher.flash()
+```
+
+Fait clignoter la case à cocher quelques fois (entre les couleurs des états 'active' et 'normal'). Elle retrouve son état initial après le clignotement.
+
+```python
+case_a_cocher.invoke()
+```
+
+Utilisez cette méthode si vous souhaitez réaliser la même action que celle qui consiste à cliquer sur la case pour changer son état.
+
+```python
+case_a_cocher.select()
+```
+
+Coche la case à cocher (on).
+
+```python
+case_a_cocher.toggle()
+```
+
+Coche ou décoche la case à cocher selon son état courant.
+
 ### Widget Scale
 
 Créez une jauge de défilement en appelant le constructeur de la classe `Scale`.

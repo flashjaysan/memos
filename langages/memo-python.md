@@ -1630,6 +1630,70 @@ fichier_en_écriture = open('chemin/nom_de_fichier.txt', mode='wb')
 fichier_en_écriture = open('chemin/nom_de_fichier.txt', mode='ab')
 ```
 
+## Exceptions
+
+### Gérer les exceptions
+
+```python
+try:
+    # code pouvant provoquer une exception
+except TypeErreur:
+    # si une exception de type TypeErreur se produit
+else
+    # s'il n'y a pas eu d'exception
+finally:
+    # code à exécuter quoi qu'il arrive
+```
+
+ou
+
+```python
+try:
+    # code pouvant provoquer une exception
+except TypeErreur as erreur:
+    # si une exception de type TypeErreur se produit
+else
+    # s'il n'y a pas eu d'exception
+finally:
+    # code à exécuter quoi qu'il arrive
+```
+
+**Remarque :** Il peut y avoir plusieurs clauses `except` avec un type d'erreur différent.
+
+### Lever une exception
+
+A tout moment, vous pouvez lever une exception avec le mot clé `raise`.
+
+```python
+raise TypeErreur
+```
+
+ou
+
+```python
+raise TypeErreur('Message d\'erreur.')
+```
+
+## Module json
+
+Ecrire dans un fichier json.
+
+```python
+json.dump()
+```
+
+Lire dans un fichier json.
+
+```python
+json.load()
+```
+
+Mettre à jour un fichier json.
+
+```python
+json.update()
+```
+
 ## Module csv
 
 Par défaut, le package `csv` est inclut avec Python. Vous pouvez directement importer le module :
