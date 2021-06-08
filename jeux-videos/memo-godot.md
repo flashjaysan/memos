@@ -103,10 +103,10 @@ Si vous voulez appliquer un réglage à une image associée à un Sprite, sélec
 
 ## Contrôles
 
-`input_is_action_pressed` renvoie si une action est enfoncée ou non.
+`Input.is_action_pressed` renvoie si une action est enfoncée ou non.
 
 ```python
-if is_action_pressed("ui_up"):
+if Input.is_action_pressed("ui_up"):
     pass
 ```
 
@@ -195,7 +195,55 @@ if velocity.x != 0:
     sprite.flip_h = velocity.x > 0
 ```
 
-# Créer un nouveau type de ressource
+### Nombre aléatoires
+
+Par défaut, Godot utilise le même seed pour générer des nombres aléatoires. Appelez la fonction `randomize` pour modifier ce comportement.
+
+```
+randomize()
+```
+
+La fonction `rand_range` renvoie un nombre à virgule compris dans un intervalle passé en argument.
+
+```
+nombre_aleatoire = rand_range(min, max)
+```
+
+### Obtenir les dimensions du viewport
+
+Appelez la méthode `get_viewport_rect`.
+
+```
+viewport_rect = get_viewport_rect()
+```
+
+### Signaux
+
+#### Définir un nouveau signal
+
+Définissez une variable avec le mot clé `signal`.
+
+```
+signal nom_signal
+```
+
+#### Emettre un signal
+
+Utilisez la méthode `emit_signal` et passez le signal sous forme de chaine.
+
+```
+emit_signal("nom_signal")
+```
+
+#### Connectez un noeud à un signal
+
+Utilisez la méthode `connect` en passant le signal sous forme de chaine, l'objet à connecter et la méthode à appeler sous forme de chaine. En général, on définit le nom de la méthode en faisant précéder le nom du signal par le préfixe `on`.
+
+```
+noeud.connect("nom_signal", self, "on_nom_signal")
+```
+
+## Créer un nouveau type de ressource
 
 Dans le panneau FileSystem, faites un clic droit et créez un nouveau script.
 
