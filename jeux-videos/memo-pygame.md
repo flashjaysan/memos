@@ -889,6 +889,21 @@ if event.type == pygame.QUIT:
     running = False
 ```
 
+## Gérer la vitesse de rafraichissement de l'affichage
+
+Créez un objet de la classe `Clock` défini dans le sous-module `time`.
+
+```python
+clock = pygame.time.Clock()
+```
+
+Utilisez ensuite la méthode `tick` pour obtenir le temps passé, en millisecondes, depuis le dernier appel à cette méthode. Passez en paramètre le nombre d'images par secondes attendues. Cette méthode met en pause l'exécution du programme seulement si la boucle de jeu va plus vite que la vitesse attendue.
+
+```pygame
+BASE_FPS = 60
+delta_time = self.clock.tick(BASE_FPS) / 1000
+```
+
 ## Squelette de base
 
 ```python
@@ -900,6 +915,9 @@ pygame.init()
 display_surface = pygame.display.set_mode((largeur, hauteur))
 pygame.display.set_caption('Titre')
 
+BASE_FPS = 60
+clock = pygame.time.Clock()
+
 running = True
 
 while running:
@@ -908,6 +926,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+    delta_time = self.clock.tick(BASE_FPS) / 1000
     display_surface.fill(pygame.Color('black'))
     # instructions de dessin
     pygame.display.flip()
