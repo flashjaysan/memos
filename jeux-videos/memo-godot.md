@@ -221,10 +221,18 @@ viewport_rect = get_viewport_rect()
 
 #### Définir un nouveau signal
 
-Définissez une variable avec le mot clé `signal`.
+Définissez un nouveau signal en le faisant précéder du mot clé `signal`.
 
 ```
 signal nom_signal
+```
+
+**Remarque :** Utilisez un verbe d'action au passé comme nom de signal.
+
+Vous pouvez également définir un signal avec des paramètres.
+
+```
+signal nom_signal(nom_paramètre)
 ```
 
 #### Emettre un signal
@@ -235,6 +243,14 @@ Utilisez la méthode `emit_signal` et passez le signal sous forme de chaine.
 emit_signal("nom_signal")
 ```
 
+**Remarque :** Cette technique est très utile lorsque vous avez un noeud dans votre scène qui n'est pas la racine. Si vous instanciez cette scène dans une autre, vous ne pouvez pas connecter de signal d'un noeud enfant. Pour cela, connectez le noeud racine de la scène à instancier à un signal d'un de ses noeuds enfants et émettez un nouveau signal. Ce dernier peut ainsi être connecté à un noeud de l'autre scène.
+
+Si vous avez défini un signal avec des paramètres, passez-les lors de l'appel à la fonction `emit_signal`.
+
+```
+emit_signal("nom_signal", paramètre)
+```
+
 #### Connectez un noeud à un signal
 
 Utilisez la méthode `connect` en passant le signal sous forme de chaine, l'objet à connecter et la méthode à appeler sous forme de chaine. En général, on définit le nom de la méthode en faisant précéder le nom du signal par le préfixe `on`.
@@ -242,6 +258,8 @@ Utilisez la méthode `connect` en passant le signal sous forme de chaine, l'obje
 ```
 noeud.connect("nom_signal", self, "on_nom_signal")
 ```
+
+**Attention !** Certains signaux utilisent des paramètres. La méthode connectée recevra ces paramètres en arguments lors de l'appel. Pensez à le prévoir dans la méthode.
 
 ## Créer un nouveau type de ressource
 
