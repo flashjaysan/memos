@@ -43,7 +43,7 @@ pygame.init()
 
 ## Quitter proprement
 
-Utilisez la fonction `quit` avant de terminer votre programme. Cette fonction désactive les modules initialisés par la fonction `init`.
+Utilisez la fonction `quit` avant de terminer votre programme. Cette fonction dé-initialise les modules initialisés par la fonction `init`.
 
 ```python
 pygame.quit()
@@ -51,19 +51,31 @@ pygame.quit()
 
 **Attention !** Certains sous-modules (comme par exemple `mixer`) doivent être initialisés à part si vous souhaitez les utiliser. Pensez à appeler leur propre fonction `quit` pour terminer votre programme.
 
-## Définir le titre et l'icône de la fenêtre
+## Définir le titre de la fenêtre
+
+Utilisez la fonction `set_caption` du sous-module `display` pour définir le titre de la fenêtre.
 
 ```python
-pygame.display.set_caption(titre, icone)
+pygame.display.set_caption(titre, titre_minifie)
 ```
 
-Le paramètre `icone` est optionnel. Si vous ne le précisez pas, l'icône par défaut de pygame est utilisée.
+Le paramètre `titre_minifie` est optionnel. Il définit le titre de la fenêtre lorsque celle-ci est minifiée.
 
 ```python
 pygame.display.set_caption(titre)
 ```
 
-## Définir les dimensions de la fenêtre
+## Définir l'icône de la fenêtre
+
+Utilisez la fonction `set_icon` du sous-module `display` pour définir l'icône de la fenêtre. Passez en argument une surface (de préférence 32x32). Vous pouvez également définir une couleur transparente (voir la méthode `set_colorkey`).
+
+```python
+pygame.display.set_icon(icone)
+```
+
+**Attention !** Définissez l'icône de la fenêtre avant de créer cette dernière (avec la fonction `set_mode`). Certains environnements n'autorisent pas la définition d'une icône une fois la fenêtre créée.
+
+## Créer et définir les dimensions de la fenêtre
 
 Utilisez la fonction `set_mode` du sous-module `display` pour créer la fenêtre de jeu. Passez les dimensions sous forme de tuple ou de liste. Cette fonction renvoie une surface spéciale correspondant à la surface de la fenêtre de jeu. Je l'appelerai la *surface d'affichage*.
 
@@ -72,6 +84,25 @@ display_surface = pygame.diplay.set_mode((largeur, hauteur))
 ```
 
 **Remarque :** Le système de coordonnées de pygame inverse l'axe vertical par rapport au système classique mathématique. Les valeurs verticales augmentent donc vers le bas. L'origine du repère est situé dans le coin supérieur gauche de la fenêtre.
+
+La fonction `set_mode` peut également prendre des paramètres supplémentaires.
+
+- `flags=0` : Ces *drapeaux* permettent de configurer la surface d'affichage selon diverses options.
+- `depth=0` : Précise le nombre de bits utilisés pour représenter les couleurs sur la surface. Il est préférable de laisser ce paramètre à sa valeur par défaut et pygame configurera la meilleure option disponible pour la surface d'affichage.
+- `display=0` : Définit l'écran associé à la fenêtre. Par défaut, la fenêtre s'affiche sur l'écran principal.
+- `vsync=0` : Essaie d'activer la synchronisation verticale avec l'écran. La tentative d'activation peut échouer. Cette option est à l'heure actuelle expérimentale.
+
+Les drapeaux disponibles (combinables aves l'opérateur de bit `|`) sont les suivants :
+
+- `pygame.FULLSCREEN` : crée une fenêtre en plein écran.
+- `pygame.DOUBLEBUF` : recommandé pour les HWSURFACE ou OPENGL.
+- `pygame.HWSURFACE` : crée surface avec accélération matérielle (uniquement en plein écran).
+- `pygame.OPENGL` : crée une fenêtre prenant en charge le rendu OpenGL.
+- `pygame.RESIZABLE` : crée une fenêtre redimensionable.
+- `pygame.NOFRAME` : crée une fenêtre sans bordure ni boutons de contrôle.
+- `pygame.SCALED` : crée une fenêtre avec des graphismes zoomés adaptés à la résolution courante du système.
+- `pygame.SHOWN` : la fenêtre est visible (par défaut).
+- `pygame.HIDDEN` : la fenêtre est masquée.
 
 ## Les couleurs
 
@@ -765,6 +796,12 @@ est équivalent à écrire
 RED_COLOR = pygame.Color((255, 0, 0))
 ```
 
+Mais vous pouvez faire encore plus simple. Partout où une couleur est attendue, vous pouvez utiliser directement une des chaînes prédéfinie sans instancier d'objet `Color`.
+
+```python
+surface.fill('yellow') # au lieu de surface.fill(pygame.Color('yellow'))
+```
+
 ## Remplir la surface d'affichage avec une couleur
 
 Utilisez la méthode `fill` avec la couleur de votre choix.
@@ -780,7 +817,447 @@ yellow_square = pygame.Surface((16, 16))
 yellow_square.fill('yellow')
 ```
 
-## Charger une image
+## Rafraîchir l'affichage
+
+Pour éviter des bugs d'affichage, vous devez rafraichir la surface d'affichage à chaque boucle de jeu. Utilisez la fonction `flip` du sous-module `display` sans arguments pour mettre à jour intégralement la surface d'affichage.
+
+```python
+pygame.display.flip()
+```
+
+pygame fournit également la fonction `update` qui vous permet de rafraichir intégralement la surface d'affichage si vous ne passez pas d'argument et qui vous permet de rafraichir seulement certaines zones de la surface d'affichage si vous passez un objet de type `Rect` ou une liste de ces objets.
+
+```python
+pygame.display.update(rectangles_list)
+```
+
+**Remarque :** Si besoin, pensez à remplir la surface d'affichage avec une couleur pour *effacer* son contenu précédent avant de dessiner sur la surface d'affichage et enfin d'appeler la fonction `flip`.
+
+```python
+display_surface.fill('black')
+# instructions de dessin
+pygame.display.flip()
+```
+
+## Créer une boucle de jeu
+
+Créez simplement une boucle `while` avec un booléen initialisé à `True` et que vous passerez à `False` lorsque vous souhaiterez quitter le programme.
+
+```python
+running = True
+
+while running:
+    if end_game:
+        running = False
+```
+
+**Attention !** Vous devez ajouter la gestion de l'évènement de fermeture pour que votre jeu se termine correctement. Cet évènement est déclenché lorsque l'utilisateur clique sur le bouton de fermeture de la fenêtre ou appuie sur les touches `ALT + F4`.
+
+## Gérer les évènements
+
+La fonction `get` du sous-module `event` renvoie la liste des évènements non traités. Parcourez cette liste pour traiter individuellement chaque évènement.
+
+```python
+for event in pygame.event.get():
+    # traitement des évènements
+```
+
+### Types d'évènements
+
+Chaque évènement possède un attribut `type` qui vous permet de déterminer quel genre d'évènement s'est déclenché.
+
+- `pygame.QUIT` : se déclenche lorsque l'utilisateur clique sur le bouton de fermeture de la fenêtre ou appuie sur `ALT + F4`. Cet évènement ne possède pas d'autre attribut.
+- `pygame.ACTIVEEVENT` : se déclenche lorsque l'utilisateur ???. Cet évènement possède également les attributs `gain` et `state`.
+- `pygame.KEYDOWN` : se déclenche lorsque l'utilisateur enfonce une touche du clavier. Cet évènement possède également les attributs `key`, `mod`, `unicode` et `scancode`.
+- `pygame.KEYUP` : se déclenche lorsque l'utilisateur relâche une touche du clavier. Cet évènement possède également les attributs `key` et `mod`.
+- `pygame.MOUSEMOTION` : se déclenche lorsque l'utilisateur déplace la souris. Cet évènement possède également les attributs `pos`, `rel` et `buttons`.
+- `pygame.MOUSEBUTTONUP` : se déclenche lorsque l'utilisateur relâche un bouton de souris. Cet évènement possède également les attributs `pos` et `button`.
+- `pygame.MOUSEBUTTONDOWN` : se déclenche lorsque l'utilisateur enfonce un bouton de souris. Cet évènement possède également les attributs `pos` et `button`.
+- `pygame.JOYAXISMOTION` : se déclenche lorsque l'utilisateur pousse un stick analogique de manette. Cet évènement possède également les attributs `instance_id`, `axis` et `value`.
+- `pygame.JOYBALLMOTION` : se déclenche lorsque l'utilisateur ???. Cet évènement possède également les attributs `instance_id`, `ball` et `rel`.
+- `pygame.JOYHATMOTION` : se déclenche lorsque l'utilisateur ???. Cet évènement possède également les attributs `instance_id`, `hat` et `value`.
+- `pygame.JOYBUTTONUP` : se déclenche lorsque l'utilisateur relâche un bouton de manette. Cet évènement possède également les attributs `instance_id` et `button`.
+- `pygame.JOYBUTTONDOWN` : se déclenche lorsque l'utilisateur enfonce un bouton de manette. Cet évènement possède également les attributs `instance_id` et `button`.
+- `pygame.VIDEORESIZE` : se déclenche lorsque l'utilisateur ???. Cet évènement possède également les attributs `size`, `w` et `h`.
+- `pygame.VIDEOEXPOSE` : se déclenche lorsque l'utilisateur ???. Cet évènement ne possède pas d'autre attribut.
+- `pygame.USEREVENT` : se déclenche lorsque l'utilisateur ???. Cet évènement possède également l'attribut `code`.
+
+### Evènement de fermeture de fenêtre
+
+Lorsque l'utilisateur clique sur le bouton de fermeture de la fenêtre ou appuie sur les touches `ALT + F4` un évènement de type `pygame.QUIT` est déclenché. Vérifiez son type pour stopper la boucle de jeu.
+
+```python
+if event.type == pygame.QUIT:
+    running = False
+```
+
+### Evènement de touches de clavier
+
+Deux types d'évènements peuvent se produire avec les touches du clavier :
+
+- L'évènement de type `pygame.KEYDOWN` se déclenche lorsque l'utilisateur enfonce une touche.
+- L'évènement de type `pygame.KEYUP` se déclenche lorsque l'utilisateur relâche une touche enfoncée précédemment.
+
+Voici les constantes associées aux touches du clavier :
+
+```
+K_BACKSPACE   \b      backspace
+K_TAB         \t      tab
+K_CLEAR               clear
+K_RETURN      \r      return
+K_PAUSE               pause
+K_ESCAPE      ^[      escape
+K_SPACE               space
+K_EXCLAIM     !       exclaim
+K_QUOTEDBL    "       quotedbl
+K_HASH        #       hash
+K_DOLLAR      $       dollar
+K_AMPERSAND   &       ampersand
+K_QUOTE               quote
+K_LEFTPAREN   (       left parenthesis
+K_RIGHTPAREN  )       right parenthesis
+K_ASTERISK    *       asterisk
+K_PLUS        +       plus sign
+K_COMMA       ,       comma
+K_MINUS       -       minus sign
+K_PERIOD      .       period
+K_SLASH       /       forward slash
+K_0           0       0
+K_1           1       1
+K_2           2       2
+K_3           3       3
+K_4           4       4
+K_5           5       5
+K_6           6       6
+K_7           7       7
+K_8           8       8
+K_9           9       9
+K_COLON       :       colon
+K_SEMICOLON   ;       semicolon
+K_LESS        <       less-than sign
+K_EQUALS      =       equals sign
+K_GREATER     >       greater-than sign
+K_QUESTION    ?       question mark
+K_AT          @       at
+K_LEFTBRACKET [       left bracket
+K_BACKSLASH   \       backslash
+K_RIGHTBRACKET ]      right bracket
+K_CARET       ^       caret
+K_UNDERSCORE  _       underscore
+K_BACKQUOTE   `       grave
+K_a           a       a
+K_b           b       b
+K_c           c       c
+K_d           d       d
+K_e           e       e
+K_f           f       f
+K_g           g       g
+K_h           h       h
+K_i           i       i
+K_j           j       j
+K_k           k       k
+K_l           l       l
+K_m           m       m
+K_n           n       n
+K_o           o       o
+K_p           p       p
+K_q           q       q
+K_r           r       r
+K_s           s       s
+K_t           t       t
+K_u           u       u
+K_v           v       v
+K_w           w       w
+K_x           x       x
+K_y           y       y
+K_z           z       z
+K_DELETE              delete
+K_KP0                 keypad 0
+K_KP1                 keypad 1
+K_KP2                 keypad 2
+K_KP3                 keypad 3
+K_KP4                 keypad 4
+K_KP5                 keypad 5
+K_KP6                 keypad 6
+K_KP7                 keypad 7
+K_KP8                 keypad 8
+K_KP9                 keypad 9
+K_KP_PERIOD   .       keypad period
+K_KP_DIVIDE   /       keypad divide
+K_KP_MULTIPLY *       keypad multiply
+K_KP_MINUS    -       keypad minus
+K_KP_PLUS     +       keypad plus
+K_KP_ENTER    \r      keypad enter
+K_KP_EQUALS   =       keypad equals
+K_UP                  up arrow
+K_DOWN                down arrow
+K_RIGHT               right arrow
+K_LEFT                left arrow
+K_INSERT              insert
+K_HOME                home
+K_END                 end
+K_PAGEUP              page up
+K_PAGEDOWN            page down
+K_F1                  F1
+K_F2                  F2
+K_F3                  F3
+K_F4                  F4
+K_F5                  F5
+K_F6                  F6
+K_F7                  F7
+K_F8                  F8
+K_F9                  F9
+K_F10                 F10
+K_F11                 F11
+K_F12                 F12
+K_F13                 F13
+K_F14                 F14
+K_F15                 F15
+K_NUMLOCK             numlock
+K_CAPSLOCK            capslock
+K_SCROLLOCK           scrollock
+K_RSHIFT              right shift
+K_LSHIFT              left shift
+K_RCTRL               right control
+K_LCTRL               left control
+K_RALT                right alt
+K_LALT                left alt
+K_RMETA               right meta
+K_LMETA               left meta
+K_LSUPER              left Windows key
+K_RSUPER              right Windows key
+K_MODE                mode shift
+K_HELP                help
+K_PRINT               print screen
+K_SYSREQ              sysrq
+K_BREAK               break
+K_MENU                menu
+K_POWER               power
+K_EURO                Euro
+```
+
+## Gérer la vitesse de rafraichissement de l'affichage
+
+Créez un objet de la classe `Clock` défini dans le sous-module `time`.
+
+```python
+clock = pygame.time.Clock()
+```
+
+Utilisez ensuite la méthode `tick` pour obtenir le temps passé, en millisecondes, depuis le dernier appel à cette méthode. Passez en paramètre le nombre d'images par secondes attendues. Cette méthode met en pause l'exécution du programme seulement si la boucle de jeu va plus vite que la vitesse attendue.
+
+```pygame
+BASE_FPS = 60
+delta_time = self.clock.tick(BASE_FPS) / 1000
+```
+
+## Squelette de base
+
+Voici un squelette de base utilisant toutes les fonctionnalités décrites précédemment :
+
+```python
+import pygame
+
+
+pygame.init()
+
+display_surface = pygame.display.set_mode((largeur, hauteur))
+pygame.display.set_caption('Titre')
+
+BASE_FPS = 60
+clock = pygame.time.Clock()
+
+running = True
+
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    delta_time = self.clock.tick(BASE_FPS) / 1000
+    # logique du jeu
+    display_surface.fill('black')
+    # affichage des éléments du jeu
+    pygame.display.flip()
+
+pygame.quit()
+```
+
+## Structures utiles
+
+### Les vecteurs
+
+pygame définit deux classes pour représenter les vecteurs.
+
+- la classe `Vector2` représente un couple de deux nombres. Utilisez cette classe pour définir les coordonnées d'un point ou un déplacement dans un espace à deux dimensions.
+- la classe `Vector3` représente un ensemble de trois nombres. Utilisez cette classe pour définir les coordonnées d'un point ou un déplacement dans un espace à trois dimensions.
+
+#### Vector2
+
+Créez une instance de la classe `Vector2` en passant les coordonnées du point ou du déplacement.
+
+```python
+vecteur2 = pygame.Vector2(x, y)
+```
+
+#### Vector3
+
+Créez une instance de la classe `Vector3` en passant les coordonnées du point ou du déplacement.
+
+```python
+vecteur3 = pygame.Vector3(x, y, z)
+```
+
+### Les rectangles
+
+pygame définit la classe `Rect` pour représenter un rectangle. Elle est définie par la position de son coin supérieur gauche et ses dimensions.
+
+#### Rect
+
+Créez une instance de la classe `Rect` en passant les coordonnées de son coin supérieur gauche et la largeur et la hauteur du rectangle.
+
+```python
+rectangle = pygame.Rect(x, y, largeur, hauteur)
+```
+
+
+
+
+
+
+
+## Dessiner des formes géométriques
+
+Le sous-module `draw` contient un ensemble de fonctions vous permettant de dessiner des formes géométriques sur la surface de votre choix (y compris la surface d'affichage).
+
+**Remarque :** Lorsque vous utilisez un tuple de deux nombres pour représenter une coordonnée, vous pouvez également utiliser un objet de type `Vector2` (du sous-module `math`).
+
+**Attention !** Si vous ne le faites pas manuellement, les fonctions de dessin *bloquent* automatiquement la surface cible avant de dessiner dessus et la débloquent une fois le dessin terminé. Lorsque vous souhaitez dessiner de nombreuses formes sur la même surface, commencez par bloquer la surface avec la méthode `lock` et débloquez-la une fois terminé avec la méthode `unlock`.
+
+```python
+surface.lock()
+# fonctions de dessin
+surface.unlock()
+```
+
+### Dessiner un pixel de couleur
+
+La méthode `set_at` des surfaces, dessine un pixel de couleur sur une surface. Passez en argument un tuple de deux nombres correspondant à la position du pixel sur la surface et la couleur à utiliser.
+
+```python
+surface.set_at((x, y), couleur)
+```
+
+**Remarque :** `set_at` est une méthode de la classe `Surface` et non une fonction du sous-module `draw`. Cependant, comme pour ce sous-module, cette méthode bloque la surface avant de dessiner le pixel et la débloque ensuite.
+
+### Dessiner un segment
+
+La fonction `line` du sous-module `draw` dessine un segment droit sur une surface. Passez en argument la surface, la couleur, un tuple de deux valeurs correspondant au point de départ, un tuple de deux valeurs correspondant au point d'arrivée et la largeur du trait à dessiner.
+
+```python
+pygame.draw.line(surface, couleur, (depart_x, depart_y), (arrivee_x, arrivee_y), largeur_trait)
+```
+
+**Remarque :** La largeur du trait est optionnelle. Par défaut, la valeur vaut `1`.
+
+### Dessiner une série de segments
+
+La fonction `lines` du sous-module `draw` dessine une série de segments droits sur une surface. Passez en argument la surface, la couleur, un booléen pour préciser s'il faut fermer ou non la forme, une liste contenant des tuples de deux valeurs correspondant aux différents points à relier et la largeur du trait à dessiner.
+
+```python
+pygame.draw.lines(surface, couleur, ferme, liste_de_points, largeur_trait)
+```
+
+**Remarque :** La largeur du trait est optionnelle. Par défaut, la valeur vaut `1`.
+
+### Dessiner un polygone de couleur
+
+La fonction `polygon` du sous-module `draw` dessine un polygone sur une surface. Passez en argument la surface, la couleur et une liste contenant des tuples de deux valeurs correspondant aux différents points à relier.
+
+```python
+pygame.draw.polygon(surface, couleur, ferme, liste_de_points)
+```
+
+### Dessiner un contour de polygone de couleur
+
+La fonction `polygon` du sous-module `draw` dessine un polygone sur une surface. Passez en argument la surface, la couleur, une liste contenant des tuples de deux valeurs correspondant aux différents points à relier et la largeur du trait à dessiner.
+
+```python
+pygame.draw.polygon(surface, couleur, liste_de_points, largeur_trait)
+```
+
+### Dessiner un rectangle de couleur
+
+La fonction `rect` du sous-module `draw` dessine un rectangle sur une surface. Passez en argument la surface, la couleur et une structure de type `Rect`.
+
+```python
+pygame.draw.rect(surface, couleur, rectangle)
+```
+
+### Dessiner un contour de rectangle de couleur
+
+La fonction `rect` du sous-module `draw` dessine un rectangle sur une surface. Passez en argument la surface, la couleur, une structure de type `Rect` et la largeur (en pixel) du contour à dessiner.
+
+```python
+pygame.draw.rect(surface, couleur, rectangle, largeur_contour)
+```
+
+### Dessiner un cercle de couleur
+
+La fonction `circle` du sous-module `draw` dessine un cercle sur une surface. Passez en argument la surface, la couleur, un tuple de deux valeurs correspondant à la position du centre du cercle et le rayon du cercle.
+
+```python
+pygame.draw.circle(surface, couleur, (centre_x, centre_y), rayon)
+```
+
+### Dessiner un contour de cercle de couleur
+
+La fonction `circle` du sous-module `draw` dessine un cercle sur une surface. Passez en argument la surface, la couleur, un tuple de deux valeurs correspondant à la position du centre du cercle, le rayon du cercle et la largeur (en pixel) du contour à dessiner.
+
+```python
+pygame.draw.circle(surface, couleur, (centre_x, centre_y), rayon, largeur_contour)
+```
+
+### Dessiner une ellipse de couleur
+
+La fonction `ellipse` du sous-module `draw` dessine une ellipse sur une surface. Passez en argument la surface, la couleur et une structure de type `Rect` correspondant au rectangle englobant l'ellipse.
+
+```python
+pygame.draw.ellipse(surface, couleur, rectangle_englobant)
+```
+
+### Dessiner un contour d'ellipse de couleur
+
+La fonction `ellipse` du sous-module `draw` dessine une ellipse sur une surface. Passez en argument la surface, la couleur, une structure de type `Rect` correspondant au rectangle englobant l'ellipse et la largeur (en pixel) du contour à dessiner.
+
+```python
+pygame.draw.ellipse(surface, couleur, rectangle_englobant, largeur_contour)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+## Les surfaces
+
+### Afficher une surface
+
+Pour afficher une surface, utilisez la méthode `blit` de la surface d'affichage et passez la surface à afficher ainsi qu'un tuple correspondant à la position de l'image sur la surface d'affichage.
+
+```python
+display_surface.blit(surface, (x, y))
+```
+
+## Les images
+
+### Charger une image
 
 pygame prend toujours en charge le format BMP non compressé. Chargez une image dans ce format en utilisant la fonction `load_basic` du sous-module `image`. Une image chargée dans pygame devient une surface.
 
@@ -803,7 +1280,7 @@ surface = pygame.image.load(fichier_image)
 
 **Remarque :** Même si pygame prend en charge les formats d'images étendus, il n'est pas garanti que pygame prenne en charge tous les formats existants.
 
-## Améliorer la performance des images
+### Améliorer la performance des images
 
 Par défaut, une image chargée dans une surface est au même format que celui du fichier image d'origine. Utilisez la méthode `convert` sans arguments (de la classe `Surface`) pour convertir une surface dans un format adapté à celui de la surface d'affichage. Cela accélère son affichage.
 
@@ -811,7 +1288,7 @@ Par défaut, une image chargée dans une surface est au même format que celui d
 surface = pygame.image.load(fichier_image).convert()
 ```
 
-## Conserver la couche alpha d'une image
+### Conserver la couche alpha d'une image
 
 Utilisez la méthode `convert_alpha` sans arguments (de la classe `Surface`) pour convertir une image dans un format idéal pour l'affichage sur la surface d'affichage mais conservant les données d'opacité des pixels. Cela accélère leur affichage (mais est un peu moins performant que la méthode `convert`).
 
@@ -819,7 +1296,7 @@ Utilisez la méthode `convert_alpha` sans arguments (de la classe `Surface`) pou
 surface = pygame.image.load(fichier_image).convert_alpha()
 ```
 
-## Définir la couleur transparente
+### Définir la couleur transparente
 
 Utilisez la méthode `set_colorkey` pour définir la couleur qui sera considérée comme transparente.
 
@@ -827,111 +1304,14 @@ Utilisez la méthode `set_colorkey` pour définir la couleur qui sera considér�
 surface.set_colorkey(couleur)
 ```
 
-## Afficher une image ou une surface
+### Afficher une image
+
+Pour afficher une image, utilisez la même technique que pour afficher une surface (car une image chargée en mémoire est une surface).
 
 Utilisez la méthode `blit` sur la surface d'affichage et passez la surface représentant l'image à afficher ainsi qu'un tuple correspondant à la position de l'image sur la surface d'affichage.
 
 ```python
 display_surface.blit(surface, (x, y))
-```
-
-## Rafraîchir l'affichage
-
-Pour éviter des bugs d'affichage, vous devez rafraichir la surface d'affichage à chaque boucle de jeu. Utilisez la fonction `flip` du sous-module `display` sans arguments pour mettre à jour intégralement la surface d'affichage.
-
-```python
-pygame.display.flip()
-```
-
-pygame fournit également la fonction `update` qui vous permet de rafraichir intégralement la surface d'affichage si vous ne passez pas d'argument et qui vous permet de rafraichir seulement certaines zones de la surface d'affichage si vous passez un objet de type `Rect` ou une liste de ces objets.
-
-```python
-pygame.display.update(rectangles_list)
-```
-
-**Remarque :** Si besoin, pensez à remplir la surface d'affichage avec une couleur pour *effacer* son contenu précédent avant de dessiner sur la surface d'affichage et enfin d'appeler la fonction `flip`.
-
-```python
-display_surface.fill(pygame.Color('black'))
-# instructions de dessin
-pygame.display.flip()
-```
-
-## Créer une boucle de jeu
-
-Créez simplement une boucle `while` avec un booléen initialisé à `True` et que vous passerez à `False` lorsque vous souhaiterez quitter le programme.
-
-```python
-running = True
-
-while running:
-    if end_game:
-        running = False
-```
-
-**Attention !** Vous devez ajouter la gestion de l'évènement de fermeture pour que votre jeu se termine correctement. Cet évènement est déclenché lorsque l'utilisateur clique sur le bouton de fermeture de la fenêtre ou appuie sur les touches `ALT + F4`.
-
-## Gérer les événements
-
-La fonction `get` du sous-module `event` renvoie la liste des évènements non traités. Parcourez cette liste pour traiter individuellement chaque évènement.
-
-```python
-for event in pygame.event.get():
-    # traitement des évènements
-```
-
-### Gérer la fermeture de fenêtre
-
-Lorsque l'utilisateur clique sur le bouton de fermeture de la fenêtre ou appuie sur les touches `ALT + F4` un évènement de type `pygame.QUIT` est déclenché. Vérifiez son type pour stopper la boucle de jeu.
-
-```python
-if event.type == pygame.QUIT:
-    running = False
-```
-
-## Gérer la vitesse de rafraichissement de l'affichage
-
-Créez un objet de la classe `Clock` défini dans le sous-module `time`.
-
-```python
-clock = pygame.time.Clock()
-```
-
-Utilisez ensuite la méthode `tick` pour obtenir le temps passé, en millisecondes, depuis le dernier appel à cette méthode. Passez en paramètre le nombre d'images par secondes attendues. Cette méthode met en pause l'exécution du programme seulement si la boucle de jeu va plus vite que la vitesse attendue.
-
-```pygame
-BASE_FPS = 60
-delta_time = self.clock.tick(BASE_FPS) / 1000
-```
-
-## Squelette de base
-
-```python
-import pygame
-
-
-pygame.init()
-
-display_surface = pygame.display.set_mode((largeur, hauteur))
-pygame.display.set_caption('Titre')
-
-BASE_FPS = 60
-clock = pygame.time.Clock()
-
-running = True
-
-while running:
-    pygame.time.delay(33)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-    delta_time = self.clock.tick(BASE_FPS) / 1000
-    display_surface.fill(pygame.Color('black'))
-    # instructions de dessin
-    pygame.display.flip()
-
-pygame.quit()
 ```
 
 ## Afficher un rectangle
