@@ -27,21 +27,88 @@ Dans Visual Studio, cliquez sur le menu `Fichier -> Nouveau -> Projet...` (`Ctrl
 
 Dans le panneau `Explorateur de solutions`, faites un clic droit sur la solution et choisissez l'option `Ajouter -> Nouveau projet...`.
 
-## Afficher du texte dans la console
+## Conventions de styles
 
-Utilisez la méthode `WriteLine` de la classe `System.Console`.
+- Les noms de classes et de méthodes sont écrits en `PascalCase`.
+- Les noms de variables locales (définies dans une méthode) sont écrits en `camelCase`.
+- Les noms de classes sont contitués de noms.
+- Les noms de méthodes sont constitués de verbes.
+
+## Point d'entrée
+
+La méthode statique `Main` définit le point d'entrée d'un programme. On la place généralement dans une classe `Program`. Elle peut ne rien renvoyer ou renvoyer un entier. Elle peut ne prendre aucun paramètre ou un tableau de chaine de caractères.
 
 ```csharp
-class Program
+public class Program
 {
-    static void Main(String[] args)
+    public static void Main()
     {
-        System.Console.WriteLine("Texte à afficher.");
+
     }
 }
 ```
 
-**Remarque :** Vous pouvez utiliser le raccourci `cw`, `Tab`, `Tab` pour appeler cette méthode automatiquement.
+ou
+
+```csharp
+public class Program
+{
+    public static void Main(string[] args)
+    {
+
+    }
+}
+```
+
+ou
+
+```csharp
+public class Program
+{
+    public static int Main()
+    {
+
+    }
+}
+```
+
+ou
+
+```csharp
+public class Program
+{
+    public static int Main(string[] args)
+    {
+
+    }
+}
+```
+
+## Afficher du texte dans la console
+
+Utilisez la méthode `WriteLine` de la classe `System.Console` pour afficher une chaine de caractères puis retourner à la ligne.
+
+```csharp
+System.Console.WriteLine("Texte à afficher.");
+```
+
+**Remarque :** Vous pouvez utiliser le raccourci `cw`, `Tab`, `Tab` pour appeler cette méthode automatiquement dans Visual Studio.
+
+Utilisez la méthode `Write` si vous ne souhaitez pas un retour à la ligne après l'affichage de la chaine de caractères.
+
+```csharp
+System.Console.Write("Texte à afficher.");
+```
+
+## Lire une saisie de l'utilisateur dans la console
+
+Utilisez la méthode `ReadLine` de la classe `System.Console` pour lire une chaine de caractères saisie par l'utilisateur. Cette méthode renvoie une chaine que vous devez donc utiliser (par exemple, la stocker dans une variable).
+
+```csharp
+string userMessage = System.Console.ReadLine();
+```
+
+**Attention !** Les méthodes `Write...` et `Read...` ne sont pas symétriques. La méthode `Read` renvoie l'entier associé à un seul caratère saisi. La méthode `ReadKey` renvoie le caractère associé à l'appui d'une touche du clavier.
 
 ## Utiliser un espace de nommage
 
@@ -52,7 +119,7 @@ using System;
 
 class Program
 {
-    static void Main(String[] args)
+    static void Main()
     {
         Console.WriteLine("Texte à afficher.");
     }
@@ -72,13 +139,51 @@ namespace NomEspaceNommage
 
 ## Commentaires
 
-C# supporte types de commentaires.
+Il y a quatre types de commentaires.
 
 ```csharp
-// commentaire sur une seule ligne
-/* commentaire
-multi
-lignes */
+// commentaire de ligne
+
+/*
+commentaire
+multi-lignes
+*/
+
+/// commentaire de documentation de ligne
+
+/**
+commentaire de documentation multi-ligne
+**/
+```
+
+## Déclarer une variable
+
+Une variable se déclare en faisant précéder son nom (ou identificateur) par son type. La variable peut être initialisée lors de sa déclaration.
+
+```
+type identificateurVariable;
+type identificateurVariable = valeurInitiale;
+```
+
+Exemple :
+
+```csharp
+class Program
+{
+    // déclaration de variable d'instance
+    int VariableInstance;
+
+    // déclaration de variable de classe
+    static int VariableDeClasse;
+
+    static void Main()
+    {
+        // déclaration de variables locales à une méthode
+        int variableLocaleNonInitialisee;
+        int variableLocaleInitialisee = 10;
+        int variableLocale1, variableLocale2 = 20;
+    }
+}
 ```
 
 ## Types primitifs
@@ -125,6 +230,23 @@ C# fournit les types primitifs suivants :
 ### Types numériques à virgule flottante
 
 `float` `double` `decimal` `BigDecimal`
+
+### Type chaine de caractères
+
+Le type `string` définit un objet représentant une chaine de caractères. Une fois initialisée, une chaine est immutable.
+
+Le type `string` est une référence. Vous pouvez initialiser une variable de ce type avec `null`.
+
+La concaténation (la fusion) de deux chaines s'effectue avec l'opérateur `+`.
+
+```csharp
+string message = "Hello, " + "World!"; // message contient "Hello, World!"
+
+string hello = "Hello, ";
+string world = "World!";
+message = hello + world;
+```
+
 
 ## Déclarer une variable
 
@@ -204,9 +326,9 @@ decimal variableDecimal = 1.234M;
 
 
 
-## Affecter de valeur à une variable
+## Affecter une valeur à une variable
 
-Utilisez l'opérateur `=` pour affecter une valeur à une variable.
+Utilisez l'opérateur `=` pour affecter une valeur à une variable. Vous pouvez le faire lors de la déclaration ou plus tard mais vous ne pouvez pas utiliser la valeur d'une variable non initialisée.
 
 ```csharp
 int variableInt = 10;

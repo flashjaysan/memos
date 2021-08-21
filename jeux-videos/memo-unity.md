@@ -2,6 +2,14 @@
 
 *par flashjaysan*
 
+## Bases
+
+Un projet Unity est constitué de scènes (au minimum une scène contenant une caméra (2D ou 3D)). Chaque scène est constitué d'une arborescence de game objects. Chaque game object contient des composants et au minimum un composant Transform avec des informations de position, de rotation et d'échelle.
+
+La programmation des game objects se fait en leur attachant des scripts en C#. Ces scripts sont généralement des classes héritant de la classe MonoBehavior.
+
+Cette classe définit les méthodes `Start` et `Update` associées à l'initialisation de la classe et son comportement à chaque affichage.
+
 ## Afficher un message dans la console
 
 Utilisez la méthode `Debug.Log` pour afficher un message dans la console.
