@@ -55,10 +55,10 @@ using Microsoft.Xna.Framework;
 Dans le fichier `Program.cs`, dans la méthode `Main`, ajoutez le code suivant :
 
 ```csharp
-using (Game g = new Game())
+using (Game game = new Game())
 {
     new GraphicsDeviceManager(g);
-    g.Run();
+    game.Run();
 }
 ```
 
@@ -71,10 +71,10 @@ static class Program
 {
 	static void Main(string[] args)
 	{
-		using (Game g = new Game())
+		using (Game game = new Game())
 		{
-			new GraphicsDeviceManager(g);
-			g.Run();
+			new GraphicsDeviceManager(game);
+			game.Run();
 		}
 	}
 }
@@ -115,9 +115,9 @@ class FNAGame : Game
 Modifier le code de la méthode `Main` dans la classe `Program` :
 
 ```csharp
-using (FNAGame g = new FNAGame())
+using (FNAGame game = new FNAGame())
 {
-    g.Run();
+    game.Run();
 }
 ```
 
@@ -168,10 +168,10 @@ Vous avez maintenant des méthodes à votre disposition pour créer votre jeu.
 - La méthode `Update` vous permet de programmer la logique de votre jeu.
 - La méthode `Draw` vous permet de gérer l'affichage des éléments de votre jeu.
 
-Lorsque le constructeur de la classe `Game` est appelé, les étapes suivantes se déroulent :
+Lorsque le constructeur de la classe `Game` est appelé, le gestionnaire de matériel graphique (`GraphicsDeviceManager`) est initialisé et ses services sont ajoutés à la classe `Game`.
 
-- le gestionnaire de matériel graphique (`GraphicsDeviceManager`) est initialisé et ses services sont ajoutés à la classe `Game`.
-- Les instructions du constructeur sont exécutées.
+Lorsque la méthode `Run` de la classe `Game` est appelée, les étapes suivantes se déroulent : 
+
 - La méthode `Initialize` est appelée.
 - La méthode `LoadContent` est appelée. Cette dernière est également appelée si l'affichage est reconfiguré (par exemple, lors d'un redimensionnement du jeu).
 - La boucle de jeu démarre, appelant successivement les méthode `Update` et `Draw`.
