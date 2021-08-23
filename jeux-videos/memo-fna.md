@@ -431,13 +431,12 @@ image.Dispose();
 Dans la méthode `Draw` de la classe `FNAGame`, utiliser le SpriteBatch pour afficher l'image :
 
 ```csharp
+base.Draw(gameTime);
 GraphicsDevice.Clear(Color.CornflowerBlue);
 
 spriteBatch.Begin();
 spriteBatch.Draw(image, Vector2.Zero, Color.White);
 spriteBatch.End();
-
-base.Draw(gameTime);
 ```
 
 **Remarque :** Le SpriteBatch vous permet de dessiner plusieurs textures (images) en un seul appel de dessin (*draw call*). C'est pourquoi vous devez encadrez les méthodes `Draw` de la classe `SpriteBatch` par les méthodes `Begin` et `End`.
@@ -457,6 +456,61 @@ Les paramètres sont les suivants :
 **Attention !** Le projet est prêt à être compilé. Cependant, une erreur va se produire à l'exécution car le jeu ne trouve pas les ressources. En effet, vous devez dupliquer le dossier de ressources (`Content`) à la racine de l'exécutable de votre jeu.
 
 Copiez votre dossier `Content` dans le sous-dossier `bin/debug`. Vous pouvez maintenant compiler et exécuter votre jeu.
+
+### Code complet
+
+Voici un exemple de code complet affichant une image appelée `sword.png` :
+
+```csharp
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+class FNAGame : Game
+{
+	private SpriteBatch batch;
+	private Texture2D texture;
+
+	public FNAGame()
+	{
+		GraphicsDeviceManager graphicsDeviceManager = new GraphicsDeviceManager(this);
+		Content.RootDirectory = "Content";
+	}
+
+	protected override void Initialize()
+	{
+		base.Initialize();
+	}
+
+	protected override void LoadContent()
+	{
+		base.LoadContent();
+		batch = new SpriteBatch(GraphicsDevice);
+		texture = Content.Load<Texture2D>("sword.png");
+	}
+
+	protected override void UnloadContent()
+	{
+		base.UnloadContent();
+		batch.Dispose();
+		texture.Dispose();
+	}
+
+	protected override void Update(GameTime gameTime)
+	{
+		base.Update(gameTime);
+	}
+
+	protected override void Draw(GameTime gameTime)
+	{
+		base.Draw(gameTime);
+		GraphicsDevice.Clear(Color.CornflowerBlue);
+
+		batch.Begin();
+		batch.Draw(texture, Vector2.Zero, Color.White);
+		batch.End();
+	}
+}
+```
 
 ## Déplacer une image
 
