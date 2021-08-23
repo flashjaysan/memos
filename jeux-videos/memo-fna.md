@@ -412,14 +412,14 @@ private Texture2D image;
 -La classe `SpriteBatch` permet d'afficher des sprites par lot pour économiser des appels de dessin (*draw calls*). Cela permet d'améliorer les performances de votre jeu.
 - La classe `Texture2D` représente une ressource graphique (une image).
 
-Dans la méthode `LoadContent` de la classe `FNAGame`, instanciez le SpriteBatch et chargez l'image :
+Dans la méthode `LoadContent` de la classe `FNAGame`, instanciez le `SpriteBatch` et chargez l'image :
 
 ```csharp
 spriteBatch = new SpriteBatch(GraphicsDevice);
 image = Content.Load<Texture2D>("image.png");
 ```
 
-Dans la méthode `UnloadContent` de la classe `FNAGame`, libérez le SpriteBatch et la Texture2D :
+Dans la méthode `UnloadContent` de la classe `FNAGame`, libérez le `SpriteBatch` et la `Texture2D` :
 
 ```csharp
 spriteBatch.Dispose();
@@ -428,7 +428,7 @@ image.Dispose();
 
 **Attention !** Pensez bien à libérer la mémoire. D'une manière générale, si vous utilisez la méthode `LoadContent` pour charger des ressources, vous devrez probablement utiliser la méthode `UnloadContent` pour libérer la mémoire.
 
-Dans la méthode `Draw` de la classe `FNAGame`, utiliser le SpriteBatch pour afficher l'image :
+Dans la méthode `Draw` de la classe `FNAGame`, utiliser le `SpriteBatch` pour afficher l'image :
 
 ```csharp
 base.Draw(gameTime);
@@ -439,7 +439,7 @@ spriteBatch.Draw(image, Vector2.Zero, Color.White);
 spriteBatch.End();
 ```
 
-**Remarque :** Le SpriteBatch vous permet de dessiner plusieurs textures (images) en un seul appel de dessin (*draw call*). C'est pourquoi vous devez encadrez les méthodes `Draw` de la classe `SpriteBatch` par les méthodes `Begin` et `End`.
+**Remarque :** Le `SpriteBatch` vous permet de dessiner plusieurs textures (images) en un seul appel de dessin (*draw call*). C'est pourquoi vous devez placer un maximum de vos méthodes `Draw` entre les méthodes `Begin` et `End`.
 
 La méthode `Draw` de la classe `SpriteBatch` a la signature suivante :
 
@@ -453,7 +453,7 @@ Les paramètres sont les suivants :
 - `position` : la position (de type `Vector2`) où afficher l'image à l'écran. L'image est placée sur l'écran en se basant sur le coin supérieur gauche de l'image.
 - `couleur` : la couleur (de type `Color`) avec laquelle l'image est fusionnée pour être affichée. Par défaut, utilisez la couleur blanche (`Color.White`) pour éviter de dénaturer l'image. 
 
-**Attention !** Le projet est prêt à être compilé. Cependant, une erreur va se produire à l'exécution car le jeu ne trouve pas les ressources. En effet, vous devez dupliquer le dossier de ressources (`Content`) à la racine de l'exécutable de votre jeu.
+**Attention !** Le projet est prêt à être compilé mais une erreur va se produire à l'exécution car le jeu ne trouve pas les ressources. En effet, vous devez dupliquer le dossier de ressources (`Content`) à la racine de l'exécutable de votre jeu.
 
 Copiez votre dossier `Content` dans le sous-dossier `bin/debug`. Vous pouvez maintenant compiler et exécuter votre jeu.
 
