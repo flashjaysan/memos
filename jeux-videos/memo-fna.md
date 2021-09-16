@@ -6,6 +6,8 @@ Par *flashjaysan* avec l'aide d'*IronPowerLNA*
 
 [FNA](https://fna-xna.github.io/) est une bibliothèque [FOSS](https://itsfoss.com/what-is-foss/) (libre et open source) destinée à la programmation de jeux vidéos en langage C#. Dans un but de préservation, elle est conçue pour répliquer à l'identique la bibliothèque [Microsoft XNA Game Studio 4.0 Refresh](https://en.wikipedia.org/wiki/Microsoft_XNA) qui n'est désormais plus maintenue.
 
+Contrairement à MonoGame qui s'inspire de XNA mais qui tend à évoluer, FNA se veut totalement compatible avec XNA tout en fournissant le support de nouvelles plateformes.
+
 ## Ressources
 
 Comme FNA est une réimplémentation libre d'XNA, la [documentation pour XNA](http://msdn.microsoft.com/en-us/library/bb200104.aspx) ainsi que toutes les ressources disponibles concernant XNA sont totalement compatibles avec FNA. De nombreux ouvrages ont été publiés pour apprendre XNA et on trouve en ligne de nombreuses ressources.
@@ -21,6 +23,8 @@ Commencez par installer [Visual Studio](https://visualstudio.microsoft.com/). Pe
 **Remarque :** Si vous avez déjà installé Visual Studio sans ces outils, cliquez sur le menu `Outils` et sélectionnez l'option `Obtenir les outils et fonctionnalités...`.
 
 ### Générer la DLL de FNA
+
+Avant de créer un projet utilisant FNA, vous devez générer un fichier assembly à partir des fichiers sources de FNA. Cela vous permettra de réutiliser ce fichier dans vos différents projet utilisant FNA.
 
 - Téléchargez l'archive la plus récente de FNA ainsi que l'archive des bibliothèques natives à l'adresse [https://fna-xna.github.io/download/](https://fna-xna.github.io/download/).
 - Dézippez ces deux fichiers archives à l'emplacement de votre choix.
@@ -215,6 +219,10 @@ Lorsque vous instanciez la classe `GraphicsDeviceManager` dans le constructeur d
 GraphicsDeviceManager graphicsDeviceManager = new GraphicsDeviceManager(this);
 graphicsDeviceManager.SynchronizeWithVerticalRetrace = true;
 ```
+
+## Définir le titre de la fenêtre
+
+Ouvrez le fichier `AssemblyInfo.cs` et modifiez la valeur contenu entre parenthèse à la ligne `AssemblyTitle`.
 
 ## Couleurs
 
@@ -451,7 +459,9 @@ Les paramètres sont les suivants :
 
 - `texture` : l'image (de type `Texture2D`) à afficher.
 - `position` : la position (de type `Vector2`) où afficher l'image à l'écran. L'image est placée sur l'écran en se basant sur le coin supérieur gauche de l'image.
-- `couleur` : la couleur (de type `Color`) avec laquelle l'image est fusionnée pour être affichée. Par défaut, utilisez la couleur blanche (`Color.White`) pour éviter de dénaturer l'image. 
+- `couleur` : la couleur (de type `Color`) avec laquelle l'image est fusionnée pour être affichée. Par défaut, utilisez la couleur blanche (`Color.White`) pour éviter de dénaturer l'image.
+
+**Remarque :** La méthode [`Draw`](https://docs.microsoft.com/en-us/previous-versions/windows/xna/bb196426(v=xnagamestudio.41)) se décline en plusieurs versions ayant des paramètres différents.
 
 **Attention !** Le projet est prêt à être compilé mais une erreur va se produire à l'exécution car le jeu ne trouve pas les ressources. En effet, vous devez dupliquer le dossier de ressources (`Content`) à la racine de l'exécutable de votre jeu.
 
@@ -512,14 +522,88 @@ class FNAGame : Game
 }
 ```
 
+## Faire pivoter une image
+
+
+
 ## Déplacer une image
 
 
 
 ## Contrôles
 
+L'espace de nom `Microsoft.Xna.Framework.Input` fournit diverses fonctionnalités relatives aux contrôles. Vous trouverez :
 
+- Pour la gestion du clavier, la classe `Keyboard`, la structure `KeyboardState` et les énumérations `Keys` et `KeyState`.
+- Pour la gestion de la manette, la classe `GamePad`, les structures `GamePadButtons`, `GamePadCapabilities`, `GamePadDPad`, `GamePadState`, `GamePadThumbStick` et `GamePadTrigger`, et les énumérations `Buttons`, `ButtonState`, `GamePadDeadZone` et `GamePadType`.
+- Pour la gestion de la souris, la classe `Mouse` et la structure `MouseState`.
+
+### Clavier
+
+La classe statique `Keyboard`, définie dans l'espace de nom `Microsoft.Xna.Framework.Input`, vous permet d'accéder à l'état du clavier via son unique méthode `GetState`. Cette dernière renvoie une instance de la structure `KeyboardState`.
+
+```csharp
+KeyboardState keyboardState = Keyboard.GetState();
+```
+
+```csharp
+if (keyboardState.IsKeyDown(Keys.Right))
+```
+
+### Manette
+
+La classe statique `GamePad`, définie dans l'espace de nom `Microsoft.Xna.Framework.Input`, vous permet d'accéder à l'état d'une manette via sa méthode `GetState`. Cette dernière prend l'indice du gamepad à accéder et renvoie une instance de la structure `GamePadState`.
+
+```csharp
+GamePadState gamePadState = GamePad.GetState(gamePadIndex);
+```
+
+### Souris
+
+La classe statique `Mouse`, définie dans l'espace de nom `Microsoft.Xna.Framework.Input`, vous permet d'accéder à l'état de la souris via sa méthode `GetState`. Cette dernière renvoie une instance de la structure `MouseState`.
+
+```csharp
+MouseState mouseState = Mouse.GetState();
+```
 
 ## Collisions
 
+
+
+## Vecteurs
+
+La structure `Vector2` définie dans l'espace de nom `Microsoft.Xna.Framework` représente un vecteur à deux dimensions (un groupe de deux nombres) pouvant servir à représenter une position ou un déplacement dans un plan.
+
+```csharp
+Vector2 vecteur = new Vector(x, y);
+```
+
+Les champs `X` et `Y` (de type `float`) correspondent aux deux composantes du vecteur :
+
+```csharp
+float composanteX = vecteur.X; // lecture
+vecteur.Y = nouvelleValeur; // écriture
+```
+
+## Rectangles
+
+La structure `Rectangle` définie dans l'espace de nom `Microsoft.Xna.Framework` représente un rectangle constitué de la position de son coin supérieur gauche, de sa largeur et de sa hauteur.
+
+```csharp
+Rectangle rectangle = new Rectangle(x, y, largeur, hauteur);
+```
+
+Les champs `X` et `Y` (de type `float`) correspondent à la position du coin supérieur gauche du rectangle :
+
+```csharp
+float composanteX = rectangle.X; // lecture
+rectangle.Y = nouvelleValeur; // écriture
+```
+
+Les champs `Width` et `Height` (de type `float`) correspondent à la largeur et la hauteur du rectangle :
+
+```csharp
+float largeur = rectangle.Width; // lecture
+rectangle.Height = nouvelleValeur; // écriture
+```
 
