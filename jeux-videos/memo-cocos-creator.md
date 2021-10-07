@@ -12,7 +12,7 @@ Ce mémo est une tentative de documenter en français les fonctionnalités du lo
 
 ## Installation
 
-Cocos Creator utilise désormais un gestionnaire de projets appelé *dashboard*. Il permet également de télécharger les différentes versions de Cocos Creator afin de développer un projet sur une version fixe de Cocos Creator (vous pouvez toutefois toujours ouvrir un projet avec une version plus récente afin de convertir le projet pour cette nouvelle version).
+Cocos Creator utilise désormais un gestionnaire de projets appelé *Dashboard*. Ce dernier permet de télécharger les différentes versions de Cocos Creator afin de développer un projet sur une version fixe de Cocos Creator (vous pouvez toutefois toujours ouvrir un projet avec une version plus récente afin de convertir le projet pour cette nouvelle version).
 
 ### Installation du dashboard Cocos Creator
 
@@ -36,17 +36,17 @@ Vous arrivez directement sur la page de [téléchargement de Cocos Creator](http
 
 ![Cocos Creator official page](cocos_com_creator.jpg)
 
-Depuis cette page, pour télécharger le dashboard Cocos Creator, vous devez faire défiler la page et cliquer sur le bouton `Download`.
+Depuis cette page, pour télécharger le Dashboard Cocos Creator, vous devez faire défiler la page et cliquer sur le bouton `Download`.
 
 ![Cocos Creator page download button](cocos_com_creator_download_button.jpg)
 
 ---
 
-Cliquez sur le bouton `DOWNLOAD DASHBOARD` de n'importe quelle version de Cocos Creator pour téléchargez le dashboard :
+Cliquez sur le bouton `DOWNLOAD DASHBOARD` de n'importe quelle version de Cocos Creator pour téléchargez le Dashboard :
 
 ![Cocos Creator DOWNLOAD DASHBOARD button](cocos_com_download_dashboard_button.jpg)
 
-Installez et exécutez le dashboard Cocos Creator. Vous devez créer un compte Cocos Developer et saisir votre identifiant et votre mot de passe dans le dashboard puis cliquer sur le bouton `Sign in`.
+Installez et exécutez le Dashboard Cocos Creator. Vous devez créer un compte Cocos Developer et saisir votre identifiant et votre mot de passe dans le dashboard puis cliquer sur le bouton `Sign in`.
 
 ![Dashboard Cocos Developer Login](dashboard_login.jpg)
 
@@ -75,7 +75,7 @@ Dans *Visual Studio Code* les extensions `Cocos debug` et `cocos-creator` doiven
 
 ## Dashboard
 
-Le *dashboard* est l'écran d'accueil de *Cocos Creator* qui apparait au lancement du programme. Cette fenêtre affiche plusieurs onglets vous permettant de gérer vos projets.
+Le *Dashboard* est l'écran d'accueil de *Cocos Creator* qui apparait au lancement du programme. Cette fenêtre affiche plusieurs onglets vous permettant de gérer vos projets.
 
 L'onglet `Recent Projects` vous permet d'ouvrir un projet récemment ouvert avec *Cocos Creator* :
 

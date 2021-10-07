@@ -106,7 +106,7 @@ Les drapeaux disponibles (combinables aves l'opérateur de bit `|`) sont les sui
 
 ## Les couleurs
 
-pygame définit une classe `Color`. Elle représente une couleur constituée des composantes rouges, vertes et bleues et d'une valeur d'opacité (alpha). Ces composantes sont représentées sous la forme d'entiers compris entre 0 et 255. La valeur d'opacité, si elle n'est pas précisée vaut 255. Créez une instance de la classe `Color` en passant les composantes dans un tuple (ou une liste).
+pygame définit une classe `Color`. Elle représente une couleur constituée des composantes rouges, vertes et bleues et d'une valeur d'opacité (alpha). Ces composantes sont représentées sous la forme d'entiers compris entre 0 et 255. Si la valeur d'opacité n'est pas précisée, elle vaut 255 par défaut. Créez une instance de la classe `Color` en passant les composantes dans un tuple (ou une liste).
 
 ```python
 BLACK_COLOR = pygame.Color((0, 0, 0))
@@ -825,7 +825,7 @@ Pour éviter des bugs d'affichage, vous devez rafraichir la surface d'affichage 
 pygame.display.flip()
 ```
 
-pygame fournit également la fonction `update` qui vous permet de rafraichir intégralement la surface d'affichage si vous ne passez pas d'argument et qui vous permet de rafraichir seulement certaines zones de la surface d'affichage si vous passez un objet de type `Rect` ou une liste de ces objets.
+pygame fournit également la fonction `update` qui vous permet de rafraichir intégralement la surface d'affichage si vous ne passez pas d'argument (équivalent à la méthode `flip`) mais qui vous permet surtout de rafraichir seulement certaines zones de la surface d'affichage si vous passez un objet de type `Rect` ou une liste de ces objets.
 
 ```python
 pygame.display.update(rectangles_list)
@@ -1048,7 +1048,7 @@ Utilisez ensuite la méthode `tick` pour obtenir le temps passé, en millisecond
 
 ```pygame
 BASE_FPS = 60
-delta_time = self.clock.tick(BASE_FPS) / 1000
+delta_time = clock.tick(BASE_FPS) / 1000
 ```
 
 ## Squelette de base
@@ -1061,7 +1061,8 @@ import pygame
 
 pygame.init()
 
-display_surface = pygame.display.set_mode((largeur, hauteur))
+display_size = 1280, 720
+display_surface = pygame.display.set_mode(display_size)
 pygame.display.set_caption('Titre')
 
 BASE_FPS = 60
@@ -1322,8 +1323,8 @@ position_y = 0
 width = 100
 height = 50
 rectangle = (position_x, position_y, width, height)
-window.fill(pygame.Color('black'))
-pygame.draw.rect(display_surface, pygame.Color('white'), rectangle)
+window.fill('black')
+pygame.draw.rect(display_surface, 'white', rectangle)
 pygame.display.flip()
 ```
 
