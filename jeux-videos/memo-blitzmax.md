@@ -39,7 +39,7 @@ Un commentaire sur une seule ligne commence par une apostrophe. Vous pouvez util
 
 ```
 ' Ceci est un commentaire.
-Print "Hello." ' Affiche Hello dans la console.
+Print("Hello.") ' Affiche Hello dans la console.
 ```
 
 Un commentaire sur plusieurs lignes commence par le mot-clé `Rem` et se termine par le mot-clé `End Rem`.
@@ -107,22 +107,23 @@ Vous pouvez également tout déclarer sur la même ligne en séparant les variab
 
 ```
 ' identique à Local NomDeVariable1, NomDeVariable2#, NomDeVariable3$
-Local NomDeVariable1 : Int, NomDeVariable2 : FLoat, NomDeVariable2 : String
+Local NomDeVariable1: Int, NomDeVariable2: FLoat, NomDeVariable2: String
 ```
 
 Enfin, vous pouvez initialiser les variables lors de leur déclaration. Utiliser le signe égal (`=`).
 
 ```
-Local NomDeVariable1 : Int = 10 ' identique à Local NomDeVariable1 = 10
-Local NomDeVariable2 : Float = 10.01 ' identique à Local NomDeVariable2# = 10.01
-Local NomDeVariable3 : String = "Hello" 'identique à Local NomDeVariable3$ = "Hello"
+Local NomDeVariable1: Int = 10 ' identique à Local NomDeVariable1 = 10
+Local NomDeVariable2: Float = 10.01 ' identique à Local NomDeVariable2# = 10.01
+Local NomDeVariable2: Double = 10.01 ' identique à Local NomDeVariable2! = 10.01
+Local NomDeVariable3: String = "Hello" 'identique à Local NomDeVariable3$ = "Hello"
 ```
 
 Vous pouvez également le faire sur une seule ligne en utilisant la virgule (`,`) comme séparateur.
 
 ```
 ' identique à Local NomDeVariable1 = 10, NomDeVariable2# = 10.01, NomDeVariable3$ = "Hello"
-Local NomDeVariable1 : Int = 10, NomDeVariable2 : FLoat = 10.01, NomDeVariable3 : String = "Hello"
+Local NomDeVariable1: Int = 10, NomDeVariable2 : FLoat = 10.01, NomDeVariable3 : String = "Hello"
 ```
 
 ### Constantes
@@ -135,219 +136,27 @@ Pour déclarer une constante, utilisez le mot-clé `Const` suivi du nom de la co
 Const STARTUP_SIZE = 1000
 Const SCREEN_WIDTH = 640, SCREEN_HEIGHT = 480
 Const SCREEN_AREA = SCREEN_WIDTH * SCREEN_HEIGHT
-Const SCALE_FACTOR : Float = 1.5
-Const DEFAULT_TITLE : String = "Mark Sibly"
+Const SCALE_FACTOR: Float = 1.5
+Const DEFAULT_TITLE: String = "Mark Sibly"
 ```
 
-**Remarque :** Utilisez de préférence la convention `ALL_CAPS` pour nommer vos constantes (tous les mots en majuscules séparés par un signe *underscore* (`_`)).
+**Remarque :** Même si le langage n'est pas sensible à la casse, utilisez de préférence la convention `ALL_CAPS` pour nommer vos constantes (tous les mots en majuscules séparés par un signe *underscore* (`_`)).
 
-### Objets
-
-#### Créer un nouveau type
+### Caster une valeur
 
 ```
-Type NomType
-    
-End Type
+Int(valeur)
+Float(valeur)
+Double(valeur)
+String(valeur)
 ```
-
-**Conseil :** Comme le langage n'est pas sensible à la casse, on fait généralement précéder le nom d'un type par le suffixe `T`.
-
-#### Créer une instance du type
-
-```
-instance: NomType = New TNomType
-```
-
-**Remarque :** Pensez à libérer la mémoire en affectant `Null` à la variable.
-
-```
-instance: NomType = Null
-```
-
-#### Définir un champ
-
-```
-Type NomType
-    Field NomChamp: NomType
-End Type
-```
-
-#### Accéder à un champ
-
-```
-instance.NomChamp = valeur
-```
-
-**Remarque :** Le champ ne doit pas être privé.
-
-#### Définir une méthode
-
-```
-Type NomType
-    Method NomMethode()
-        
-    End Method
-End Type
-```
-
-#### Appeler une méthode
-
-```
-instance.NomMethode()
-```
-
-#### Définir un constructeur
-
-```
-Type NomType
-    Method New()
-        
-    End Method
-End Type
-```
-
-#### Définir un destructeur
-
-```
-Type NomType
-    Method Delete()
-        
-    End Method
-End Type
-```
-
-**Remarque :** Cette méthode est appelée automatiquement par le garbage collector.
-
-#### Contrôler l'accès aux membres
-
-```
-Type NomType
-    Public
-        Field NomChampPublique: NomType
-        Method NomMethodePublique()
-            
-        End Method
-
-    Protected
-        Field NomChampProtege: NomType
-        Method NomMethodeProtegee()
-            
-        End Method
-
-    Private
-        Field NomChampPrive: NomType
-        Method NomMethodePrivee()
-            
-        End Method
-End Type
-```
-
-#### Héritage
-
-```
-Type NomTypeEnfant Extends NomTypeParent
-    
-End Type
-```
-
-**Remarque :** Par défaut, un nouveau type hérite du type `Object`. Un nouveau type ne peut hériter que d'un seul autre type.
-
-#### Définir une méthode abstraite
-
-```
-Type NomType
-    Method NomMethode() Abstract
-End Type
-```
-
-#### Définir un type abstrait
-
-```
-Type NomType Abstract
-    Method NomMethode() Abstract
-End Type
-```
-
-#### Redéfinir une méthode héritée
-
-```
-Type NomTypeEnfant Extends NomTypeParent
-    Method NomMethode() Override
-
-    End Method
-End Type
-```
-
-#### Redéfinir un constructeur
-
-```
-Type NomTypeEnfant Extends NomTypeParent
-    Method New()
-        super.New()
-
-    End Method
-End Type
-```
-
-#### Définir un champ statique
-
-```
-Type NomType
-    Global NomVariableStatique: NomTypeStatique
-End Type
-```
-
-**Remarque :** Ce champ est utilisable sans instancier le type.
-
-#### Définir un champ constant
-
-```
-Type NomType
-    Const NomConstante: NomTypeConstante = valeur
-End Type
-```
-
-**Remarque :** Ce champ est utilisable sans instancier le type.
-
-#### Définir une méthode statique
-
-```
-Type NomType
-    Function NomMethodeStatique()
-        
-    End Function
-End Type
-```
-
-**Remarque :** Cette méthode est utilisable sans instancier le type mais ne peut accéder qu'aux champs statiques ou constants.
-
-#### Définir une interface
-
-```
-Interface NomInterface
-    Method NomMethode()
-End Interface
-```
-
-#### Implémenter une interface
-
-```
-Type NomType Implements NomInterface
-    Methode NomMethode()
-        
-    End Methode
-End Type
-```
-
-**Remarque :** Le type doit implémenter chaque méthode que l'interface définit.
 
 ### Opérateur d'affectation
 
 D'une manière générale, le signe `=` correspond à une affectation. Mais dans le cas de conditions, ce signe correspond à une notion d'égalité mathématique.
 
 ```
-Local NomDeVariable : Int = 10 ' déclaration + affectation
+Local NomDeVariable: Int = 10 ' déclaration + affectation
 NomDeVariable = 20 'affectation
 If NomDeVariable = 20 ' test d'égalité
     NomDeVariable = 30 ' affectation
@@ -364,25 +173,6 @@ A / B ' division
 A Mod B ' modulo
 A ^ B ' puissance
 -A ' négation
-```
-
-### Opérateurs logiques
-
-```
-A = B ' A est égal à B
-A <> B ' A est différent de B
-A < B ' A est inférieur à B
-A > B ' A est supérieur à B
-A <= B ' A est inférieur ou égal à B
-A >= B ' A est supérieur ou égal à B
-Not A = B ' A n'est pas égal à B (A est différent de B)
-Not A <> B ' A n'est pas différent de B (A est égal à B)
-Not A < B ' A n'est pas inférieur à B (A est inférieur ou égal à B)
-Not A > B ' A n'est pas supérieur à B (A est supérieur ou égal à B)
-Not A <= B ' A n'est pas inférieur ou égal à B (A est inférieur à B)
-Not A >= B ' A n'est pas supérieur ou égal à B (A est supérieur à B)
-A = B And B = C ' A est égal à B et B est égal à C
-A = C Or B = C ' A est égal à B ou B est égal à C
 ```
 
 ### Opérateurs sur les bits
@@ -413,6 +203,25 @@ A :Shr B ' identique à A = A Shr B
 A :Sar B ' identique à A = A Sar B
 ```
 
+### Opérateurs logiques
+
+```
+A = B ' A est égal à B
+A <> B ' A est différent de B
+A < B ' A est inférieur à B
+A > B ' A est supérieur à B
+A <= B ' A est inférieur ou égal à B
+A >= B ' A est supérieur ou égal à B
+Not A = B ' A n'est pas égal à B (A est différent de B)
+Not A <> B ' A n'est pas différent de B (A est égal à B)
+Not A < B ' A n'est pas inférieur à B (A est inférieur ou égal à B)
+Not A > B ' A n'est pas supérieur à B (A est supérieur ou égal à B)
+Not A <= B ' A n'est pas inférieur ou égal à B (A est inférieur à B)
+Not A >= B ' A n'est pas supérieur ou égal à B (A est supérieur à B)
+A = B And B = C ' A est égal à B et B est égal à C
+A = C Or B = C ' A est égal à B ou B est égal à C
+```
+
 ### Constantes prédéfinies
 
 ```
@@ -420,6 +229,18 @@ False ' équivalent à 0
 True ' équivalent à 1
 Pi ' équivalent à 3.1415926535897932384626433832795
 ```
+
+**Remarque :** Il n'y a pas de type booléen. Utilisez le type entier `Int`.
+
+### Tableaux
+
+
+
+
+
+
+
+
 
 ### Instruction conditionnelle
 
@@ -548,6 +369,221 @@ For NomDeVariable = PremièreValeur To DernièreValeur Step ValeurDePas
 Next
 ```
 
+### Définir une fonction
+
+```
+Function NomFonction: NomType(paramètres)
+    Return valeur
+End Function
+```
+
+### Appeler une fonction
+
+```
+NomVariable = NomFonction(arguments)
+```
+
+### Objets
+
+#### Créer un nouveau type
+
+```
+Type NomType
+    
+End Type
+```
+
+**Conseil :** Comme le langage n'est pas sensible à la casse, on fait généralement précéder le nom d'un type par le suffixe `T`.
+
+#### Créer une instance du type
+
+```
+Instance: NomType = New NomType
+```
+
+**Remarque :** Pensez à libérer la mémoire en affectant `Null` à la variable.
+
+```
+Instance: NomType = Null
+```
+
+#### Définir un champ
+
+```
+Type NomType
+    Field NomChamp: NomType
+End Type
+```
+
+#### Accéder à un champ
+
+```
+Instance.NomChamp = valeur
+```
+
+**Remarque :** Le champ ne doit pas être privé.
+
+#### Définir une méthode
+
+```
+Type NomType
+    Method NomMethode()
+        
+    End Method
+End Type
+```
+
+#### Appeler une méthode
+
+```
+Instance.NomMethode()
+```
+
+#### Définir un constructeur
+
+```
+Type NomType
+    Method New()
+        
+    End Method
+End Type
+```
+
+#### Définir un destructeur
+
+```
+Type NomType
+    Method Delete()
+        
+    End Method
+End Type
+```
+
+**Remarque :** Cette méthode est appelée automatiquement par le garbage collector.
+
+#### Contrôler l'accès aux membres
+
+```
+Type NomType
+    Public
+        Field NomChampPublique: NomType
+        Method NomMethodePublique()
+            
+        End Method
+
+    Protected
+        Field NomChampProtege: NomType
+        Method NomMethodeProtegee()
+            
+        End Method
+
+    Private
+        Field NomChampPrive: NomType
+        Method NomMethodePrivee()
+            
+        End Method
+End Type
+```
+
+#### Héritage
+
+```
+Type NomTypeEnfant Extends NomTypeParent
+    
+End Type
+```
+
+**Remarque :** Par défaut, un nouveau type hérite du type `Object`. Un nouveau type ne peut hériter que d'un seul autre type.
+
+#### Définir une méthode abstraite
+
+```
+Type NomType
+    Method NomMethode() Abstract
+End Type
+```
+
+#### Définir un type abstrait
+
+```
+Type NomType Abstract
+    Method NomMethode() Abstract
+End Type
+```
+
+#### Redéfinir une méthode héritée
+
+```
+Type NomTypeEnfant Extends NomTypeParent
+    Method NomMethode() Override
+
+    End Method
+End Type
+```
+
+#### Redéfinir un constructeur
+
+```
+Type NomTypeEnfant Extends NomTypeParent
+    Method New()
+        super.New()
+
+    End Method
+End Type
+```
+
+#### Définir un champ statique
+
+```
+Type NomType
+    Global NomVariableStatique: NomTypeStatique
+End Type
+```
+
+**Remarque :** Ce champ est utilisable sans instancier le type.
+
+#### Définir un champ constant
+
+```
+Type NomType
+    Const NomConstante: NOM_TYPE_CONSTANTE = valeur
+End Type
+```
+
+**Remarque :** Ce champ est utilisable sans instancier le type.
+
+#### Définir une méthode statique
+
+```
+Type NomType
+    Function NomMethodeStatique()
+        
+    End Function
+End Type
+```
+
+**Remarque :** Cette méthode est utilisable sans instancier le type mais ne peut accéder qu'aux champs statiques ou constants.
+
+#### Définir une interface
+
+```
+Interface NomInterface
+    Method NomMethode()
+End Interface
+```
+
+#### Implémenter une interface
+
+```
+Type NomType Implements NomInterface
+    Methode NomMethode()
+        
+    End Methode
+End Type
+```
+
+**Remarque :** Le type doit implémenter chaque méthode que l'interface définit.
+
 ## Système de coordonnées
 
 Le coin supérieur gauche correspond à l'origine du repère. L'axe vertical augmente vers le bas.
@@ -559,7 +595,7 @@ Le coin supérieur gauche correspond à l'origine du repère. L'axe vertical aug
 Utilisez la fonction `Graphics` (en dehors de la boucle principale) pour définir la largeur et la hauteur de la vue et si la vue doit être en plein écran (rien) ou non (`0`).
 
 ```
-Graphics 640, 360, 0 ' résolution 640x360 en mode fenêtré
+Graphics(640, 360, 0) ' résolution 640x360 en mode fenêtré
 ```
 
 ### Créer la boucle principale
@@ -568,6 +604,7 @@ Utilisez la boucle de votre choix. Voici un exemple de boucle `While` avec comme
 
 ```
 While Not (KeyHit(KEY_ESCAPE) Or AppTerminate())
+    
 Wend
 ```
 
@@ -592,7 +629,7 @@ Flip
 Utilisez la fonction `SetColor` pour définir la couleur de dessin à utiliser par les fonctions de dessin. Passez les composantes rouge, vert et bleu avec des valeurs comprises entre 0 et 255.
 
 ```
-SetColor 255, 255, 255
+SetColor(255, 255, 255)
 ```
 
 ### Afficher un point
@@ -600,7 +637,7 @@ SetColor 255, 255, 255
 Utilisez la fonction `Plot` pour afficher un point dans la vue dans la couleur de dessin définie précédemment.
 
 ```
-Plot PointX, PointY
+Plot(PointX, PointY)
 ```
 
 ### Afficher un segment
@@ -608,7 +645,7 @@ Plot PointX, PointY
 Utilisez la fonction `DrawLine` pour tracer une ligne entre deux points dans la vue dans la couleur de dessin définie précédemment.
 
 ```
-DrawLine Point1X, Point1Y, Point2X, Point2Y
+DrawLine(Point1X, Point1Y, Point2X, Point2Y)
 ```
 
 ### Afficher un rectangle
@@ -616,7 +653,7 @@ DrawLine Point1X, Point1Y, Point2X, Point2Y
 Utilisez la fonction `DrawRect` pour tracer un rectangle plein dans la vue dans la couleur de dessin définie précédemment.
 
 ```
-DrawRect X, Y, Largeur, Hauteur
+DrawRect(X, Y, Largeur, Hauteur)
 ```
 
 ### Afficher un oval
@@ -624,7 +661,7 @@ DrawRect X, Y, Largeur, Hauteur
 Utilisez la fonction `DrawOval` pour tracer un oval plein dans la vue dans la couleur de dessin définie précédemment. L'oval est dessiné dans un rectangle défini par les arguments passés.
 
 ```
-DrawOval X, Y, Largeur, Hauteur
+DrawOval(X, Y, Largeur, Hauteur)
 ```
 
 ### Afficher du texte
@@ -632,7 +669,7 @@ DrawOval X, Y, Largeur, Hauteur
 Utilisez la fonction `DrawText` pour afficher du texte dans la vue dans la couleur de dessin définie précédemment.
 
 ```
-DrawText Chaîne, X, Y
+DrawText(Chaine, X, Y)
 ```
 
 ### Charger une image
@@ -640,7 +677,7 @@ DrawText Chaîne, X, Y
 Utilisez la fonction `LoadImage` pour charger une image dans une variable de type `Timage`. 
 
 ```
-Global Image:Timage = LoadImage("NomImage.bmp")
+Local Image: TImage = LoadImage("NomImage.bmp")
 ```
 
 ### Afficher une image
