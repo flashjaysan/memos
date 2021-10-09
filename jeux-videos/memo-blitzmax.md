@@ -16,8 +16,8 @@
 - Cliquez sur le bouton `Open` (ou le menu `File -> Open` ou `CTRL+O`) pour ouvrir un fichier source existant.
 - Cliquez sur le bouton `Close` (ou le menu `File -> Close Tab` ou `CTRL+W`) pour fermer le fichier source actif.
 - Cliquez sur le bouton `Save` (ou le menu `File -> Save` ou `CTRL+S`) pour enregistrer le fichier source actif.
-- Cliquez sur la fusée verticale (ou le menu `Program -> Build` ou `CTRL+B`) pour compiler le fichier source actif.
-- Cliquez sur la fusée diagonale (ou le menu `Program -> Build and Run` ou `CTRL+R`) pour compiler et exécuter le fichier source actif.
+- Cliquez sur la fusée droite (ou le menu `Program -> Build` ou `CTRL+B`) pour compiler le fichier source actif.
+- Cliquez sur la fusée inclinée (ou le menu `Program -> Build and Run` ou `CTRL+R`) pour compiler et exécuter le fichier source actif.
 
 ## Langage
 
@@ -51,13 +51,25 @@ Rem
 End Rem
 ```
 
+### End
+
+Le mot clé `End` indique que le programme est terminé. Tout ce qui suit n'est pas exécuté.
+
 ### Variables
 
 #### Modes de contrôle des variables
 
+Vous pouvez spécifier un mode en tête de vos fichiers sources.
+
 - Si vous ne précisez pas de mode, le mode par défaut est sélectionné. Dans ce mode, vous n'êtes pas obligé de déclarer vos variables ou le type de retour des fonctions/méthodes.
-- Si vous préciser le mode `Strict`, vous devez déclarer toutes vos variables. Par défaut, les variables sans type sont de type `Int` et les fonctions/méthodes qui ne déclarent pas de type de retour renvoient le type `Int`.
+- Si vous préciser le mode `Strict`, vous devez déclarer toutes vos variables. Leur attribuer un type est optionnel. Par défaut, les variables sans type sont de type `Int` et les fonctions/méthodes qui ne déclarent pas de type de retour renvoient le type `Int`.
 - Si vous précisez le mode `SuperStrict`, vous devez déclarer toutes vos variables et leur attribuer à toutes un type. Les fonctions/méthodes doivent également déclarer un type de retour.
+
+**Conseil :** Il est généralement conseillé de choisir le mode `Strict`.
+
+```
+Strict
+```
 
 #### Déclarer une variable
 
@@ -67,21 +79,28 @@ Pour déclarer une variable avec une portée locale, utilisez le mot-clé `Local
 
 ```
 Local NomDeVariable
+```
+
+Vous pouvez également déclarer plusieurs variables sur la même ligne en séparant chaque variable avec une virgule (`,`).
+
+```
 Local NomDeVariable1, NomDeVariable2
 ```
 
-**Remarque :** Techniquement, vous pouvez également déclarer vos variables avec le mot-clé `Global` mais cela en fait des variables avec une portée globale au projet (accessibles partout dans le projet) et je vous le déconseille si vous pouvez l'éviter.
+**Remarque :** Techniquement, vous pouvez également déclarer vos variables avec le mot-clé `Global` mais cela en fait des variables avec une portée globale au projet (accessibles partout dans le projet) et cette pratique est fortement déconseillée si vous pouvez l'éviter.
 
 ```
 Global NomDeVariable
 ```
 
-Pour définir le type d'une variable, utilisez le signe *deux points* suivis du nom du type ou faites suivre le nom de la variable d'un caractère spécial.
+Pour définir le type d'une variable, utilisez deux point (`:`) suivis du nom du type ou faites suivre (sans espace) le nom de la variable d'un caractère spécial pour les types de base.
 
 ```
-Local NomDeVariable1 : Int ' identique à Local NomDeVariable1
-Local NomDeVariable2 : Float ' identique à Local NomDeVariable2#
-Local NomDeVariable3 : String 'identique à Local NomDeVariable3$
+Local NomDeVariable1: Int ' identique à Local NomDeVariable1 ou NomDeVariable1%
+Local NomDeVariable2: Float ' identique à Local NomDeVariable2#
+Local NomDeVariable2: Double ' identique à Local NomDeVariable2!
+Local NomDeVariable3: String 'identique à Local NomDeVariable3$
+Local NomDeVariable4: NomType
 ```
 
 Vous pouvez également tout déclarer sur la même ligne en séparant les variables avec le signe *virgule*.
@@ -91,7 +110,7 @@ Vous pouvez également tout déclarer sur la même ligne en séparant les variab
 Local NomDeVariable1 : Int, NomDeVariable2 : FLoat, NomDeVariable2 : String
 ```
 
-Enfin, vous pouvez initialiser les variables lors de leur déclaration. Utiliser le signe *égal*.
+Enfin, vous pouvez initialiser les variables lors de leur déclaration. Utiliser le signe égal (`=`).
 
 ```
 Local NomDeVariable1 : Int = 10 ' identique à Local NomDeVariable1 = 10
@@ -99,7 +118,7 @@ Local NomDeVariable2 : Float = 10.01 ' identique à Local NomDeVariable2# = 10.0
 Local NomDeVariable3 : String = "Hello" 'identique à Local NomDeVariable3$ = "Hello"
 ```
 
-Vous pouvez également le faire sur une seule ligne.
+Vous pouvez également le faire sur une seule ligne en utilisant la virgule (`,`) comme séparateur.
 
 ```
 ' identique à Local NomDeVariable1 = 10, NomDeVariable2# = 10.01, NomDeVariable3$ = "Hello"
@@ -110,7 +129,7 @@ Local NomDeVariable1 : Int = 10, NomDeVariable2 : FLoat = 10.01, NomDeVariable3 
 
 Une constante ne peut plus être modifiée après sa déclaration et provoque une erreur si vous tentez de le faire. C'est une protection utile pour un code plus sur.
 
-Pour déclarer une constante, utilisez le mot-clé `Const` suivi du nom de la constante, du signe *égal* et d'une expression constante (qui peut être constituée d'autres constantes déjà déclarées) ou d'un littéral. Comme pour les variables, vous pouvez définir le type de la constante avec le signe *deux points* suivi du type et déclarer plusieurs constantes sur une même ligne avec le signe *virgule*. Une constante déclarée sans type explicite est de type `Int` par défaut.
+Pour déclarer une constante, utilisez le mot-clé `Const` suivi du nom de la constante, du signe égal (`=`) et d'une expression constante (qui peut être constituée d'autres constantes déjà déclarées) ou d'un littéral.  Comme pour les variables, vous pouvez définir le type de la constante avec deux points (`:`) suivi du type et déclarer plusieurs constantes sur une même ligne avec une virgule (`,`). Une constante déclarée sans type explicite est de type `Int` par défaut.
 
 ```
 Const STARTUP_SIZE = 1000
@@ -120,11 +139,212 @@ Const SCALE_FACTOR : Float = 1.5
 Const DEFAULT_TITLE : String = "Mark Sibly"
 ```
 
-**Remarque :** Utilisez de préférence la convention ALL_CAPS pour nommer vos constantes (tous les mots en majuscules séparés par un signe *underscore*).
+**Remarque :** Utilisez de préférence la convention `ALL_CAPS` pour nommer vos constantes (tous les mots en majuscules séparés par un signe *underscore* (`_`)).
+
+### Objets
+
+#### Créer un nouveau type
+
+```
+Type NomType
+    
+End Type
+```
+
+**Conseil :** Comme le langage n'est pas sensible à la casse, on fait généralement précéder le nom d'un type par le suffixe `T`.
+
+#### Créer une instance du type
+
+```
+instance: NomType = New TNomType
+```
+
+**Remarque :** Pensez à libérer la mémoire en affectant `Null` à la variable.
+
+```
+instance: NomType = Null
+```
+
+#### Définir un champ
+
+```
+Type NomType
+    Field NomChamp: NomType
+End Type
+```
+
+#### Accéder à un champ
+
+```
+instance.NomChamp = valeur
+```
+
+**Remarque :** Le champ ne doit pas être privé.
+
+#### Définir une méthode
+
+```
+Type NomType
+    Method NomMethode()
+        
+    End Method
+End Type
+```
+
+#### Appeler une méthode
+
+```
+instance.NomMethode()
+```
+
+#### Définir un constructeur
+
+```
+Type NomType
+    Method New()
+        
+    End Method
+End Type
+```
+
+#### Définir un destructeur
+
+```
+Type NomType
+    Method Delete()
+        
+    End Method
+End Type
+```
+
+**Remarque :** Cette méthode est appelée automatiquement par le garbage collector.
+
+#### Contrôler l'accès aux membres
+
+```
+Type NomType
+    Public
+        Field NomChampPublique: NomType
+        Method NomMethodePublique()
+            
+        End Method
+
+    Protected
+        Field NomChampProtege: NomType
+        Method NomMethodeProtegee()
+            
+        End Method
+
+    Private
+        Field NomChampPrive: NomType
+        Method NomMethodePrivee()
+            
+        End Method
+End Type
+```
+
+#### Héritage
+
+```
+Type NomTypeEnfant Extends NomTypeParent
+    
+End Type
+```
+
+**Remarque :** Par défaut, un nouveau type hérite du type `Object`. Un nouveau type ne peut hériter que d'un seul autre type.
+
+#### Définir une méthode abstraite
+
+```
+Type NomType
+    Method NomMethode() Abstract
+End Type
+```
+
+#### Définir un type abstrait
+
+```
+Type NomType Abstract
+    Method NomMethode() Abstract
+End Type
+```
+
+#### Redéfinir une méthode héritée
+
+```
+Type NomTypeEnfant Extends NomTypeParent
+    Method NomMethode() Override
+
+    End Method
+End Type
+```
+
+#### Redéfinir un constructeur
+
+```
+Type NomTypeEnfant Extends NomTypeParent
+    Method New()
+        super.New()
+
+    End Method
+End Type
+```
+
+#### Définir un champ statique
+
+```
+Type NomType
+    Global NomVariableStatique: NomTypeStatique
+End Type
+```
+
+**Remarque :** Ce champ est utilisable sans instancier le type.
+
+#### Définir un champ constant
+
+```
+Type NomType
+    Const NomConstante: NomTypeConstante = valeur
+End Type
+```
+
+**Remarque :** Ce champ est utilisable sans instancier le type.
+
+#### Définir une méthode statique
+
+```
+Type NomType
+    Function NomMethodeStatique()
+        
+    End Function
+End Type
+```
+
+**Remarque :** Cette méthode est utilisable sans instancier le type mais ne peut accéder qu'aux champs statiques ou constants.
+
+#### Définir une interface
+
+```
+Interface NomInterface
+    Method NomMethode()
+End Interface
+```
+
+#### Implémenter une interface
+
+```
+Type NomType Implements NomInterface
+    Methode NomMethode()
+        
+    End Methode
+End Type
+```
+
+**Remarque :** Le type doit implémenter chaque méthode que l'interface définit.
 
 ### Opérateur d'affectation
 
-D'une manière générale, le signe *égal* correspond à une affectation. Mais dans le cas de conditions, ce signe correspond à une notion d'égalité mathématique.
+D'une manière générale, le signe `=` correspond à une affectation. Mais dans le cas de conditions, ce signe correspond à une notion d'égalité mathématique.
 
 ```
 Local NomDeVariable : Int = 10 ' déclaration + affectation
@@ -134,26 +354,16 @@ If NomDeVariable = 20 ' test d'égalité
 End If
 ```
 
-### Opérateurs méthématiques
+### Opérateurs mathématiques
 
 ```
-A = B + C ' addition
-A = B - C ' soustraction
-A = B * C ' multiplication
-A = B / C ' division
-A = B Mod C ' modulo
-A = B ^ C ' puissance
-
-```
-
-### Opérateurs d'affectation composés
-
-```
-Speed :+ Acceleration ' identique à Speed = Speed + Acceleration
-Speed :- Acceleration ' identique à Speed = Speed - Acceleration
-Speed :* Acceleration ' identique à Speed = Speed * Acceleration
-Speed :/ Acceleration ' identique à Speed = Speed / Acceleration
-Speed :% Acceleration ' identique à Speed = Speed % Acceleration
+A + B ' addition
+A - B ' soustraction
+A * B ' multiplication
+A / B ' division
+A Mod B ' modulo
+A ^ B ' puissance
+-A ' négation
 ```
 
 ### Opérateurs logiques
@@ -165,14 +375,50 @@ A < B ' A est inférieur à B
 A > B ' A est supérieur à B
 A <= B ' A est inférieur ou égal à B
 A >= B ' A est supérieur ou égal à B
-not A = B ' A n'est pas égal à B (A est différent de B)
-not A <> B ' A n'est pas différent de B (A est égal à B)
-not A < B ' A n'est pas inférieur à B (A est inférieur ou égal à B)
-not A > B ' A n'est pas supérieur à B (A est supérieur ou égal à B)
-not A <= B ' A n'est pas inférieur ou égal à B (A est inférieur à B)
-not A >= B ' A n'est pas supérieur ou égal à B (A est supérieur à B)
+Not A = B ' A n'est pas égal à B (A est différent de B)
+Not A <> B ' A n'est pas différent de B (A est égal à B)
+Not A < B ' A n'est pas inférieur à B (A est inférieur ou égal à B)
+Not A > B ' A n'est pas supérieur à B (A est supérieur ou égal à B)
+Not A <= B ' A n'est pas inférieur ou égal à B (A est inférieur à B)
+Not A >= B ' A n'est pas supérieur ou égal à B (A est supérieur à B)
 A = B And B = C ' A est égal à B et B est égal à C
 A = C Or B = C ' A est égal à B ou B est égal à C
+```
+
+### Opérateurs sur les bits
+
+```
+~A ' inversion de bits
+A & B ' ET sur les bits
+A | B ' OU sur les bits
+A ~ B ' OU exclusif sur les bits
+A Shl B ' décalage de bits vers la gauche
+A Shr B ' décalage de bits vers la droite
+A Sar B ' décalage arithmétique de bits vers la droite
+```
+
+### Opérateurs d'affectation composés
+
+```
+A :+ B ' identique à A = A + B
+A :- B ' identique à A = A - B
+A :* B ' identique à A = A * B
+A :/ B ' identique à A = A / B
+A :Mod B ' identique à A = A Mod B
+A :& B ' identique à A = A & B
+A :| B ' identique à A = A \ B
+A :~ B ' identique à A = A ~ B
+A :Shl B ' identique à A = A Shl B
+A :Shr B ' identique à A = A Shr B
+A :Sar B ' identique à A = A Sar B
+```
+
+### Constantes prédéfinies
+
+```
+False ' équivalent à 0
+True ' équivalent à 1
+Pi ' équivalent à 3.1415926535897932384626433832795
 ```
 
 ### Instruction conditionnelle
