@@ -4,11 +4,21 @@
 
 ## Introduction
 
+BlitzMax est un langage de programmation open source conçu pour créer des jeux vidéos et des applications graphiques. Il est fortement typé, orienté objet, modulaire et embarque un ramasse miette.
 
+Il est fournit avec un éditeur complet appelé *MaxIDE* qui vous permet de compiler nativement vos projets vers les plateformes suivantes :
+
+- Windows
+- Linux
+- macOS
+- Android
+- iOS
+- Raspberry Pi
 
 ## Installation
 
-
+- [Téléchargez](https://blitzmax.org/downloads/) la version adaptée à votre plateforme et dézippez l'archive à l'emplacement de votre choix.
+- Lancez l'éditeur MaxIDE.
 
 ## Interface
 
@@ -26,9 +36,9 @@
 Ce langage n'est pas sensible à la casse. Les mot-clés ou les identificateurs sont identiques que vous utilisiez des majuscules ou des minuscules.
 
 ```
-rem = Rem
-while = wHiLe
-player = playeR
+Rem ' identique à rem
+While ' identique à wHiLe
+Player ' identique à playeR
 ```
 
 ### Commentaires
@@ -55,9 +65,7 @@ End Rem
 
 Le mot clé `End` indique que le programme est terminé. Tout ce qui suit n'est pas exécuté.
 
-### Variables
-
-#### Modes de contrôle des variables
+### Modes de contrôle
 
 Vous pouvez spécifier un mode en tête de vos fichiers sources.
 
@@ -65,11 +73,13 @@ Vous pouvez spécifier un mode en tête de vos fichiers sources.
 - Si vous préciser le mode `Strict`, vous devez déclarer toutes vos variables. Leur attribuer un type est optionnel. Par défaut, les variables sans type sont de type `Int` et les fonctions/méthodes qui ne déclarent pas de type de retour renvoient le type `Int`.
 - Si vous précisez le mode `SuperStrict`, vous devez déclarer toutes vos variables et leur attribuer à toutes un type. Les fonctions/méthodes doivent également déclarer un type de retour.
 
-**Conseil :** Il est généralement conseillé de choisir le mode `Strict`.
+**Conseil :** Il est généralement conseillé d'utiliser au minimum le mode `Strict`. Pour la meilleure sécurité de code, utilisez le mode `SuperStrict`.
 
 ```
-Strict
+SuperStrict
 ```
+
+### Variables
 
 #### Déclarer une variable
 
@@ -142,6 +152,21 @@ Const DEFAULT_TITLE: String = "Mark Sibly"
 
 **Remarque :** Même si le langage n'est pas sensible à la casse, utilisez de préférence la convention `ALL_CAPS` pour nommer vos constantes (tous les mots en majuscules séparés par un signe *underscore* (`_`)).
 
+### Manipuler des chaînes
+
+Utiliser l'opérateur `+` pour concaténer des chaînes.
+
+```
+Local HelloString: String = "Hello"
+Local WorldString: String = "World"
+Local Message: String = HelloString + ", " + WorldString
+Print(Message) ' affiche "Hello, World"
+```
+
+**Remarque :**  Indexer une chaîne renvoie une valeur de type `Short`. Vous devez caster la valeur en `Chr` pour l'utiliser comme un caractère.
+
+Les chaînes sont immutables.
+
 ### Caster une valeur
 
 ```
@@ -149,6 +174,57 @@ Int(valeur)
 Float(valeur)
 Double(valeur)
 String(valeur)
+```
+
+### Littéraux
+
+#### Littéraux entiers
+
+```
+100 ' forme décimale
+$CAFEBABE ' forme hexadécimale (base 16)
+%10101010 ' forme binaire (base 2)
+```
+
+#### Littéraux nombre à virgule
+
+```
+.5
+10.0
+1e6
+1.5e-6
+```
+
+#### Littéraux chaines
+
+```
+"Hello, World!"
+"" ' chaine vide
+```
+
+**Remarque :** Concaténer des chaînes constantes (définies à la compilation) créera une autre chaîne constante.
+
+#### Caractères d'échappement
+
+```
+~0 ' Null character (code ASCII 0)
+~t ' Tab character (code ASCII 9)
+~r ' Return character (code ASCII 13)
+~n ' Newline character (code ASCII 10)
+~q ' Quote character (code ASCII 34)
+~~ ' Tilde character (code ASCII 126)
+~n~ .. ~nnnn~ ' Unicode character, e.g. ~65~ = A
+~$n~ .. ~$nnnn~ ' Hexadecimal character, e.g. ~$41~ = A
+~%n~ .. ~%nnnnnnnnnnnnnnnn~ ' Binary character, e.g. ~%1000001~ = A
+```
+
+#### Casting de littéraux
+
+Il est possible de caster un littéral en ajoutant deux points (`:`) suivi du nom du type.
+
+```
+$8000000000000000:Long
+10:Double
 ```
 
 ### Opérateur d'affectation
@@ -234,7 +310,18 @@ Pi ' équivalent à 3.1415926535897932384626433832795
 
 ### Tableaux
 
+Blitzmax does not support the Dim statement for array creation. Instead, arrays in BlitzMax are real types - they can be passed to functions, returned from functions and placed in variables.
 
+To create a classic BASIC style array in BlitzMax, use a global variable. For example:
+
+Global my_array$[100]   ' create a 100 element string array
+
+Also note that arrays in BlitzMax are not 1 bigger than their dimensioned size - the 100 element array above contains 100 elements, numbered 0 through 99 inclusive.
+
+BlitzMax also does not support a Redim operation. Instead, you can use slices. For example:
+
+Global my_array$[100]       ' create a 100 element string array
+my_array=my_array[..200]    ' now a 200 element array!
 
 
 
@@ -380,7 +467,7 @@ End Function
 ### Appeler une fonction
 
 ```
-NomVariable = NomFonction(arguments)
+Local NomVariable: NomType = NomFonction(arguments)
 ```
 
 ### Objets
@@ -427,11 +514,13 @@ Instance.NomChamp = valeur
 
 ```
 Type NomType
-    Method NomMethode()
+    Method NomMethode: NomType()
         
     End Method
 End Type
 ```
+
+**Remarque :** Une méthode ne précisant pas le type de retour renvoie le type `Int`.
 
 #### Appeler une méthode
 
@@ -467,19 +556,19 @@ End Type
 Type NomType
     Public
         Field NomChampPublique: NomType
-        Method NomMethodePublique()
+        Method NomMethodePublique: NomType()
             
         End Method
 
     Protected
         Field NomChampProtege: NomType
-        Method NomMethodeProtegee()
+        Method NomMethodeProtegee: NomType()
             
         End Method
 
     Private
         Field NomChampPrive: NomType
-        Method NomMethodePrivee()
+        Method NomMethodePrivee: NomType()
             
         End Method
 End Type
@@ -499,7 +588,7 @@ End Type
 
 ```
 Type NomType
-    Method NomMethode() Abstract
+    Method NomMethode: NomType() Abstract
 End Type
 ```
 
@@ -507,7 +596,7 @@ End Type
 
 ```
 Type NomType Abstract
-    Method NomMethode() Abstract
+    Method NomMethode: NomType() Abstract
 End Type
 ```
 
@@ -515,7 +604,7 @@ End Type
 
 ```
 Type NomTypeEnfant Extends NomTypeParent
-    Method NomMethode() Override
+    Method NomMethode: NomType() Override
 
     End Method
 End Type
@@ -556,7 +645,7 @@ End Type
 
 ```
 Type NomType
-    Function NomMethodeStatique()
+    Function NomMethodeStatique: NomType()
         
     End Function
 End Type
@@ -568,15 +657,17 @@ End Type
 
 ```
 Interface NomInterface
-    Method NomMethode()
+    Method NomMethode: NomType()
 End Interface
 ```
+
+**Conseil :** Comme le langage n'est pas sensible à la casse, on fait généralement précéder le nom d'une interface par le suffixe `I`.
 
 #### Implémenter une interface
 
 ```
 Type NomType Implements NomInterface
-    Methode NomMethode()
+    Methode NomMethode: NomType()
         
     End Methode
 End Type
@@ -588,7 +679,7 @@ End Type
 
 Le coin supérieur gauche correspond à l'origine du repère. L'axe vertical augmente vers le bas.
 
-## API
+## Graphismes
 
 ### Définir la taille de la fenêtre
 
@@ -603,14 +694,14 @@ Graphics(640, 360, 0) ' résolution 640x360 en mode fenêtré
 Utilisez la boucle de votre choix. Voici un exemple de boucle `While` avec comme condition la fin de l'application ou l'appui sur la touche `ECHAP`.
 
 ```
-While Not (KeyHit(KEY_ESCAPE) Or AppTerminate())
+While Not (KeyHit(`KEY_ESCAPE) Or AppTerminate())
     
 Wend
 ```
 
 ### Effacer la vue
 
-Pour effacer la vue dans la boucle principale, utilisez la fonction `Cls`.
+Pour effacer la surface d'application, utilisez la fonction `Cls`.
 
 ```
 Cls
@@ -688,13 +779,203 @@ Utilisez la fonction `DrawImage` pour afficher une image de type `Timage`.
 DrawImage(Image, X, Y)
 ```
 
+## Structures de données utiles
+
+
+
+## Contrôles
+
+SetAutoPoll
+
+### Application
+
+AppSuspended
+AppTerminate
+
+### Souris
+
+#### Constantes liées à la souris
+
+- `MOUSE_LEFT` : Bouton gauche de la souris.
+- `MOUSE_RIGHT` : Bouton droite de la souris.
+- `MOUSE_MIDDLE` : Bouton central de la souris.
+
+#### Fonctions liées à la souris
+
+FlushMouse
+MouseDown
+MouseHit
+MouseX
+MouseXSpeed
+MouseY
+MouseYSpeed
+MouseZ
+MouseZSpeed
+WaitMouse
+
+### Clavier
+
+#### Constantes liées au clavier
+
+##### Touches
+
+- `KEY_BACKSPACE` : Backspace
+- `KEY_TAB` : Tab
+- `KEY_CLEAR` : Clear
+- `KEY_RETURN` : Return
+- `KEY_ENTER` : Enter
+- `KEY_PAUSE` : Pause
+- `KEY_ESCAPE` : Escape
+- `KEY_SPACE` : Space
+- `KEY_PAGEUP` : Page Up
+- `KEY_PAGEDOWN` : Page Down
+- `KEY_END` : End
+- `KEY_HOME` : Home
+- `KEY_LEFT` : Cursor (Left)
+- `KEY_UP` : Cursor (Up)
+- `KEY_RIGHT` : Cursor (Right)
+- `KEY_DOWN` : Cursor (Down)
+- `KEY_SELECT` : Select
+- `KEY_PRINT` : Print
+- `KEY_EXECUTE` : Execute
+- `KEY_SCREEN` : Screen
+- `KEY_INSERT` : Insert
+- `KEY_DELETE` : Delete
+- `KEY_HELP` : Help
+- `KEY_0` : 0
+- `KEY_1` : 1
+- `KEY_2` : 2
+- `KEY_3` : 3
+- `KEY_4` : 4
+- `KEY_5` : 5
+- `KEY_6` : 6
+- `KEY_7` : 7
+- `KEY_8` : 8
+- `KEY_9` : 9
+- `KEY_A` : A
+- `KEY_B` : B
+- `KEY_C` : C
+- `KEY_D` : D
+- `KEY_E` : E
+- `KEY_F` : F
+- `KEY_G` : G
+- `KEY_H` : H
+- `KEY_I` : I
+- `KEY_J` : J
+- `KEY_K` : K
+- `KEY_L` : L
+- `KEY_M` : M
+- `KEY_N` : N
+- `KEY_O` : O
+- `KEY_P` : P
+- `KEY_Q` : Q
+- `KEY_R` : R
+- `KEY_S` : S
+- `KEY_T` : T
+- `KEY_U` : U
+- `KEY_V` : V
+- `KEY_W` : W
+- `KEY_X` : X
+- `KEY_Y` : Y
+- `KEY_Z` : Z
+- `KEY_LSYS` : Sys key (Left)
+- `KEY_RSYS` : Sys key (Right)
+- `KEY_NUM0` : Numpad 0
+- `KEY_NUM1` : Numpad 1
+- `KEY_NUM2` : Numpad 2
+- `KEY_NUM3` : Numpad 3
+- `KEY_NUM4` : Numpad 4
+- `KEY_NUM5` : Numpad 5
+- `KEY_NUM6` : Numpad 6
+- `KEY_NUM7` : Numpad 7
+- `KEY_NUM8` : Numpad 8
+- `KEY_NUM9` : Numpad 9
+- ` : Numpad` : `KEY_NUMMULTIPLY
+- `KEY_NUMADD` : Numpad +
+- `KEY_NUMSUBTRACT` : Numpad -
+- `KEY_NUMDECIMAL` : Numpad .
+- `KEY_NUMDIVIDE` : Numpad /
+- `KEY_F1` : F1
+- `KEY_F2` : F2
+- `KEY_F3` : F3
+- `KEY_F4` : F4
+- `KEY_F5` : F5
+- `KEY_F6` : F6
+- `KEY_F7` : F7
+- `KEY_F8` : F8
+- `KEY_F9` : F9
+- `KEY_F10` : F10
+- `KEY_F11` : F11
+- `KEY_F12` : F12
+- `KEY_NUMLOCK` : Num Lock
+- `KEY_SCROLL` : Scroll Lock
+- `KEY_LSHIFT` : Shift (Left)
+- `KEY_RSHIFT` : Shift (Right)
+- `KEY_LCONTROL` : Control (Left)
+- `KEY_RCONTROL` : Control (Right)
+- `KEY_LALT` : Alt key (Left)
+- `KEY_RALT` : Alt key (Right)
+- `KEY_TILDE` : Tilde
+- `KEY_MINUS` : Minus
+- `KEY_EQUALS` : Equals
+- `KEY_OPENBRACKET` : Bracket (Open)
+- `KEY_CLOSEBRACKET` : Bracket (Close)
+- `KEY_BACKSLASH` : Backslash
+- `KEY_SEMICOLON` : Semi-colon
+- `KEY_QUOTES` : Quote
+- `KEY_COMMA` : Comma
+- `KEY_PERIOD` : Period
+- `KEY_SLASH` : Slash
+
+
+##### Modificateur du clavier
+
+- `MODIFIER_SHIFT`: Touche SHIFT du clavier.
+- `MODIFIER_CONTROL` : Touche CTRL du clavier.
+- `MODIFIER_OPTION` : Touche OPTION du clavier.
+- `MODIFIER_SYSTEM` : Touche SYSTEM du clavier.
+- `MODIFIER_COMMAND` : Touche COMMAND du clavier.
+
+#### Fonctions liées au clavier
+
+FlushKeys
+GetChar
+KeyDown
+KeyHit
+WaitChar
+WaitKey
+
+### Manettes
+
+#### Fonctions liées aux manettes
 
 
 
 
 
+## Audio
 
 
+
+## Modules
+
+```
+import "nomfichier.bmx"
+```
+
+**Attention !** Le nom du fichier est sensible à la casse.
+
+## Déboggage
+
+Voir la documentation sur les outils (*Tools*).
+
+
+
+
+
+`Null` it can be converted to any type, and results in the types default value
+for most classes that will be a null reference, so it will act the same as the null you may know from the likes of java or c#
+strings are arrays have default values of "" and [] respectively,
 
 
 
