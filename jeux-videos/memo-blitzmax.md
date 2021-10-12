@@ -324,24 +324,141 @@ Pi ' équivalent à 3.1415926535897932384626433832795
 
 ### Tableaux
 
-Blitzmax does not support the Dim statement for array creation. Instead, arrays in BlitzMax are real types - they can be passed to functions, returned from functions and placed in variables.
+Créez un tableau avec `[]`. Un tableau a une dimension fixe et ne contient que des éléments du même type.
 
-To create a classic BASIC style array in BlitzMax, use a global variable. For example:
+```
+Local NomTableau: NomType[] ' définit un tableau vide
+```
 
-Global my_array$[100]   ' create a 100 element string array
+ou
 
-Also note that arrays in BlitzMax are not 1 bigger than their dimensioned size - the 100 element array above contains 100 elements, numbered 0 through 99 inclusive.
+```
+Local NomTableau: NomType[Taille] ' définit un tableau de Taille éléments
+```
 
-BlitzMax also does not support a Redim operation. Instead, you can use slices. For example:
+**Remarque :** Les éléments sont initialisés à la valeur par défaut du type.
 
-Global my_array$[100]       ' create a 100 element string array
-my_array=my_array[..200]    ' now a 200 element array!
+Utilisez `[]` pour accéder à un élément particulier.
 
+```
+NomTableau[0] = Valeur1
+NomTableau[1] = Valeur2
+NomTableau[3] = Valeur3
+...
+```
 
+**Remarque :** Le premier élément d'un tableau commence à l'indice `0`.
 
+Vous pouvez également initialiser un tableau lors de sa déclaration.
 
+```
+Local NomTableau: NomType[] = [Valeur1, Valeur2, Valeur3, ...]
+```
 
+ou
 
+```
+Local NomTableau: NomType[Taille] = [Valeur1, Valeur2, Valeur3, ...]
+```
+
+#### Parcourir un tableau
+
+Une fois créé, parcourez le tableau avec une boucle `For EachIn Next`.
+
+```
+For Local Element: NomType = EachIn NomTableau
+    
+Next
+```
+
+#### Longueur d'un tableau
+
+Utilisez la propriété `Length` pour déterminer la longueur d'un tableau.
+
+```
+NomTableau.Length
+```
+
+#### Trier un tableau
+
+Appelez la méthode `Sort`.
+
+```
+NomTableau.Sort() ' Trie le tableau par ordre croissant
+```
+
+**Remarque :** Par défaut, la méthode trie le tableau par ordre croissant. Passez la valeur `False` pour inverser l'ordre du tri.
+
+```
+NomTableau.Sort(False) ' Trie le tableau par ordre décroissant
+```
+
+#### Tableaux à plusieurs dimensions
+
+Séparez les dimensions par une virgule.
+
+```
+Local NomTableau: NomType[, ]
+```
+
+ou précisez les dimensions.
+
+```
+Local NomTableau: NomType[K, M]
+```
+
+#### Parcourir un tableau à plusieurs dimensions
+
+Une fois créé, parcourez le tableau avec N boucles `For To Next` imbriquées.
+
+``` 
+For Local X = 0 To K
+    For Local Y = 0 To M
+        
+    Next
+Next
+```
+
+#### Longueur d'un tableau à plusieurs dimensions
+
+Utilisez la méthode `Dimensions` pour obtenir un tableau constitué d'un tableau d'`Int` à N dimensions contenant la longueur de chaque dimension.
+
+```
+Local Longueurs: Int[] = NomTableau.Dimensions()
+```
+
+**Exemple :**
+
+```
+Local NomTableau: Int[10,5]
+Local Longueurs: Int[2] = NomTableau.Dimensions() ' contient [10,5]
+```
+
+#### Tableaux de tableaux
+
+Enchainez les `[]`.
+
+```
+Local NomTableau: Int[][]
+```
+
+**Remarque :** Cette technique permet de créer des sous-tableaux de tailles différentes.
+
+```
+Local Grille: Int[][] = [[1, 2, 3, 4],[5, 6, 7],[8, 9]]
+```
+
+#### Tranches de tableaux
+
+Utilisez `..` pour trancher (*slice*) un tableau.
+
+```
+Local NomTableau2: NomType[] = NomTableau1[..N] ' slice [0, N[
+Local NomTableau2: NomType[] = NomTableau1[N..] ' slice [N, NomTableau1.Length[
+Local NomTableau2: NomType[] = NomTableau1[M..N] ' slice [M, N[
+```
+
+**Remarque :** Fonctionne aussi sur le type `String`.
 
 ### Instruction conditionnelle
 
@@ -374,9 +491,9 @@ L'instruction *Sélection* commence par le mot-clé `Select` suivi d'une express
 ```
 Select Expression
     Case Expressions
-        Statements
+        Instructions
     Default
-        Statements
+        Instructionss
 End Select
 ```
 
