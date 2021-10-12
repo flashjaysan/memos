@@ -61,6 +61,20 @@ Rem
 End Rem
 ```
 
+### Afficher du texte dans la console
+
+```
+Print(chaine)
+```
+
+### Récupérer la saisie utilisateur dans la console
+
+```
+NomVariable = Input(message)
+```
+
+**Remarque :** La fonction `Input` renvoie une valeur de type `String`.
+
 ### End
 
 Le mot clé `End` indique que le programme est terminé. Tout ce qui suit n'est pas exécuté.
