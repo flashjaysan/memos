@@ -81,7 +81,7 @@ Le mot clé `End` indique que le programme est terminé. Tout ce qui suit n'est 
 
 ### Modes de contrôle
 
-Vous pouvez spécifier un mode en tête de vos fichiers sources.
+En tête de vos fichiers sources, vous pouvez spécifier un mode.
 
 - Si vous ne précisez pas de mode, le mode par défaut est sélectionné. Dans ce mode, vous n'êtes pas obligé de déclarer vos variables ou le type de retour des fonctions/méthodes.
 - Si vous préciser le mode `Strict`, vous devez déclarer toutes vos variables. Leur attribuer un type est optionnel. Par défaut, les variables sans type sont de type `Int` et les fonctions/méthodes qui ne déclarent pas de type de retour renvoient le type `Int`.
@@ -105,7 +105,7 @@ Pour déclarer une variable avec une portée locale, utilisez le mot-clé `Local
 Local NomDeVariable
 ```
 
-Vous pouvez également déclarer plusieurs variables sur la même ligne en séparant chaque variable avec une virgule (`,`).
+Vous pouvez également déclarer plusieurs variables sur la même ligne en séparant chaque variable avec une virgule `,`.
 
 ```
 Local NomDeVariable1, NomDeVariable2
@@ -117,7 +117,7 @@ Local NomDeVariable1, NomDeVariable2
 Global NomDeVariable
 ```
 
-Pour définir le type d'une variable, utilisez deux point (`:`) suivis du nom du type ou faites suivre (sans espace) le nom de la variable d'un caractère spécial pour les types de base.
+Pour définir le type d'une variable, utilisez deux point `:` suivis du nom du type ou faites suivre (sans espace) le nom de la variable d'un caractère spécial pour les types de base.
 
 ```
 Local NomDeVariable1: Int ' identique à Local NomDeVariable1 ou NomDeVariable1%
@@ -127,14 +127,14 @@ Local NomDeVariable3: String 'identique à Local NomDeVariable3$
 Local NomDeVariable4: NomType
 ```
 
-Vous pouvez également tout déclarer sur la même ligne en séparant les variables avec le signe *virgule*.
+Vous pouvez également tout déclarer sur la même ligne en séparant les variables avec une virgule `,`.
 
 ```
 ' identique à Local NomDeVariable1, NomDeVariable2#, NomDeVariable3$
 Local NomDeVariable1: Int, NomDeVariable2: FLoat, NomDeVariable2: String
 ```
 
-Enfin, vous pouvez initialiser les variables lors de leur déclaration. Utiliser le signe égal (`=`).
+Enfin, vous pouvez initialiser les variables lors de leur déclaration. Utiliser le symbole égal `=`.
 
 ```
 Local NomDeVariable1: Int = 10 ' identique à Local NomDeVariable1 = 10
@@ -143,7 +143,7 @@ Local NomDeVariable2: Double = 10.01 ' identique à Local NomDeVariable2! = 10.0
 Local NomDeVariable3: String = "Hello" 'identique à Local NomDeVariable3$ = "Hello"
 ```
 
-Vous pouvez également le faire sur une seule ligne en utilisant la virgule (`,`) comme séparateur.
+Vous pouvez également le faire sur une seule ligne en utilisant la virgule `,` comme séparateur.
 
 ```
 ' identique à Local NomDeVariable1 = 10, NomDeVariable2# = 10.01, NomDeVariable3$ = "Hello"
@@ -152,9 +152,9 @@ Local NomDeVariable1: Int = 10, NomDeVariable2 : FLoat = 10.01, NomDeVariable3 :
 
 ### Constantes
 
-Une constante ne peut plus être modifiée après sa déclaration et provoque une erreur si vous tentez de le faire. C'est une protection utile pour un code plus sur.
+Une constante ne peut plus être modifiée après sa déclaration et provoque une erreur si vous tentez de le faire. C'est une protection utile pour un code plus sûr.
 
-Pour déclarer une constante, utilisez le mot-clé `Const` suivi du nom de la constante, du signe égal (`=`) et d'une expression constante (qui peut être constituée d'autres constantes déjà déclarées) ou d'un littéral.  Comme pour les variables, vous pouvez définir le type de la constante avec deux points (`:`) suivi du type et déclarer plusieurs constantes sur une même ligne avec une virgule (`,`). Une constante déclarée sans type explicite est de type `Int` par défaut.
+Pour déclarer une constante, utilisez le mot-clé `Const` suivi du nom de la constante, du signe égal `=` et d'une expression constante (qui peut être constituée d'autres constantes déjà déclarées) ou d'un littéral.  Comme pour les variables, vous pouvez définir le type de la constante avec deux points `:` suivi du type et déclarer plusieurs constantes sur une même ligne avec une virgule `,`. Une constante déclarée sans type explicite est de type `Int` par défaut.
 
 ```
 Const STARTUP_SIZE = 1000
@@ -164,9 +164,11 @@ Const SCALE_FACTOR: Float = 1.5
 Const DEFAULT_TITLE: String = "Mark Sibly"
 ```
 
-**Remarque :** Même si le langage n'est pas sensible à la casse, utilisez de préférence la convention `ALL_CAPS` pour nommer vos constantes (tous les mots en majuscules séparés par un signe *underscore* (`_`)).
+**Remarque :** Même si le langage n'est pas sensible à la casse, utilisez de préférence la convention `ALL_CAPS` pour nommer vos constantes (tous les mots en majuscules séparés par un signe *underscore* `_`).
 
 ### Manipuler des chaînes
+
+Les chaînes sont immutables.
 
 Utiliser l'opérateur `+` pour concaténer des chaînes.
 
@@ -179,7 +181,9 @@ Print(Message) ' affiche "Hello, World"
 
 **Remarque :**  Indexer une chaîne renvoie une valeur de type `Short`. Vous devez caster la valeur en `Chr` pour l'utiliser comme un caractère.
 
-Les chaînes sont immutables.
+```
+Local Lettre: Chr = Chr(Chaine[N])
+```
 
 ### Caster une valeur
 
@@ -216,7 +220,7 @@ $CAFEBABE ' forme hexadécimale (base 16)
 "" ' chaine vide
 ```
 
-**Remarque :** Concaténer des chaînes constantes (définies à la compilation) créera une autre chaîne constante.
+**Remarque :** Concaténer des chaînes constantes (définies à la compilation) créera une nouvelle chaîne constante.
 
 #### Caractères d'échappement
 
@@ -243,7 +247,7 @@ $8000000000000000:Long
 
 ### Opérateur d'affectation
 
-D'une manière générale, le signe `=` correspond à une affectation. Mais dans le cas de conditions, ce signe correspond à une notion d'égalité mathématique.
+D'une manière générale, le signe `=` correspond à une affectation. Mais dans le cas de conditions, ce symbole correspond à une notion d'égalité mathématique.
 
 ```
 Local NomDeVariable: Int = 10 ' déclaration + affectation
@@ -338,6 +342,12 @@ Local NomTableau: NomType[Taille] ' définit un tableau de Taille éléments
 
 **Remarque :** Les éléments sont initialisés à la valeur par défaut du type.
 
+Utilisez l'opérateur `New` pour créer un nouveau tableau.
+
+```
+Local NomTableau: NomType[] = New NomType[Taille]
+```
+
 Utilisez `[]` pour accéder à un élément particulier.
 
 ```
@@ -401,7 +411,13 @@ Séparez les dimensions par une virgule.
 Local NomTableau: NomType[, ]
 ```
 
-ou précisez les dimensions.
+Utilisez l'opérateur `New` pour créer un nouveau tableau.
+
+```
+Local NomTableau: NomType[, , ] = New NomType[Taille1, Taille2, ...]
+```
+
+Ou précisez les dimensions.
 
 ```
 Local NomTableau: NomType[K, M]
@@ -453,6 +469,7 @@ Local Grille: Int[][] = [[1, 2, 3, 4],[5, 6, 7],[8, 9]]
 Utilisez `..` pour trancher (*slice*) un tableau.
 
 ```
+Local NomTableau2: NomType[] = NomTableau1[..] ' copie le contenu du tableau
 Local NomTableau2: NomType[] = NomTableau1[..N] ' slice [0, N[
 Local NomTableau2: NomType[] = NomTableau1[N..] ' slice [N, NomTableau1.Length[
 Local NomTableau2: NomType[] = NomTableau1[M..N] ' slice [M, N[
@@ -590,7 +607,15 @@ Next
 ### Définir une fonction
 
 ```
-Function NomFonction: NomType(paramètres)
+Function NomFonction: NomType(Parametre: NomType, ...)
+    Return valeur
+End Function
+```
+
+**Remarque :** Vous pouvez également indiquer une valeur par défaut pour les derniers paramètres.
+
+```
+Function NomFonction: NomType(Parametre1: NomType, Parametre2: NomType = valeur, ...)
     Return valeur
 End Function
 ```
@@ -1088,7 +1113,16 @@ WaitKey
 
 
 
+## Génération de nombres aléatoires
+
+```
+Rand(NombreEntier) ' renvoie un nombre dans l'intervalle [1, NombreEntier]
+Rand(NombreEntier1, NombreEntier2) ' renvoie un nombre dans l'intervalle [NombreEntier1, NombreEntier2]
+```
+
 ## Modules
+
+### Importer un fichier source
 
 ```
 import "nomfichier.bmx"
