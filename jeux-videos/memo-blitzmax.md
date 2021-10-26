@@ -1145,7 +1145,16 @@ strings are arrays have default values of "" and [] respectively,
 
 
 
+```
+Struct SMyVec2F
+  Field x:Float
+  Field ReadOnly y:Float
+End Struct
 
+Local s:SMyVec2
+s.x = 10 'ok
+s.y = 10 'fails
+```
 
 
 
