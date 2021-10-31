@@ -482,25 +482,118 @@ Catch exception: Throwable
 End
 ```
 
+### Modules
+
+Un programme peut être divisé en plusieurs fichiers sources. Utilisez l'instruction `Import` pour intégrer un fichier source à un autre. Vous n'avez pas besoin de préciser l'extension du fichier à importer. Utilisez simplement son nom.
+
+```
+Import nom_fichier
+```
+
+Le fichier source importé est recherché dans le même dossier que le fichier source contenant l'instruction `Import`. Vous pouvez indiquer un chemin de sous-dossiers.
+
+```
+Import nom_dossier.nom_fichier
+```
+
 ## Mojo
 
 ### Point d'entrée
 
-Comme précisé précédemment dans la section `Langage`, le point d'entrée d'un projet se fait dans une fonction `Main`. Pour un projet utilisant le module `mojo`, vous devez étendre la classe `mojo.app` et créer une instance dans la fonction `Main`.
+Comme précisé précédemment dans la section `Langage`, le point d'entrée d'un projet se fait dans une fonction `Main` qui ne prend aucun paramètre et qui renvoie un entier. Pour un projet utilisant le module `mojo`, vous devez étendre la classe `mojo.app.App` et en créer une instance dans la fonction `Main`.
 
 ```
+Strict
+
 Import mojo.app
 Import mojo.graphics
 
 
 Class MyApp Extends App
-    Method OnRender()
+    Method OnRender:Int()
         DrawText("Hello World!", 0, 0)
+        Return 0
     End
 End
 
 
 Function Main:Int()
-    New MyApp
+    New MyApp()
+    Return 0
 End
 ```
+
+A minima, vous pouvez implémenter la méthode `OnRender`. Cette dernière s'occupe de l'affichage de votre jeu. Si vous souhaitez utiliser également la méthode `OnUpdate`, vous devez implémenter la méthode `OnCreate` et appeler la commande `SetUpdateRate` pour définir la fréquence d'appel de la méthode `OnUpdate`.
+
+```
+Strict
+
+Import mojo.app
+Import mojo.graphics
+
+
+Class MyApp Extends App
+    Method OnCreate:Int()
+        Return 0
+    End
+
+
+    Method OnUpdate:Int()
+
+        Return 0
+    End
+
+
+    Method OnRender:Int()
+        DrawText("Hello World!", 0, 0)
+        Return 0
+    End
+End
+
+
+Function Main:Int()
+    New MyApp()
+    Return 0
+End
+```
+
+La méthode `OnCreate` est la première à être appelée une fois que mojo a été initialisée. A partir de cette méthode, vous pouvez utiliser les fonctionnalités fournies par mojo (par exemple, charger une image).
+
+### Images
+
+Pour charger une image, vous devez la placer dans un dossier du même nom que le fichier source contenant la fonction `Main` en ajoutant le suffixe `.data`.
+
+**Exemple :**
+
+```
+/main.cbx
+/main.data/image.png
+```
+
+Loadimage can only load content directly from the data-folder. You can’t specify a path, only specify the filename, remember it is caseSensitive. (import mojo.graphics). You can load .jpg and .png
+
+- `LoadString` loads a text-file found in your data-folder into a string, must be .txt.
+- `LoadSound`, load a .wav from your data-folder.
+
+```
+Method Render:Void( image:Image )
+    PushMatrix()
+        Translate X,Y
+        Rotate Direction
+        Translate -32,-32
+        DrawImage image, 0,0
+    PopMatrix()
+End
+```
+
+- `Translation x,y` - Move the global draw offset this much in x and y direction. If you call this using 10,10 two times, you will move the offset 20,20.
+- `Rotation angle` – The angle to rotate around the current global offset position. This also affects translations, meaning that if you rotate 180, and move 10,10, you end up at -10,-10 assuming no other matrix commands are used.
+- `Scale width,height` – Use to stretch the offset in width and height. This directly affects the offset, meaning that if you scale 2,2 and translate 10,10, you end up at 20,20.
+- `PushMatrix` – Since affecting the global state can mess with other parts of your game the handy PushMatrix command allows you to save the previous state, pushing it on top of the save-pile. This means that you can Push the current state, use any matrix command to change the global offset, then draw, and then use PopMatrix to restor it back.
+- `PopMatrix` – Pop or restore the last pushed or saved Matrix state.
+- `GetMatrix` – You can use this to get the current Matrix as an array to save current state or do conversion math.
+
+- `Random(min,max)` – There is no int random, so always expect this to return a float.
+- `List` – List is a linked list. You use it by specifying what it should carry, like this: List<Car> this is a list that can only contain cars. Complete definition would look like this, Local list:= new List<Car>
+- `Map` – Map is used to link one object to another. Like this, Local map:= new Map<Car,Ship>. Car is the Key and Ship is the Value. You can’t use int,float,string with Map but there are special Maps for those cases, like this, Local map:= new StringMap<Car> this will create a Map with string as the Key, and Car as the Value.
+- `Math` – Remember these? Sqrt, Floor, Ceil, Pow, Abs, Sin, Cos, Tan, ASin, ACos, ATan and ATan2. They are at direct access.

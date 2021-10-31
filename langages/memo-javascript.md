@@ -263,9 +263,11 @@ Sur une seule ligne ou sur plusieurs lignes :
 
 ```javascript
 // ceci est un commentaire sur une seule ligne
-/* ceci est un
+/*
+ceci est un
 commentaire sur
-plusieurs lignes. */
+plusieurs lignes
+*/
 ```
 
 ## Afficher un texte dans la console
@@ -349,7 +351,7 @@ une_chaine = String(value)
 let nom_de_variable;
 ```
 
-Une variable juste déclaré possède la valeur `undefined`.
+Une variable déclarée mais non initialisée possède la valeur `undefined`.
 
 # Déclarer une constante
 
