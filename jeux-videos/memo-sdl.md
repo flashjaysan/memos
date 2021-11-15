@@ -42,7 +42,7 @@ Vous devriez avoir l'arborescence de projet suivante :
   - dossier `bin`
     - fichier `SDL.dll`
 
-Dans le sous-dossier `src`, créez un fichier main.c et saisissez le code suivant :
+Dans le sous-dossier `src`, créez un fichier `main.c` et saisissez le code suivant :
 
 ```c
 #include <stdio.h>
@@ -272,7 +272,7 @@ SDL_DestroyWindow(window);
 
 Après avoir créé la fenêtre d'affichage, vous devez créer un renderer.
 
-La fonction [`SDL_CreateRenderer`](https://wiki.libsdl.org/SDL_CreateRenderer) vous permet de créer unrenderer. Cette fonction renvoie un pointeur de type [`SDL_Renderer`](https://github.com/libsdl-org/SDL/blob/main/src/video/SDL_sysvideo.h#L74) correspondant au renderer créé.
+La fonction [`SDL_CreateRenderer`](https://wiki.libsdl.org/SDL_CreateRenderer) vous permet de créer un renderer. Cette fonction renvoie un pointeur de type [`SDL_Renderer`](https://github.com/libsdl-org/SDL/blob/main/src/video/SDL_sysvideo.h#L74) correspondant au renderer créé.
 
 La fonction prend les paramètres suivants :
 

@@ -303,6 +303,14 @@ if element_trouve then
 end
 ```
 
+Une autre forme de boucle `for` est disponible. Elle associe à chaque élément d'une table, son index, qu'il soit numérique ou alphanumérique.
+
+```lua
+for key, value in pairs(ma_table) do
+  
+end
+```
+
 ### Parcours de tableau à deux dimensions
 
 Pour parcourir un tableau à deux dimensions, souvenez-vous que c'est en réalité un tableau contenant d'autres tableaux. Vous pouvez donc parcourir le tableau général comme dans la section précédente.

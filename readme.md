@@ -6,8 +6,8 @@ Ce dépot contient mes mémos (plus ou moins avancés) relatifs à divers langag
 
 Il y a deux dossiers :
 
-- Le dossier [`langages`](/langages/) contient les mémos sur les langages de programmation.
-- Le dossier [`jeux-videos`](/jeux-videos/) contient les mémos sur les langages de programmation.
+- Le dossier [`langages`](/langages/) contient les mémos sur les langages de programmation standards.
+- Le dossier [`jeux-videos`](/jeux-videos/) contient les mémos sur les outils liés au développement de jeux vidéos.
 
 ## Contenu du dossier langages
 

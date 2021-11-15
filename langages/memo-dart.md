@@ -4,7 +4,7 @@
 
 ## Introduction
 
-
+ 
 
 ## Syntaxe
 
@@ -44,13 +44,15 @@ Les types `int` et `double` héritent du type `num` (`dart:core`).
 
 ### Inférence de type
 
+Utilisez le mot clé `var` pour indiquer que la variable est automatiquement du type de la valeur d'initialisation.
+
 ```dart
 var uneVariable = expression; // L'expression détermine le type de la variable
 ```
 
 **Conseil :** Il est recommandé d'utiliser l'inférence de type plutôt que la spécification explicite de type.
 
-Si vous voulez une variable ayant un type dynamique, donnez-lui le type `Object` ou le `dynamic`.
+Si vous voulez une variable ayant un type dynamique, donnez-lui le type `Object` ou `dynamic`.
 
 ```dart
 Object uneVariable = 'Bonjour !';
@@ -83,7 +85,34 @@ Utilisez la fonction `assert` pour tester si une condition est remplie. Si ce n'
 assert(condition);
 ```
 
+```dart
+if (year >= 2001) {
+  print('21st century');
+} else if (year >= 1901) {
+  print('20th century');
+}
 
+for (final object in flybyObjects) {
+  print(object);
+}
+
+for (int month = 1; month <= 12; month++) {
+  print(month);
+}
+
+while (year < 2016) {
+  year += 1;
+}
+
+int fibonacci(int n) {
+  if (n == 0 || n == 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+var result = fibonacci(20);
+
+flybyObjects.where((name) => name.contains('turn')).forEach(print);
+```
 
 
 

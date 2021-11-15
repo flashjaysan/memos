@@ -20,13 +20,15 @@ Il est fournit avec un éditeur complet appelé *MaxIDE* qui vous permet de comp
 - [Téléchargez](https://blitzmax.org/downloads/) la version adaptée à votre plateforme et dézippez l'archive à l'emplacement de votre choix.
 - Lancez l'éditeur MaxIDE.
 
+**Remarque :** Vous pouvez également codez vos projets BlitzMax dans VS Code et utiliser l'excellente extension BlitzMax de Hezkore. Par ce biais vous n'aurez pas accès à la documentation intégrée de MaxIDE mais vous pourrez bénéficier de toutes les fonctionnalités fournies par VS Code ainsi que l'autocomplétion et la compilation via un bouton dans l'éditeur.
+
 ## Interface
 
 - Cliquez sur le bouton `New` (ou le menu `File -> New` ou `CTRL+N`) pour créer un nouveau fichier source.
 - Cliquez sur le bouton `Open` (ou le menu `File -> Open` ou `CTRL+O`) pour ouvrir un fichier source existant.
 - Cliquez sur le bouton `Close` (ou le menu `File -> Close Tab` ou `CTRL+W`) pour fermer le fichier source actif.
 - Cliquez sur le bouton `Save` (ou le menu `File -> Save` ou `CTRL+S`) pour enregistrer le fichier source actif.
-- Cliquez sur la fusée droite (ou le menu `Program -> Build` ou `CTRL+B`) pour compiler le fichier source actif.
+- Cliquez sur la fusée à la verticale (ou le menu `Program -> Build` ou `CTRL+B`) pour compiler le fichier source actif.
 - Cliquez sur la fusée inclinée (ou le menu `Program -> Build and Run` ou `CTRL+R`) pour compiler et exécuter le fichier source actif.
 
 ## Langage
@@ -83,9 +85,10 @@ Le mot clé `End` indique que le programme est terminé. Tout ce qui suit n'est 
 
 En tête de vos fichiers sources, vous pouvez spécifier un mode.
 
-- Si vous ne précisez pas de mode, le mode par défaut est sélectionné. Dans ce mode, vous n'êtes pas obligé de déclarer vos variables ou le type de retour des fonctions/méthodes.
-- Si vous préciser le mode `Strict`, vous devez déclarer toutes vos variables. Leur attribuer un type est optionnel. Par défaut, les variables sans type sont de type `Int` et les fonctions/méthodes qui ne déclarent pas de type de retour renvoient le type `Int`.
+- Si vous ne précisez pas de mode, le mode Strict est sélectionné par défaut. Vous pouvez également préciser le mode `Strict` explicitement en tête de vos fichiers sources. Dans ce mode, vous devez déclarer toutes vos variables. Leur attribuer un type est optionnel. Par défaut, les variables sans type sont de type `Int` et les fonctions/méthodes qui ne déclarent pas de type de retour renvoient le type `Int`.
 - Si vous précisez le mode `SuperStrict`, vous devez déclarer toutes vos variables et leur attribuer à toutes un type. Les fonctions/méthodes doivent également déclarer un type de retour.
+
+**Remarque :** La version BlitzMax NG force le mode Strict par défaut mais les versions antérieurs de BlitzMax utilisaient un mode "libre" où vous n'étiez pas obligé de déclarer vos variables ou le type de retour de vos fonctions/méthodes.
 
 **Conseil :** Il est généralement conseillé d'utiliser au minimum le mode `Strict`. Pour la meilleure sécurité de code, utilisez le mode `SuperStrict`.
 
@@ -99,55 +102,57 @@ SuperStrict
 
 Contrairement aux autres modes, dans le mode par défaut, vous n'êtes pas obligé de déclarer vos variables.
 
-Pour déclarer une variable avec une portée locale, utilisez le mot-clé `Local` suivi du nom de la variable. Une variable de portée locale est accessible uniquement dans le bloc contenant sa déclaration et tous ses sous-blocs.
+Pour déclarer une variable avec une portée locale, utilisez le mot-clé `Local` suivi du nom de la variable. Une variable de portée locale est accessible uniquement dans le bloc contenant sa déclaration et tous ses sous-blocs. Une variable locale déclarée au niveau le plus élevé d'un fichier source (en dehors de tout bloc) n'est pas accessible dans les fonctions.
 
 ```
-Local NomDeVariable
+Local nom_de_variable
 ```
+
+**Remarque :** BlitzMax n'étant pas sensible à la casse, j'ai choisi d'utiliser la convention `snake_case` pour nommer mes variables de manière à les identifier plus facilement.
 
 Vous pouvez également déclarer plusieurs variables sur la même ligne en séparant chaque variable avec une virgule `,`.
 
 ```
-Local NomDeVariable1, NomDeVariable2
+Local nom_de_variable_1, nom_de_variable_2
 ```
 
-**Remarque :** Techniquement, vous pouvez également déclarer vos variables avec le mot-clé `Global` mais cela en fait des variables avec une portée globale au projet (accessibles partout dans le projet) et cette pratique est fortement déconseillée si vous pouvez l'éviter.
+**Remarque :** Techniquement, vous pouvez également déclarer vos variables avec le mot-clé `Global` mais cela en fait des variables avec une portée globale au projet (accessibles partout dans le projet) et cette pratique est fortement déconseillée.
 
 ```
-Global NomDeVariable
+Global nom_de_variable
 ```
 
 Pour définir le type d'une variable, utilisez deux point `:` suivis du nom du type ou faites suivre (sans espace) le nom de la variable d'un caractère spécial pour les types de base.
 
 ```
-Local NomDeVariable1: Int ' identique à Local NomDeVariable1 ou NomDeVariable1%
-Local NomDeVariable2: Float ' identique à Local NomDeVariable2#
-Local NomDeVariable2: Double ' identique à Local NomDeVariable2!
-Local NomDeVariable3: String 'identique à Local NomDeVariable3$
-Local NomDeVariable4: NomType
+Local nom_de_variable_1:Int     ' identique à Local nom_de_variable_1 (en mode Strict) ou nom_de_variable_1%
+Local nom_de_variable_2:Float   ' identique à Local nom_de_variable_2#
+Local nom_de_variable_3:Double  ' identique à Local nom_de_variable_2!
+Local nom_de_variable_4:String  ' identique à Local nom_de_variable_3$
+Local nom_de_variable_5:NomType
 ```
 
 Vous pouvez également tout déclarer sur la même ligne en séparant les variables avec une virgule `,`.
 
 ```
-' identique à Local NomDeVariable1, NomDeVariable2#, NomDeVariable3$
-Local NomDeVariable1: Int, NomDeVariable2: FLoat, NomDeVariable2: String
+' identique à Local nom_de_variable_1, nom_de_variable_2#, nom_de_variable_3$
+Local nom_de_variable_1:Int, nom_de_variable_2:FLoat, nom_de_variable_2:String
 ```
 
 Enfin, vous pouvez initialiser les variables lors de leur déclaration. Utiliser le symbole égal `=`.
 
 ```
-Local NomDeVariable1: Int = 10 ' identique à Local NomDeVariable1 = 10
-Local NomDeVariable2: Float = 10.01 ' identique à Local NomDeVariable2# = 10.01
-Local NomDeVariable2: Double = 10.01 ' identique à Local NomDeVariable2! = 10.01
-Local NomDeVariable3: String = "Hello" 'identique à Local NomDeVariable3$ = "Hello"
+Local nom_de_variable_1:Int = 10            ' identique à Local nom_de_variable_1 = 10
+Local nom_de_variable_2:Float = 10.01       ' identique à Local nom_de_variable_2# = 10.01
+Local nom_de_variable_2:Double = 10.01      ' identique à Local nom_de_variable_2! = 10.01
+Local nom_de_variable_3:String = "Hello"    ' identique à Local nom_de_variable_3$ = "Hello"
 ```
 
 Vous pouvez également le faire sur une seule ligne en utilisant la virgule `,` comme séparateur.
 
 ```
-' identique à Local NomDeVariable1 = 10, NomDeVariable2# = 10.01, NomDeVariable3$ = "Hello"
-Local NomDeVariable1: Int = 10, NomDeVariable2 : FLoat = 10.01, NomDeVariable3 : String = "Hello"
+' identique à Local nom_de_variable_1 = 10, nom_de_variable_2# = 10.01, nom_de_variable_3$ = "Hello"
+Local nom_de_variable_1:Int = 10, nom_de_variable_2:FLoat = 10.01, nom_de_variable_3:String = "Hello"
 ```
 
 ### Constantes
@@ -157,11 +162,11 @@ Une constante ne peut plus être modifiée après sa déclaration et provoque un
 Pour déclarer une constante, utilisez le mot-clé `Const` suivi du nom de la constante, du signe égal `=` et d'une expression constante (qui peut être constituée d'autres constantes déjà déclarées) ou d'un littéral.  Comme pour les variables, vous pouvez définir le type de la constante avec deux points `:` suivi du type et déclarer plusieurs constantes sur une même ligne avec une virgule `,`. Une constante déclarée sans type explicite est de type `Int` par défaut.
 
 ```
-Const STARTUP_SIZE = 1000
-Const SCREEN_WIDTH = 640, SCREEN_HEIGHT = 480
-Const SCREEN_AREA = SCREEN_WIDTH * SCREEN_HEIGHT
-Const SCALE_FACTOR: Float = 1.5
-Const DEFAULT_TITLE: String = "Mark Sibly"
+Const STARTUP_SIZE = 1000                               ' type Int par défaut
+Const SCREEN_WIDTH:Int = 640, SCREEN_HEIGHT:Int = 480   ' déclaration multiple
+Const SCREEN_AREA:Int = SCREEN_WIDTH * SCREEN_HEIGHT    ' utilisation d'expression constante
+Const SCALE_FACTOR:Float = 1.5
+Const DEFAULT_TITLE:String = "Mark Sibly"
 ```
 
 **Remarque :** Même si le langage n'est pas sensible à la casse, utilisez de préférence la convention `ALL_CAPS` pour nommer vos constantes (tous les mots en majuscules séparés par un signe *underscore* `_`).
@@ -173,16 +178,16 @@ Les chaînes sont immutables.
 Utiliser l'opérateur `+` pour concaténer des chaînes.
 
 ```
-Local HelloString: String = "Hello"
-Local WorldString: String = "World"
-Local Message: String = HelloString + ", " + WorldString
-Print(Message) ' affiche "Hello, World"
+Local hello_string:String = "Hello"
+Local world_string:String = "World"
+Local message:String = hello_string + ", " + world_string
+Print(message) ' affiche "Hello, World"
 ```
 
 **Remarque :**  Indexer une chaîne renvoie une valeur de type `Short`. Vous devez caster la valeur en `Chr` pour l'utiliser comme un caractère.
 
 ```
-Local Lettre: Chr = Chr(Chaine[N])
+Local lettre:Chr = Chr(chaine[N])
 ```
 
 ### Caster une valeur
@@ -225,14 +230,14 @@ $CAFEBABE ' forme hexadécimale (base 16)
 #### Caractères d'échappement
 
 ```
-~0 ' Null character (code ASCII 0)
-~t ' Tab character (code ASCII 9)
-~r ' Return character (code ASCII 13)
-~n ' Newline character (code ASCII 10)
-~q ' Quote character (code ASCII 34)
-~~ ' Tilde character (code ASCII 126)
-~n~ .. ~nnnn~ ' Unicode character, e.g. ~65~ = A
-~$n~ .. ~$nnnn~ ' Hexadecimal character, e.g. ~$41~ = A
+~0                          ' Null character (code ASCII 0)
+~t                          ' Tab character (code ASCII 9)
+~r                          ' Return character (code ASCII 13)
+~n                          ' Newline character (code ASCII 10)
+~q                          ' Quote character (code ASCII 34)
+~~                          ' Tilde character (code ASCII 126)
+~n~ .. ~nnnn~               ' Unicode character, e.g. ~65~ = A
+~$n~ .. ~$nnnn~             ' Hexadecimal character, e.g. ~$41~ = A
 ~%n~ .. ~%nnnnnnnnnnnnnnnn~ ' Binary character, e.g. ~%1000001~ = A
 ```
 
@@ -250,32 +255,32 @@ $8000000000000000:Long
 D'une manière générale, le signe `=` correspond à une affectation. Mais dans le cas de conditions, ce symbole correspond à une notion d'égalité mathématique.
 
 ```
-Local NomDeVariable: Int = 10 ' déclaration + affectation
-NomDeVariable = 20 'affectation
-If NomDeVariable = 20 ' test d'égalité
-    NomDeVariable = 30 ' affectation
+Local nom_de_variable:Int = 10  ' déclaration + affectation
+nom_de_variable = 20            ' affectation
+If nom_de_variable = 20         ' test d'égalité
+    nom_de_variable = 30        ' affectation
 End If
 ```
 
 ### Opérateurs mathématiques
 
 ```
-A + B ' addition
-A - B ' soustraction
-A * B ' multiplication
-A / B ' division
+A + B   ' addition
+A - B   ' soustraction
+A * B   ' multiplication
+A / B   ' division
 A Mod B ' modulo
-A ^ B ' puissance
--A ' négation
+A ^ B   ' puissance
+-A      ' négation
 ```
 
 ### Opérateurs sur les bits
 
 ```
-~A ' inversion de bits
-A & B ' ET sur les bits
-A | B ' OU sur les bits
-A ~ B ' OU exclusif sur les bits
+~A      ' inversion de bits
+A & B   ' ET sur les bits
+A | B   ' OU sur les bits
+A ~ B   ' OU exclusif sur les bits
 A Shl B ' décalage de bits vers la gauche
 A Shr B ' décalage de bits vers la droite
 A Sar B ' décalage arithmétique de bits vers la droite
@@ -284,44 +289,44 @@ A Sar B ' décalage arithmétique de bits vers la droite
 ### Opérateurs d'affectation composés
 
 ```
-A :+ B ' identique à A = A + B
-A :- B ' identique à A = A - B
-A :* B ' identique à A = A * B
-A :/ B ' identique à A = A / B
-A :Mod B ' identique à A = A Mod B
-A :& B ' identique à A = A & B
-A :| B ' identique à A = A \ B
-A :~ B ' identique à A = A ~ B
-A :Shl B ' identique à A = A Shl B
-A :Shr B ' identique à A = A Shr B
-A :Sar B ' identique à A = A Sar B
+A :+ B      ' identique à A = A + B
+A :- B      ' identique à A = A - B
+A :* B      ' identique à A = A * B
+A :/ B      ' identique à A = A / B
+A :Mod B    ' identique à A = A Mod B
+A :& B      ' identique à A = A & B
+A :| B      ' identique à A = A \ B
+A :~ B      ' identique à A = A ~ B
+A :Shl B    ' identique à A = A Shl B
+A :Shr B    ' identique à A = A Shr B
+A :Sar B    ' identique à A = A Sar B
 ```
 
 ### Opérateurs logiques
 
 ```
-A = B ' A est égal à B
-A <> B ' A est différent de B
-A < B ' A est inférieur à B
-A > B ' A est supérieur à B
-A <= B ' A est inférieur ou égal à B
-A >= B ' A est supérieur ou égal à B
-Not A = B ' A n'est pas égal à B (A est différent de B)
-Not A <> B ' A n'est pas différent de B (A est égal à B)
-Not A < B ' A n'est pas inférieur à B (A est inférieur ou égal à B)
-Not A > B ' A n'est pas supérieur à B (A est supérieur ou égal à B)
-Not A <= B ' A n'est pas inférieur ou égal à B (A est inférieur à B)
-Not A >= B ' A n'est pas supérieur ou égal à B (A est supérieur à B)
-A = B And B = C ' A est égal à B et B est égal à C
-A = C Or B = C ' A est égal à B ou B est égal à C
+A = B               ' A est égal à B
+A <> B              ' A est différent de B
+A < B               ' A est inférieur à B
+A > B               ' A est supérieur à B
+A <= B              ' A est inférieur ou égal à B
+A >= B              ' A est supérieur ou égal à B
+Not A = B           ' A n'est pas égal à B (A est différent de B)
+Not A <> B          ' A n'est pas différent de B (A est égal à B)
+Not A < B           ' A n'est pas inférieur à B (A est inférieur ou égal à B)
+Not A > B           ' A n'est pas supérieur à B (A est supérieur ou égal à B)
+Not A <= B          ' A n'est pas inférieur ou égal à B (A est inférieur à B)
+Not A >= B          ' A n'est pas supérieur ou égal à B (A est supérieur à B)
+A = B And B = C     ' A est égal à B et B est égal à C
+A = C Or B = C      ' A est égal à B ou B est égal à C
 ```
 
 ### Constantes prédéfinies
 
 ```
-False ' équivalent à 0
-True ' équivalent à 1
-Pi ' équivalent à 3.1415926535897932384626433832795
+False   ' équivalent à 0
+True    ' équivalent à 1
+Pi      ' équivalent à 3.1415926535897932384626433832795
 ```
 
 **Remarque :** Il n'y a pas de type booléen. Utilisez le type entier `Int`.
@@ -331,13 +336,13 @@ Pi ' équivalent à 3.1415926535897932384626433832795
 Créez un tableau avec `[]`. Un tableau a une dimension fixe et ne contient que des éléments du même type.
 
 ```
-Local NomTableau: NomType[] ' définit un tableau vide
+Local nom_tableau:NomType[] ' définit un tableau vide
 ```
 
 ou
 
 ```
-Local NomTableau: NomType[Taille] ' définit un tableau de Taille éléments
+Local nom_tableau:NomType[taille] ' définit un tableau de Taille éléments
 ```
 
 **Remarque :** Les éléments sont initialisés à la valeur par défaut du type.
@@ -345,15 +350,15 @@ Local NomTableau: NomType[Taille] ' définit un tableau de Taille éléments
 Utilisez l'opérateur `New` pour créer un nouveau tableau.
 
 ```
-Local NomTableau: NomType[] = New NomType[Taille]
+Local nom_tableau:NomType[] = New NomType[taille]
 ```
 
 Utilisez `[]` pour accéder à un élément particulier.
 
 ```
-NomTableau[0] = Valeur1
-NomTableau[1] = Valeur2
-NomTableau[3] = Valeur3
+nom_tableau[0] = valeur_1
+nom_tableau[1] = valeur_2
+nom_tableau[3] = valeur_3
 ...
 ```
 
@@ -362,13 +367,13 @@ NomTableau[3] = Valeur3
 Vous pouvez également initialiser un tableau lors de sa déclaration.
 
 ```
-Local NomTableau: NomType[] = [Valeur1, Valeur2, Valeur3, ...]
+Local nom_tableau:NomType[] = [valeur1, valeur2, valeur3, ...]
 ```
 
 ou
 
 ```
-Local NomTableau: NomType[Taille] = [Valeur1, Valeur2, Valeur3, ...]
+Local nom_tableau: NomType[taille] = [valeur1, valeur2, valeur3, ...]
 ```
 
 #### Parcourir un tableau
@@ -376,7 +381,7 @@ Local NomTableau: NomType[Taille] = [Valeur1, Valeur2, Valeur3, ...]
 Une fois créé, parcourez le tableau avec une boucle `For EachIn Next`.
 
 ```
-For Local Element: NomType = EachIn NomTableau
+For Local element:NomType = EachIn nom_tableau
     
 Next
 ```
@@ -386,7 +391,7 @@ Next
 Utilisez la propriété `Length` pour déterminer la longueur d'un tableau.
 
 ```
-NomTableau.Length
+nom_tableau.Length
 ```
 
 #### Trier un tableau
@@ -394,13 +399,13 @@ NomTableau.Length
 Appelez la méthode `Sort`.
 
 ```
-NomTableau.Sort() ' Trie le tableau par ordre croissant
+nom_tableau.Sort() ' Trie le tableau par ordre croissant
 ```
 
 **Remarque :** Par défaut, la méthode trie le tableau par ordre croissant. Passez la valeur `False` pour inverser l'ordre du tri.
 
 ```
-NomTableau.Sort(False) ' Trie le tableau par ordre décroissant
+nom_tableau.Sort(False) ' Trie le tableau par ordre décroissant
 ```
 
 #### Tableaux à plusieurs dimensions
@@ -408,19 +413,19 @@ NomTableau.Sort(False) ' Trie le tableau par ordre décroissant
 Séparez les dimensions par une virgule.
 
 ```
-Local NomTableau: NomType[, ]
+Local nom_tableau:NomType[, ]
 ```
 
 Utilisez l'opérateur `New` pour créer un nouveau tableau.
 
 ```
-Local NomTableau: NomType[, , ] = New NomType[Taille1, Taille2, ...]
+Local nom_tableau:NomType[, , ] = New NomType[taille1, taille2, ...]
 ```
 
 Ou précisez les dimensions.
 
 ```
-Local NomTableau: NomType[K, M]
+Local nom_tableau:NomType[m, n]
 ```
 
 #### Parcourir un tableau à plusieurs dimensions
@@ -428,8 +433,8 @@ Local NomTableau: NomType[K, M]
 Une fois créé, parcourez le tableau avec N boucles `For To Next` imbriquées.
 
 ``` 
-For Local X = 0 To K
-    For Local Y = 0 To M
+For Local x = 0 To m
+    For Local y = 0 To n
         
     Next
 Next
@@ -440,14 +445,14 @@ Next
 Utilisez la méthode `Dimensions` pour obtenir un tableau constitué d'un tableau d'`Int` à N dimensions contenant la longueur de chaque dimension.
 
 ```
-Local Longueurs: Int[] = NomTableau.Dimensions()
+Local longueurs:Int[] = nom_tableau.Dimensions()
 ```
 
 **Exemple :**
 
 ```
-Local NomTableau: Int[10,5]
-Local Longueurs: Int[2] = NomTableau.Dimensions() ' contient [10,5]
+Local nom_tableau:Int[10,5]
+Local longueurs:Int[2] = nom_tableau.Dimensions() ' contient [10,5]
 ```
 
 #### Tableaux de tableaux
@@ -455,13 +460,13 @@ Local Longueurs: Int[2] = NomTableau.Dimensions() ' contient [10,5]
 Enchainez les `[]`.
 
 ```
-Local NomTableau: Int[][]
+Local nom_tableau:Int[][]
 ```
 
 **Remarque :** Cette technique permet de créer des sous-tableaux de tailles différentes.
 
 ```
-Local Grille: Int[][] = [[1, 2, 3, 4],[5, 6, 7],[8, 9]]
+Local grille:Int[][] = [[1, 2, 3, 4], [5, 6, 7], [8, 9]]
 ```
 
 #### Tranches de tableaux
@@ -469,10 +474,10 @@ Local Grille: Int[][] = [[1, 2, 3, 4],[5, 6, 7],[8, 9]]
 Utilisez `..` pour trancher (*slice*) un tableau.
 
 ```
-Local NomTableau2: NomType[] = NomTableau1[..] ' copie le contenu du tableau
-Local NomTableau2: NomType[] = NomTableau1[..N] ' slice [0, N[
-Local NomTableau2: NomType[] = NomTableau1[N..] ' slice [N, NomTableau1.Length[
-Local NomTableau2: NomType[] = NomTableau1[M..N] ' slice [M, N[
+Local nom_tableau_2:NomType[] = nom_tableau_1[..]   ' copie le contenu du tableau
+Local nom_tableau_2:NomType[] = nom_tableau_1[..n]  ' slice [0, n[
+Local nom_tableau_2:NomType[] = nom_tableau_1[n..]  ' slice [n, nom_tableau_1.Length[
+Local nom_tableau_2:NomType[] = nom_tableau_1[m..n] ' slice [m, n[
 ```
 
 **Remarque :** Fonctionne aussi sur le type `String`.
@@ -551,7 +556,7 @@ Forever
 La boucle *Pour* commence par le mot-clé `For` et se termine par le mot-clé `Next`.
 
 ```
-For NomDeVariable = PremièreValeur To DernièreValeur
+For nom_de_variable = premiere_valeur To derniere_valeur
     Instructions
 Next
 ```
@@ -559,7 +564,7 @@ Next
 **Remarque :** Par défaut, la valeur d'incrémentation est 1. Vous pouvez préciser un pas spécifique pour l'incrémentation de la variable avec le mot-clé `Step`.
 
 ```
-For NomDeVariable = PremièreValeur To DernièreValeur Step ValeurDePas
+For nom_de_variable = premiere_valeur To derniere_valeur Step valeur_de_pas
     Instructions
 Next
 ```
@@ -567,15 +572,15 @@ Next
 **Remarque :** La variante suivante arrête la répétition quand la variable devient égale à la dernière valeur. Cela exclut donc cette valeur.
 
 ```
-For NomDeVariable = PremièreValeur Until DernièreValeur Step ValeurDePas
+For nom_de_variable = premiere_valeur Until derniere_valeur Step valeur_de_pas
     Instructions
 Next
 ```
 
-**Remarque :** La variable `NomDeVariable` peut avoir une portée locale à la boucle en faisant précéder son nom du mot-clé `Local`.
+**Remarque :** La variable `nom_de_variable` peut avoir une portée locale à la boucle en faisant précéder son nom du mot-clé `Local`.
 
 ```
-For Local NomDeVariable = PremièreValeur To DernièreValeur Step ValeurDePas
+For Local nom_de_variable = premiere_valeur To derniere_valeur Step valeur_de_pas
     Instructions
 Next
 ```
@@ -596,7 +601,7 @@ Forever
 La commande `Continue` permet de stopper l'exécution de la répétion en cours et de reprendre la boucle à la répétition suivante. Cela peut être utile dans une boucle *Pour*.
 
 ```
-For NomDeVariable = PremièreValeur To DernièreValeur Step ValeurDePas
+For nom_de_variable = premiere_valeur To derniere_valeur Step valeur_de_pas
     If ContinueCondition
         Continue
     End If
@@ -607,7 +612,7 @@ Next
 ### Définir une fonction
 
 ```
-Function NomFonction: NomType(Parametre: NomType, ...)
+Function NomFonction:NomType(parametre: NomType, ...)
     Return valeur
 End Function
 ```
@@ -615,7 +620,7 @@ End Function
 **Remarque :** Vous pouvez également indiquer une valeur par défaut pour les derniers paramètres.
 
 ```
-Function NomFonction: NomType(Parametre1: NomType, Parametre2: NomType = valeur, ...)
+Function NomFonction:NomType(parametre1: NomType, parametre2: NomType = valeur, ...)
     Return valeur
 End Function
 ```
@@ -623,7 +628,7 @@ End Function
 ### Appeler une fonction
 
 ```
-Local NomVariable: NomType = NomFonction(arguments)
+Local nom_variable:NomType = NomFonction(arguments)
 ```
 
 ### Objets
@@ -641,27 +646,27 @@ End Type
 #### Créer une instance du type
 
 ```
-Instance: NomType = New NomType
+instance:NomType = New NomType()
 ```
 
-**Remarque :** Pensez à libérer la mémoire en affectant `Null` à la variable.
+**Remarque :** Pensez à libérer la mémoire en affectant `Null` à la variable une fois que vous n'en avez plus besoin.
 
 ```
-Instance: NomType = Null
+instance:NomType = Null
 ```
 
 #### Définir un champ
 
 ```
 Type NomType
-    Field NomChamp: NomType
+    Field NomChamp:NomType
 End Type
 ```
 
 #### Accéder à un champ
 
 ```
-Instance.NomChamp = valeur
+instance.NomChamp = valeur
 ```
 
 **Remarque :** Le champ ne doit pas être privé.
@@ -670,7 +675,7 @@ Instance.NomChamp = valeur
 
 ```
 Type NomType
-    Method NomMethode: NomType()
+    Method NomMethode:NomType()
         
     End Method
 End Type
@@ -681,7 +686,7 @@ End Type
 #### Appeler une méthode
 
 ```
-Instance.NomMethode()
+instance.NomMethode()
 ```
 
 #### Définir un constructeur
@@ -711,20 +716,26 @@ End Type
 ```
 Type NomType
     Public
-        Field NomChampPublique: NomType
-        Method NomMethodePublique: NomType()
+        Field NomChampPublique:NomType
+
+
+        Method NomMethodePublique:NomType()
             
         End Method
 
     Protected
-        Field NomChampProtege: NomType
-        Method NomMethodeProtegee: NomType()
+        Field NomChampProtege:NomType
+
+
+        Method NomMethodeProtegee:NomType()
             
         End Method
 
     Private
-        Field NomChampPrive: NomType
-        Method NomMethodePrivee: NomType()
+        Field NomChampPrive:NomType
+
+
+        Method NomMethodePrivee:NomType()
             
         End Method
 End Type
@@ -744,7 +755,7 @@ End Type
 
 ```
 Type NomType
-    Method NomMethode: NomType() Abstract
+    Method NomMethode:NomType() Abstract
 End Type
 ```
 
@@ -752,7 +763,7 @@ End Type
 
 ```
 Type NomType Abstract
-    Method NomMethode: NomType() Abstract
+    Method NomMethode:NomType() Abstract
 End Type
 ```
 
@@ -760,7 +771,7 @@ End Type
 
 ```
 Type NomTypeEnfant Extends NomTypeParent
-    Method NomMethode: NomType() Override
+    Method NomMethode:NomType() Override
 
     End Method
 End Type
@@ -781,7 +792,7 @@ End Type
 
 ```
 Type NomType
-    Global NomVariableStatique: NomTypeStatique
+    Global NomVariableStatique:NomTypeStatique
 End Type
 ```
 
@@ -791,17 +802,39 @@ End Type
 
 ```
 Type NomType
-    Const NomConstante: NOM_TYPE_CONSTANTE = valeur
+    Const NomConstante:NOM_TYPE_CONSTANTE = valeur
 End Type
 ```
 
-**Remarque :** Ce champ est utilisable sans instancier le type.
+**Remarque :** Ce champ est utilisable sans instancier le type. Il doit être initialisé lors de la déclaration.
+
+#### Définir un champ en lecture seule
+
+Un champ défini avec le mot clé `ReadOnly` empêche la modification après l'instanciation.
+
+```
+Type TType
+    Field champ_1:Int
+    Field ReadOnly champ_2:Int
+
+
+    Method New(parametre_1:Int, parametre_2:Int)
+        champ_1 = parametre_1
+        champ_2 = parametre_2
+    End Method
+End Type
+
+
+Local instance:TType = New TType(0, 0) ' instanciation
+instance.champ_1 = 10                  ' modification autorisée
+instance.champ_2 = 10                  ' modification interdite (provoque une erreur)
+```
 
 #### Définir une méthode statique
 
 ```
 Type NomType
-    Function NomMethodeStatique: NomType()
+    Function NomMethodeStatique:NomType()
         
     End Function
 End Type
@@ -809,11 +842,35 @@ End Type
 
 **Remarque :** Cette méthode est utilisable sans instancier le type mais ne peut accéder qu'aux champs statiques ou constants.
 
+#### Définir une structure
+
+Une structure est un type passé par valeur. La définition d'une structure est strictement identique à celle d'un type à la différence près que l'on utilise le mot clé `Struct` au lieu du mot clé `Type`.
+
+```
+Struct SVector2
+    Private
+        Field x:Int
+        Field y:Int
+
+
+    Public
+        Method New(x:Int, y:Int)
+            Self.x = x
+            Self.y = y
+        End Method
+
+
+        Method Add(other:SVector2)
+            Return New SVector2(Self.x + other.x, Self.y + other.y)
+        End Method
+End Structure
+```
+
 #### Définir une interface
 
 ```
 Interface NomInterface
-    Method NomMethode: NomType()
+    Method NomMethode:NomType()
 End Interface
 ```
 
@@ -823,7 +880,7 @@ End Interface
 
 ```
 Type NomType Implements NomInterface
-    Methode NomMethode: NomType()
+    Methode NomMethode:NomType()
         
     End Methode
 End Type
@@ -860,7 +917,7 @@ Wend
 Pour effacer la surface d'application, utilisez la fonction `Cls`.
 
 ```
-Cls
+Cls()
 ```
 
 ### Echanger les tampons d'affichage
@@ -868,7 +925,7 @@ Cls
 Pour échanger les tampons d'affichage avant et arrière, utilisez la fonction `Flip` à la fin de la boucle principale. Passez la valeur 
 
 ```
-Flip
+Flip()
 ```
 
 ### Définir la couleur de dessin
@@ -876,7 +933,7 @@ Flip
 Utilisez la fonction `SetColor` pour définir la couleur de dessin à utiliser par les fonctions de dessin. Passez les composantes rouge, vert et bleu avec des valeurs comprises entre 0 et 255.
 
 ```
-SetColor(255, 255, 255)
+SetColor(valeur_rouge, valeur_vert, valeur_bleu)
 ```
 
 ### Afficher un point
@@ -884,7 +941,7 @@ SetColor(255, 255, 255)
 Utilisez la fonction `Plot` pour afficher un point dans la vue dans la couleur de dessin définie précédemment.
 
 ```
-Plot(PointX, PointY)
+Plot(x, y)
 ```
 
 ### Afficher un segment
@@ -892,7 +949,7 @@ Plot(PointX, PointY)
 Utilisez la fonction `DrawLine` pour tracer une ligne entre deux points dans la vue dans la couleur de dessin définie précédemment.
 
 ```
-DrawLine(Point1X, Point1Y, Point2X, Point2Y)
+DrawLine(x_1, y_1, x_2, y_2)
 ```
 
 ### Afficher un rectangle
@@ -900,7 +957,7 @@ DrawLine(Point1X, Point1Y, Point2X, Point2Y)
 Utilisez la fonction `DrawRect` pour tracer un rectangle plein dans la vue dans la couleur de dessin définie précédemment.
 
 ```
-DrawRect(X, Y, Largeur, Hauteur)
+DrawRect(x, y, largeur, hauteur)
 ```
 
 ### Afficher un oval
@@ -908,7 +965,7 @@ DrawRect(X, Y, Largeur, Hauteur)
 Utilisez la fonction `DrawOval` pour tracer un oval plein dans la vue dans la couleur de dessin définie précédemment. L'oval est dessiné dans un rectangle défini par les arguments passés.
 
 ```
-DrawOval(X, Y, Largeur, Hauteur)
+DrawOval(x, y, largeur, hauteur)
 ```
 
 ### Afficher du texte
@@ -916,7 +973,7 @@ DrawOval(X, Y, Largeur, Hauteur)
 Utilisez la fonction `DrawText` pour afficher du texte dans la vue dans la couleur de dessin définie précédemment.
 
 ```
-DrawText(Chaine, X, Y)
+DrawText(chaine, x, y)
 ```
 
 ### Charger une image
@@ -924,7 +981,7 @@ DrawText(Chaine, X, Y)
 Utilisez la fonction `LoadImage` pour charger une image dans une variable de type `Timage`. 
 
 ```
-Local Image: TImage = LoadImage("NomImage.bmp")
+Local image:TImage = LoadImage("chemin_vers_image.bmp")
 ```
 
 ### Afficher une image
@@ -932,7 +989,7 @@ Local Image: TImage = LoadImage("NomImage.bmp")
 Utilisez la fonction `DrawImage` pour afficher une image de type `Timage`.
 
 ```
-DrawImage(Image, X, Y)
+DrawImage(image, x, y)
 ```
 
 ## Structures de données utiles
@@ -1107,8 +1164,6 @@ WaitKey
 
 
 
-
-
 ## Audio
 
 
@@ -1116,8 +1171,8 @@ WaitKey
 ## Génération de nombres aléatoires
 
 ```
-Rand(NombreEntier) ' renvoie un nombre dans l'intervalle [1, NombreEntier]
-Rand(NombreEntier1, NombreEntier2) ' renvoie un nombre dans l'intervalle [NombreEntier1, NombreEntier2]
+Rand(nombre_entier)                     ' renvoie un nombre dans l'intervalle [1, nombre_entier]
+Rand(nombre_entier_1, nombre_entier_2)  ' renvoie un nombre dans l'intervalle [nombre_entier_1, nombre_entier_2]
 ```
 
 ## Modules
@@ -1134,55 +1189,6 @@ import "nomfichier.bmx"
 
 Voir la documentation sur les outils (*Tools*).
 
-
-
-
-
 `Null` it can be converted to any type, and results in the types default value
 for most classes that will be a null reference, so it will act the same as the null you may know from the likes of java or c#
 strings are arrays have default values of "" and [] respectively,
-
-
-
-
-```
-Struct SMyVec2F
-  Field x:Float
-  Field ReadOnly y:Float
-End Struct
-
-Local s:SMyVec2
-s.x = 10 'ok
-s.y = 10 'fails
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

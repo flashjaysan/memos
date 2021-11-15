@@ -12,19 +12,11 @@
 
 ### Serveur web
 
-Pour tester vos jeux localement, vous aurez besoin d'un serveur web.
-
-#### Mongoose web server
-
-Sur Windows, je vous recommande le serveur web [Mongoose](http://cesanta.com) qui est très léger et qui ne nécessite aucune installation. Placez simplement le fichier `Mongoose-free-X.X.exe` dans un dossier contenant vos projets *PixiJS* et exécutez-le. Une fenêtre de navigateur s'ouvre et affiche les fichiers contenus dans ce dossier.
-
-**Remarque :** Si vous fermez le navigateur, cliquez sur l'icône de *Mongoose* dans la zone de notification en bas à droite et choisissez l'option `Go to my address:...` pour ouvrir à nouveau le navigateur sur le serveur web.
-
-Pour fermer le serveur web, cliquez sur l'icône de *Mongoose* dans la zone de notification en bas à droite et choisissez l'option `Exit`.
+Pour tester vos jeux localement, vous aurez besoin d'un serveur web. Voici quelques solutions :
 
 #### Brackets
 
-Une autre solution simple est d'utiliser l'éditeur de code [Brackets](brackets.io) pour programmer votre jeu et de cliquer sur l'icône en forme d'éclair en haut à droite de l'éditeur pour ouvrir automatiquement le navigateur par défaut avec un serveur web pointant sur l'emplacement d'un fichier *HTML* en cours d'édition.
+Une solution simple est d'utiliser l'éditeur de code [Brackets](http://brackets.io) pour programmer votre jeu et de cliquer sur l'icône en forme d'éclair en haut à droite de l'éditeur pour ouvrir automatiquement le navigateur par défaut avec un serveur web pointant sur l'emplacement d'un fichier *HTML* en cours d'édition.
 
 - Ouvrez simplement le dossier de votre projet avec *Brackets* (`Fichier -> Ouvrir un dossier... (CTRL+ALT+O)`).
 - Ouvrez un fichier `.html` dans l'éditeur.
@@ -47,20 +39,20 @@ Téléchargez le fichier [pixi.min.js](https://pixijs.download/release/pixi.min.
 
 Les versions antérieures de *PixiJS* sont disponibles [ici](https://github.com/pixijs/pixi.js/releases).
 
-**Remarque :** Par défaut, *PixiJS* V5 ne prend plus en charge que `WebGL`. Pour utiliser le moteur de rendu [`CanvasRenderingContext2D`](https://developer.mozilla.org/fr/docs/Web/API/CanvasRenderingContext2D), vous devez télécharger le fichier `pixi-legacy.js` à la place du fichier `pixi.js`. [Plus d'information](https://medium.com/goodboy-digital/pixijs-v5-lands-5e112d84e510).
+**Remarque :** Par défaut, *PixiJS* V5 ne prend plus que le contexte `WebGL` en charge. Pour utiliser le moteur de rendu [`CanvasRenderingContext2D`](https://developer.mozilla.org/fr/docs/Web/API/CanvasRenderingContext2D), vous devez télécharger le fichier `pixi-legacy.js` à la place du fichier `pixi.js`. [Plus d'information](https://medium.com/goodboy-digital/pixijs-v5-lands-5e112d84e510).
 
 ### Editeur de code
 
-Vous pouvez à présent commencer à créer vos projets avec *PixiJS*. Si ce n'est déjà fait, vous pouvez également installer un éditeur de code ou un *IDE*. [Brackets](brackets.io), [Visual Studio Code](https://code.visualstudio.com/), [Atom](https://atom.io/) ou [Sublime Text](https://www.sublimetext.com/), sont tous de bons choix très populaires.
+Vous pouvez à présent commencer à créer vos projets avec *PixiJS*. Si ce n'est déjà fait, vous pouvez également installer un éditeur de code ou un *IDE*. [Brackets](http://brackets.io), [Visual Studio Code](https://code.visualstudio.com/), [Atom](https://atom.io/) ou [Sublime Text](https://www.sublimetext.com/), sont tous d'excellents choix très populaires.
 
 ## Préparatifs
 
-Pour chaque projet *PixiJS*, je vous conseille de créer un dossier séparé où vous placerez une copie du fichier `pixi.min.js` et où vous créerez un fichier *JavaScript* et un fichier *HTML*.
+Pour chaque projet *PixiJS*, je vous conseille de créer un dossier dédié. Vous placerez une copie du fichier `pixi.min.js` et où vous créerez un fichier *JavaScript* ainsi qu'un fichier *HTML*.
 
 - Créez un dossier qui servira de dossier de travail à votre projet *PixiJS*.
 - Placez le fichier `pixi.min.js` (ou le fichier `pixi.js` lors du développement) dans le dossier précédent (ou dans un sous-dossiers).
 
-Pour bien organiser mon projet, je place généralement le fichier `pixi.min.js` dans un dossier appelé `libs`.
+**Remarque :** Pour bien organiser mes projets, je place généralement le fichier `pixi.min.js` dans un sous dossier appelé `libs`, mes fichiers JavaScript dans un sous dossier `scripts` et mes feuilles de style CSS dans un sous dossier `css`. Je laisse le fichier HTML `index.html` à la racine du projet.
 
 ### Fichier *JavaScript* de base
 
@@ -70,9 +62,9 @@ En plus du fichier `pixi.min.js`, vous devez créer un fichier de script *JavaSc
 - Ouvrez-le avec un éditeur de code ou un éditeur de texte.
 - Vous n'avez plus qu'à coder votre application dans ce fichier.
 
-Dans ce mémo, nous appelerons le fichier *JavaScript* `main.js` et nous le placerons dans un dossier `scripts`. Ce fichier contiendra le code source principal de votre jeu.
+Dans ce mémo, nous appelerons le fichier *JavaScript* `main.js` et nous le placerons dans un sous dossier `scripts`. Ce fichier contiendra le code source principal de votre jeu.
 
-**Remarque :** Vous avez la possibilité de vous passer de ce fichier de script *JavaScript* ; il vous suffit de saisir votre programme dans une balise `<script>` directement dans un fichier *HTML*. Toutefois, afin d'améliorer la lisibilité de votre projet, je vous déconseille cette approche. Le rôle de chaque fichier sera ainsi bien séparé. Pour bien organiser mon projet, je place généralement mes fichiers de script *JavaScript* dans un dossier appelé `scripts`.
+**Remarque :** Vous avez la possibilité de vous passer de ce fichier de script *JavaScript* ; il vous suffit de saisir votre programme dans une balise `<script>` directement dans un fichier *HTML*. Toutefois, je vous déconseille cette approche afin d'améliorer la lisibilité et l'organisation de votre projet. Le rôle de chaque fichier sera ainsi bien séparé. Pour bien organiser mon projet, je place généralement mes fichiers de script *JavaScript* dans un dossier appelé `scripts`.
 
 ### Fichier *HTML* de base
 
@@ -88,14 +80,14 @@ En plus du fichier `pixi.min.js` et de votre fichier de script *JavaScript*, vou
         <meta charset="utf-8">
         <title>Titre du projet</title>
         <script src="libs/pixi.min.js"></script>
-        <script src="scripts/main.js"></script>
     </head>
     <body>
+        <script src="scripts/main.js"></script>
     </body>
 </html>
 ```
 
-Le but de ce fichier est simplement de contenir un code *HTML* valide avec des balises `<script>` faisant référence au fichier `pixi.min.js` et à votre fichier de script principal (ici, `main.js`).
+Le but de ce fichier est simplement de contenir un code *HTML* valide avec des balises `<script>` faisant référence au fichier `pixi.min.js` et à votre fichier de script principal (ici, `main.js`). Ce dernier est placé dans la balise `body` et devrait être placé après toutes les balises de contenu de la page. De cette manière, le script peut accéder aux différents éléments chargés dans la page car il sera chargé en dernier. Au contraire, la bibliothèque PixiJS est placé dans la balise `head` pour être disponible le plus tôt possible.
 
 **Remarque :** Notez que je préconise l'utilisation d'un fichier de script *JavaScript* externe au document *HTML* mais vous pouvez créer une balise `<script>` et saisir votre code *JavaScript* à l'intérieur. Si le fichier `pixi.min.js` se trouve dans un sous-dossier (appelé par exemple `libs`), passez à la balise `script`, le chemin relatif au fichier *HTML* (par exemple `scr="libs/pixi.min.js"`). De même, si le fichier `main.js` se trouve dans un sous-dossier (appelé par exemple `scripts`), passez à la balise `script`, le chemin relatif au fichier *HTML* (par exemple `scr="scripts/main.js"`).
 
@@ -169,11 +161,11 @@ Fichier *HTML* :
         <meta charset="utf-8">
         <title>Titre du projet</title>
     </head>
+        <script src="libs/pixi.min.js"></script>
+    <body>
         <!--crée une balise <canvas> portant l'id 'pixiCanvas'-->
         <canvas id=pixiCanvas></canvas>
-        <script src="libs/pixi.min.js"></script>
         <script src="scripts/main.js"></script>
-    <body>
     </body>
 </html>
 ```
@@ -188,6 +180,18 @@ let renderer = new PIXI.autoDetectRenderer({width: 640, height: 360, view: pixiC
 ```
 
 Le moteur de rendu est responsable de l'affichage d'un conteneur racine (qui contiendra tous les autres conteneurs à afficher).
+
+Utilisez la propriété `backgroundColor` pour modifier la couleur de fond du canevas.
+
+```js
+renderer.backgroundColor = #FF0000;
+```
+
+Utilisez la méthode `resize` pour modifier les dimensions du canevas.
+
+```js
+renderer.resize(largeur, hauteur);
+```
 
 ### Créer un conteneur racine
 
@@ -215,7 +219,6 @@ ticker.start();
 
 **Remarque :** La fonction `animate` sera alors appelée à intervalle régulier créant ainsi la boucle de jeu. Vous pouvez nommer cette fonction comme bon vous semble mais vous devez bien évidemment penser à la définir. En dernière instruction de cette fonction, demandez au moteur de rendu d'afficher le conteneur racine avec la méthode `render`.
 
-
 ```js
 function animate() {
     // Instructions d'animation
@@ -226,7 +229,7 @@ function animate() {
 
 ## Configurer l'application automatiquement
 
-La classe `Application` vous permet de créer de de configurer automatiquement un moteur de rendu, un conteneur racine, un gestionnaire de temps ainsi qu'un canevas *HTML* associé.
+La classe `Application` vous permet de créer et de configurer automatiquement un moteur de rendu, un conteneur racine, un gestionnaire de temps ainsi qu'un canevas *HTML* associé.
 
 ### La classe `Application`
 
@@ -252,12 +255,12 @@ Fichier *HTML* :
     <head>
         <meta charset="utf-8">
         <title>Titre du projet</title>
+        <script src="libs/pixi.min.js"></script>
     </head>
+    <body>
         <!--crée une balise <canvas> portant l'id 'pixiCanvas'-->
         <canvas id=pixiCanvas></canvas>
-        <script src="libs/pixi.min.js"></script>
         <script src="scripts/main.js"></script>
-    <body>
     </body>
 </html>
 ```
@@ -316,7 +319,6 @@ function animate() {
 
 **Remarque :** La fonction `animate` sera appelée à intervalle régulier créant ainsi la boucle de jeu. Vous pouvez nommer cette fonction comme bon vous semble mais vous devez bien évidemment penser à la définir. En dernière instruction de cette fonction, demandez au moteur de rendu d'afficher le conteneur racine avec la méthode `render`.
 
-
 ```js
 function animate() {
     // Instructions d'animation
@@ -332,12 +334,14 @@ function animate() {
 *PixiJS* fournit automatiquement un chargeur de ressources par défaut. Depuis la version 5, vous pouvez utiliser l'objet `shared` de la classe `Loader`. Vous pouvez toutefois instancier votre propre chargeur de ressources.
 
 ```js
+// Utilise le loader prédéfini
 const loader = PIXI.Loader.shared;
 ```
 
 ou
 
 ```js
+// Crée une instance de la classe Loader
 const loader = new PIXI.Loader();
 ```
 
@@ -346,7 +350,9 @@ La classe `Loader` de *PixiJS* est une extension de la classe [`Loader`](https:/
 Utilisez la méthode `add` pour charger une ressource.
 
 ```js
+// Charge l'image et associe sa référence à son chemin
 loader.add('chemin/image.png');
+// Charge l'image et associe sa référence à la chaine passée en premier argument
 loader.add('id_image','chemin/image.png');
 ```
 
@@ -375,7 +381,7 @@ function init() {
 }
 ```
 
-Une ressource (de type [`Resource`](https://github.com/englercj/resource-loader/blob/master/src/Resource.ts)) chargée est stockée dans l'objet `resources` (de type `Loader.ResourceMap` ou plus exactement `Partial<Record<string, Resource>>`) de l'objet `Loader`. Vous pouvez accéder à une ressource spécifique en utilisant la nom ou le chemin d'accès de la ressource en tant que clé sur l'objet `resources`.
+Une ressource (de type [`Resource`](https://github.com/englercj/resource-loader/blob/master/src/Resource.ts)) chargée est stockée dans la propriété `resources` (une instance de la classe `Loader.ResourceMap` ou plus exactement `Partial<Record<string, Resource>>`) de l'objet `Loader`. Vous pouvez accéder à une ressource spécifique en utilisant la chaîne associée ou le chemin d'accès de la ressource en tant que clé sur l'objet `resources`.
 
 ```js
 const image1_resource = loader.resources['image1.png'];
@@ -407,7 +413,7 @@ texture.updateUvs();
 
 ### La classe `Sprite`
 
-La classe `Sprite` correspond à un conteneur associé à une texture. En plus de la référence à un objet `Texture`, cet objet contient des informations de transformation spaciale (position, rotation, etc...). Vous pouvez créer un objet `Sprite` en passant au constructeur un objet `Texture`. 
+La classe `Sprite` correspond à un conteneur associé à une texture. En plus de la référence à un objet `Texture`, cet objet contient des informations de transformation spaciale (position, rotation, etc...). Vous pouvez créer un objet `Sprite` en passant à son constructeur un objet `Texture`. 
 
 ```js
 // Crée un sprite à partir d'une texture
@@ -611,6 +617,3 @@ const Sprite = PIXI.Sprite;
 - pixi-sound
 - pixi-tiled
 - pixi-particles
-
-
-

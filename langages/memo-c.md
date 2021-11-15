@@ -195,11 +195,20 @@ int main(void)
 
 ## Littéraux
 
-Un littéral booléen est simplement la valeur `0` ou `1`. Si vous utilisez le fichier en-tête `stdbool.h`, vous pouvez également utiliser les constantes `true` et `false`.
+Un littéral booléen est simplement une valeur entière `0` ou `1`.
 
 ```c
 _Bool faux = 0;
 _Bool vrai = 1;
+```
+
+Si vous utilisez le fichier en-tête `stdbool.h`, vous pouvez également utiliser les constantes `true` et `false` à la place des valeurs `1` et `0` et utiliser le type `bool` à la place du type `_Bool`.
+
+```c
+#include <stdbool.h>
+...
+bool faux = 0;
+bool vrai = 1;
 ```
 
 Un littéral entier peut être écrit sous forme décimale :
