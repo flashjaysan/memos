@@ -13,37 +13,6 @@ Il y a deux dossiers :
 
 Le dossier `langages` contient les documents suivants :
 
-- [`memo-arcade.md`](/langages/memo-.md) est un mémo sur la bibliothèque de programmation de jeux vidéos [Arcade](https://api.arcade.academy/en/latest/) en langage Python.
-- [`memo-blitzmax.md`](/langages/memo-blitzmax.md) est un mémo sur le langage de programmation BlitzMax et l'outil de développement [BlitzMax NG](https://blitzmax.org/) orienté vers le développement de jeux vidéos.
-- [`memo-cerberus-x.md`](/langages/memo-cerberus-x.md) est un mémo sur l'outil de développement de jeux vidéos [Cerberus X](https://www.cerberus-x.com/community/index.php).
-- [`memo-cocos-creator.md`](/langages/memo-cocos-creator.md) est un mémo sur le moteur de jeux vidéos [Cocos Creator](https://www.cocos.com/en/creator).
-- [`memo-cocos2d-python.md`](/langages/memo-cocos2d-python.md) est un mémo sur la bibliothèque de programmation de jeux vidéos [Cocos2D](http://python.cocos2d.org/) en langage Python.
-- [`memo-createjs.md`](/langages/memo-createjs.md) est un mémo sur la bibliothèque de programmation de jeux vidéos HTML5 [CreateJS](https://createjs.com/) en langage JavaScript.
-- [`memo-ctjs.md`](/langages/memo-ctjs.md) est un mémo sur le moteur de jeux vidéos [ct.js](https://ctjs.rocks/) en langage JavaScript.
-- [`memo-fna.md`](/langages/memo-fna.md) est un mémo sur la bibliothèque de programmation de jeux vidéos [FNA](https://fna-xna.github.io/) en langage C#.
-- [`memo-gamemaker-studio-2.md`](/langages/memo-gamemaker-studio-2.md) est un mémo sur le moteur de jeux vidéos [GameMaker Studio 2](https://www.yoyogames.com/en/gamemaker).
-- [`memo-glfw-python.md`](/langages/memo-glfw-python.md) est un mémo sur la bibliothèque graphique [GLFW](https://www.glfw.org/) en langage Python.
-- [`memo-godot.md`](/langages/memo-godot.md) est un mémo sur le moteur de jeux vidéos [Godot](https://godotengine.org/).
-- [`memo-html-canvas.md`](/langages/memo-html-canvas.md) est un mémo sur la bibliothèque graphique HTML5 [Canvas2D](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API).
-- [`memo-kiwijs.md`](/langages/memo-kiwijs.md) est un mémo sur la bibliothèque de programmation de jeux vidéos HTML5 [KiwiJS](https://www.kiwijs.org/) en langage JavaScript.
-- [`memo-libgdx.md`](/langages/memo-libgdx.md) est un mémo sur la bibliothèque de programmation de jeux vidéos [LibGDX](https://libgdx.com/) en langage Java.
-- [`memo-monogame.md`](/langages/memo-monogame.md) est un mémo sur la bibliothèque de programmation de jeux vidéos [MonoGame](https://www.monogame.net/) en langage C#.
-- [`memo-phaser.md`](/langages/memo-phaser.md) est un mémo sur la bibliothèque de programmation de jeux vidéos HTML5 [Phaser](https://phaser.io/) en langage JavaScript.
-- [`memo-pixi-js.md`](/langages/memo-pixi-js.md) est un mémo sur la bibliothèque graphique HTML5 [PixiJS](https://pixijs.com/) en langage JavaScript.
-- [`memo-pygame.md`](/langages/memo-pygame.md) est un mémo sur la bibliothèque de programmation de jeux vidéos [pygame](https://www.pygame.org/) en langage Python.
-- [`memo-pyglet.md`](/langages/memo-pyglet.md) est un mémo sur la bibliothèque graphique [Pyglet](http://pyglet.org/) en langage Python.
-- [`memo-raylib.md`](/langages/memo-raylib.md) est un mémo sur la bibliothèque de programmation de jeux vidéos [raylib](https://www.raylib.com/) en langage C.
-- [`memo-sdl.md`](/langages/memo-sdl.md) est un mémo sur la bibliothèque de programmation de jeux vidéos [SDL2](https://www.libsdl.org/) en langage C.
-- [`memo-tic80.md`](/langages/memo-tic80.md) est un mémo sur l'outil de développement de jeux vidéos [TIC-80](https://tic80.com/) en langage Lua.
-- [`memo-turtle.md`](/langages/memo-turtle.md) est un mémo sur l'outil de développement de programmes interactifs [turtle](https://docs.python.org/3/library/turtle.html) en langage Python.
-- [`memo-unity.md`](/langages/memo-unity.md) est un mémo sur le moteur de jeux vidéos [Unity](https://unity.com/).
-- [`memo-webgl.md`](/langages/memo-webgl.md) est un mémo sur la bibliothèque graphique HTML [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API).
-
-## Contenu du dossier jeux-videos
-
-
-Le dossier `langages` contient les documents suivants :
-
 - [`memo-c.md`](/langages/memo-c.md) est un mémo sur le langage de programmation C.
 - [`memo-c++.md`](/langages/memo-c++.md) est un mémo sur le langage de programmation C++.
 - [`memo-csharp.md`](/langages/memo-csharp.md) est un mémo sur le langage de programmation C#.
@@ -69,3 +38,33 @@ Le dossier `langages` contient les documents suivants :
 - [`memo-typescript.md`](/langages/memo-typescript.md) est un mémo sur le langage de programmation TypeScript.
 - [`memo-wildfly.md`](/langages/memo-wildfly.md) est un mémo sur le serveur d'application Java EE Wildfly.
 - [`principes-solid.md`](/langages/principes-solid.md) est un mémo sur les principes de génie logiciel SOLID.
+
+## Contenu du dossier jeux-videos
+
+Le dossier `jeux-videos` contient les documents suivants :
+
+- [`memo-arcade.md`](/jeux-videos/memo-arcade.md) est un mémo sur la bibliothèque de programmation de jeux vidéos [Arcade](https://api.arcade.academy/en/latest/) en langage Python.
+- [`memo-blitzmax.md`](/jeux-videos/memo-blitzmax.md) est un mémo sur le langage de programmation BlitzMax et l'outil de développement [BlitzMax NG](https://blitzmax.org/) orienté vers le développement de jeux vidéos.
+- [`memo-cerberus-x.md`](/jeux-videos/memo-cerberus-x.md) est un mémo sur l'outil de développement de jeux vidéos [Cerberus X](https://www.cerberus-x.com/community/index.php).
+- [`memo-cocos-creator.md`](/jeux-videos/memo-cocos-creator.md) est un mémo sur le moteur de jeux vidéos [Cocos Creator](https://www.cocos.com/en/creator).
+- [`memo-cocos2d-python.md`](/jeux-videos/memo-cocos2d-python.md) est un mémo sur la bibliothèque de programmation de jeux vidéos [Cocos2D](http://python.cocos2d.org/) en langage Python.
+- [`memo-createjs.md`](/jeux-videos/memo-createjs.md) est un mémo sur la bibliothèque de programmation de jeux vidéos HTML5 [CreateJS](https://createjs.com/) en langage JavaScript.
+- [`memo-ctjs.md`](/jeux-videos/memo-ctjs.md) est un mémo sur le moteur de jeux vidéos [ct.js](https://ctjs.rocks/) en langage JavaScript.
+- [`memo-fna.md`](/jeux-videos/memo-fna.md) est un mémo sur la bibliothèque de programmation de jeux vidéos [FNA](https://fna-xna.github.io/) en langage C#.
+- [`memo-gamemaker-studio-2.md`](/jeux-videos/memo-gamemaker-studio-2.md) est un mémo sur le moteur de jeux vidéos [GameMaker Studio 2](https://www.yoyogames.com/en/gamemaker).
+- [`memo-glfw-python.md`](/jeux-videos/memo-glfw-python.md) est un mémo sur la bibliothèque graphique [GLFW](https://www.glfw.org/) en langage Python.
+- [`memo-godot.md`](/jeux-videos/memo-godot.md) est un mémo sur le moteur de jeux vidéos [Godot](https://godotengine.org/).
+- [`memo-html-canvas.md`](/jeux-videos/memo-html-canvas.md) est un mémo sur la bibliothèque graphique HTML5 [Canvas2D](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API).
+- [`memo-kiwijs.md`](/jeux-videos/memo-kiwijs.md) est un mémo sur la bibliothèque de programmation de jeux vidéos HTML5 [KiwiJS](https://www.kiwijs.org/) en langage JavaScript.
+- [`memo-libgdx.md`](/jeux-videos/memo-libgdx.md) est un mémo sur la bibliothèque de programmation de jeux vidéos [LibGDX](https://libgdx.com/) en langage Java.
+- [`memo-monogame.md`](/jeux-videos/memo-monogame.md) est un mémo sur la bibliothèque de programmation de jeux vidéos [MonoGame](https://www.monogame.net/) en langage C#.
+- [`memo-phaser.md`](/jeux-videos/memo-phaser.md) est un mémo sur la bibliothèque de programmation de jeux vidéos HTML5 [Phaser](https://phaser.io/) en langage JavaScript.
+- [`memo-pixi-js.md`](/jeux-videos/memo-pixi-js.md) est un mémo sur la bibliothèque graphique HTML5 [PixiJS](https://pixijs.com/) en langage JavaScript.
+- [`memo-pygame.md`](/jeux-videos/memo-pygame.md) est un mémo sur la bibliothèque de programmation de jeux vidéos [pygame](https://www.pygame.org/) en langage Python.
+- [`memo-pyglet.md`](/jeux-videos/memo-pyglet.md) est un mémo sur la bibliothèque graphique [Pyglet](http://pyglet.org/) en langage Python.
+- [`memo-raylib.md`](/jeux-videos/memo-raylib.md) est un mémo sur la bibliothèque de programmation de jeux vidéos [raylib](https://www.raylib.com/) en langage C.
+- [`memo-sdl.md`](/jeux-videos/memo-sdl.md) est un mémo sur la bibliothèque de programmation de jeux vidéos [SDL2](https://www.libsdl.org/) en langage C.
+- [`memo-tic80.md`](/jeux-videos/memo-tic80.md) est un mémo sur l'outil de développement de jeux vidéos [TIC-80](https://tic80.com/) en langage Lua.
+- [`memo-turtle.md`](/jeux-videos/memo-turtle.md) est un mémo sur l'outil de développement de programmes interactifs [turtle](https://docs.python.org/3/library/turtle.html) en langage Python.
+- [`memo-unity.md`](/jeux-videos/memo-unity.md) est un mémo sur le moteur de jeux vidéos [Unity](https://unity.com/).
+- [`memo-webgl.md`](/jeux-videos/memo-webgl.md) est un mémo sur la bibliothèque graphique HTML [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API).
