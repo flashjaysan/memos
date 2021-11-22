@@ -4,14 +4,6 @@ par *flashjaysan*
 
 ## Commandes
 
-### Définir la taille de la fenêtre d'affichage
-
-```java
-size(largeur, hauteur);
-```
-
-Sans cette fonction, l'affichage est défini par défaut à 100x100 (ou plus exactement à 101x101).
-
 ### Commentaires
 
 Un commentaire est une section de code qui est ignoré lors de la compilation et de l'exécution.
@@ -105,6 +97,22 @@ Pour afficher une représentation textuelle de la couleur, utilisez la fonction 
 println(hex(couleur));
 ```
 
+### Définir la taille de la fenêtre d'affichage
+
+```java
+size(largeur, hauteur);
+```
+
+Sans cette fonction, l'affichage est défini par défaut à 100x100 (ou plus exactement à 101x101).
+
+### Obtenir les dimensions de la fenêtre
+
+Les variables `width` et `height` contiennent respectivement la largeur et la hauteur (en pixels) de la fenêtre.
+
+```java
+rect(0, 0, width, height);
+```
+
 ### Fonctions d'affichage
 
 ```java
@@ -151,12 +159,24 @@ Utilisez la fonction `strokeJoin` pour définir la forme des lignes qui se touch
 strokeJoin(ROUND);
 ```
 
-Utilisez la fonction `background` pour définir la couleur de fond de la fenêtre. Prend une valeur entre `0` (noir) et `255` (blanc) pour des dégradés de gris. Peut également prendre trois valeurs entre `0` (pas de couleur) et `255` (maximum de couleur) représentant les composantes rouges, vertes et bleues.
+Utilisez la fonction `background` pour définir la couleur de fond de la fenêtre.
+
+- Peut prendre une valeur entre `0` (noir) et `255` (blanc) pour des dégradés de gris.
+- Peut prendre trois valeurs entre `0` (pas de couleur) et `255` (maximum de couleur) représentant les composantes rouges, vertes et bleues.
+- Peut prendre un paramètre de type `color`.
+- Peut prendre un paramètre de type `PImage`. Dans ce cas, la fonction affiche l'image sur le fond dans le coin supérieur gauche.
 
 ```java
 background(155);
 background(0, 0, 0);
 background(couleur);
+background(image);
+```
+
+**Remarque :** Il est possible de redimensionner une image à la taille de l'écran avec la méthode `resize`.
+
+```java
+image.resize(width, height);
 ```
 
 Utilisez la fonction `fill` pour définir la couleur de remplissage des formes. Prend une valeur entre `0` (noir) et `255` (blanc) pour des dégradés de gris. Peut également prendre trois valeurs entre `0` (pas de couleur) et `255` (maximum de couleur) représentant les composantes rouges, vertes et bleues. Un quatrième paramètre correspondant à la transparence de la couleur peut être utilisé.
@@ -198,11 +218,9 @@ int couleur = color(composanteRouge, composanteVerte, composanteBleue);
 int couleur = color(composanteRouge, composanteVerte, composanteBleue, composanteAlpha);
 ```
 
-
+Les fonctions `red`, `green`, `blue` et `alpha` renvoient (sous forme d'entier de type `int`) les composantes rouges, vertes, bleues et alpha d'une couleur.
 
 ```java
-int rouge = color(255, 0, 0, 255);
-fill(rouge);
 int composanteRouge = red(rouge);
 int composanteVerte = green(rouge);
 int composanteBleue = blue(rouge);
@@ -233,4 +251,147 @@ rect(x, y, largeur, hauteur, rayonCoin1, rayonCoin2, rayonCoin3, rayonCoin4);
 quad(x1, y1, x2, y2, x3, y3, x4, y4);
 ```
 
+### Boucle de jeu
 
+La fonction `setup` est appelée une seule fois au lancement du programme. Elle sert à initialiser l'état de départ du jeu. Appelez les fonctions d'initialisation graphique dans cette fonction.
+
+```java
+void setup()
+{
+    // initialisation
+    size(640, 360);
+    frameRate(60);
+}
+```
+
+La fonction `draw()` constitue la boucle de jeu. Elle s'exécute indéfiniment après que la fonction `setup` ait été appelée.
+
+```java
+void draw()
+{
+    //boucle de jeu
+}
+```
+
+La fonction `noLoop` stoppe la boucle de jeu. La fonction `draw` n'est plus appelée de manière répétée jusqu'à ce que la fonction `loop` relance la boucle de jeu.
+
+```java
+if (stop)
+{
+    noLoop();
+}
+else
+{
+    loop();
+}
+```
+
+### Gestion de la souris
+
+Les évènements de souris sont gérés par des fonctions callbacks. Pour fonctionner, la fonction `draw` doit être utilisée.
+
+La fonction callback `mousePressed` est appelée automatiquement par Processing lorsqu'un bouton de souris vient d'être enfoncé.
+
+```java
+void mousePressed()
+{
+    println("Bouton de souris enfoncé.");
+}
+```
+
+**Remarque :** La fonction `mousePressed` peut également recevoir un paramètre de type `MouseEvent` que vous pouvez utiliser pour déterminer certaines valeurs liées à l'évènement.
+
+```java
+void mousePressed(MouseEvent event)
+{
+
+}
+```
+
+La fonction callback `mouseReleased` est appelée automatiquement par Processing lorsqu'un bouton de souris vient d'être relaché.
+
+```java
+void mouseReleased()
+{
+    println("Bouton de souris relaché.");
+}
+```
+
+**Remarque :** La fonction `mouseReleased` peut également recevoir un paramètre de type `MouseEvent` que vous pouvez utiliser pour déterminer certaines valeurs liées à l'évènement.
+
+```java
+void mouseReleased(MouseEvent event)
+{
+
+}
+```
+
+La fonction callback `mouseClicked` est appelée automatiquement par Processing lorsqu'un bouton de souris est enfoncé puis relaché.
+
+```java
+void mouseClicked()
+{
+    println("Clic de souris effectué.");
+}
+```
+
+**Remarque :** La fonction `mouseClicked` peut également recevoir un paramètre de type `MouseEvent` que vous pouvez utiliser pour déterminer certaines valeurs liées à l'évènement.
+
+```java
+void mouseClicked(MouseEvent event)
+{
+
+}
+```
+
+La fonction callback `mouseMoved` est appelée automatiquement par Processing lorsque le pointeur de la souris est déplacé alors qu'aucun bouton n'est enfoncé.
+
+```java
+void mouseMoved()
+{
+    println("Souris déplacée.");
+}
+```
+
+**Remarque :** La fonction `mouseMoved` peut également recevoir un paramètre de type `MouseEvent` que vous pouvez utiliser pour déterminer certaines valeurs liées à l'évènement.
+
+```java
+void mouseMoved(MouseEvent event)
+{
+
+}
+```
+
+La fonction callback `mouseDragged` est appelée automatiquement par Processing lorsque le pointeur de la souris est déplacé alors qu'un bouton est enfoncé.
+
+```java
+void mouseDragged()
+{
+    println("Souris glissée.");
+}
+```
+
+**Remarque :** La fonction `mouseDragged` peut également recevoir un paramètre de type `MouseEvent` que vous pouvez utiliser pour déterminer certaines valeurs liées à l'évènement.
+
+```java
+void mouseDragged(MouseEvent event)
+{
+
+}
+```
+
+La fonction callback `mouseWheel` est appelée automatiquement par Processing lorsque la molette de la souris est manipulée. Elle reçoit en paramètre un objet de type `MouseEvent` contenant certaines valeurs liées à l'évènement.
+
+```java
+void mouseWheel(MouseEvent event)
+{
+    println("Molette utilisée.");
+}
+```
+
+Les variables `mouseX` et `mouseY` représentent les coordonnées x et y de la position du pointeur de la souris dans la fenêtre.
+
+```java
+println(mouseX);
+println(mouseY);
+```
