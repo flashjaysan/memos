@@ -50,9 +50,9 @@ Par défaut, le compilateur `g++` génère un fichier exécutable appelé `a.exe
 
 ## Point d'entrée d'un programme
 
-La fonction `main` est généralement le point d'entrée d'un programme C. Elle renvoie un entier à l'environnement d'exécution. Elle peut s'écrire sous deux formes.
+La fonction `main` est généralement le point d'entrée d'un programme C++. Elle renvoie un entier à l'environnement d'exécution. Elle peut s'écrire sous deux formes.
 
-La première forme ne prend pas de paramètre (contrairement au C, en C++, il ne faut pas mettre le mot clé `void` dans les parenthèses).
+La première forme ne prend pas de paramètre (contrairement au C, en C++, il ne faut pas préciser le mot clé `void` dans les parenthèses quand une fonction ne prend pas de paramètre).
 
 ```cpp
 int main() {}
@@ -61,7 +61,7 @@ int main() {}
 La seconde forme prend deux paramètres.
 
 - Un entier (généralement nommé `argc`) qui contient soit `0` soit le nombre de chaînes contenues dans le second paramètre.
-- Un tableau de pointeurs de caractères (généralement nommé `argv`) qui contient des chaînes de caractères passées au programme lors de son lancement par l'environnement d'exécution. Le premier élément correspond au nom du programme.
+- Un tableau de pointeurs de caractères (généralement nommé `argv`) qui contient les chaînes de caractères passées au programme lors de son lancement par l'environnement d'exécution. Le premier élément correspond au nom du programme.
 
 ```cpp
 int main(int argc, char* argv[]) {}
@@ -78,12 +78,12 @@ int main()
 }
 ```
 
-Depuis la norme C99, cette instruction n'est pas obligatoire. Si vous ne la placez pas dans votre programme, le compilateur considère par défaut que le programme renvoie la valeur `0`.
+Cette instruction n'est pas obligatoire. Si vous ne la placez pas dans votre programme, le compilateur considère par défaut que le programme renvoie la valeur `0`.
 
-Pour plus de clarté, vous pouvez également renvoyer la constante `EXIT_SUCCESS` définie dans le fichier en-tête `stdlib.h`.
+Pour plus de clarté, vous pouvez également renvoyer la constante `EXIT_SUCCESS` définie dans le fichier en-tête `cstdlib`.
 
 ```cpp
-#include <stdlib.h>
+#include <cstdlib>
 
 int main()
 {
@@ -91,7 +91,7 @@ int main()
 }
 ```
 
-**Remarque :** En cas de besoin, vous pouvez également utiliser la constante `EXIT_FAILURE` définie dans le fichier en-tête `stdlib.h` pour indiquer que le programme ne s'est pas terminé correctement.
+**Remarque :** En cas de besoin, vous pouvez également utiliser la constante `EXIT_FAILURE` définie dans le fichier en-tête `cstdlib` pour indiquer que le programme ne s'est pas terminé correctement.
 
 ## Compiler un fichier source et exécuter le programme
 
@@ -129,36 +129,38 @@ char caractere = 'a';
 
 Un littéral chaîne de caractères s'écrit entre guillemets :
 
-```c
+```cpp
 char* chaine = "bonjour";
 ```
+
+**Attention !** Un littéral chaîne de caractères est de type `char*` et non de type `string`. Cependant, vous pouvez affecter automatiquement un littéral chaîne de caractères à un objet de type `string`.
 
 Une chaîne de caractères possède un caractères de fin de chaîne `\0` en plus des caractères classiques.
 
 Un littéral chaîne de caractères vide s'écrit avec deux guillemets :
 
-```c
+```cpp
 char* chaine_vide = "";
 ```
 
 ## Afficher une chaine de caractères
 
-```c
-#include <stdio.h>
-#include <stdlib.h>
+```cpp
+#include <cstdio>
+#include <cstdlib>
 
-int main(void)
+int main()
 {
     printf("Bonjour.");
     return EXIT_SUCCESS;
 }
 ```
 
-```c
-#include <stdio.h>
-#include <stdlib.h>
+```cpp
+#include <cstdio>
+#include <cstdlib>
 
-int main(void)
+int main()
 {
     char* chaine = "Bonjour.";
     printf(chaine);
@@ -166,11 +168,11 @@ int main(void)
 }
 ```
 
-```c
-#include <stdio.h>
-#include <stdlib.h>
+```cpp
+#include <cstdio>
+#include <cstdlib>
 
-int main(void)
+int main()
 {
     char* chaine = "Bonjour.";
     printf("%s", chaine);
@@ -180,22 +182,22 @@ int main(void)
 
 ## Afficher un nombre entier
 
-```c
-#include <stdio.h>
-#include <stdlib.h>
+```cpp
+#include <cstdio>
+#include <cstdlib>
 
-int main(void)
+int main()
 {
     printf("%d", 1234);
     return EXIT_SUCCESS;
 }
 ```
 
-```c
-#include <stdio.h>
-#include <stdlib.h>
+```cpp
+#include <cstdio>
+#include <cstdlib>
 
-int main(void)
+int main()
 {
     int entier = 1234;
     printf("%d", entier);
@@ -205,7 +207,7 @@ int main(void)
 
 ## Commentaires
 
-```c
+```cpp
 // commentaires sur une seule ligne
 
 /* commentaire
