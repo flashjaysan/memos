@@ -174,7 +174,17 @@ public class HelloApplication extends Application {
 }
 ```
 
+## Configuration de NetBeans IDE
 
+NetBeans IDE de la fondation Apache est un IDE intuitif et accessible. Il est idéal pour les débutants mais reste très utile pour des personnes plus expérimentées.
+
+Il est codé en Java. Par conséquent, vous devez avoir installé un JRE avant que vous puissiez utiliser NetBeans IDE. Dans la mesure où vous aurez également besoin d'un JDK si vous souhaitez programmer en Java, autant installer un JDK directement (qui embarque aussi un JRE).
+
+Plutôt que d'installer le JDK officiel fourni par Oracle, je vous conseille d'installer celui disponible sur [Adoptium.net](https://adoptium.net/). Oracle impose une licence contraignante avec sa version du JDK alors qu'Adoptium est une licence libre. Prenez le dernier JDK en version LTS (Long Term Support) (à l'heure de la rédaction de ce document, la version 17).
+
+
+
+Téléchargez et installez [NetBeans IDE](https://netbeans.apache.org/).
 
 
 

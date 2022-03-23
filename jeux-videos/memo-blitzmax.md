@@ -100,8 +100,6 @@ SuperStrict
 
 #### Déclarer une variable
 
-Contrairement aux autres modes, dans le mode par défaut, vous n'êtes pas obligé de déclarer vos variables.
-
 Pour déclarer une variable avec une portée locale, utilisez le mot-clé `Local` suivi du nom de la variable. Une variable de portée locale est accessible uniquement dans le bloc contenant sa déclaration et tous ses sous-blocs. Une variable locale déclarée au niveau le plus élevé d'un fichier source (en dehors de tout bloc) n'est pas accessible dans les fonctions.
 
 ```
@@ -907,7 +905,7 @@ Graphics(640, 360, 0) ' résolution 640x360 en mode fenêtré
 Utilisez la boucle de votre choix. Voici un exemple de boucle `While` avec comme condition la fin de l'application ou l'appui sur la touche `ECHAP`.
 
 ```
-While Not (KeyHit(`KEY_ESCAPE) Or AppTerminate())
+While Not (KeyHit(KEY_ESCAPE) Or AppTerminate())
     
 Wend
 ```

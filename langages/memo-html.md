@@ -4,7 +4,7 @@
 
 ## Balises
 
-Un document HTML est essentiellement un fichier texte composé d'une arborescence de **balises** HTML. La plupart des balises contiennent un contenu. Pour délimiter ce contenu, on place une balise ouvrante (`<nom_de_balise>`) avant le contenu et une balise fermante (`</nom_de_balise>`) après le contenu.
+Un document HTML est essentiellement un fichier texte composé d'une arborescence de **balises** HTML. La plupart des balises contiennent un contenu. Pour délimiter ce contenu, on place une balise d'ouverture (`<nom_de_balise>`) avant le contenu et une balise de fermeture (`</nom_de_balise>`) après le contenu.
 
 ```html
 <balise>contenu</balise>
@@ -12,7 +12,7 @@ Un document HTML est essentiellement un fichier texte composé d'une arborescenc
 
 Une balise et son contenu constitue **un élément**.
 
-Certaines balises ne contiennent pas de contenu. La balise fermante est donc inutile dans ce cas.
+Certaines balises ne contiennent pas de contenu. La balise de fermeture est donc inutile dans ce cas.
 
 ```html
 <balise_sans_contenu>
@@ -26,9 +26,13 @@ Une balise peut également spécifier des valeurs pour ses **propriétés**.
 <balise propriété="valeur">contenu</balise>
 ```
 
+**Remarque :** La valeur d'une propriété est toujours écrite entre guillemets.
+
+Chaque type de balise définit une liste de propriétés prédéfinies.
+
 ### Créer une nouvelle propriété
 
-Vous aurez parfois besoin de créer de nouvelles propriétés sur une balise. Vous devez faire précéder vos nouvelles propriétés par `data-`.
+Vous aurez parfois besoin de créer de nouvelles propriétés sur une balise. Vous devez faire précéder vos nouvelles propriétés par le préfixe `data-`.
 
 ```html
 <balise data-nouvelle-propriete="valeur">contenu</balise>
@@ -43,6 +47,8 @@ Console.log(elements[0].dataset.nouvellePropriete);
 
 ## Doctype
 
+La balise `doctype` doit être placée au tout début du document. Elle ne possède pas de balise de fermeture.
+
 ```html
 <!doctype html>
 ```
@@ -55,7 +61,7 @@ ou
 
 ## HTML
 
-La balise `html` se place à la racine du document.
+La balise `html` se place à la racine du document après la balise `doctype`.
 
 ```html
 <!doctype html>
@@ -65,7 +71,7 @@ La balise `html` se place à la racine du document.
 
 ## Tête du document
 
-La balise `head` se place dans la balise `html`. L'élément `head` contient des informations sur la page qui ne sont pas affichées dans la page.
+La balise `head` se place dans la balise `html`. L'élément `head` contient des informations sur la page elle-même et ces informations ne sont pas affichées dans le navigateur.
 
 ```html
 <!doctype html>
@@ -122,6 +128,13 @@ La balise `body` peut être subdivisée en quatre sous sections `header`, `nav`,
 </html>
 ```
 
+Ces balises ont les mêmes fonctionnalités que les balises `div` mais définissent sémantiquement des zones fréquemment utilisées dans les documents.
+
+- La balise `header` définit le bandeau d'en-tête d'un document.
+- La balise `nav` définit la zone de navigation d'un document.
+- La balise `main` définit le contenu principal d'un document.
+- La balise `footer` définit le bandeau de bas de page d'un document.
+
 ## Paragraphes
 
 L'élément `p` définit un paragraphe de texte.
@@ -174,7 +187,7 @@ La balise `br` se place dans la balise `p`. Elle n'a pas de balise fermante.
 
 ## Titres
 
-Les balises `h1`, `h2`, `h3`, `h4`, `h5` et `h6` définissent des titres par ordre d'importance. `h1` est le titre le plus important et `h6` le titre le moins important. Utilisez autant que possible dans l'ordre.
+Les balises `h1`, `h2`, `h3`, `h4`, `h5` et `h6` définissent des titres par ordre d'importance. `h1` est le titre le plus important et `h6` le titre le moins important. Utilisez ces balises autant que possible dans l'ordre.
 
 ```html
 <!doctype html>
@@ -195,7 +208,9 @@ Les balises `h1`, `h2`, `h3`, `h4`, `h5` et `h6` définissent des titres par ord
 
 ## Listes
 
-La balise `ol` définit une liste ordonnée (numérotée). La balise `ul` définit une liste non ordonnée. La balise `li` définit un élément de liste.
+- La balise `ol` définit une liste ordonnée (numérotée).
+- La balise `ul` définit une liste non ordonnée.
+- La balise `li` définit un élément de liste.
 
 ```html
 <!doctype html>

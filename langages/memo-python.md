@@ -1371,15 +1371,17 @@ class NomDeClasse():
     pass
 ```
 
-**Remarque :** Par convention, les noms de classes utilisent la notation PascalCase : Chaque mot constituant le nom de la classe possède une initiale en majuscule.
+**Remarque :** Par convention, les noms de classes utilisent la notation `PascalCase` : Chaque mot constituant le nom de la classe possède une initiale en majuscule.
 
-Pour créer une instance de votre nouvelle classe, il vous suffit d'appeler une fonction portant le nom de la classe qu'on appelle un constructeur :
+Pour créer une instance de votre nouvelle classe, il vous suffit d'appeler une fonction portant le même nom que la classe et qu'on appelle un constructeur :
 
 ```python
 instance_de_classe = NomDeClasse()
 ```
 
-**Attention !** Si vous définissez une méthode `__init__` avec des paramètres, vous devez passer des arguments qui y correspondent lors de l'appel.
+Par défaut, un constructeur sans paramètres est automatiquement généré par Python. Cependant, si vous définissez explicitement un constructeur, avec ou sans paramètres, Python ne génère pas ce constructeur par défaut.
+
+**Attention !** Si vous définissez un constructeur avec des paramètres, vous devez passer des arguments qui y correspondent lors de l'appel.
 
 Pour que votre classe ait une quelconque utilité elle doit posséder des données et / ou des méthodes.
 
@@ -1389,31 +1391,40 @@ Pour définir des attributs à votre classe, créez des variables à l'intérieu
 
 ```python
 class NomDeClasse:
-
     attribut = valeur
 ```
 
-Vous pouvez également y accéder n'importe où (dans une méthode de la classe ou en dehors) en faisant précéder l'attribut du nom de la classe.
+Vous pouvez ensuite y accéder depuis n'importe où (dans une méthode de la classe ou en dehors) en faisant précéder l'attribut du nom de la classe.
 
 ```python
-NomDeClasse.attribut
+NomDeClasse.attribut # lecture de la valeur
+NomDeClasse.attribut = valeur # écriture d'une nouvelle valeur
 ```
 
-Si vous modifiez l'attribut en utilisant une instance, vous masquez l'attribut de classe et donnez à l'instance un nouvel attribut.
+**Remarque :** Vous pouvez également définir l'attribut en dehors de la classe en utilisant la syntaxe précédente et en initialisant cet attribut. Si l'attribut n'existe pas déjà, il est rajouté à la classe.
+
+```python
+class NomDeClasse:
+    pass
+
+NomDeClasse.attribut = valeur
+```
+
+Si vous modifiez l'attribut en utilisant une instance, vous masquez l'attribut de classe et donnez à l'instance un nouvel attribut de même nom.
 
 ```python
 instance = NomDeClasse()
-instance.attribut = valeur # masque l'attribut de classe
+instance.attribut = valeur # masque l'attribut de classe et définit un attribut d'instance de même nom
 ```
 
 ### Définir une méthode d'instance
 
-Les méthodes d'instances sont des fonctions placées à l'intérieur d'une classe. Leur premier paramètre doit être `self` qui correspond à l'instance de la classe.
+Les méthodes d'instances sont des fonctions placées à l'intérieur d'une classe. Elles opèrent sur un objet (une instance) de la classe. Leur premier paramètre doit être `self` qui correspond à l'instance (de la classe) sur laquelle s'applique la méthode.
 
 ```python
-classe NomDeClasse:
+class NomDeClasse:
 
-    def une_méthode(self, paramètres...):
+    def nom_methode(self, paramètres...):
         instructions
 ```
 
@@ -1421,27 +1432,33 @@ Une fois votre classe instanciée, vous pouvez appeler les méthodes sur une ins
 
 ```python
 instance = NomDeClasse()
-instance.une_méthode(paramètres)
+instance.nom_methode(paramètres)
 ```
 
-Vous pouvez également utiliser ne nom de classe et passer l'instance en tant que premier argument.
+**Remarque :** Cette syntaxe indique à Python que la méthode doit s'appliquer à l'instance qui précède l'appel. Cela a pour effet d'appeler la méthode avec un premier argument implicite (caché) qui est l'instance elle-même.
+
+Vous pouvez également utiliser le nom de classe et passer l'instance en tant que premier argument. Cette syntaxe permet de mieux comprendre pourquoi une méthode d'instance définit comme premier paramètre le mot `self` faisant référence à l'instance sur laquelle appliquer la méthode.
 
 ```python
 instance = NomDeClasse()
-NomDeClasse.une_méthode(instance, paramètres)
+NomDeClasse.nom_methode(instance, paramètres)
 ```
+
+Notez toutefois que cette syntaxe est inhabituelle. Utilisez plutôt la première syntaxe.
 
 ### Définir une méthode de classe
 
-Les méthodes de classes sont des fonctions placées à l'intérieur d'une classe et possédant le décorateur `@classmethod`. Leur premier paramètre doit être `cls` qui correspond à  la classe.
+Les méthodes de classes sont des fonctions placées à l'intérieur d'une classe et possédant le décorateur `@classmethod`. Leur premier paramètre doit être `cls` qui correspond à  la classe sur laquelle s'applique la méthode de classe.
 
 ```python
-classe NomDeClasse:
+class NomDeClasse:
 
     @classmethod
-    def une_méthode(cls, paramètres...):
+    def nom_methode(cls, paramètres...):
         instructions
 ```
+
+Une méthode de classe opère sur la classe elle-même et non sur une de ses instances c'est pourquoi une méthode de classe ne peut pas accéder à des attributs d'instances mais seulement à des attributs de classe.
 
 ### Définir un constructeur
 
@@ -1456,22 +1473,37 @@ class NomDeClasse:
 
 ### Héritage
 
-Pour dériver une nouvelle classe d'une ou de plusieurs autres classes, passez leur nom entre parenthèses :
+Pour dériver une nouvelle classe d'une ou de plusieurs autres classes, passez leur nom entre parenthèses lors de la définition de la classe :
 
 ```python
 class SousClasse(SuperClasse1, SuperClasse2, ...):
     pass
 ```
 
-La sous-classe possède alors tous les attributs des super-classes.
+La sous-classe possède alors tous les attributs de ses super-classes.
 
-Vous pouvez également appeler le constructeur de la classe parent.
+Vous pouvez également appeler le constructeur de la classe parent en utilisant la méthode spéciale `super`.
 
 ```python
 classe SousClasse(SuperClasse):
 
     def __init__(self):
         super().__init__()
+```
+
+### Classe abstraite
+
+```python
+from abc import ABCMeta, abstractmethod
+
+class NomDeClasseAbstraite(metaclass = ABCMeta):
+    @abstractmethod
+    def nom_methode(self):
+        return 0
+
+class NomDeClasseConcrete(NomDeClasseAbstraite):
+    def nom_methode(self):
+        pass
 ```
 
 ## Module pickle

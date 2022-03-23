@@ -16,6 +16,20 @@ Si vous souhaitez **exécuter** des applications Java, vous devez installer le [
 - [OpenJDK](https://jdk.java.net) est une version libre (license GNU GPL v2) et *open source* du *JRE*.
 - [Amazon Corretto](https://aws.amazon.com/fr/corretto) est basé sur *OpenGDK* mais avec un support à long terme (*LTS*).
 
+
+## Choisir la bonne machine virtuelle
+
+HotSpot est la machine virtuelle de la communauté OpenJDK. Il s’agit de la machine virtuelle la plus utilisée de nos jours et est utilisée dans le JDK d’Oracle. Il convient à toutes les charges de travail.
+
+Pour plus de détails, voir [OpenJDK HotSpot](https://openjdk.java.net/groups/hotspot/).
+
+Eclipse OpenJ9 est la VM de la communauté Eclipse. Il s'agit d'une machine virtuelle de niveau entreprise conçue pour une faible empreinte mémoire et un démarrage rapide et est utilisée dans le JDK d'IBM. Il convient à l'exécution de toutes les charges de travail.
+
+Pour plus de détails, voir [Eclipse OpenJ9](https://www.eclipse.org/openj9/).
+
+LTS (Soutien à long terme) : Ces versions ont un délai de prise en charge plus long. Convient aux entreprises clientes. Voir [Support](https://adoptopenjdk.net/support.html) pour plus d'informations.
+
+
 ## Jshell
 
 Comme pour le langage *Python*, *Java* fournit désormais un environnement de test en ligne de commande. Exécutez *Jshell* depuis votre terminal.
@@ -30,6 +44,7 @@ Vous pouvez alors saisir des commandes *Java* pour tester rapidement leur effet.
 
 - *Eclipse Foundation* [Eclipse](https://www.eclipse.org/downloads).
 - *JetBrains* [IntelliJ IDEA](https://www.jetbrains.com/idea/download).
+- *Apache Software Foundation* [NetBeans IDE](https://netbeans.apache.org/).
 - *Microsoft* [Visual Studio Code](https://code.visualstudio.com) (*VS Code*).
 
 ## Point d'entrée

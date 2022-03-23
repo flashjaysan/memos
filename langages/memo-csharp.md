@@ -8,11 +8,35 @@
 
 ## Installation
 
+**Nouveau !**
+
+### Visual Studio Code
+
+Téléchargez et installez la [dernière version de .NET SDK](https://dotnet.microsoft.com/en-us/download). Vérifiez que l'installation s'est bien déroulée en saisissant `dotnet --version` dans un terminal.
+
+Téléchargez et installez [Visual Studio Code](https://code.visualstudio.com/). Installez l'extension `C#` de Microsoft.
+
+### Installation de Visual Studio
+
 Installez la dernière version de `Microsoft Visual Studio`. Pensez à cocher la charge de travail `Développement .NET Desktop`.
 
 **Remarque :** Si vous avez déjà installé Visual Studio sans cette charge de travail, démarrez `Visual Studio Installer`. Sous la version de Visual Studio déjà installée, cliquez sur le bouton `Modifier` puis installez la charge de travail `Développement .NET Desktop`.
 
 ## Créer un nouveau projet
+
+**Nouveau !**
+
+### Visual Studio Code
+
+- Créez un dossier pour votre projet.
+- Ouvrez un terminal à l'emplacement du dossier.
+- Saisissez la commande `dotnet new console`.
+- Ouvrez le dossier dans VS Code (se placer dans le dossier, et saisir la commande `code .`).
+- Cliquez sur l'option `Yes` dans la boite de dialogue `"Required assets to build and debug are missing. Add them?"`.
+- Ouvrez un terminal dans VS Code et saisissez `dotnet run`.
+
+
+### Visual Studio
 
 Dans Visual Studio, cliquez sur le menu `Fichier -> Nouveau -> Projet...` (`Ctrl+Maj+N`) ou cliquez sur le texte `Créer un projet...` dans l'écran de démarrage de Visual Studio.
 

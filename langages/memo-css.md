@@ -24,6 +24,8 @@ Depuis un fichier externe :
 <link rel="stylesheet" type="text/css" href="css/style.css">
 ```
 
+On utilise généralement la troisième approche.
+
 ## Syntaxe de base
 
 ```css
