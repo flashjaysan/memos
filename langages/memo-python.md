@@ -1,8 +1,8 @@
 # Mémo Python
 
-par *flashjaysan*
+par _flashjaysan_
 
-Ce document est un aide mémoire personnel que je mets à disposition de tous sous la licence *MIT*. Faites-en ce que vous voulez.
+Ce document est un aide mémoire personnel que je mets à disposition de tous sous la licence _MIT_. Faites-en ce que vous voulez.
 
 ## Table des matières
 
@@ -11,9 +11,9 @@ Ce document est un aide mémoire personnel que je mets à disposition de tous so
 - [Installation](#installation)
 - [Interpréteur Python](#interprteur-python)
 - [IDE](#ide)
-    - [PyCharm](#pycharm)
-    - [Geany](#geany)
-    - [Visual Studio Code](#visual-studio-code)
+  - [PyCharm](#pycharm)
+  - [Geany](#geany)
+  - [Visual Studio Code](#visual-studio-code)
 - [Vérifier la version de Python installée](#vrifier-la-version-de-python-installe)
 - [Lancer le mode interactif](#lancer-le-mode-interactif)
 - [Quitter le mode interactif](#quitter-le-mode-interactif)
@@ -27,31 +27,31 @@ Ce document est un aide mémoire personnel que je mets à disposition de tous so
 - [Supprimer une variable](#supprimer-une-variable)
 - [Obtenir le type d'une donnée](#obtenir-le-type-dune-donne)
 - [Booléens](#boolens)
-    - [Créer un objet booléen ](#crer-un-objet-boolen-)
-    - [Opérateurs logiques](#oprateurs-logiques)
+  - [Créer un objet booléen ](#crer-un-objet-boolen-)
+  - [Opérateurs logiques](#oprateurs-logiques)
 - [Chaînes de caractères](#chanes-de-caractres)
-    - [Littéraux](#littraux)
-    - [Littéraux multi-lignes](#littraux-multi-lignes)
-    - [Créer une chaîne vide](#crer-une-chane-vide)
-    - [Accéder à un caractère](#accder--un-caractre)
-    - [Méthodes](#mthodes)
-    - [Concaténation](#concatnation)
-    - [Répétition d'une chaîne](#rptition-dune-chane)
-    - [Longueur d'une chaîne](#longueur-dune-chane)
-    - [Slicing](#slicing)
-    - [Chaîne formatée](#chane-formate)
-    - [Chaînes formattées de type fstrings](#chanes-formattes-de-type-fstrings)
-    - [Assembler plusieurs chaînes](#assembler-plusieurs-chanes)
-    - [Convertir une chaîne en une liste](#convertir-une-chane-en-une-liste)
-    - [Lire une chaîne saisie par l'utilisateur](#lire-une-chane-saisie-par-lutilisateur)
+  - [Littéraux](#littraux)
+  - [Littéraux multi-lignes](#littraux-multi-lignes)
+  - [Créer une chaîne vide](#crer-une-chane-vide)
+  - [Accéder à un caractère](#accder--un-caractre)
+  - [Méthodes](#mthodes)
+  - [Concaténation](#concatnation)
+  - [Répétition d'une chaîne](#rptition-dune-chane)
+  - [Longueur d'une chaîne](#longueur-dune-chane)
+  - [Slicing](#slicing)
+  - [Chaîne formatée](#chane-formate)
+  - [Chaînes formattées de type fstrings](#chanes-formattes-de-type-fstrings)
+  - [Assembler plusieurs chaînes](#assembler-plusieurs-chanes)
+  - [Convertir une chaîne en une liste](#convertir-une-chane-en-une-liste)
+  - [Lire une chaîne saisie par l'utilisateur](#lire-une-chane-saisie-par-lutilisateur)
 - [Nombres](#nombres)
-    - [Nombres Littéraux](#nombres-littraux)
-    - [Créer un objet nombre](#crer-un-objet-nombre)
-    - [Opérateurs](#oprateurs)
-    - [Opérateurs arithmétiques](#oprateurs-arithmtiques)
-    - [Opérateurs combinés](#oprateurs-combins)
-    - [Opérateurs de comparaison](#oprateurs-de-comparaison)
-    - [Convertir une chaîne en nombre](#convertir-une-chane-en-nombre)
+  - [Nombres Littéraux](#nombres-littraux)
+  - [Créer un objet nombre](#crer-un-objet-nombre)
+  - [Opérateurs](#oprateurs)
+  - [Opérateurs arithmétiques](#oprateurs-arithmtiques)
+  - [Opérateurs combinés](#oprateurs-combins)
+  - [Opérateurs de comparaison](#oprateurs-de-comparaison)
+  - [Convertir une chaîne en nombre](#convertir-une-chane-en-nombre)
 - [Instructions if](#instructions-if)
 - [Boucles](#boucles)
 - [Instruction for](#instruction-for)
@@ -83,16 +83,16 @@ Python se décline en deux versions :
 
 Python est un langage interprété mais il existe plusieurs implémentations différentes :
 
-- *CPython* est l’interpréteur standard (celui que vous utiliserez dans ce cours). Il est le plus à jour et sa performance est relativement bonne.
-- *Pypy* est un interpréteur *JIT* (Just In Time) qui compile des sections du code source pour optimiser son exécution. Il n’est pas aussi à jour avec le Standard que CPython mais est très performant. Si vous souhaitez améliorer les performances de vos applications, tournez vous vers lui.
-- *Jython* est un interpréteur qui converti le code source en langage *Java* et permet d’utiliser les bibliothèques de ce langage.
-- *IronPython* est un interpréteur qui converti le code source en *assembly .NET* et permet d’utiliser les bibliothèques de ce framework.
+- _CPython_ est l’interpréteur standard (celui que vous utiliserez dans ce cours). Il est le plus à jour et sa performance est relativement bonne.
+- _Pypy_ est un interpréteur _JIT_ (Just In Time) qui compile des sections du code source pour optimiser son exécution. Il n’est pas aussi à jour avec le Standard que CPython mais est très performant. Si vous souhaitez améliorer les performances de vos applications, tournez vous vers lui.
+- _Jython_ est un interpréteur qui converti le code source en langage _Java_ et permet d’utiliser les bibliothèques de ce langage.
+- _IronPython_ est un interpréteur qui converti le code source en _assembly .NET_ et permet d’utiliser les bibliothèques de ce framework.
 
 ## Pourquoi utiliser Python ?
 
 Python n’est certainement pas le langage le plus performant qui soit mais si vous débutez, il est préférable de vous simplifier la vie autant que possible.
 L’interpréteur Python est libre, gratuit et s’installe facilement. Installer et utiliser des bibliothèques supplémentaires (modules) est très simple.
-Apprendre les bases de la programmation avec Python est plus facile qu’avec d’autres langages et vous oblige à prendre de bonnes habitudes.  Enfin, apprendre Python pourra vous servir dans de nombreux domaines et vos connaissances seront applicables dans n’importe quel autre domaine de programmation.
+Apprendre les bases de la programmation avec Python est plus facile qu’avec d’autres langages et vous oblige à prendre de bonnes habitudes. Enfin, apprendre Python pourra vous servir dans de nombreux domaines et vos connaissances seront applicables dans n’importe quel autre domaine de programmation.
 
 ## Installation
 
@@ -104,7 +104,7 @@ Pour installer l’interpréteur CPython, allez à l’adresse suivante :
 
 Et cliquez sur la section `Downloads` pour télécharger la version correspondant à votre système. Ensuite installez Python. La version 2 est l'ancienne version qui ne sera plus mise à jour en 2020. Préférez la version 3.
 
-**Remarque :** Sur Windows, pensez à cocher la case `Add Python 3.x to PATH` pour ajouter Python au chemin lors de l'installation. Sur *Mac OS X*, Python est déjà installé mais c'est la version 2. Vous pouvez installer la version 3 sans risque en utilisant la commande suivante :
+**Remarque :** Sur Windows, pensez à cocher la case `Add Python 3.x to PATH` pour ajouter Python au chemin lors de l'installation. Sur _Mac OS X_, Python est déjà installé mais c'est la version 2. Vous pouvez installer la version 3 sans risque en utilisant la commande suivante :
 
 ```python
 sudo apt-get install python3
@@ -118,27 +118,27 @@ Vous n’avez que l’embarras du choix. Voici quelques éditeurs :
 
 #### PyCharm
 
-*PyCharm* existe en version gratuite et est assez réputé :
+_PyCharm_ existe en version gratuite et est assez réputé :
 
 [https://www.jetbrains.com/pycharm/](https://www.jetbrains.com/pycharm/)
 
-**Remarque :** La version *Community* est gratuite.
+**Remarque :** La version _Community_ est gratuite.
 
 #### Geany
 
-*Geany* est un éditeur très léger, sans fioritures et disponible sur de nombreuses plateformes (y compris le *Raspberry Pi*) :
+_Geany_ est un éditeur très léger, sans fioritures et disponible sur de nombreuses plateformes (y compris le _Raspberry Pi_) :
 
 [https://www.geany.org/](https://www.geany.org/)
 
 #### Visual Studio Code
 
-*Visual Studio Code* est un éditeur très populaire créé par *Microsoft* mais dont le code source est libre :
+_Visual Studio Code_ est un éditeur très populaire créé par _Microsoft_ mais dont le code source est libre :
 
 [https://code.visualstudio.com/](https://code.visualstudio.com/)
 
 #### Thonny
 
-*Thonny* est un éditeur de code Python très simple mais proposant des outils pédagogiques très utiles aux débutants.
+_Thonny_ est un éditeur de code Python très simple mais proposant des outils pédagogiques très utiles aux débutants.
 
 [https://thonny.org/](https://thonny.org/)
 
@@ -194,7 +194,7 @@ exit()
 
 ### Environnements virtuels
 
-Les *environnements virtuels* vous permettent d'avoir plusieurs configurations de Python séparées pour différents projets. Vous pouvez par exemple utiliser différentes versions d'un package pour deux projets différents. Commencez par installer le package des environnements virtuels :
+Les _environnements virtuels_ vous permettent d'avoir plusieurs configurations de Python séparées pour différents projets. Vous pouvez par exemple utiliser différentes versions d'un package pour deux projets différents. Commencez par installer le package des environnements virtuels :
 
 ```python
 pip install virtualenv`
@@ -202,13 +202,17 @@ pip install virtualenv`
 Placez-vous dans un dossier où vous allez créer vos environnements virtuels. Saisissez la commande suivante pour créer un environnement virtuel :
 
 ```
+
 virtualenv nom_de_l'environnement_virtuel
+
 ```
 
 Pour utiliser ce nouvel environnement virtuel, saisissez la commande suivante :
 
 ```
+
 source nom_de_l'environnement_virtuel/bin/activate
+
 ```
 
 La commande `which python` affiche le chemin du projet courant et l'environnement virtuel en cours d'utilisation.
@@ -216,8 +220,10 @@ Par défaut, les packages installés globalement ne sont pas accessibles depuis 
 Pour quitter l'environnement virtuel en cours d'utilisation, utilisez la commande `deactivate` :
 
 ```
+
 deactivate
-```
+
+````
 
 ### Afficher une donnée
 
@@ -226,7 +232,7 @@ La fonction `print` affiche dans le terminal le ou les paramètres passés en ar
 ```python
 print(donnée)
 print(donnée_1, ..., donnée_n)
-```
+````
 
 ### Créer un fichier source
 
@@ -240,7 +246,7 @@ Pour exécuter un fichier source Python (par défaut, l'extension est `.py`), do
 python nom_du_fichier
 ```
 
-Pour exécuter une partie d'un fichier pouvant également servir de *module*, utilisez la syntaxe suivante :
+Pour exécuter une partie d'un fichier pouvant également servir de _module_, utilisez la syntaxe suivante :
 
 ```python
 if __name__ == "__main__":
@@ -251,7 +257,7 @@ if __name__ == "__main__":
 
 Un commentaire commence par le signe dièse `#` et se termine à la fin de la ligne :
 
-```python
+````python
 # Un commentaire sur une seule ligne`
 
 Vous pouvez également utiliser une chaîne de caractères encadrée par trois guillemets simples pour rédiger un commentaire sur plusieurs lignes :
@@ -262,13 +268,13 @@ Un commentaire
 sur plusieurs
 lignes.
 '''
-```
+````
 
 ### Déclarer une variable
 
 En Python, on ne déclare pas une variable en lui associant un type de donnée. On lie un identificateur à une donnée lorsque celle-ci est créée.
 
-```python
+````python
 nom_de_variable = valeur`
 
 ### Supprimer une variable
@@ -277,7 +283,7 @@ La fonction `del` vous permet de supprimer une variable passée en argument.
 
 ```python
 del(nom_de_variable)
-```
+````
 
 ### Obtenir le type d'une donnée
 
@@ -289,13 +295,13 @@ type(donnée)
 
 ### Booléens
 
-Le type `bool` (*booléen*) correspond à des valeurs logiques qui peuvent prendre soit la valeur `True` (vrai), soit la valeur `False` (faux).
+Le type `bool` (_booléen_) correspond à des valeurs logiques qui peuvent prendre soit la valeur `True` (vrai), soit la valeur `False` (faux).
 
 **Remarque :** Notez la capitalisation des deux mots (la première lettre est en majuscule).
 
-Les valeurs `None`, `0`,  `''`, `[]`, `()`, `{}` sont évaluées à `False`.
+Les valeurs `None`, `0`, `''`, `[]`, `()`, `{}` sont évaluées à `False`.
 
-#### Créer un objet booléen 
+#### Créer un objet booléen
 
 Si vous souhaitez créer un objet booléen sans vous soucier de sa valeur, créer un objet booléen faux, en appelant le constructeur `bool` sans arguments.
 
@@ -307,13 +313,13 @@ false_value = bool() # équivalent à false_value = False
 
 Ces opérateurs s'appliquent à des valeurs booléennes et renvoient une valeur booléenne.
 
-- `and` : *et* logique
-- `or` : *ou* logique
-- `not` : *non* logique
+- `and` : _et_ logique
+- `or` : _ou_ logique
+- `not` : _non_ logique
 
 ### Chaînes de caractères
 
-En Python, il n'existe pas de type caractère. Utilisez à la place les *chaînes de caractères* du type `str`. Ce sont des *séquences*.
+En Python, il n'existe pas de type caractère. Utilisez à la place les _chaînes de caractères_ du type `str`. Ce sont des _séquences_.
 
 #### Littéraux
 
@@ -346,7 +352,7 @@ world"""
 
 Appelez le constructeur `str` sans arguments ou ne placez rien dans des guillemets.
 
-```python
+````python
 empty_str= str() # équivalent à empty_str = ""`
 
 #### Accéder à un caractère
@@ -355,9 +361,9 @@ Utilisez les crochets avec l'index du caractère à accéder :
 
 ```python
 some_string[index]
-```
+````
 
-**Attention !** Le type `str` est *immutable*. Vous ne pouvez pas modifier un caractère individuellement. Vous devez affecter une nouvelle chaîne à la variable.
+**Attention !** Le type `str` est _immutable_. Vous ne pouvez pas modifier un caractère individuellement. Vous devez affecter une nouvelle chaîne à la variable.
 
 #### Méthodes
 
@@ -390,14 +396,14 @@ chaine.upper()
 
 La méthode `count` compte le nombre d'occurrence d'une sous-chaîne :
 
-```python
+````python
 chaine.count(sous_chaine)`
 
 La méthode `find` renvoie l'index d'une sous-chaîne :
 
 ```python
 chaine.find(sous_chaine)
-```
+````
 
 **Remarque :** Renvoie `-1` si la sous-chaîne n'existe pas dans la chaîne.
 
@@ -472,7 +478,7 @@ chaine[départ:arrivée:pas]
 
 #### Chaîne formatée
 
-La méthode `format` permet de construire une chaîne composée d'un *littéral* avec des accolades indiquant l'endroit où insérer des éléments passés en argument :
+La méthode `format` permet de construire une chaîne composée d'un _littéral_ avec des accolades indiquant l'endroit où insérer des éléments passés en argument :
 
 ```python
 '{} littéral {}'.format(valeur_1, valeur_2)
@@ -508,7 +514,7 @@ nouvelle_chaîne = 'séparateur'.join(séquence)
 
 #### Convertir une chaîne en une liste
 
-La méthode `split` découpe une chaîne en utilisant un séparateur passé en argument et place le tout dans une *liste* :
+La méthode `split` découpe une chaîne en utilisant un séparateur passé en argument et place le tout dans une _liste_ :
 
 ```python
 liste = chaîne.split(séparateur)
@@ -531,7 +537,7 @@ user_float = float(input('Saisissez un nombre à virgule :'))
 
 ### Nombres
 
-Il existe deux types de base pour représenter des nombres en Python. Les *entiers relatifs* appelés `int` et les *nombres à virgule flottante* appelés `float`.
+Il existe deux types de base pour représenter des nombres en Python. Les _entiers relatifs_ appelés `int` et les _nombres à virgule flottante_ appelés `float`.
 
 #### Nombres Littéraux
 
@@ -557,7 +563,7 @@ null_float = float() # équivalent à null_float = 0.0
 - `/` : division entière en Python 2, pas en Python 3.
 - `//` : division entière en Python 3.
 - `**` : puissance.
-- `%` : reste de division entière (*modulo*).
+- `%` : reste de division entière (_modulo_).
 
 **A EDITER** Précédence des opérateurs…
 En cas de doute ou d'opération complexe, utiliser des parenthèses.
@@ -571,7 +577,7 @@ Pour effectuer une affectation en même temps qu'une opération, Python fournit 
 - `*=` : `variable *= valeur` équivalent à `variable = variable * valeur`.
 - `/=` : `variable /= valeur` équivalent à `variable = variable / valeur`.
 
-La fonction `abs` renvoie la *valeur absolue* d'un nombre :
+La fonction `abs` renvoie la _valeur absolue_ d'un nombre :
 
 ```python
 abs(nombre)
@@ -683,20 +689,20 @@ for i in range(arrivée):
     instructions
 ```
 
-La fonction `range` est un *générateur*. Elle ne renvoie donc pas de donnée en elle-même. Pour obtenir une séquence de valeurs, convertissez-la en *liste* :
+La fonction `range` est un _générateur_. Elle ne renvoie donc pas de donnée en elle-même. Pour obtenir une séquence de valeurs, convertissez-la en _liste_ :
 
 ```python
 list(range(arrivée))
 ```
 
-Vous pouvez *dépaqueter* un *tuple* dans une instruction `for` et ainsi accéder à chaque sous-élément du tuple indépendamment des autres :
+Vous pouvez _dépaqueter_ un _tuple_ dans une instruction `for` et ainsi accéder à chaque sous-élément du tuple indépendamment des autres :
 
 ```python
 for sous-élément_1, sous-élément_2, ... in un_tuple:
     instructions
 ```
 
-Combinée à la fonction `enumerate`, cela vous permet de manipuler à la fois un élément d'un objet *itérable* et un compteur :
+Combinée à la fonction `enumerate`, cela vous permet de manipuler à la fois un élément d'un objet _itérable_ et un compteur :
 
 ```python
 for index, item in enumerate(iterable):
@@ -717,7 +723,7 @@ else
 
 ## Mot clé pass
 
-Utilisez le mot clé `pass` à l'endroit où un bloc d'instructions est attendu pour ignorer ce bloc. Par exemple, après une instruction `if`, `while`, `for` ou dans le corps d'une *fonction*.
+Utilisez le mot clé `pass` à l'endroit où un bloc d'instructions est attendu pour ignorer ce bloc. Par exemple, après une instruction `if`, `while`, `for` ou dans le corps d'une _fonction_.
 
 ## Assertions
 
@@ -725,11 +731,11 @@ Utilisez le mot clé `pass` à l'endroit où un bloc d'instructions est attendu 
 assert conditions_à_évaluer
 ```
 
-Si la condition à évaluer est fausse, une *exception* de type `AssertionError` est levée.
+Si la condition à évaluer est fausse, une _exception_ de type `AssertionError` est levée.
 
 ## Lever une exception
 
-Pour déclencher (lever) une *exception* vous-même, utilisez le mot clé `raise` suivi d'un appel au *constructeur* du type de l'exception à lever. Les constructeurs des exceptions prennent souvent en argument une chaîne de caractères décrivant l'erreur.
+Pour déclencher (lever) une _exception_ vous-même, utilisez le mot clé `raise` suivi d'un appel au _constructeur_ du type de l'exception à lever. Les constructeurs des exceptions prennent souvent en argument une chaîne de caractères décrivant l'erreur.
 
 ```python
 raise type_de_l'exception("chaîne_de_caractères")
@@ -753,7 +759,7 @@ Pour créer une liste, utilisez des crochets avec une liste d'éléments.
 nom_de_liste = [élément_1, élément_2, ...]
 ```
 
-**Attention !** Une variable contenant une liste contient en réalité une *référence* à cette liste. Si vous souhaitez passer une *copie* de la liste à une fonction construisez une nouvelle liste avec la fonction `list` :
+**Attention !** Une variable contenant une liste contient en réalité une _référence_ à cette liste. Si vous souhaitez passer une _copie_ de la liste à une fonction construisez une nouvelle liste avec la fonction `list` :
 
 ```python
 list(liste_d_origine)
@@ -766,7 +772,7 @@ liste_vide = []
 liste_vide = list()
 ```
 
-Les listes sont *mutables*. Vous pouvez modifier chaque élément.
+Les listes sont _mutables_. Vous pouvez modifier chaque élément.
 
 ```python
 liste[index] = nouvelle_valeur
@@ -792,7 +798,7 @@ liste[index]
 
 Vous pouvez utiliser un index négatif pour partir de la fin.
 L'index `-1` est équivalent à l'index `len(liste) - 1`.
-Le *slicing* s'applique également à ce type (voir les chaînes de caractères).
+Le _slicing_ s'applique également à ce type (voir les chaînes de caractères).
 
 La méthode `append` permet d'ajouter un élément à la fin de la liste.
 
@@ -810,14 +816,14 @@ L'élément situé à l'index précisé et les suivants sont décalés d'une pos
 
 La méthode `extend` permet d'ajouter à la fin d'une liste les éléments d'une autre liste :
 
-```python
+````python
 liste_1.extend(liste_2) # similaire à liste_1 += liste_2`
 
 La méthode `remove` retire un élément (le premier trouvé) d'une liste :
 
 ```python
 liste.remove(élément)
-```
+````
 
 Même si ce n'est pas très élégant, vous pouvez également utiliser la fonction générale `del` pour supprimer un élément :
 
@@ -871,14 +877,14 @@ min(liste)
 
 La fonction `max` renvoie l'élément le plus "grand" d'une liste :
 
-```python
+````python
 max(liste)`
 
 La fonction `sum` renvoie la somme de tous les éléments d'une liste :
 
 ```python
 sum(liste)
-```
+````
 
 La méthode `index` prend un élément en argument et retourne un index :
 
@@ -913,7 +919,7 @@ for index, élément in enumerate(liste, index_de_départ):
     instructions
 ```
 
-Utilisez la fonction `zip` pour associer plusieurs objets *itérables* en une liste de tuples :
+Utilisez la fonction `zip` pour associer plusieurs objets _itérables_ en une liste de tuples :
 
 ```python
 zip(iterable_1, iterable,2, ...)
@@ -939,7 +945,7 @@ L'expression peut utiliser la variable `item`.
 
 ### Tuples
 
-Pour créer un *tuple*, utilisez les parenthèses.
+Pour créer un _tuple_, utilisez les parenthèses.
 
 ```python
 nouveau_tuple = (élément_1, élément_2, ...)
@@ -951,10 +957,10 @@ nouveau_tuple = (élément_1, élément_2, ...)
 tuple_à_un_seul_élément = (élément, )
 ```
 
-**Attention !** Une variable contenant un tuple contient en réalité une *référence* à ce tuple. Si vous souhaitez passer une *copie* du tuple à une fonction construisez un nouveau tuple avec la fonction tuple :
+**Attention !** Une variable contenant un tuple contient en réalité une _référence_ à ce tuple. Si vous souhaitez passer une _copie_ du tuple à une fonction construisez un nouveau tuple avec la fonction tuple :
 
 ```python
-tuple(tuple_d'origine)
+tuple(tuple_d_origine)
 ```
 
 Utilisez les parenthèses vides ou la fonction tuple pour créer un tuple vide :
@@ -964,7 +970,7 @@ tuple_vide = ()
 tuple_vide = tuple()
 ```
 
-**Attention !** Les tuples sont *immutables*. Cela signifie qu'ils ne peuvent être modifiés une fois créés. Considérez-les comme des listes constantes.
+**Attention !** Les tuples sont _immutables_. Cela signifie qu'ils ne peuvent être modifiés une fois créés. Considérez-les comme des listes constantes.
 
 La méthode `count` renvoie le nombre d'objets identiques présent dans le tuple :
 
@@ -980,7 +986,7 @@ nouveau_tuple.index(élément)
 
 ### Sets
 
-Les sets sont des *conteneurs* mais ne sont pas des *séquences*. Les éléments n'ont pas d'ordre dans les sets. De plus, chaque élément est unique. Il ne peut y avoir deux éléments identiques dans les sets.
+Les sets sont des _conteneurs_ mais ne sont pas des _séquences_. Les éléments n'ont pas d'ordre dans les sets. De plus, chaque élément est unique. Il ne peut y avoir deux éléments identiques dans les sets.
 
 Pour créer un set, utilisez les accolades et insérez les éléments séparés par une virgule :
 
@@ -988,7 +994,7 @@ Pour créer un set, utilisez les accolades et insérez les éléments séparés 
 nouveau_set = {élément_1, élément_2, ...}
 ```
 
-**Attention !** Une variable contenant un set contient en réalité une *référence* à ce set. Si vous souhaitez passer une *copie* du set à une fonction construisez un nouveau set avec la fonction set :
+**Attention !** Une variable contenant un set contient en réalité une _référence_ à ce set. Si vous souhaitez passer une _copie_ du set à une fonction construisez un nouveau set avec la fonction set :
 
 ```python
 set(set_d'origine)
@@ -1044,15 +1050,15 @@ set.add(élément)
 
 ### Dictionnaires
 
-Un dictionnaire associe une *valeur* à une *clé* :
+Un dictionnaire associe une _valeur_ à une _clé_ :
 
 ```python
 dictionnaire = {clé_1: valeur_1, clé_2: valeur_2, ...}
 ```
 
-Une clé peut être de n'importe quel type *immutable* (nombres, chaînes, etc...).**A_VERIFIER**
+Une clé peut être de n'importe quel type _immutable_ (nombres, chaînes, etc...).**A_VERIFIER**
 
-**Attention !** Une variable contenant un dictionnaire contient en réalité une *référence* à ce dictionnaire. Si vous souhaitez passer une *copie* d'un dictionnaire à une fonction construisez un nouveau dictionnaire avec la fonction `dict` :
+**Attention !** Une variable contenant un dictionnaire contient en réalité une _référence_ à ce dictionnaire. Si vous souhaitez passer une _copie_ d'un dictionnaire à une fonction construisez un nouveau dictionnaire avec la fonction `dict` :
 
 ```python
 dict(dictionnaire_d'origine)
@@ -1076,7 +1082,7 @@ Passez un second paramètre en argument à la méthode `get` pour qu'elle retour
 dictionnaire.get(clé, "cette clé est invalide")
 ```
 
-Pour ajouter un couple *clé / valeur*, affectez une valeur à une nouvelle clé :
+Pour ajouter un couple _clé / valeur_, affectez une valeur à une nouvelle clé :
 
 ```python
 dictionnaire[nouvelle_clé] = nouvelle_valeur
@@ -1090,7 +1096,7 @@ Pour modifier plusieurs éléments en une seule fois, utilisez la méthode `upda
 dictionnaire.update({clé_a: valeur_a, clé_b: valeur_b, ...})
 ```
 
-Si une clé n'existe pas, le couple *clé / valeur* est ajouté au dictionnaire.
+Si une clé n'existe pas, le couple _clé / valeur_ est ajouté au dictionnaire.
 
 Le mot clé Python `del` supprime un élément du dictionnaire :
 
@@ -1122,7 +1128,7 @@ La méthode `values` renvoie une liste de toutes les valeurs du dictionnaire :
 dictionnaire.values()
 ```
 
-La méthode `items` renvoie une liste de tuples contenant tous les couples *clé / valeur* du dictionnaire :
+La méthode `items` renvoie une liste de tuples contenant tous les couples _clé / valeur_ du dictionnaire :
 
 ```python
 dictionnaire.items()
@@ -1135,7 +1141,7 @@ for key, value in dictionnaire.items():
     instructions
 ```
 
-Les variables `key` et `value` prennent respectivement la *clé* et la *valeur* de l'élément courant.
+Les variables `key` et `value` prennent respectivement la _clé_ et la _valeur_ de l'élément courant.
 
 Grâce à cette méthode, vous pouvez également créer des dictionnaires en compréhension.
 
@@ -1145,7 +1151,7 @@ nouveau_dictionnaire = {nouvelle_cle: valeur for (cle, valeur) in dictionnaire.i
 
 ## Fonctions
 
-Les *fonctions* sont des instructions regroupées sous un *nom* et qui peuvent être *paramétrées* lors de l'appel à ce nom. Voyez-les comme des boîtes noires qui peuvent prendre des paramètres, qui exécutent une série d'instructions et qui peuvent renvoyer une valeur.
+Les _fonctions_ sont des instructions regroupées sous un _nom_ et qui peuvent être _paramétrées_ lors de l'appel à ce nom. Voyez-les comme des boîtes noires qui peuvent prendre des paramètres, qui exécutent une série d'instructions et qui peuvent renvoyer une valeur.
 
 ```python
 def nom_de_fonction():
@@ -1153,9 +1159,9 @@ def nom_de_fonction():
     instructions
 ```
 
-**Remarque :** Par convention, toutes les fonctions en Python ont une chaîne de caractères (une *docstring*) pour décrire ce que fait la fonction, ses paramètres et, le cas échéant, son type de retour.
+**Remarque :** Par convention, toutes les fonctions en Python ont une chaîne de caractères (une _docstring_) pour décrire ce que fait la fonction, ses paramètres et, le cas échéant, son type de retour.
 
-Une fonction sans instruction doit prendre l'instruction *pass* :
+Une fonction sans instruction doit prendre l'instruction _pass_ :
 
 ```python
 def fonction_vide():
@@ -1208,23 +1214,23 @@ Précisez quel paramètre doit prendre quelle valeur comme ceci :
 nom_de_fonction(valeur_1, valeur_2, paramètre_n=valeur_n)
 ```
 
-**Remarque :** Les *arguments nommés* doivent apparaître après les *arguments positionnels*.
+**Remarque :** Les _arguments nommés_ doivent apparaître après les _arguments positionnels_.
 
-Si vous voulez définir une fonction prenant un nombre variable de *paramètres positionnels*, utilisez la syntaxe suivante :
+Si vous voulez définir une fonction prenant un nombre variable de _paramètres positionnels_, utilisez la syntaxe suivante :
 
 ```python
 def nom_de_fonction(*args):
     instructions
 ```
 
-De même, pour des *paramètres nommés* :
+De même, pour des _paramètres nommés_ :
 
 ```python
 def nom_de_fonction(**kwargs):
     instructions
 ```
 
-Combinez les deux possibilités en respectant l'ordre suivant : *paramètres positionnels* puis *paramètres nommés* :
+Combinez les deux possibilités en respectant l'ordre suivant : _paramètres positionnels_ puis _paramètres nommés_ :
 
 ```python
 def nom_de_fonction(*args, **kwargs):
@@ -1233,7 +1239,7 @@ def nom_de_fonction(*args, **kwargs):
 
 **Remarque :** Bien que vous puissiez utiliser n'importe quel nom pour ces paramètres, par convention, on utilise les identificateurs `args` et `kwargs`.
 
-Lors de l'appel à la fonction, les paramètres `args` et `kwargs` sont convertis en *tuples* contenant les différents arguments.
+Lors de l'appel à la fonction, les paramètres `args` et `kwargs` sont convertis en _tuples_ contenant les différents arguments.
 
 Pour imposer un certains nombre de paramètres, placez ces derniers avant les paramètres variables :
 
@@ -1242,14 +1248,14 @@ def nom_de_fonction(paramètre_requis_1, paramètre_requis_2, *args):
     instructions
 ```
 
-Faites de même pour les *paramètres nommés*. Ces derniers doivent cependant être placés après les *paramètres positionnels* (variables ou non) :
+Faites de même pour les _paramètres nommés_. Ces derniers doivent cependant être placés après les _paramètres positionnels_ (variables ou non) :
 
 ```python
 def nom_de_fonction(paramètre_requis, *args, paramètre_nommé_1=valeur, **kwargs):
     instructions
 ```
 
-Lors de l'appel à la fonction, si vous souhaitez utiliser une *liste* à la place d'une suite d'*arguments positionnels*, faites précéder le nom de la *liste* du caractère `*` pour la convertir en *arguments positionnels*. De même, pour utiliser un *dictionnaire*, faites précéder le nom du *dictionnaire* de deux caractères `**` pour le convertir en une suite d'arguments nommés :
+Lors de l'appel à la fonction, si vous souhaitez utiliser une _liste_ à la place d'une suite d'_arguments positionnels_, faites précéder le nom de la _liste_ du caractère `*` pour la convertir en _arguments positionnels_. De même, pour utiliser un _dictionnaire_, faites précéder le nom du _dictionnaire_ de deux caractères `**` pour le convertir en une suite d'arguments nommés :
 
 ```python
 nom_de_fonction(*nom_liste, **nom_dictionnaire)
@@ -1257,7 +1263,7 @@ nom_de_fonction(*nom_liste, **nom_dictionnaire)
 
 ## Modules
 
-Pour importer le code d'un *module* dans un autre, utilisez le mot clé Python `import` :
+Pour importer le code d'un _module_ dans un autre, utilisez le mot clé Python `import` :
 
 ```python
 import nom_de_module
@@ -1273,7 +1279,7 @@ import sys
 print(sys.path)
 ```
 
-Python cherche les fichiers à importer dans le dossier du fichier courant. Puis dans le chemin de *variable d'environnement* de Python. Ensuite, Python regarde dans le dossier de la *bibliothèque standard*.  Enfin, il regarde dans les packages de site pour les bibliothèques supplémentaires.
+Python cherche les fichiers à importer dans le dossier du fichier courant. Puis dans le chemin de _variable d'environnement_ de Python. Ensuite, Python regarde dans le dossier de la _bibliothèque standard_. Enfin, il regarde dans les packages de site pour les bibliothèques supplémentaires.
 Il est déconseillé d'ajouter à `sys.path` un chemin spécifique mais vous pouvez le faire avec la méthode `append` :
 
 ```python
@@ -1296,7 +1302,7 @@ from nom_de_fichier import nom_de_fonction
 
 **Remarque :** Pour importer plusieurs objets ou fonctions, séparez-les par des virgules.
 
-Pour attribuer un *alias* à un nom de module, utilisez le mot clé Python `as` :
+Pour attribuer un _alias_ à un nom de module, utilisez le mot clé Python `as` :
 
 ```python
 import nom_de_fichier as alias
@@ -1448,7 +1454,7 @@ Notez toutefois que cette syntaxe est inhabituelle. Utilisez plutôt la premièr
 
 ### Définir une méthode de classe
 
-Les méthodes de classes sont des fonctions placées à l'intérieur d'une classe et possédant le décorateur `@classmethod`. Leur premier paramètre doit être `cls` qui correspond à  la classe sur laquelle s'applique la méthode de classe.
+Les méthodes de classes sont des fonctions placées à l'intérieur d'une classe et possédant le décorateur `@classmethod`. Leur premier paramètre doit être `cls` qui correspond à la classe sur laquelle s'applique la méthode de classe.
 
 ```python
 class NomDeClasse:
@@ -1462,7 +1468,7 @@ Une méthode de classe opère sur la classe elle-même et non sur une de ses ins
 
 ### Définir un constructeur
 
-Un constructeur est une méthode spéciale qui crée une instance d'une classe. Cette méthode doit être nommée __init__ :
+Un constructeur est une méthode spéciale qui crée une instance d'une classe. Cette méthode doit être nommée **init** :
 
 ```python
 class NomDeClasse:

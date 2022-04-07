@@ -1,20 +1,68 @@
 # Mémo Cerberus X
 
-*par flashjaysan*
+_par flashjaysan_
 
 ## Présentation
 
+[Cerberus X](https://www.cerberus-x.com/) est un outil de création de jeux vidéos, successeur libre de [Monkey X](https://blitzresearch.itch.io/monkeyx), développé par Mark Sibly, créateur de [BlitzMax](https://blitzmax.org/). Les projets se programment dans un langage objet dérivé du BASIC.
 
+Cerberus X permet d'exporter vos jeux sur de nombreuses plateformes :
 
-## Langage
+- Windows
+- Linux
+- OS X
+- iOS
+- Android
+- HTML5
 
-### Structure d'un projet
+**Remarque :** Par défaut, Cerberus X propose l'export HTML5. Pour les autres plateformes, vous devez installer des outils complémentaires.
 
-Un projet est constitué d'un ou plusieurs fichiers sources. Ceux-ci contiennent une série de déclaration. Les types de déclarations possible sont les suivants :
+## Installation
+
+Téléchargez la dernière version de Cerberus X sur [itch.io](https://whiteskygames.itch.io/cerberus-x) et décompressez l'archive à l'emplacement de votre choix.
+
+**Remarque :** Vous pouvez télécharger les fichiers sources sur [GitHub](https://github.com/cerberusxdev/cerberus) mais vous ne devrez les compiler vous-même.
+
+Par défaut, Cerberus X vous propose l'export HTML5 mais si vous souhaitez exporter vers d'autres plateformes, vous devrez installer des outils complémentaires.
+
+Sur Windows, pour l'export `Desktop`, vous devez installer MinGW et préciser à Cerberus X où il se trouve.
+
+- Téléchargez [MinGW](https://www.cerberus-x.com/downloads/tdm-gcc-64.zip) et décompressez l'archive à l'emplacement de votre choix.
+- Ouvrez le répertoire `bin` de Cerberus X et éditez le fichier `config.winnt.txt` dans un éditeur de code.
+- Localisez la section suivante et modifiez le chemin pointant vers MinGW vers l'emplacement où vous avez décompressé MinGW.
+
+```
+'MinGW path.
+'
+'Must be set to a valid dir for desktop/stdcpp target support.
+'
+'MinGW is currently here:
+'
+'***** DO NOT use mingw64-5.1.0 as it has a linker bug *****
+
+'***** 64 bit mingw *****
+'MINGW_PATH="d:\TDM-GCC-64x"
+```
+
+- Enregistrez le fichier `config.winnt.txt` et redémarrez Cerberus X.
+
+**Remarque :** Utilisez le chemin général de MinGW et non celui de son sous-dossier `bin`.
+
+## Concepts de base
+
+Un projet est constitué d'un ou plusieurs fichiers sources. Ceux-ci doivent avoir une extension `.cxs`.
+
+Les projets compilés sont créés dans un dossier d'export portant le même nom que le module contenant la fonction `Main`.
+
+## Structure d'un projet
+
+Les fichiers sources contiennent une série de déclaration. Une déclaration introduit un nouveau nom (identificateur) dans le projet.
+
+Les types de déclarations possible sont les suivants :
 
 - Modules.
 - Constantes.
-- 2numérations d'entiers.
+- Enumérations d'entiers.
 - Variables locales, globales et champs.
 - Classes.
 - Fonctions.
@@ -22,21 +70,29 @@ Un projet est constitué d'un ou plusieurs fichiers sources. Ceux-ci contiennent
 
 ### Module
 
-Un module est représenté par un seul fichier source. Son nom est déterminé par le nom de ce fichier source. Par exemple, un fichier source nommé `vecteur.cxs` définit un module nommé `vecteur`.
+Un module est représenté par un seul fichier source. Son nom est déterminé par le nom de ce fichier source sans l'extension `.cxs`. Par exemple, un fichier source nommé `vecteur.cxs` définit un module nommé `vecteur`.
 
 Un module peut importer d'autres modules.
+
+## Syntaxe du langage
+
+Les instructions ne peuvent pas apparaitre directement au plus haut niveau des fichiers sources. Elles doivent être placées dans des déclarations.
 
 ### Mode strict
 
 En tête de vos fichiers sources, vous pouvez spécifier le mode.
 
-- Si vous ne précisez pas de mode, vous n'êtes pas obligé de définir le type de vos variables ni celui de la valeur de retour des fonctions/méthodes ainsi que leurs paramètres. Par défaut, un type manquant est automatiquement `Int`. Une fonction qui n'a pas d'instruction `Return` dans son corps se voit ajouter automatiquement une instruction avec une valeur par défaut par le compilateur.
-  - `False` pour les booléens.
-  - `0` pour les types numériques.
-  - `""` pour les chaines.
-  - `[]` pour les tableaux.
-  - `Null` pour les objets.
-- Si vous préciser le mode `Strict`, vous devez attribuer explicitement un type à toutes les variables, toutes les valeurs de retour des fonctions/méthodes et tous leurs paramètres. Une fonction qui renvoie une valeur (qui n'est pas déclarée avec le type `Void`) doit posséder une instruction `Return` dans son corps.
+Si vous ne précisez pas de mode, vous n'êtes pas obligé de définir le type de vos variables ni celui de la valeur de retour des fonctions/méthodes ainsi que leurs paramètres. Par défaut, un type manquant est automatiquement `Int`.
+
+Une fonction qui n'a pas d'instruction `Return` dans son corps se voit ajouter automatiquement une instruction avec une valeur par défaut par le compilateur.
+
+- `False` pour les booléens.
+- `0` pour les types numériques.
+- `""` pour les chaines.
+- `[]` pour les tableaux.
+- `Null` pour les objets.
+
+Si vous préciser le mode `Strict`, vous devez attribuer explicitement un type à toutes les variables, toutes les valeurs de retour des fonctions/méthodes et tous leurs paramètres. Une fonction qui renvoie une valeur (qui n'est pas déclarée avec le type `Void`) doit posséder une instruction `Return` dans son corps.
 
 **Conseil :** Utilisez systématiquement le mode `Strict`.
 
@@ -46,11 +102,22 @@ Strict
 
 ### Point d'entrée
 
-Chaque projet doit contenir un module contenant une fonction Main qui définit le point d'entrée du programme. Cette fonction ne prend pas de paramètre et renvoie un entier.
+Un projet Cerberus X doit contenir un module contenant une fonction `Main` qui définit le point d'entrée du programme. Cette fonction ne prend pas de paramètre et renvoie un entier (`Int`).
+
+**Remarque :** Les identificateurs étant sensibles à la casse, vous devez définir une fonction `Main` capitalisée. La fonction `main` ne sera pas reconnue comme point d'entrée du projet.
+
+Le programme minimal d'un projet Cerberus X est donc le suivant :
+
+```
+Function Main:Int()
+
+End
+```
+
+Avec le mode `Strict`, cela devient :
 
 ```
 Strict
-
 
 Function Main:Int()
 
@@ -58,22 +125,24 @@ Function Main:Int()
 End
 ```
 
+**Remarque :** Si votre projet utilise les modules du framework `mojo` (ou ceux de `mojo2`), vous devez instancier la classe `App` dans la fonction `Main`.
+
 ### Instructions
 
-Une instruction se termine généralement par un retour à la ligne. Il est possible de placer plusieurs instructions sur une même ligne en les séparant par `;`. Il est également possible de diviser des instructions longues mais uniquement après:
+Une instruction se termine par un retour à la ligne. Vous pouvez placer plusieurs instructions sur une même ligne en les séparant par un point virgule (`;`). Vous pouvez également diviser des instructions longues mais uniquement après les jetons de langage suivants :
 
 - `,` dans une liste de paramètres, des éléments d'un tableau et les énumérations.
 - `[`
 - `.`
-- Tous les opérateurs. 
+- Tous les opérateurs.
 
-**Conseil :** Evitez d'écrire plusieurs instructions sur une même ligne.
+**Conseil :** N'écrivez qu'une seule instruction par ligne.
 
 ### Commentaires
 
 Les commentaires sont ignorés par le compilateur. Ils servent à ajouter des informations à votre code pour expliquer ce qu'il fait ou à désactiver temporairement certaines instructions.
 
-Un commentaire sur une seule ligne commence par `'`. Vous pouvez utiliser ce type de commentaire sur la même ligne après une instruction.
+Un commentaire sur une seule ligne commence par une apostrophe (`'`). Vous pouvez utiliser ce type de commentaire sur la même ligne qu'une instruction, après celle-ci.
 
 ```
 ' Ceci est un commentaire.
@@ -91,13 +160,19 @@ Les commentaires de blocs commencent par la directive de préprocesseur `#Rem` e
 
 ### Identificateurs
 
-Les identificateurs introduisent de nouveaux noms dans le programme. Ils doivent commencer par une lettre ou `_` (suivi par une lettre). Ils peuvent ensuite être constitués de lettres, de chiffres ou de `_`. Ils sont sensibles à la casse.
+Les identificateurs introduisent de nouveaux noms dans le programme. Ils doivent commencer par une lettre ou un underscore (`_`) (suivi par une lettre). Ils peuvent ensuite être constitués de lettres, de chiffres ou d'underscores (`_`).
 
-Les mots clés du langage ne peuvent servir d'identificateurs.
+**Remarque :** Ils sont sensibles à la casse.
+
+**Attention !** Les mots clés du langage (mots réservés) ne peuvent servir d'identificateurs.
 
 ### Mots clés
 
-Les mots clés du langages ne peuvent servir d'identificateurs. Ils ne sont pas sensibles à la casse. Les mots réservés sont les suivants :
+Les mots clés du langages ne peuvent servir d'identificateurs.
+
+**Remarque :** Ils ne sont pas sensibles à la casse.
+
+Les mots réservés du langage sont les suivants :
 
 - `Abstract`
 - `And`
@@ -179,7 +254,7 @@ Les modules standards de Cerberus X utilisent les conventions suivantes :
 
 ```
 True            ' littéral booléen
-False
+False           ' littéral booléen
 1234            ' littéral entier
 $CAFEBABE       ' littéral hexadécimal
 9.81            ' littéral à virgule flottante
@@ -223,18 +298,18 @@ Global Identificateur: type [= valeur]
 ### Constantes
 
 ```
-Const Identificateur: type = valeur
+Const IDENTIFICATEUR: type = valeur
 ```
 
 ### Enumérations
 
 ```
-Enumerate Identificateur [= valeurDépart], Identificateur, Identificateur [= valeurDépart] [ , ...]
+Enumerate Identificateur [= valeurDépart], Identificateur, Identificateur [= valeur] [ , ...]
 ```
 
 ### Opérateurs
 
-Les opérateurs suivants sont disponibles par ordre de précédence :
+Les opérateurs suivants sont disponibles par ordre de priorité :
 
 - `New` : Crée une instance.
 - `Null` : objet vide.
@@ -287,9 +362,13 @@ variable |= valeur ' équivalent à variable = variable | valeur
 
 ### Afficher du texte
 
+Utilisez la fonction `Print` pour afficher du texte dans la console.
+
 ```
 Print(valeur)
 ```
+
+**Remarque :** Pour afficher du texte dans la fenêtre de jeu, utilisez la fonction `DrawText` du framework mojo.
 
 ### Branchement conditionnel
 
@@ -300,16 +379,16 @@ ElseIf Expression [Then]
     Statements
 Else
     Statements
-EndIf 
+EndIf
 ```
 
 ```
 Select Expression
-Case Expression [, Expression]
-    Statements
-Default
-    Statements
-End [Select] 
+    Case Expression[, Expression]
+        Statements
+    Default
+        Statements
+End [Select]
 ```
 
 ## Boucles
@@ -345,7 +424,7 @@ Until Expression
 ```
 Repeat
     Statements
-Forever 
+Forever
 ```
 
 Trois variantes de boucles `for` :
@@ -393,7 +472,7 @@ End For
 ```
 Function Identifier: ReturnType (Parameters)
     Statements
-End [Function] 
+End [Function]
 ```
 
 Cerberus X prend en charge la surcharge de fonctions.
@@ -428,16 +507,12 @@ It is illegal to declare a property method with 2 or more parameters.
 ```
 Class Identifier [<Parameters>] [Extends BaseClass] [Implements Interfaces]
     Declarations
-End [Class] 
+End [Class]
 ```
 
 #### Constructeurs
 
-
-
 #### Champs
-
-
 
 ### Méthodes
 
@@ -454,31 +529,25 @@ Within a method you can also use the `Self` and `Super` keywords:
 
 #### Visibilité
 
-
-
 #### Généricité
 
-
-
 #### Héritage
-
-
 
 ### Interfaces
 
 ```
 Interface Identifier [Extends Interfaces]
     Declarations
-End [Interface] 
+End [Interface]
 ```
 
 ### Exceptions
 
 ```
 Try
-    
+
 Catch exception: Throwable
-    
+
 End
 ```
 
@@ -498,9 +567,219 @@ Import nom_dossier.nom_fichier
 
 ## Mojo
 
-### Point d'entrée
+### Classe mojo.app.App
 
-Comme précisé précédemment dans la section `Langage`, le point d'entrée d'un projet se fait dans une fonction `Main` qui ne prend aucun paramètre et qui renvoie un entier. Pour un projet utilisant le module `mojo`, vous devez étendre la classe `mojo.app.App` et en créer une instance dans la fonction `Main`.
+Comme précisé précédemment dans la section `Syntaxe du langage`, le point d'entrée d'un projet Cerberus X se fait dans une fonction `Main` qui ne prend aucun paramètre et qui renvoie un entier (`Int`). Pour un projet utilisant le module `mojo`, vous devez étendre la classe `mojo.app.App` et en créer une instance dans la fonction `Main`.
+
+```
+Strict
+
+Import mojo
+
+
+Class Game Extends App
+
+End
+
+
+Function Main: Int()
+    Local game:Game = New Game()
+    Return 0
+End
+```
+
+La classe `App` fournit plusieurs méthodes que vous pouvez redéfinir pour composer votre projet.
+
+#### Méthode OnCreate
+
+La méthode `OnCreate` s'exécute une seule fois, lors de l'instanciation de la classe après que `mojo` ait été initialisé et que l'application ait été créée. Elle vous permet d'initialiser les variables essentielles et de charger les ressources nécessaires au démarrage du jeu.
+
+```
+Method OnCreate:Int()
+    Return 0
+End
+```
+
+#### Méthode OnRender
+
+La méthode `OnRender` s'exécute à chaque boucle de jeu, pour mettre à jour l'affichage. Utilisez cette méthode pour dessiner vos éléments à l'écran.
+
+```
+Method OnRender:Int()
+    Return 0
+End
+```
+
+#### Méthode OnLoading
+
+La méthode `OnLoading` s'exécute à chaque boucle de jeu, à la place de la méthode `OnRender` si des ressources n'ont pas terminé de se charger.
+
+```
+Method OnLoading:Int()
+    Return 0
+End
+```
+
+#### Méthode OnUpdate
+
+La méthode `OnUpdate` s'exécute à chaque boucle de jeu, à chaque tick de timer, avant la méthode `OnRender`. Utilisez cette méthode pour mettre à jour les données de votre jeu.
+
+```
+Method OnUpdate:Int()
+    Return 0
+End
+```
+
+**Remarque :** La méthode `OnUpdate` n'est appelée que si vous avez préalablement appelé la fonction `SetUpdateRate` (généralement dans la méthode `OnCreate`).
+
+#### Méthode OnSuspend
+
+La méthode `OnSuspend` s'exécute lorsque l'application est suspendue.
+
+```
+Method OnSuspend:Int()
+    Return 0
+End
+```
+
+#### Méthode OnResume
+
+La méthode `OnResume` s'exécute lorsque l'application reprend son exécution après une suspension.
+
+```
+Method OnResume:Int()
+    Return 0
+End
+```
+
+#### Méthode OnBack
+
+La méthode `OnBack` s'exécute lorsque le bouton `Back` est activé.
+
+```
+Method OnBack:Int()
+    Return 0
+End
+```
+
+#### Méthode OnClose
+
+La méthode `OnClose` s'exécute lorsque le bouton de fermeture est activé.
+
+```
+Method OnClose:Int()
+    Return 0
+End
+```
+
+#### Méthode OnResize
+
+La méthode `OnResize` s'exécute lorsque la fenêtre de l'application est redimensonnée.
+
+```
+Method OnResize:Int()
+    Return 0
+End
+```
+
+### Définir le taux de rafraichissement
+
+Utilisez la fonction `SetUpdateRate` en lui passant le taux de rafraichissement de l'affichage de votre jeu.
+
+```
+SetUpdateRate(taux)
+```
+
+**Remarque :** Cette fonction lance également l'appel automatique à la méthode `OnUpdate`.
+
+### Définir la taille de la fenêtre de jeu
+
+Utilisez la fonction `SetDeviceWindow`.
+
+```
+SetDeviceWindow(largeur, hauteur)
+```
+
+### Définir le titre de la fenêtre de jeu
+
+Utilisez la fonction ``.
+
+```
+
+```
+
+### Effacer la fenêtre de jeu
+
+Utilisez la fonction `Cls`.
+
+```
+Cls(rouge, vert, bleu)
+```
+
+### Dessin
+
+#### Définir la couleur de dessin
+
+Utilisez la fonction `SetColor`.
+
+```
+SetColor(rouge, vert, bleu)
+```
+
+#### Dessiner un point
+
+Utilisez la fonction `DrawPoint`.
+
+```
+DrawPoint(x, y)
+```
+
+#### Dessiner un segment
+
+Utilisez la fonction `DrawLine`.
+
+```
+DrawLine(x1, y1, x2, y2)
+```
+
+#### Dessiner un cercle
+
+Utilisez la fonction `DrawCircle`.
+
+```
+DrawCircle(x, y, rayon)
+```
+
+#### Dessiner un rectangle
+
+Utilisez la fonction `DrawRect`.
+
+```
+DrawRect(x, y, largeur, hauteur)
+```
+
+### Images
+
+```
+
+```
+
+##### gggggg
+
+```
+Import mojo.app
+Import mojo.graphics
+
+Class MyApp Extends App
+    Method OnRender()
+        DrawText("Hello World!", 0, 0)
+    End
+End
+
+Function Main()
+    New MyApp
+End
+```
 
 ```
 Strict
@@ -557,7 +836,15 @@ Function Main:Int()
 End
 ```
 
-La méthode `OnCreate` est la première à être appelée une fois que mojo a été initialisée. A partir de cette méthode, vous pouvez utiliser les fonctionnalités fournies par mojo (par exemple, charger une image).
+La méthode `OnCreate` est la première à être appelée une fois que le module `mojo` a été initialisée. A partir de cette méthode, vous pouvez utiliser les fonctionnalités fournies par `mojo` (par exemple, charger une image).
+
+All data for Mojo programs (images, sounds and text files) must go into a special data directory. This directory has the same name as the program's main source file, only with a '.data' extension instead of '.cxs'. For example, if your main source file is called 'joust2k.cxs', then your data directory should be name 'joust2k.data'.
+
+Mojo functions should not be called until your application's OnCreate method is called. This means you cannot initialize global variables with values returned by Mojo functions such as MilliSecs - you must instead initialize such variables in your application's OnCreate method or later.
+
+Mojo is callback based, as opposed to earlier Blitz Research products where your application 'drove' the main loop. A callback based app instead responds to events generated by the underlying OS.
+
+Mojo does not deal with resizing the display. This must be done on the target side of things, meaning that you will need to modify the target project in the program's '.build' directory. The exact process involved with resizing the display (and controlling display capabilities in general) varies greatly from target to target. It may involve editing some source code, or perhaps using a RAD tool to resize a window, which is why Mojo makes no attempt to deal with this side of things. Please see the notes in the various target platform docs below.
 
 ### Images
 

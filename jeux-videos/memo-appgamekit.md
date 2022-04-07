@@ -451,3 +451,47 @@ sprite = CreateSprite(image)
 ```
 SetSpritePosition(sprite, x, y)
 ```
+
+## Scènes
+
+### Inclure une scène
+
+```
+#include "nom_scene.scene"
+```
+
+### Initialiser une scène
+
+Utilisez le suffixe `_setup` sur le nom de la scène pour appeler une fonction qui initialise la scène.
+
+```
+nom_scene_setup()
+```
+
+### Dessiner une scène
+
+Utilisez le suffixe `_sync` sur le nom de la scène pour appeler une fonction qui initialise la scène.
+
+```
+nom_scene_sync()
+```
+
+**Remarque :** Utilisez cette fonction dans la boucle principale avant d'appeler la commande `Sync`.
+
+### Ajuster l'opacité d'une scène
+
+```
+scenename_fade(valeur)
+```
+
+Le paramètre `valeur` est un entier compris entre `0` (totalement transparent) et `100` (totalement opaque).
+
+### Libérer les ressources d'une scène
+
+```
+scenename_cleanup()
+```
+
+### Accéder aux éléments d'une scène
+
+Utilisez simplemement le nom défini dans propriété `Unique Variable` de l'éditeur de scène pour faire référence à un élément en particulier.
