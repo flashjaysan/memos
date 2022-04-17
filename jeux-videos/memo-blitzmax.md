@@ -188,6 +188,12 @@ Print(message) ' affiche "Hello, World"
 Local lettre:Chr = Chr(chaine[N])
 ```
 
+Utilisez la fonction Bin pour convertir un nombre en une chaine sous sa forme binaire.
+
+```
+Print(Bin(nombre))
+```
+
 ### Caster une valeur
 
 ```
@@ -620,6 +626,15 @@ End Function
 ```
 Function NomFonction:NomType(parametre1: NomType, parametre2: NomType = valeur, ...)
     Return valeur
+End Function
+```
+
+Vous pouvez également passer des paramètres par référence pour modifier leur valeur.
+
+```
+Function NomFunction:NomType(parametre1:NomType Var, ...)
+    ...
+    parametre1 = valeur
 End Function
 ```
 
