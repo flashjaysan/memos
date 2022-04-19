@@ -1070,6 +1070,18 @@ K_POWER               power
 K_EURO                Euro
 ```
 
+### Accéder à l'état des touches du clavier
+
+pygame fournit la fonction `get_pressed` du sous-module `key` qui renvoie un dictionnaire contenant l'état des touches du clavier. Utilisez une constante représentant un caractère en tant que clé de ce dictionnaire pour accéder à l'état d'une touche spécifique. L'état est soit `True` quand la touche est actuellement enfoncée, soit `False` quand la touche n'est pas actuellement enfoncée.
+
+```python
+keys_pressed = pygame.key.get_pressed()
+if keys_pressed[pygame.K_LEFT]:
+    # instructions si la touche GAUCHE est enfoncée
+if keys_pressed[pygame.K_RIGHT]:
+    # instructions si la touche DROITE est enfoncée
+```
+
 ## Gérer la vitesse de rafraichissement de l'affichage
 
 Créez un objet de la classe `Clock` défini dans le sous-module `time`.
@@ -1145,7 +1157,9 @@ vecteur3 = pygame.Vector3(x, y, z)
 
 ### Les rectangles
 
-pygame définit la classe `Rect` pour représenter un rectangle. Elle est définie par la position de son coin supérieur gauche et ses dimensions.
+pygame définit la classe `Rect` pour représenter un rectangle aligné sur les axes. Cette classe est définie par la position de son coin supérieur gauche et ses dimensions.
+
+Elle possède notamment des méthodes très utiles pour gérer les collisions avec d'autres rectangles.
 
 #### Rect
 
@@ -1155,6 +1169,35 @@ Créez une instance de la classe `Rect` en passant les coordonnées de son coin 
 rectangle = pygame.Rect(x, y, largeur, hauteur)
 ```
 
+<<<<<<< Updated upstream
+=======
+La classe `Rect` fournit également des propriétés virtuelles bien pratiques car vous pouvez aussi bien y accéder en lecture qu'en écriture.
+
+- `x` ou `left` : position horizontale du bord gauche
+- `right` : position horizontale du bord droit
+- `y` ou `top` : position verticale du bord supérieur
+- `bottom` : position verticale du bord inférieur
+- `topleft` : coordonnées du coin supérieur gauche (x, y)
+- `bottomleft` : coordonnées du coin inférieur gauche (x, y)
+- `topright` : coordonnées du coin supérieur droit (x, y)
+- `bottomright` : coordonnées du coin inférieur droit (x, y)
+- `midtop` : coordonnées du milieu du bord supérieur (x, y)
+- `midleft` : coordonnées du milieu du bord gauche (x, y)
+- `midbottom` : coordonnées du milieu du bord inférieur (x, y)
+- `midright` : coordonnées du milieu du bord gauche (x, y)
+- `center` : coordonnées du centre du rectangle (x, y)
+- `centerx` : position horizontale du centre du rectangle
+- `centery` :  position verticale du centre du rectangle
+- `size` : dimensions du rectangle (largeur, hauteur)
+- `width` ou `w` : largeur du rectangle
+- `height` ou `h` : hauteur du rectangle
+
+
+
+
+
+
+>>>>>>> Stashed changes
 ## Dessiner des formes géométriques
 
 Le sous-module `draw` contient un ensemble de fonctions vous permettant de dessiner des formes géométriques sur la surface de votre choix (y compris la surface d'affichage).
@@ -1347,6 +1390,7 @@ Utilisez la méthode `blit` sur la surface d'affichage et passez la surface repr
 ```python
 display_surface.blit(surface, (x, y))
 ```
+<<<<<<< Updated upstream
 
 ## Déplacer un rectangle avec le clavier
 
@@ -1404,3 +1448,5 @@ while True:
     pygame.display.update()
     mainClock.tick(60)
 ```
+=======
+>>>>>>> Stashed changes

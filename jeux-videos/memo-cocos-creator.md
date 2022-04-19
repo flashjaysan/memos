@@ -20,35 +20,35 @@ Rendez vous sur le site officiel de Cocos :
 
 [https://www.cocos.com/](https://www.cocos.com/)
 
-![Cocos official page](cocos_com_main_page.jpg)
+![Cocos official page](images/cocos_com_main_page.jpg)
 
 Cliquez sur le bouton `Download` de la section `Cocos Creator` (pas celui de la section `Cocos2d-x`).
 
 Vous arrivez directement sur la page de [téléchargement de Cocos Creator](https://www.cocos.com/en/creator/download).
 
-![Cocos Creator download page](cocos_com_cocos_creator_download_page.jpg)
+![Cocos Creator download page](images/cocos_com_cocos_creator_download_page.jpg)
 
 ---
 
 **Remarque :** Si vous avez utilisé le menu `Products > Cocos Creator`, vous arrivez sur la page dédiée à [Cocos Creator](https://www.cocos.com/en/creator) :
 
-![Cocos Products drop down menu](cocos_com_drop_down_menu.jpg)
+![Cocos Products drop down menu](images/cocos_com_drop_down_menu.jpg)
 
-![Cocos Creator official page](cocos_com_creator.jpg)
+![Cocos Creator official page](images/cocos_com_creator.jpg)
 
 Depuis cette page, pour télécharger le Dashboard Cocos Creator, vous devez faire défiler la page et cliquer sur le bouton `Download`.
 
-![Cocos Creator page download button](cocos_com_creator_download_button.jpg)
+![Cocos Creator page download button](images/cocos_com_creator_download_button.jpg)
 
 ---
 
 Cliquez sur le bouton `DOWNLOAD DASHBOARD` de n'importe quelle version de Cocos Creator pour téléchargez le Dashboard :
 
-![Cocos Creator DOWNLOAD DASHBOARD button](cocos_com_download_dashboard_button.jpg)
+![Cocos Creator DOWNLOAD DASHBOARD button](images/cocos_com_download_dashboard_button.jpg)
 
 Installez et exécutez le Dashboard Cocos Creator. Vous devez créer un compte Cocos Developer et saisir votre identifiant et votre mot de passe dans le dashboard puis cliquer sur le bouton `Sign in`.
 
-![Dashboard Cocos Developer Login](dashboard_login.jpg)
+![Dashboard Cocos Developer Login](images/dashboard_login.jpg)
 
 **Remarque :** Si vous ne possédez pas encore de compte Cocos Developer, cliquez sur le texte `Sign up` pour aller sur la page de création de compte. Si vous avez oublié votre mot de passe, cliquez sur le texte `Forgot password?` pour aller sur la page de récupération de mot de passe.
 
@@ -79,21 +79,21 @@ Le *Dashboard* est l'écran d'accueil de *Cocos Creator* qui apparait au lanceme
 
 L'onglet `Recent Projects` vous permet d'ouvrir un projet récemment ouvert avec *Cocos Creator* :
 
-![Dashboard Recent Projects tab with content](dashboard_recent_projects_tab_with_content.jpg)
+![Dashboard Recent Projects tab with content](images/dashboard_recent_projects_tab_with_content.jpg)
 
 **Remarque :** Si vous n'avez pas de projet récent dans la fenêtre, *Cocos Creator* vous propose de créer un nouveau projet en cliquant sur le bouton `New Project`. Cela affiche l'onglet `New Project`.
 
-![Dashboard Recent Projects tab without content](dashboard_recent_projects_tab_without_content.jpg)
+![Dashboard Recent Projects tab without content](images/dashboard_recent_projects_tab_without_content.jpg)
 
 - Lorsque vous pointez sur un des projets de la liste, le chemin du projet s'affiche dans la fenêtre.
 - Cliquez sur le bouton `Open` pour ouvrir le projet dans *Cocos Creator*.
 - Cliquez sur la croix de fermeture pour supprimer le projet de la liste.
 
-![Dashboard Recent Projects tab project closeup](dashboard_recent_projects_tab_project_closeup.jpg)
+![Dashboard Recent Projects tab project closeup](images/dashboard_recent_projects_tab_project_closeup.jpg)
 
 L'onglet `New Project` vous permet de créer un nouveau projet :
 
-![Dashboard New Project tab](dashboard_new_project_tab.jpg)
+![Dashboard New Project tab](images/dashboard_new_project_tab.jpg)
 
 - Cliquez sur un des projets listés dans la fenêtre. Une description succinte s'affiche en bas de la fenêtre.
 - Vous pouvez vérifier l'emplacement du projet en bas de la fenêtre. Si cet emplacement ne vous convient pas, cliquez sur le bouton `Browse` pour définir un nouvel emplacement pour votre projet. Notez que le chemin ne peut contenir aucun caractère *espace*.
@@ -101,21 +101,21 @@ L'onglet `New Project` vous permet de créer un nouveau projet :
 
 L'onglet `Open Other` vous permet d'ouvrir un projet stocké sur votre ordinateur (en particulier un projet non présent dans l'onglet `Recent Projects`). Un explorateur de fichier vous demande de sélectionner un dossier contenant un fichier `project.json` :
 
-![Can not find project.json message](can_not_find_project_json.jpg)
+![Can not find project.json message](images/can_not_find_project_json.jpg)
 
 L'onglet `News` vous propose de consulter les dernières nouvelles relatives à *Cocos Creator* :
 
-![Dashboard News tab](dashboard_news_tab.jpg)
+![Dashboard News tab](images/dashboard_news_tab.jpg)
 
 L'onglet `Learn` vous propose d'ouvrir différentes pages d'aides en ligne sur *Cocos Creator* :
 
-![Dashboard Learn tab](dashboard_learn_tab.jpg)
+![Dashboard Learn tab](images/dashboard_learn_tab.jpg)
 
 ## Editeur
 
 Une fois un nouveau projet créé ou un ancien projet ouvert, *Cocos Creator* charge le projet et affiche l'éditeur :
 
-![Editor screenshot](editor.jpg)
+![Editor screenshot](images/editor.jpg)
 
 La barre de menus propose les menus suivants :
 
@@ -138,7 +138,7 @@ La barre de menus propose les menus suivants :
 
 Cette fenêtre vous permet de configurer *Cocos Creator*. Elle est constituée de quatre onglets :
 
-![Settings window, General tab](settings_window_general_tab.jpg)
+![Settings window, General tab](images/settings_window_general_tab.jpg)
 
 - L'onglet `General` contient les réglages généraux de *Cocos Creator* :
   - L'option `Language` vous permet de régler la langue de l'interface de *Cocos Creator*. `English` (anglais) (par défaut) ou `中文` (chinois).
@@ -151,14 +151,14 @@ Cette fenêtre vous permet de configurer *Cocos Creator*. Elle est constituée d
   - L'option `Spin step` ????????????????. `0.1` par défaut.
   - L'option `HTTP Proxy Server` vous permet de définir l'adresse IP du serveur proxy HTTP. Vide par défaut.
 
-![Settings window, Data Editor tab](settings_window_data_editor_tab.jpg)
+![Settings window, Data Editor tab](images/settings_window_data_editor_tab.jpg)
 
 - L'onglet `Data Editor` contient les réglages concernant les éditeurs externes à *Cocos Creator* :
   - La case `Auto Compiler Scripts` ?????????????????. Cochée par défaut.
   - L'option `External Script Editor` vous permet de choisir l'éditeur de code externe à utiliser pour éditer les scripts de *Cocos Creator*. Le bouton `Browse` vous permet de choisir sur votre machine l'éditeur de code de votre choix. `Default` par défaut.
   - L'option `External Picture Editor` vous permet de choisir l'éditeur d'image externe à utiliser pour éditer les images de vos projets. Le bouton `Browse` vous permet de choisir sur votre machine l'éditeur d'image de votre choix. Vide par défaut.
 
-![Settings window, Native Develop tab](settings_window_native_develop_tab.jpg)
+![Settings window, Native Develop tab](images/settings_window_native_develop_tab.jpg)
 
 - L'onglet `Native Develop` contient les réglages concernant les moteurs à utiliser dans *Cocos Creator* ainsi que l'emplacement de divers moteurs ou bibliothèques :
   - La case `Use Builtin JavaScript Engine` vous permet de choisir si vous souhaitez utiliser le moteur Cocos2d JavaScript embarqué avec *Cocos Creator*. Cochée par défaut.
@@ -169,7 +169,7 @@ Cette fenêtre vous permet de configurer *Cocos Creator*. Elle est constituée d
   - L'option `NDK Root` vous permet de définir la racine du *NDK Android*. Cliquez sur le bouton `...` pour sélectionner l'emplacement de la bibliothèque. Cliquez sur le bouton `Open` pour ouvrir un explorateur de fichier à l'emplacement indiqué. Vide par défaut.
   - L'option `Android SDK Root` vous permet de définir la racine du *Android SDK*. Cliquez sur le bouton `...` pour sélectionner l'emplacement de la bibliothèque. Cliquez sur le bouton `Open` pour ouvrir un explorateur de fichier à l'emplacement indiqué. Vide par défaut.
 
-![Settings window, Preview Run tab](settings_window_preview_run_tab.jpg)
+![Settings window, Preview Run tab](images/settings_window_preview_run_tab.jpg)
 
 - L'onglet `Preview Run` contient les réglages liés au test de vos projets :
   - La case `Should Auto-refresh Preview?` vous permet de définir si la prévisualisation doit se mettre à jour automatiquement. Cochée par défaut.
@@ -318,33 +318,33 @@ Ce menu vous permet d'ajouter des composants au noeud sélectionné.
 
 #### La fenêtre Build
 
-![Build window](build_window.jpg)
+![Build window](images/build_window.jpg)
 
 #### La fenêtre Project Settings
 
 Cette fenêtre vous permet de configurer votre projet. Elle est constituée de cinq onglets :
 
-![Project Settings window, Group Manager tab](project_settings_group_manager_tab.jpg)
+![Project Settings window, Group Manager tab](images/project_settings_group_manager_tab.jpg)
 
 - L'onglet `Group Manager` contient les réglages ???????????? :
   - L'option `????????????` vous permet de ??????????????????????.
 
-![Project Settings window, Module Config tab](project_settings_module_config_tab.jpg)
+![Project Settings window, Module Config tab](images/project_settings_module_config_tab.jpg)
 
 - L'onglet `Module Config` contient les réglages ???????????? :
   - L'option `????????????` vous permet de ??????????????????????.
 
-![Project Settings window, Project Preview tab](project_settings_project_preview_tab.jpg)
+![Project Settings window, Project Preview tab](images/project_settings_project_preview_tab.jpg)
 
 - L'onglet `Project Preview` contient les réglages ???????????? :
   - L'option `????????????` vous permet de ??????????????????????.
 
-![Project Settings window, Custom Engine tab](project_settings_custom_engine_tab.jpg)
+![Project Settings window, Custom Engine tab](images/project_settings_custom_engine_tab.jpg)
 
 - L'onglet `Custom Engine` contient les réglages ???????????? :
   - L'option `????????????` vous permet de ??????????????????????.
 
-![Project Settings window, Service tab](project_settings_service_tab.jpg)
+![Project Settings window, Service tab](images/project_settings_service_tab.jpg)
 
 - L'onglet `Service` contient les réglages ???????????? :
   - L'option `????????????` vous permet de ??????????????????????.
@@ -433,7 +433,7 @@ Divers panneaux sont disponibles dans l'éditeur. Cliquez sur le bouton en haut 
 
 Le panneau `Assets` affiche sous forme d'arborescence la liste des ressources contenues dans le projet :
 
-![Assets panel screenshot](assets_panel.jpg)
+![Assets panel screenshot](images/assets_panel.jpg)
 
 Pour importer une ressource, faites la glisser dans le panneau `Assets`. Une copie de la ressource originale est créée dans le dossier `assets` du projet.
 
@@ -458,7 +458,7 @@ Pour créer une ressource, cliquez sur le bouton `+` du panneau `Assets` ou fait
 
 Le panneau `Node Tree` affiche l'arborescence des noeuds contenus dans la scène en cours d'édition :
 
-![Node Tree panel screenshot](node_tree_panel.jpg)
+![Node Tree panel screenshot](images/node_tree_panel.jpg)
 
 - Cliquez sur le bouton `+` pour ouvrir un menu déroulant offrant les mêmes fonctions que le menu `Node`.
 - Une zone de recherche vous permet d'afficher une sélection de noeuds. Utile dans une scène complexe.
@@ -467,7 +467,7 @@ Le panneau `Node Tree` affiche l'arborescence des noeuds contenus dans la scène
 
 Le panneau `Scene` affiche la scène en cours d'édition :
 
-![Scene panel screenshot](scene_panel.jpg)
+![Scene panel screenshot](images/scene_panel.jpg)
 
 - Utilisez le bouton droit ou le bouton du milieu de la souris pour vous déplacer dans la vue.
 - Utiisez la molette de la souris pour contrôler le zoom de la vue.
@@ -492,7 +492,7 @@ Cliquez sur les boutons de transformation pour modifier les propriétés de tran
 
 Le panneau `Node Library` propose une liste de noeuds usuels à réutiliser dans votre projet :
 
-![Node Library panel](node_library_panel.jpg)
+![Node Library panel](images/node_library_panel.jpg)
 
 - L'onglet `Builtin Nodes` affiche la liste des noeuds prédéfinis par *Cocos Creator*.
 - L'onglet `Custom Nodes` affiche la liste des noeuds personnalisés.
@@ -503,7 +503,7 @@ Le panneau `Node Library` propose une liste de noeuds usuels à réutiliser dans
 
 Le panneau `Properties` affiche la liste des propriétés du noeud sélectionné :
 
-![Properties panel](properties_panel.jpg)
+![Properties panel](images/properties_panel.jpg)
 
 - Pour désactiver un noeud, décochez la case à gauche de son nom. Cochée par défaut.
 - Pour renommer un noeud, saisissez son nouveau nom dans le premier champ du panneau.
@@ -544,25 +544,25 @@ Un noeud possède toujours au moins une section `Node` qui vous permet d'éditer
 
 Le panneau `Console` affiche les messages de la console intégrée à *Cocos Creator* :
 
-![Console panel](console_panel.jpg)
+![Console panel](images/console_panel.jpg)
 
 #### Panneau Timeline
 
 Le panneau `Timeline` affiche un éditeur de courbes d'animations :
 
-![Timeline panel](timeline_panel.jpg)
+![Timeline panel](images/timeline_panel.jpg)
 
 #### Panneau Game Preview
 
 Le panneau `Game Preview` affiche un aperçu d'exécution de la scène en cours d'édition :
 
-![Game Preview panel](game_preview_panel.jpg)
+![Game Preview panel](images/game_preview_panel.jpg)
 
 #### Panneau Service
 
 Le panneau `Service` affiche des services proposés par *Cocos Creator* :
 
-![Service panel](service_panel.jpg)
+![Service panel](images/service_panel.jpg)
 
 ## Structure d'un projet
 

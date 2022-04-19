@@ -142,7 +142,7 @@ Une fois passée à l'`Application`, les méthodes de l'`ApplicationListener` se
 
 Le diagramme suivant illustre visuellement le cycle de vie :
 
-![diagramme du cycle de vie](libgdx_diagramme_cycle_de_vie.png)
+![diagramme du cycle de vie](images/libgdx_diagramme_cycle_de_vie.png)
 
 ### Où est la boucle principale ?
 
