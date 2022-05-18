@@ -567,7 +567,7 @@ Import nom_dossier.nom_fichier
 
 ## Mojo
 
-### Classe mojo.app.App
+### Classe App
 
 Comme précisé précédemment dans la section `Syntaxe du langage`, le point d'entrée d'un projet Cerberus X se fait dans une fonction `Main` qui ne prend aucun paramètre et qui renvoie un entier (`Int`). Pour un projet utilisant le module `mojo`, vous devez étendre la classe `mojo.app.App` et en créer une instance dans la fonction `Main`.
 
@@ -600,6 +600,18 @@ Method OnCreate:Int()
 End
 ```
 
+#### Méthode OnUpdate
+
+La méthode `OnUpdate` s'exécute à chaque boucle de jeu, à chaque _tick_ de timer, avant la méthode `OnRender`. Utilisez cette méthode pour mettre à jour les données de votre jeu.
+
+```
+Method OnUpdate:Int()
+    Return 0
+End
+```
+
+**Remarque :** La méthode `OnUpdate` n'est appelée que si vous avez préalablement appelé la fonction `SetUpdateRate` (généralement dans la méthode `OnCreate`).
+
 #### Méthode OnRender
 
 La méthode `OnRender` s'exécute à chaque boucle de jeu, pour mettre à jour l'affichage. Utilisez cette méthode pour dessiner vos éléments à l'écran.
@@ -619,18 +631,6 @@ Method OnLoading:Int()
     Return 0
 End
 ```
-
-#### Méthode OnUpdate
-
-La méthode `OnUpdate` s'exécute à chaque boucle de jeu, à chaque tick de timer, avant la méthode `OnRender`. Utilisez cette méthode pour mettre à jour les données de votre jeu.
-
-```
-Method OnUpdate:Int()
-    Return 0
-End
-```
-
-**Remarque :** La méthode `OnUpdate` n'est appelée que si vous avez préalablement appelé la fonction `SetUpdateRate` (généralement dans la méthode `OnCreate`).
 
 #### Méthode OnSuspend
 
@@ -884,3 +884,91 @@ End
 - `List` – List is a linked list. You use it by specifying what it should carry, like this: List<Car> this is a list that can only contain cars. Complete definition would look like this, Local list:= new List<Car>
 - `Map` – Map is used to link one object to another. Like this, Local map:= new Map<Car,Ship>. Car is the Key and Ship is the Value. You can’t use int,float,string with Map but there are special Maps for those cases, like this, Local map:= new StringMap<Car> this will create a Map with string as the Key, and Car as the Value.
 - `Math` – Remember these? Sqrt, Floor, Ceil, Pow, Abs, Sin, Cos, Tan, ASin, ACos, ATan and ATan2. They are at direct access.
+
+### Listes
+
+```
+Function Main()
+    'create a new list
+    Local myList:=New StringList
+
+    'add some data
+    myList.AddLast "first entry"
+    myList.AddLast "second entry"
+    myList.AddLast "third entry"
+
+    'iterate through a list with an EachIn loop
+    For Local item:=Eachin myList
+        Print item
+    Next
+End
+```
+
+### Maps
+
+```
+Function Main()
+    'Define a string map with a string key
+    Local myMap:= New StringMap<String>
+
+    'insert entries
+    myMap.Insert("First", "First entry")
+    myMap.Insert("Second", "Second entry")
+    myMap.Insert("Third", "Third entry")
+
+    'Print all entries
+    Print(myMap.Get("Third"))
+    Print(myMap.Get("First"))
+    Print(myMap.Get("Second"))
+End
+```
+
+### Nombres aléatoires
+
+```
+Function Main()
+    'Retrieve a random number and print it inside the console
+    Local r:Float = Rnd(10,100)
+    Print(r)
+End
+```
+
+### Sets
+
+```
+Function Main()
+    'create a new set
+    Local mySet:=New StringSet
+
+    'Add entries
+    mySet.Insert("First")
+    mySet.Insert("Second")
+    mySet.Insert("Second")
+    mySet.Insert("Second")
+    mySet.Insert("Third")
+
+    'Print all entries in the set
+    For Local s:= Eachin mySet
+        Print(s)
+    Next
+End
+```
+
+###
+
+```
+Function Main()
+    'create a new stack
+    Local myStack:=New Stack<String>
+
+    'Add entries
+    myStack.Push("First")
+    myStack.Push("Second")
+    myStack.Push("Third")
+
+    'Print all entries in the set
+    For Local s:= Eachin myStack
+        Print(s)
+    Next
+End
+```

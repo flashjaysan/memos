@@ -1,6 +1,6 @@
 # Mémo NodeJS
 
-*par flashjaysan*
+_par flashjaysan_
 
 ## Introduction
 
@@ -51,8 +51,6 @@ npm install
 
 ## Ignorer les modules dans Git
 
-
-
 ## Fonctions globales
 
 Les commandes suivantes sont accessibles par défaut. Elles font en réalité partie de l'objet global `global`. Vous pouvez donc ajouter le préfixe `global.` si vous le souhaitez.
@@ -98,8 +96,8 @@ module.exports = print;
 Dans un fichier source où vous souhaitez utiliser des identifiants d'un autre module, utilisez la fonction `require`.
 
 ```js
-const monModule = require('module_path');
-monModule.print('Hello.');
+const monModule = require("module_path");
+monModule.print("Hello.");
 ```
 
 **Remarque :** L'extension est optionnelle. Vous pouvez écrire `require('module_path.js');`.
@@ -107,8 +105,24 @@ monModule.print('Hello.');
 Si le module exporté est directement associé à l'objet `module.exports`, utilisez le directement.
 
 ```js
-const monModule = require('module_path');
-monModule('Hello.');
+const monModule = require("module_path");
+monModule("Hello.");
 ```
 
-### 
+### Variables d'environnement
+
+Créez un fichier `.env.local` à la racine du projet.
+
+Editez ce fichier et créez les variables d'environnement de votre choix.
+
+```
+NOM_VARIABLE_ENVIRONNEMENT=valeur
+```
+
+Pour utiliser une variable d'environnement dans votre projet, utilisez `process.env`.
+
+```
+variable = process.env.NOM_VARIABLE_ENVIRONNEMENT
+```
+
+**Remarque :** Si vous avez une exécution de node en cours, redémarrez l'exécution.
