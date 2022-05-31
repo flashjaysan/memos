@@ -45,6 +45,12 @@ const elements = document.getElementsByName('balise');
 Console.log(elements[0].dataset.nouvellePropriete);
 ```
 
+## Commentaires
+
+```html
+<!-- commentaire -->
+```
+
 ## Doctype
 
 La balise `doctype` doit être placée au tout début du document. Elle ne possède pas de balise de fermeture.
@@ -104,7 +110,26 @@ La balise `body` se place dans la balise `html`. L'élément `body` contient tou
   <head>
     <title>Titre du document</title>
   </head>
+
   <body>
+  </body>
+</html>
+```
+
+## Divisions
+
+La balise `div` vous permet de découper le contenu du document. Utilisez cette balise lorsque vous souhaitez grouper un ensemble de balises dans un même bloc.
+
+```html
+<!doctype html>
+<html>
+  <head>
+    <title>Titre du document</title>
+  </head>
+
+  <body>
+    <div></div>
+    <div></div>
   </body>
 </html>
 ```
@@ -119,6 +144,7 @@ La balise `body` peut être subdivisée en quatre sous sections `header`, `nav`,
   <head>
     <title>Titre du document</title>
   </head>
+
   <body>
     <header></header>
     <nav></nav>
@@ -128,12 +154,28 @@ La balise `body` peut être subdivisée en quatre sous sections `header`, `nav`,
 </html>
 ```
 
-Ces balises ont les mêmes fonctionnalités que les balises `div` mais définissent sémantiquement des zones fréquemment utilisées dans les documents.
+Ces balises ont les mêmes fonctionnalités que la balise `div` mais définissent sémantiquement des zones fréquemment utilisées dans les documents.
 
 - La balise `header` définit le bandeau d'en-tête d'un document.
 - La balise `nav` définit la zone de navigation d'un document.
 - La balise `main` définit le contenu principal d'un document.
 - La balise `footer` définit le bandeau de bas de page d'un document.
+
+## span
+
+```html
+<!doctype html>
+<html>
+  <head>
+    <title>Titre du document</title>
+  </head>
+
+  <body>
+    <p>Paragraphe.</p>
+    <p><span>Paragraphe.</span></p>
+  </body>
+</html>
+```
 
 ## Paragraphes
 
@@ -145,6 +187,7 @@ L'élément `p` définit un paragraphe de texte.
   <head>
     <title>Titre du document</title>
   </head>
+
   <body>
     <p>Paragraphe.</p>
   </body>
@@ -161,6 +204,7 @@ Les balises `em` et `strong` définissent un bloc de texte plus important que d'
   <head>
     <title>Titre du document</title>
   </head>
+
   <body>
     <p>Cette phrase est ordinaire.
     <em>Cette phrase est importante.</em>
@@ -179,8 +223,28 @@ La balise `br` se place dans la balise `p`. Elle n'a pas de balise fermante.
   <head>
     <title>Titre du document</title>
   </head>
+
   <body>
     <p>Ligne 1.<br>Ligne 2.</p>
+  </body>
+</html>
+```
+
+## Ligne horizontale
+
+Utilisez la balise `hr` pour insérer une ligne horizontale et séparer deux blocs de contenu.
+
+```html
+<!doctype html>
+<html>
+  <head>
+    <title>Titre du document</title>
+  </head>
+
+  <body>
+    <p>Paragraphe.</p>
+    <hr>
+    <p>Paragraphe.</p>
   </body>
 </html>
 ```
@@ -195,6 +259,7 @@ Les balises `h1`, `h2`, `h3`, `h4`, `h5` et `h6` définissent des titres par ord
   <head>
     <title>Titre du document</title>
   </head>
+
   <body>
     <h1>Titre importance 1</h1>
     <h2>Titre importance 2</h2>
@@ -218,12 +283,14 @@ Les balises `h1`, `h2`, `h3`, `h4`, `h5` et `h6` définissent des titres par ord
   <head>
     <title>Titre du document</title>
   </head>
+
   <body>
     <ol>
       <li>Element 1.</li>
       <li>Element 2.</li>
       <li>Element 3.</li>
     </ol>
+
     <ul>
       <li>Element.</li>
       <li>Element.</li>
@@ -243,6 +310,7 @@ La balise `a` définit un lien. Utilisez la propriété `href` pour définir l'a
   <head>
     <title>Titre du document</title>
   </head>
+
   <body>
     <p>Ceci est un <a href="https://site.fr/">lien</a>.</p>
   </body>
@@ -257,6 +325,7 @@ Utilisez un lien vers un id du document en cours précédé du signe dièse `#` 
   <head>
     <title>Titre du document</title>
   </head>
+
   <body>
     <p>Ceci est un <a href="#fin">lien interne</a>.</p>
     <p id="fin">Fin du document.</p>
@@ -272,6 +341,7 @@ La propriété `target` vous permet de définir si le lien doit s'ouvrir à la p
   <head>
     <title>Titre du document</title>
   </head>
+
   <body>
     <p>Ceci est un <a href="https://site.fr/" target="_blank">lien</a>.</p>
   </body>
@@ -288,6 +358,7 @@ Faites simplement précéder l'adresse email par `mailto:`.
   <head>
     <title>Titre du document</title>
   </head>
+
   <body>
     <p>Ceci est un <a href="mailto:nom@domaine.com">lien vers une adresse email</a>.</p>
   </body>
@@ -319,7 +390,7 @@ Un élément peut avoir plusieurs classes séparées par un espace.
 
 ## Images
 
-La balise `img` définit une image et elle n'a pas de balise fermante. Utilisez la propriété `src` pour définir l'adresse (absolue ou relative) de l'image, la propriété `width` pour définir la largeur de l'image, la propriété `height` pour définir la hauteur de l'image et la propriété `alt` pour définir un texte alternatif si l'image ne peut être affichée.
+La balise `img` définit une image et elle n'a pas de balise fermante. Utilisez la propriété `src` pour définir l'adresse (absolue ou relative) de l'image, la propriété `width` pour définir la largeur de l'image, la propriété `height` pour définir la hauteur de l'image et la propriété `alt` pour définir un texte alternatif si l'image ne peut être affichée (pour l'accessibilité).
 
 ```html
 <!doctype html>
@@ -327,13 +398,14 @@ La balise `img` définit une image et elle n'a pas de balise fermante. Utilisez 
   <head>
     <title>Titre du document</title>
   </head>
+
   <body>
     <img src="image.png" width="120" height="90" alt="Texte alternatif">
   </body>
 </html>
 ```
 
-**Remarque :** La plupart des navigateurs prennent en chargent les formats d'image `PNG`, `JPEG` et `GIF`.
+**Remarque :** La plupart des navigateurs prennent en charge les formats d'image `PNG`, `JPEG` et `GIF`.
 
 ## Tableaux
 
@@ -345,6 +417,7 @@ La balise `table` définit un tableau. La balise `tr` définit une ligne et se p
   <head>
     <title>Titre du document</title>
   </head>
+
   <body>
     <table>
       <tr>
@@ -352,6 +425,7 @@ La balise `table` définit un tableau. La balise `tr` définit une ligne et se p
         <td>Ligne 1, Colonne 2</td>
         <td>Ligne 1, Colonne 3</td>
       </tr>
+
       <tr>
         <td>Ligne 2, Colonne 1</td>
         <td>Ligne 2, Colonne 2</td>
@@ -362,11 +436,13 @@ La balise `table` définit un tableau. La balise `tr` définit une ligne et se p
 </html>
 ```
 
+## Citations
+
+```html
+<blockquote cite="url">Texte à afficher.</blockquote>
+```
+
 ## Formulaires
-
-
-
-## Div et Span
 
 
 
@@ -393,7 +469,6 @@ Utilisez le type d'évènement `keydown` pour exécuter une fonction lorsque l'u
 
 ```js
 window.addEventListener('keydown', keyDownListener);
-
 
 function keyDownListener(eventInfo) {
   // gestion de l'évènement

@@ -353,3 +353,15 @@ selecteur {
 ```css
 
 ```
+
+## Design responsive
+
+De plus en plus d'utilisateurs utilisent divers appareils pour naviguer sur Internet. Ces appareils ont des écrans de résolution très différentes et vous devez prévoir d'adapter votre contenu à ces appareils.
+
+Par défaut, un design s'étire ou se contracte sur toute la largeur de l'écran. Un affichage correct sur PC s'affichera de manière identique sur mobile mais tellement petit que ça sera inutilisable.
+
+Pour désactiver ce comportement par défaut, utilisez la balise `meta`.
+
+```html
+<meta name="viewport" content="width=device-width,initial-scale-1.0" />
+```

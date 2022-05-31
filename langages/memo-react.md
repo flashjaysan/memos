@@ -62,6 +62,58 @@ Trois règles essentielles :
 
 **Remarque :** Les hooks ne fonctionnent pas dans des composants classes.
 
+### useState
+
+Importer le hook `useState`.
+
+```js
+import { useState } from 'react';
+```
+
+Définissez un état et appelant la fonction `useState` et en lui passant la valeur initiale (type simple ou complexe). Cette fonction renvoie un tableau à déconstruire. Le premier élément est le nom de l'état. Le second élément est le nom de la fonction de modification de l'état.
+
+```js
+const [nomEtat, setNomEtat] = useState(valeur_initiale);
+```
+
+Utilisez le nom de l'état lorsque vous souhaitez utiliser sa valeur.
+
+```js
+console.log(nomEtat);
+```
+
+Utilisez le nom de la fonction de modification de l'état lorsque vous souhaitez modifier la valeur de l'état.
+
+```js
+setNomEtat(nouvelle_valeur);
+```
+
+**Attention !** Si jamais vous souhaitez modifier l'état avec une nouvelle valeur qui dépend de sa valeur actuelle, vous devez passer par une fonction de rappel. Cette dernière prend en paramètre la valeur de l'état précédent.
+
+```js
+setNomEtat((etatPrecedent) => {
+  return etatPrecedent + 1;
+});
+```
+
+**Astuce :** Si l'état est un tableau, ajoutez un élément en utilisant le *spread operator* sur le tableau.
+
+```js
+setNomEtat((etatPrecedent) => {
+  return [...etatPrecedent, nouvelElement];
+});
+```
+
+**Astuce :** Si l'état est un tableau, supprimez un élément en utilisant la méthode `filter` du tableau.
+
+```js
+setNomEtat((etatPrecedent) => {
+  return etatPrecedent.filter((item) => {
+    return condition;
+  });
+});
+```
+
 A REMPLIR
 
 ## React Router
