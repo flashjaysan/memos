@@ -135,7 +135,9 @@ import { initializeApp } from 'firebase/app';
 initializeApp(firebaseConfig);
 ```
 
-## Créer une base de données
+### Firestore
+
+### Créer une base de données
 
 - Dans le dashboard de Firebase, cliquez sur l'option `Firestore Database`.
 - Cliquez sur le bouton `Create database`.
@@ -144,7 +146,7 @@ initializeApp(firebaseConfig);
 - Choisissez un emplacement dans le cloud.
 - Cliquez sur le bouton `Enable`.
 
-## Créer une collection
+### Créer une collection
 
 - Dans la base de données, cliquez sur le bouton `Start collection`.
 - Saisissez le nom de la collection (Collection ID).
@@ -160,7 +162,7 @@ initializeApp(firebaseConfig);
 - Cliquez sur le champ `Add document` pour créer un nouveau document et renseigner ses propriétés.
 - Cliquez sur le champ `Add field` pour ajouter une propriété au document sélectionné.
 
-## Accéder à la base de données
+### Accéder à la base de données
 
 Importez la fonction `getFirestore`.
 
@@ -174,7 +176,7 @@ Appelez cette fonction pour obtenir un lien vers la base de données.
 const database = getFirestore();
 ```
 
-## Accéder à une collection
+### Accéder à une collection
 
 Importez la fonction `collection`.
 
@@ -188,7 +190,7 @@ Appelez cette fonction en lui passant la référence à la base de données et l
 const collectionReference = collection(database, "nom_collection");
 ```
 
-## Accéder aux documents
+### Accéder aux documents
 
 Importez la fonction `getDocs`.
 
@@ -228,7 +230,7 @@ getDocs(collectionReference)
   });
 ```
 
-## Créer un document depuis l'application
+### Créer un document depuis l'application
 
 Importez la fonction `addDoc`.
 
@@ -269,7 +271,7 @@ addBookForm.addEventListener("submit", (e) => {
 
 La base de données est mise à jour avec l'ajout du document mais la page web n'affiche pas cette mise à jour si vous utilisez la fonction `getDocs`.
 
-## Supprimer un document depuis l'application
+### Supprimer un document depuis l'application
 
 Importez la fonction `deleteDoc` et la fonction `doc`.
 
@@ -308,9 +310,9 @@ deleteBookForm.addEventListener("submit", (e) => {
 
 La base de données est mise à jour avec la suppression du document mais la page web n'affiche pas cette mise à jour si vous utilisez la fonction `getDocs`.
 
-## Accéder aux données en temps réel
+### Accéder aux données en temps réel
 
-Au lieu d'utiliser la fonction `getDocs`, utilisez la fonction `onSnapshot`.
+Au lieu d'utiliser la fonction `getDocs`, utilisez la fonction `onSnapshot` si vous souhaitez accéder à la base de données en permanence. Chaque changement entraine un appel à la callback définie dans cette fonction.
 
 Importez cette fonction.
 
@@ -334,7 +336,7 @@ onSnapshot(collectionReference, (snapshot) => {
 
 Notez que la fonction `onSnapshot` prends une callback en second argument. Cette callback s'exécute lors de l'appel à la fonction `onSnapshot` mais également à chaque changement dans la base de données.
 
-## Effectuer une requête sur la base de données
+### Effectuer une requête sur la base de données
 
 Importez les fonctions `query` et `where`.
 
@@ -350,7 +352,7 @@ const q = query(collectionReference, where("nom_propriete", "==", "valeur"));
 
 La fonction `where` prend un nom de propriété des documents à filtrer, un opérateur de comparaison et une valeur à comparer.
 
-Appelez la fonction onSnaptshot en lui passant la liste filtrée de documents à la place de la référence à la collection.
+Appelez la fonction `onSnaptshot` en lui passant la liste filtrée de documents à la place de la référence à la collection.
 
 ```js
 onSnapshot(q, (snapshot) => {
@@ -364,7 +366,7 @@ onSnapshot(q, (snapshot) => {
 });
 ```
 
-## Obtenir un document particulier
+### Obtenir un document particulier
 
 Importez la fonction `getDoc`.
 
@@ -388,7 +390,7 @@ onSnapshot(documentReference, (doc) => {
 });
 ```
 
-## Trier les documents
+### Trier les documents
 
 Importez la fonction `orderBy`.
 
@@ -413,7 +415,7 @@ La fonction `orderBy` prend un nom de propriété des documents et un ordre. L'o
 
 **Attention :** Le tri ne peut être effectué que si la collection est configurée pour que les documents possèdent un index. Allez sur le dashboard Firebase du projet, cliquez sur la section `Firestore Database`, sélectionnez la collection et cliquez sur le bouton `Create index`.
 
-## Ajouter un timestamp à un document
+### Ajouter un timestamp à un document
 
 Plutôt qu'utiliser la fonction JavaScript `Date`, utilisez la fonction `serverTimestamp`. Importez-la.
 
@@ -427,7 +429,7 @@ Appelez ensuite la fonction pour créer un timestamp à l'instant de l'appel.
 created = serverTimestamp();
 ```
 
-## Mettre à jour un document
+### Mettre à jour un document
 
 Importez la fonction `updateDoc`.
 
@@ -564,3 +566,49 @@ signupForm.addEventListener("submit", (e) => {
 ```
 
 **Remarque :** `userCredential.user` est un objet contenant diverses informations dont une propriété `uid` identifiant l'utilisateur de manière unique dans Firebase.
+
+```js
+const userId = userCredential.user.uid;
+```
+
+**Attention !** Si vous souhaitez utiliser l'évènement pour obtenir les valeurs des différents champs, utilisez l'attribut `target` de l'évènement suivi du nom de la balise suivi de l'attribut `value`. Pour que cela fonctionne, vous devez définir l'attribut `name` des balises à utiliser.
+
+```js
+signupForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const email = e.target.email.value;
+  const password = e.target.password.value;
+
+  createUserWithEmailAndPassword(auth, email, password);
+});
+```
+
+### Se déconnecter
+
+```js
+auth
+  .signOut()
+  .then(() => {})
+  .catch(() => {});
+```
+
+### Vérifier si on est connecté
+
+```js
+if (auth.getInstance().getCurrentUser() != null) {
+  console.log("Vous n'êtes pas connecté.");
+}
+```
+
+### Se connecter avec un compte existant
+
+```js
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+signInWithEmailAndPassword(auth, email, password)
+  .then((userCredentials) => {})
+  .catch((error) => {});
+```
+
+

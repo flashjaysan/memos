@@ -2,6 +2,12 @@
 
 _par flashjaysan_
 
+## Introduction
+
+React est une bibliothèque JavaScript très populaire utilisée pour créer des sites web, notamment des SPA (Single Page Applications) ou applications mono-page.
+
+Une SPA fonctionne sur le principe d'une seule requête du navigateur pour obtenir une unique page HTML qui change d'état en interne pour naviguer dans l'application sans avoir à charger une nouvelle page.
+
 ## Prérequis
 
 Vous devez avoir une bonne connaissance générale des langages JavaScript (ES6) et HTML.
@@ -33,7 +39,7 @@ cd nom-projet
 Utilisez la commande `npm start` pour lancer l'exécution de l'application.
 
 ```
-npm start
+npm run start
 ```
 
 Ouvrez votre navigateur et rendez-vous sur l'URL locale `localhost:3000`.
@@ -50,7 +56,23 @@ code .
 
 React crée un DOM virtuel en mémoire. Il utilise ce DOM virtuel pour appliquer les changements au DOM réel du navigateur. Il ne change que ce qui doit être changé.
 
-A REMPLIR
+Tous les éléments sont des composants. Une application est contruite en créant et en combinant des composants et en leur passant des informations via des _props_ (propriétés). Les props sont similaires à des attributs des balises HTML.
+
+Un composant est une fonction qui renvoie du JSX () transformé en HTML par Babbel.
+
+Un nom de composant doit commencer par une majuscule.
+
+## class et className
+
+En JavaScript, le mot `class` est un mot réservé du langage. C'est pourquoi, en JSX, on utilise le mot `className` pour définir une balise avec un attribut HTML `class`.
+
+## Recharger les dépendances d'un projet React
+
+Si vous téléchargez un projet React, vous n'aurez pas les dépendances (dans le dossier `node_modules`). Vous devez installer ces dépendances. Ouvrez un terminal dans VS Code.
+
+```
+npm install
+```
 
 ## Hooks
 
@@ -67,7 +89,7 @@ Trois règles essentielles :
 Importer le hook `useState`.
 
 ```js
-import { useState } from 'react';
+import { useState } from "react";
 ```
 
 Définissez un état et appelant la fonction `useState` et en lui passant la valeur initiale (type simple ou complexe). Cette fonction renvoie un tableau à déconstruire. Le premier élément est le nom de l'état. Le second élément est le nom de la fonction de modification de l'état.
@@ -96,7 +118,7 @@ setNomEtat((etatPrecedent) => {
 });
 ```
 
-**Astuce :** Si l'état est un tableau, ajoutez un élément en utilisant le *spread operator* sur le tableau.
+**Astuce :** Si l'état est un tableau, ajoutez un élément en utilisant le _spread operator_ sur le tableau.
 
 ```js
 setNomEtat((etatPrecedent) => {
@@ -350,3 +372,52 @@ Encadrez la route imbriquée du composant `Routes` et utilisez un chemin relatif
 ```
 
 **Remarque :** Cela fonctionne également pour les routes imbriquées dynamiques. La route parent dynamique n'apparait que dans le composant parent.
+
+## Eviter les props drilling
+
+Créez un nouveau fichier source, importez la fonction `createContext`.
+
+```js
+import { createContext } from "react";
+```
+
+Appelez cette fonction pour instancier un contexte.
+
+```js
+export const context = createContext(null);
+```
+
+Au plus haut niveau de votre arborescence où vous avez besoin d'états à passer à des composants enfants, importez le fichier source contenant l'instance de contexte.
+
+```js
+import { context } from "./context";
+```
+
+Encadrez les composants dont vous souhaitez passer le contexte par l'objet `Provider` du contexte.
+
+```js
+<context.Provider>
+<composant>
+</context.Provider>
+```
+
+Passez les props via l'attribut `value` de cet objet.
+
+```js
+<context.Provider value={{ etat1, etat2 }}>
+<composant>
+</context.Provider>
+```
+
+Dans les composants enfants ayant besoin des props, importez le hook `useContext` ainsi que le fichier source du contexte.
+
+```js
+import { useContext } from "react";
+import { context } from "./context";
+```
+
+Utilisez le hook `useContext` pour récupérer le contexte.
+
+```js
+const { etat1, etat2 } = useContext(context);
+```

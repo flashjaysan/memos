@@ -80,7 +80,7 @@ pygame.display.set_icon(icone)
 Utilisez la fonction `set_mode` du sous-module `display` pour créer la fenêtre de jeu. Passez les dimensions sous forme de tuple ou de liste. Cette fonction renvoie une surface spéciale correspondant à la surface associée à la fenêtre de jeu. Je l'appelerai la _surface d'affichage_.
 
 ```python
-display_surface = pygame.diplay.set_mode((largeur, hauteur))
+display_surface = pygame.display.set_mode((largeur, hauteur))
 ```
 
 **Remarque :** Le système de coordonnées de pygame inverse l'axe vertical par rapport au système classique mathématique. Les valeurs verticales augmentent donc vers le bas. L'origine du repère est situé dans le coin supérieur gauche de la fenêtre.
@@ -1169,8 +1169,6 @@ Créez une instance de la classe `Rect` en passant les coordonnées de son coin 
 rectangle = pygame.Rect(x, y, largeur, hauteur)
 ```
 
-<<<<<<< Updated upstream
-=======
 La classe `Rect` fournit également des propriétés virtuelles bien pratiques car vous pouvez aussi bien y accéder en lecture qu'en écriture.
 
 - `x` ou `left` : position horizontale du bord gauche
@@ -1187,17 +1185,11 @@ La classe `Rect` fournit également des propriétés virtuelles bien pratiques c
 - `midright` : coordonnées du milieu du bord gauche (x, y)
 - `center` : coordonnées du centre du rectangle (x, y)
 - `centerx` : position horizontale du centre du rectangle
-- `centery` :  position verticale du centre du rectangle
+- `centery` : position verticale du centre du rectangle
 - `size` : dimensions du rectangle (largeur, hauteur)
 - `width` ou `w` : largeur du rectangle
 - `height` ou `h` : hauteur du rectangle
 
-
-
-
-
-
->>>>>>> Stashed changes
 ## Dessiner des formes géométriques
 
 Le sous-module `draw` contient un ensemble de fonctions vous permettant de dessiner des formes géométriques sur la surface de votre choix (y compris la surface d'affichage).
@@ -1390,7 +1382,6 @@ Utilisez la méthode `blit` sur la surface d'affichage et passez la surface repr
 ```python
 display_surface.blit(surface, (x, y))
 ```
-<<<<<<< Updated upstream
 
 ## Déplacer un rectangle avec le clavier
 
@@ -1448,5 +1439,3 @@ while True:
     pygame.display.update()
     mainClock.tick(60)
 ```
-=======
->>>>>>> Stashed changes
