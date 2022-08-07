@@ -791,7 +791,7 @@ Ou passez un tuple de trois valeurs RGB (comprises entre `0` et `255`).
 RED_COLOR = pygame.Color((255, 0, 0))
 ```
 
-Mais vous pouvez faire encore plus simple. Partout où une couleur est attendue, vous pouvez utiliser directement une des chaînes prédéfinies sans instancier d'objet `Color`.
+**Remarque :** Depuis la version 2 de pygame, vous pouvez faire encore plus simple. Partout où une couleur est attendue, vous pouvez utiliser directement une des chaînes prédéfinies sans instancier d'objet `Color`.
 
 ```python
 surface.fill('yellow') # au lieu de surface.fill(pygame.Color('yellow'))
@@ -1132,7 +1132,7 @@ pygame.quit()
 
 ## Structures utiles
 
-### Les vecteurs
+### Vecteurs
 
 pygame définit deux classes pour représenter les vecteurs.
 
@@ -1147,6 +1147,8 @@ Créez une instance de la classe `Vector2` en passant les coordonnées du point 
 vecteur2 = pygame.Vector2(x, y)
 ```
 
+**Remarque :** La classe `Vector2` est définie dans le module `pygame.math` mais depuis la version 1.9.4 de pygame vous pouvez l'instancier directement depuis le module `pygame`.
+
 #### Vector3
 
 Créez une instance de la classe `Vector3` en passant les coordonnées du point ou du déplacement.
@@ -1155,13 +1157,13 @@ Créez une instance de la classe `Vector3` en passant les coordonnées du point 
 vecteur3 = pygame.Vector3(x, y, z)
 ```
 
-### Les rectangles
+**Remarque :** La classe `Vector3` est définie dans le module `pygame.math` mais depuis la version 1.9.4 de pygame vous pouvez l'instancier directement depuis le module `pygame`.
+
+### Rect
 
 pygame définit la classe `Rect` pour représenter un rectangle aligné sur les axes. Cette classe est définie par la position de son coin supérieur gauche et ses dimensions.
 
 Elle possède notamment des méthodes très utiles pour gérer les collisions avec d'autres rectangles.
-
-#### Rect
 
 Créez une instance de la classe `Rect` en passant les coordonnées de son coin supérieur gauche et la largeur et la hauteur du rectangle.
 
@@ -1171,10 +1173,14 @@ rectangle = pygame.Rect(x, y, largeur, hauteur)
 
 La classe `Rect` fournit également des propriétés virtuelles bien pratiques car vous pouvez aussi bien y accéder en lecture qu'en écriture.
 
+Positions :
+
 - `x` ou `left` : position horizontale du bord gauche
 - `right` : position horizontale du bord droit
 - `y` ou `top` : position verticale du bord supérieur
 - `bottom` : position verticale du bord inférieur
+- `centerx` : position horizontale du centre du rectangle
+- `centery` : position verticale du centre du rectangle
 - `topleft` : coordonnées du coin supérieur gauche (x, y)
 - `bottomleft` : coordonnées du coin inférieur gauche (x, y)
 - `topright` : coordonnées du coin supérieur droit (x, y)
@@ -1184,13 +1190,242 @@ La classe `Rect` fournit également des propriétés virtuelles bien pratiques c
 - `midbottom` : coordonnées du milieu du bord inférieur (x, y)
 - `midright` : coordonnées du milieu du bord gauche (x, y)
 - `center` : coordonnées du centre du rectangle (x, y)
-- `centerx` : position horizontale du centre du rectangle
-- `centery` : position verticale du centre du rectangle
-- `size` : dimensions du rectangle (largeur, hauteur)
+
+Dimensions :
+
 - `width` ou `w` : largeur du rectangle
 - `height` ou `h` : hauteur du rectangle
+- `size` : dimensions du rectangle (largeur, hauteur)
 
-## Dessiner des formes géométriques
+**Remarque :** Seules les propriétés de dimensions modifient les dimensions du rectangle. Les autres propriétés déplacent juste le rectangle.
+
+Pour dupliquer un rectangle, utilisez la méthode `copy`.
+
+```python
+rect_copy = rect.copy()
+```
+
+Pour déplacer un rectangle depuis sa position actuelle, utilisez la méthode `move` avec les valeurs de déplacement horizontal et vertical.
+
+```python
+moved_rect = rect.move(x, y)
+```
+
+**Attention !** Cette méthode renvoie un nouveau rectangle déplacé mais le rectangle d'origine n'est pas affecté. Utilisez la méthode `move_ip` pour affecter le rectangle d'origine.
+
+```python
+rect.move(x, y)
+```
+
+Pour agrandir (ou réduire) un rectangle depuis la position actuelle de son centre, utilisez la méthode `inflate` avec les valeurs (en pixels) horizontales et verticales à ajouter (ou soustraire) à la dimension actuelle.
+
+```python
+inflated_rect = rect.inflate(x, y)
+```
+
+**Attention !** Cette méthode renvoie un nouveau rectangle agrandi mais le rectangle d'origine n'est pas affecté. Utilisez la méthode `inflate_ip` pour affecter le rectangle d'origine.
+
+```python
+rect.inflate(x, y)
+```
+
+### Sprites
+
+pygame fournit une classe de base `Sprite`. Elle définit des propriétés et des méthodes générales. Créez des sous-classes de cette classe pour définir des comportements spécifiques.
+
+Pour créer un nouveau sprite, instanciez la classe `pygame.sprite.Sprite`.
+
+```python
+sprite = pygame.sprite.Sprite()
+```
+
+**Remarque :** Vous pouvez également passer au constructeur une séquence de groupes de sprites pour ajouter ce sprite à ces groupes dès sa création.
+
+```python
+sprite = pygame.sprite.Sprite(sprites_group)
+```
+
+Pour ajouter un sprite à un ou plusieurs groupes de sprites à la fois, utilisez la méthode `add`.
+
+```python
+sprite.add(sprites_groups)
+```
+
+Pour retirer un sprite d'un ou de plusieurs groupes de sprites à la fois, utilisez la méthode `remove`.
+
+```python
+sprite.remove(sprites_groups)
+```
+
+Pour retirer un sprite de tous les groupes de sprites où il est présent, utilisez la méthode `kill`.
+
+```python
+sprite.kill()
+```
+
+Pour tester si un sprite est présent dans au moins un groupe de sprites, utilisez la méthode `alive`.
+
+```python
+if sprite.alive():
+    ...
+```
+
+Pour obtenir la liste des groupes de sprites où un sprite est présent, utilisez la méthode `groups`.
+
+```python
+sprites_group_list = sprite.groups()
+```
+
+La classe `Sprite` définit une méthode `update` vide. Si vous souhaitez définir un comportement spécifique, vous devez sous-classer la méthode `Sprite` et implémenter la méthode `update`.
+
+```python
+class MySprite(pygame.sprite.Sprite):
+    def __init__(self):
+       pygame.sprite.Sprite.__init__(self)
+       self.image = pygame.Surface((10, 10))
+       self.image.fill('white')
+       self.rect = self.image.get_rect()
+
+    def update(self):
+        self.rect.x += 5
+```
+
+### Groupes de sprites
+
+pygame fournit une classe `Group` qui représente un groupe de sprites (_sprites group_). Cela vous permet de regrouper un ensemble de sprites. Via cette classe, vous pouvez facilement automatiser l'appel aux méthodes `update` et `draw` de chaque sprite présent dans le groupe de sprites.
+
+**Attention !** Un sprite peut être présent dans plusieurs groupes de sprites en même temps. C'est à vous de gérer correctement vos groupes de sprites.
+
+Pour créer un nouveau groupe de sprites, instanciez la classe `pygame.sprite.Group`.
+
+```python
+sprites_group = pygame.sprite.Group()
+```
+
+**Remarque :** Vous pouvez également passer au constructeur une séquence de sprites que le groupe de sprites ajoutera à sa liste.
+
+```python
+sprites_group = pygame.sprite.Group(sprites)
+```
+
+Pour appeler la méthode `update` automatiquement sur chaque sprite appartenant au groupe de sprites, utilisez sa méthode `update`.
+
+```python
+sprites_group.update()
+```
+
+Pour appeler la méthode `draw` automatiquement sur chaque sprite appartenant au groupe de sprites, utilisez sa méthode `draw` en lui passant la surface sur laquelle dessiner les sprites.
+
+```python
+sprites_group.draw(surface)
+```
+
+**Attention !** Cette méthode exige que chaque sprite du groupe définisse les propriétés `image` et `rect`.
+
+Pour ajouter un sprite à un groupe de sprites, utilisez la méthode `add`.
+
+```python
+sprites_group.add(sprite)
+```
+
+Pour retirer un sprite d'un groupe de sprites, utilisez la méthode `remove`.
+
+```python
+sprites_group.remove(sprite)
+```
+
+Pour vider un groupe de sprites, utilisez la méthode `empty`.
+
+```python
+sprites_group.empty()
+```
+
+Pour dupliquer un groupe de sprites, utilisez la méthode `copy`.
+
+```python
+sprites_group_copy = sprites_group.copy()
+```
+
+Pour tester si un sprite est présent dans un groupe de sprites, utilisez la méthode `has`.
+
+```python
+if sprites_group.has(sprite):
+    ...
+```
+
+**Remarque :** Vous pouvez passer plusieurs sprites séparés par une virgule, ou une séquence de sprites.
+
+```python
+if sprites_group.has(sprite1, sprite2):
+    ...
+```
+
+```python
+if sprites_group.has(sprites):
+    ...
+```
+
+Vous pouvez également utiliser le mot clé `in`.
+
+```python
+if sprite in sprites_group:
+    ...
+```
+
+Pour obtenir la liste des sprites présents dans un groupe de sprites, utilisez la méthode `sprites`.
+
+```python
+sprites_list = sprites_group.sprites()
+```
+
+Pour obtenir le nombre de sprites présents dans le groupe de sprites, utilisez la fonction `len`.
+
+```python
+sprites_number = len(sprites_group)
+```
+
+Pour tester si le groupe de sprites contient au moins un sprite, utilisez la fonction `bool`.
+
+```python
+if bool(sprites_group):
+    ...
+```
+
+## Collision
+
+`pygame.sprite.spritecollide`
+Find sprites in a group that intersect another sprite.
+`pygame.sprite.collide_rect`
+Collision detection between two sprites, using rects.
+`pygame.sprite.collide_rect_ratio`
+Collision detection between two sprites, using rects scaled to a ratio.
+`pygame.sprite.collide_circle`
+Collision detection between two sprites, using circles.
+`pygame.sprite.collide_circle_ratio`
+Collision detection between two sprites, using circles scaled to a ratio.
+`pygame.sprite.collide_mask`
+Collision detection between two sprites, using masks.
+`pygame.sprite.groupcollide`
+Find all sprites that collide between two groups.
+`pygame.sprite.spritecollideany`
+Simple test if a sprite intersects anything in a group.
+`pygame.Rect.contains`
+`pygame.Rect.collidepoint`
+test if a point is inside a rectangle
+`pygame.Rect.colliderect`
+test if two rectangles overlap
+`pygame.Rect.collidelist`
+test if one rectangle in a list intersects
+`pygame.Rect.collidelistall`
+test if all rectangles in a list intersect
+`pygame.Rect.collidedict`
+test if one rectangle in a dictionary intersects
+`pygame.Rect.collidedictall`
+test if all rectangles in a dictionary intersect
+
+To find the collisions, the Sprites are required to have a Surface.rect attribute assigned.
+
+## Dessin
 
 Le sous-module `draw` contient un ensemble de fonctions vous permettant de dessiner des formes géométriques sur la surface de votre choix (y compris la surface d'affichage).
 
@@ -1298,7 +1533,7 @@ La fonction `ellipse` du sous-module `draw` dessine une ellipse sur une surface.
 pygame.draw.ellipse(surface, couleur, rectangle_englobant, largeur_contour)
 ```
 
-## Les surfaces
+## Surfaces
 
 ### Afficher une surface
 
@@ -1322,7 +1557,7 @@ La méthode accepte également des paramètres nommés correspondants aux propri
 rectangle = surface.get_rect(center=(100, 100))
 ```
 
-## Les images
+## Images
 
 ### Charger une image
 
@@ -1371,6 +1606,14 @@ Utilisez la méthode `set_colorkey` pour définir la couleur qui sera considér�
 
 ```python
 surface.set_colorkey(couleur)
+```
+
+### Obtenir le rectangle à partir d'une image
+
+Utilisez la méthode `get_rect`.
+
+```python
+rect = image.get_rect()
 ```
 
 ### Afficher une image
