@@ -1292,7 +1292,7 @@ class MySprite(pygame.sprite.Sprite):
 
 ### Groupes de sprites
 
-pygame fournit une classe `Group` qui représente un groupe de sprites (_sprites group_). Cela vous permet de regrouper un ensemble de sprites. Via cette classe, vous pouvez facilement automatiser l'appel aux méthodes `update` et `draw` de chaque sprite présent dans le groupe de sprites.
+pygame fournit une classe `Group` qui représente un groupe de sprites (_sprites group_). Cela vous permet de regrouper un ensemble de sprites. Via cette classe, vous pouvez facilement automatiser l'appel à la méthode `update` de chaque sprite présent dans le groupe de sprites.
 
 **Attention !** Un sprite peut être présent dans plusieurs groupes de sprites en même temps. C'est à vous de gérer correctement vos groupes de sprites.
 
@@ -1308,19 +1308,23 @@ sprites_group = pygame.sprite.Group()
 sprites_group = pygame.sprite.Group(sprites)
 ```
 
-Pour appeler la méthode `update` automatiquement sur chaque sprite appartenant au groupe de sprites, utilisez sa méthode `update`.
+Pour appeler la méthode `update` de chaque sprite appartenant au groupe de sprites, utilisez sa méthode `update`.
 
 ```python
 sprites_group.update()
 ```
 
-Pour appeler la méthode `draw` automatiquement sur chaque sprite appartenant au groupe de sprites, utilisez sa méthode `draw` en lui passant la surface sur laquelle dessiner les sprites.
+Pour dessiner chaque sprite présent dans le groupe de sprites, utilisez sa méthode `draw` en lui passant la surface sur laquelle dessiner les sprites.
 
 ```python
 sprites_group.draw(surface)
 ```
 
-**Attention !** Cette méthode exige que chaque sprite du groupe définisse les propriétés `image` et `rect`.
+**Attention !** Cette méthode exige que chaque sprite du groupe définisse les propriétés `image` et `rect` de la classe `Sprite`. En effet, la méthode `draw` _blit_ simplement chaque sprite sur la surface :
+
+```python
+surface.blit(sprite.image, sprite.rect)
+```
 
 Pour ajouter un sprite à un groupe de sprites, utilisez la méthode `add`.
 
@@ -1535,12 +1539,18 @@ pygame.draw.ellipse(surface, couleur, rectangle_englobant, largeur_contour)
 
 ## Surfaces
 
-### Afficher une surface
-
-Pour afficher une surface, utilisez la méthode `blit` de la surface d'affichage et passez la surface à afficher ainsi qu'un tuple correspondant à la position de l'image sur la surface d'affichage.
+Pour créer une surface, appelez le constructeur de la classe `Surface` en lui passant les dimensions (en pixels) de la surface à créer. Les dimensions peuvent être un tuple de deux valeurs ou un `Vector2`.
 
 ```python
-display_surface.blit(surface, (x, y))
+new_surface = pygame.Surface(dimensions)
+```
+
+### Afficher une surface
+
+Pour afficher une surface, utilisez la méthode `blit` de la surface d'affichage et passez la surface à afficher ainsi que la position de l'image sur la surface d'affichage (un tuple de deux valeurs, un `Vector2` ou un `Rect`).
+
+```python
+display_surface.blit(surface, position)
 ```
 
 ### Récupérer le rectangle associé à une surface
@@ -1602,7 +1612,7 @@ surface = pygame.image.load(fichier_image).convert_alpha()
 
 ### Définir la couleur transparente
 
-Utilisez la méthode `set_colorkey` pour définir la couleur qui sera considérée comme transparente.
+Utilisez la méthode `set_colorkey` pour définir la couleur qui sera considérée comme transparente si votre image contient uniquement des pixels totalement opaques et totalement transparents. Cela est plus efficace que d'utiliser une image avec des pixels semi-transparents.
 
 ```python
 surface.set_colorkey(couleur)
